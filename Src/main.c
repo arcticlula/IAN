@@ -49,6 +49,15 @@
 /* USER CODE BEGIN PV */
 	volatile int cntMessage = 0;
 	volatile int waitForMessage = 0;
+	const uint8_t NOTE_OFF = 0x8;
+	const uint8_t NOTE_ON = 0x9;
+	const uint8_t POLY_PRESS = 0xA;
+	const uint8_t CTRL_CHANGE = 0xB;
+	const uint8_t PROG_CHANGE = 0xC;
+	const uint8_t CHAN_PRESS = 0xD;
+	const uint8_t PITCH_BEND = 0xD;
+	const uint8_t SYSTEM = 0xD;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -339,9 +348,16 @@ void USART2_IRQHandler(void) {
 	static uint8_t usart_rx_message[3];
 	if(LL_USART_IsActiveFlag_RXNE(USART2) && LL_USART_IsEnabledIT_RXNE(USART2)) {
 		usart_rx_buffer = LL_USART_ReceiveData8(USART2);
-		if(((usart_rx_buffer == 0x80) || (usart_rx_buffer == 0x90))){
-			cntMessage = 3;
-			waitForMessage=1;
+		switch(usart_rx_buffer) {
+		   case NOTE_ON  :
+			  cntMessage = 3;
+			  waitForMessage=1;
+		      break;
+
+		   case NOTE_OFF  :
+			  cntMessage = 3;
+			  waitForMessage=1;
+		      break;
 		}
 		if (cntMessage>0) {
 //			char temp[1];
