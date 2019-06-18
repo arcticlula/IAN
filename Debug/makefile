@@ -28,13 +28,13 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: tese.elf
+all: TeseMidi.elf
 
 # Tool invocations
-tese.elf: $(OBJS) $(USER_OBJS) ../STM32F103C8Tx_FLASH.ld
+TeseMidi.elf: $(OBJS) $(USER_OBJS) ../STM32F103C8Tx_FLASH.ld
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU GCC Linker'
-	arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32F103C8Tx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "tese.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
+	arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32F103C8Tx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "TeseMidi.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
@@ -46,8 +46,8 @@ clean:
 
 post-build:
 	-@echo 'Generating hex and Printing size information:'
-	arm-none-eabi-objcopy -O ihex "tese.elf" "tese.hex"
-	arm-none-eabi-size "tese.elf"
+	arm-none-eabi-objcopy -O ihex "TeseMidi.elf" "TeseMidi.hex"
+	arm-none-eabi-size "TeseMidi.elf"
 	-@echo ' '
 
 .PHONY: all clean dependents

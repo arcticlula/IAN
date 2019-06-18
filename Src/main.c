@@ -349,12 +349,12 @@ void USART2_IRQHandler(void) {
 	if(LL_USART_IsActiveFlag_RXNE(USART2) && LL_USART_IsEnabledIT_RXNE(USART2)) {
 		usart_rx_buffer = LL_USART_ReceiveData8(USART2);
 		switch(usart_rx_buffer) {
-		   case NOTE_ON  :
+		   case 0x90  :
 			  cntMessage = 3;
 			  waitForMessage=1;
 		      break;
 
-		   case NOTE_OFF  :
+		   case 0x80  :
 			  cntMessage = 3;
 			  waitForMessage=1;
 		      break;
