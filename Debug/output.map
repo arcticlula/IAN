@@ -410,7 +410,6 @@ Discarded input sections
  .data          0x00000000        0x0 Src/main.o
  .text.Error_Handler
                 0x00000000        0x2 Src/main.o
- .rodata        0x00000000        0x8 Src/main.o
  .debug_macro   0x00000000      0xa90 Src/main.o
  .debug_macro   0x00000000       0x2e Src/main.o
  .debug_macro   0x00000000       0x22 Src/main.o
@@ -1029,15 +1028,15 @@ LOAD c:/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.17
                 0x00000214       0x1d c:/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.17.0.201812190825/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7-m/crtn.o
 OUTPUT(TeseMidi.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x42b6
+.debug_info     0x00000000     0x4232
  .debug_info    0x00000000      0x80a Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.o
  .debug_info    0x0000080a      0x6bc Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.o
  .debug_info    0x00000ec6      0x737 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_usart.o
  .debug_info    0x000015fd      0x943 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.o
- .debug_info    0x00001f40     0x1d83 Src/main.o
- .debug_info    0x00003cc3      0x1e5 Src/stm32f1xx_it.o
- .debug_info    0x00003ea8      0x3ec Src/system_stm32f1xx.o
- .debug_info    0x00004294       0x22 startup/startup_stm32f103xb.o
+ .debug_info    0x00001f40     0x1cff Src/main.o
+ .debug_info    0x00003c3f      0x1e5 Src/stm32f1xx_it.o
+ .debug_info    0x00003e24      0x3ec Src/system_stm32f1xx.o
+ .debug_info    0x00004210       0x22 startup/startup_stm32f103xb.o
 
 .debug_abbrev   0x00000000      0xf47
  .debug_abbrev  0x00000000      0x228 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.o
@@ -1085,7 +1084,7 @@ OUTPUT(TeseMidi.elf elf32-littlearm)
  .debug_ranges  0x00000198       0x18 Src/system_stm32f1xx.o
  .debug_ranges  0x000001b0       0x20 startup/startup_stm32f103xb.o
 
-.debug_macro    0x00000000     0x27d1
+.debug_macro    0x00000000     0x2867
  .debug_macro   0x00000000       0xfb Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.o
  .debug_macro   0x000000fb      0x232 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.o
  .debug_macro   0x0000032d       0xe0 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.o
@@ -1096,46 +1095,46 @@ OUTPUT(TeseMidi.elf elf32-littlearm)
  .debug_macro   0x00000c62      0x138 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.o
  .debug_macro   0x00000d9a       0x2a Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.o
  .debug_macro   0x00000dc4       0x78 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.o
- .debug_macro   0x00000e3c      0x2ee Src/main.o
- .debug_macro   0x0000112a       0xd0 Src/main.o
- .debug_macro   0x000011fa       0x28 Src/main.o
- .debug_macro   0x00001222       0x90 Src/main.o
- .debug_macro   0x000012b2      0x287 Src/main.o
- .debug_macro   0x00001539      0x1ad Src/main.o
- .debug_macro   0x000016e6      0x238 Src/main.o
- .debug_macro   0x0000191e       0x22 Src/main.o
- .debug_macro   0x00001940       0x5e Src/main.o
- .debug_macro   0x0000199e       0x18 Src/main.o
- .debug_macro   0x000019b6       0x35 Src/main.o
- .debug_macro   0x000019eb       0x34 Src/main.o
- .debug_macro   0x00001a1f       0x16 Src/main.o
- .debug_macro   0x00001a35       0x97 Src/main.o
- .debug_macro   0x00001acc      0x330 Src/main.o
- .debug_macro   0x00001dfc       0xfd Src/main.o
- .debug_macro   0x00001ef9       0x10 Src/main.o
- .debug_macro   0x00001f09       0x58 Src/main.o
- .debug_macro   0x00001f61       0x1f Src/main.o
- .debug_macro   0x00001f80       0x43 Src/main.o
- .debug_macro   0x00001fc3       0x20 Src/main.o
- .debug_macro   0x00001fe3      0x18e Src/main.o
- .debug_macro   0x00002171       0x10 Src/main.o
- .debug_macro   0x00002181       0x1c Src/main.o
- .debug_macro   0x0000219d       0x52 Src/main.o
- .debug_macro   0x000021ef       0x40 Src/main.o
- .debug_macro   0x0000222f       0x10 Src/main.o
- .debug_macro   0x0000223f       0x40 Src/main.o
- .debug_macro   0x0000227f       0xd7 Src/main.o
- .debug_macro   0x00002356       0x1c Src/main.o
- .debug_macro   0x00002372       0x3d Src/main.o
- .debug_macro   0x000023af       0x16 Src/main.o
- .debug_macro   0x000023c5      0x16f Src/main.o
- .debug_macro   0x00002534       0x16 Src/main.o
- .debug_macro   0x0000254a       0x35 Src/main.o
- .debug_macro   0x0000257f       0x16 Src/main.o
- .debug_macro   0x00002595       0x29 Src/main.o
- .debug_macro   0x000025be       0x16 Src/main.o
- .debug_macro   0x000025d4      0x138 Src/stm32f1xx_it.o
- .debug_macro   0x0000270c       0xc5 Src/system_stm32f1xx.o
+ .debug_macro   0x00000e3c      0x384 Src/main.o
+ .debug_macro   0x000011c0       0xd0 Src/main.o
+ .debug_macro   0x00001290       0x28 Src/main.o
+ .debug_macro   0x000012b8       0x90 Src/main.o
+ .debug_macro   0x00001348      0x287 Src/main.o
+ .debug_macro   0x000015cf      0x1ad Src/main.o
+ .debug_macro   0x0000177c      0x238 Src/main.o
+ .debug_macro   0x000019b4       0x22 Src/main.o
+ .debug_macro   0x000019d6       0x5e Src/main.o
+ .debug_macro   0x00001a34       0x18 Src/main.o
+ .debug_macro   0x00001a4c       0x35 Src/main.o
+ .debug_macro   0x00001a81       0x34 Src/main.o
+ .debug_macro   0x00001ab5       0x16 Src/main.o
+ .debug_macro   0x00001acb       0x97 Src/main.o
+ .debug_macro   0x00001b62      0x330 Src/main.o
+ .debug_macro   0x00001e92       0xfd Src/main.o
+ .debug_macro   0x00001f8f       0x10 Src/main.o
+ .debug_macro   0x00001f9f       0x58 Src/main.o
+ .debug_macro   0x00001ff7       0x1f Src/main.o
+ .debug_macro   0x00002016       0x43 Src/main.o
+ .debug_macro   0x00002059       0x20 Src/main.o
+ .debug_macro   0x00002079      0x18e Src/main.o
+ .debug_macro   0x00002207       0x10 Src/main.o
+ .debug_macro   0x00002217       0x1c Src/main.o
+ .debug_macro   0x00002233       0x52 Src/main.o
+ .debug_macro   0x00002285       0x40 Src/main.o
+ .debug_macro   0x000022c5       0x10 Src/main.o
+ .debug_macro   0x000022d5       0x40 Src/main.o
+ .debug_macro   0x00002315       0xd7 Src/main.o
+ .debug_macro   0x000023ec       0x1c Src/main.o
+ .debug_macro   0x00002408       0x3d Src/main.o
+ .debug_macro   0x00002445       0x16 Src/main.o
+ .debug_macro   0x0000245b      0x16f Src/main.o
+ .debug_macro   0x000025ca       0x16 Src/main.o
+ .debug_macro   0x000025e0       0x35 Src/main.o
+ .debug_macro   0x00002615       0x16 Src/main.o
+ .debug_macro   0x0000262b       0x29 Src/main.o
+ .debug_macro   0x00002654       0x16 Src/main.o
+ .debug_macro   0x0000266a      0x138 Src/stm32f1xx_it.o
+ .debug_macro   0x000027a2       0xc5 Src/system_stm32f1xx.o
 
 .debug_line     0x00000000     0x2a40
  .debug_line    0x00000000      0x576 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.o
@@ -1147,7 +1146,7 @@ OUTPUT(TeseMidi.elf elf32-littlearm)
  .debug_line    0x000025b1      0x412 Src/system_stm32f1xx.o
  .debug_line    0x000029c3       0x7d startup/startup_stm32f103xb.o
 
-.debug_str      0x00000000    0x61110
+.debug_str      0x00000000    0x611ee
  .debug_str     0x00000000    0x5722b Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.o
                               0x5749a (size before relaxing)
  .debug_str     0x0005722b     0x14e1 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.o
@@ -1156,13 +1155,13 @@ OUTPUT(TeseMidi.elf elf32-littlearm)
                               0x58857 (size before relaxing)
  .debug_str     0x00059cf8      0xfa2 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.o
                               0x57c72 (size before relaxing)
- .debug_str     0x0005ac9a     0x6305 Src/main.o
-                              0x5fa04 (size before relaxing)
- .debug_str     0x00060f9f       0xb8 Src/stm32f1xx_it.o
+ .debug_str     0x0005ac9a     0x63e3 Src/main.o
+                              0x5fae2 (size before relaxing)
+ .debug_str     0x0006107d       0xb8 Src/stm32f1xx_it.o
                               0x5aeb8 (size before relaxing)
- .debug_str     0x00061057       0x65 Src/system_stm32f1xx.o
+ .debug_str     0x00061135       0x65 Src/system_stm32f1xx.o
                               0x55b73 (size before relaxing)
- .debug_str     0x000610bc       0x54 startup/startup_stm32f103xb.o
+ .debug_str     0x0006119a       0x54 startup/startup_stm32f103xb.o
 
 .comment        0x00000000       0x7f
  .comment       0x00000000       0x7f Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.o

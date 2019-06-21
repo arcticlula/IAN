@@ -37,6 +37,33 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define ARRAY_LEN(x)            (sizeof(x) / sizeof((x)[0]))
+
+#define NOTE_OFF  	0x80
+#define NOTE_ON  	0x90
+#define POLY_PRESS  0xA0
+#define CTRL_CHANGE 0xB0
+#define PROG_CHANGE 0xC0
+#define CHAN_PRESS  0xD0
+#define PITCH_BEND  0xE0
+#define SYSTEM  	0xF0
+
+#define MIDI_C0            0
+#define MIDI_D0            2
+#define MIDI_E0            4
+#define MIDI_F0            5
+#define MIDI_G0            7
+#define MIDI_A0            9
+#define MIDI_B0           11
+#define MIDI_C            60
+#define MIDI_D            62
+#define MIDI_E            64
+#define MIDI_F            65
+#define MIDI_G            67
+#define MIDI_A            69
+#define MIDI_B            71
+#define MIDI_SHARP         1
+#define MIDI_FLAT         -1
+#define MIDI_OCTAVE       12
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -49,15 +76,6 @@
 /* USER CODE BEGIN PV */
 	volatile int cntMessage = 0;
 	volatile int waitForMessage = 0;
-	const uint8_t NOTE_OFF = 0x8;
-	const uint8_t NOTE_ON = 0x9;
-	const uint8_t POLY_PRESS = 0xA;
-	const uint8_t CTRL_CHANGE = 0xB;
-	const uint8_t PROG_CHANGE = 0xC;
-	const uint8_t CHAN_PRESS = 0xD;
-	const uint8_t PITCH_BEND = 0xD;
-	const uint8_t SYSTEM = 0xD;
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -349,12 +367,12 @@ void USART2_IRQHandler(void) {
 	if(LL_USART_IsActiveFlag_RXNE(USART2) && LL_USART_IsEnabledIT_RXNE(USART2)) {
 		usart_rx_buffer = LL_USART_ReceiveData8(USART2);
 		switch(usart_rx_buffer) {
-		   case 0x90  :
+		   case NOTE_ON  : //NOTE_ON Channel 1
 			  cntMessage = 3;
 			  waitForMessage=1;
 		      break;
 
-		   case 0x80  :
+		   case NOTE_OFF  : //NOTE_OFF Channel 1
 			  cntMessage = 3;
 			  waitForMessage=1;
 		      break;
@@ -370,6 +388,7 @@ void USART2_IRQHandler(void) {
 //			usart_send_string(usart_rx_message);
 			usart_send_string("\n");
 			waitForMessage=0;
+
 		}
 	}
 }
