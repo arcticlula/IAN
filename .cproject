@@ -53,10 +53,10 @@
                   <listOptionValue builtIn="false" value="LSI_VALUE=40000" />
                   <listOptionValue builtIn="false" value="VDD_VALUE=3300" />
                   <listOptionValue builtIn="false" value="PREFETCH_ENABLE=1" />
-                  <listOptionValue builtIn="false" value="__weak=__attribute__((weak))" />
-                  <listOptionValue builtIn="false" value="__packed=__attribute__((__packed__))" />
+                  
+                  
                   <listOptionValue builtIn="false" value="STM32F103xB" />
-                </option>
+                <listOptionValue builtIn="false" value="__weak=&quot;__attribute__((weak))&quot;" /><listOptionValue builtIn="false" value="__packed=&quot;__attribute__((__packed__))&quot;" /></option>
 								<option id="fr.ac6.managedbuild.gnu.c.compiler.option.misc.other.539207472" superClass="fr.ac6.managedbuild.gnu.c.compiler.option.misc.other" value="-fmessage-length=0" valueType="string" />
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.c.350165102" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.c" />
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.s.1630132201" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.s" />
@@ -80,10 +80,10 @@
                   <listOptionValue builtIn="false" value="LSI_VALUE=40000" />
                   <listOptionValue builtIn="false" value="VDD_VALUE=3300" />
                   <listOptionValue builtIn="false" value="PREFETCH_ENABLE=1" />
-                  <listOptionValue builtIn="false" value="__weak=__attribute__((weak))" />
-                  <listOptionValue builtIn="false" value="__packed=__attribute__((__packed__))" />
+                  
+                  
                   <listOptionValue builtIn="false" value="STM32F103xB" />
-                </option>
+                <listOptionValue builtIn="false" value="__weak=&quot;__attribute__((weak))&quot;" /><listOptionValue builtIn="false" value="__packed=&quot;__attribute__((__packed__))&quot;" /></option>
 								<option id="fr.ac6.managedbuild.gnu.cpp.compiler.option.misc.other.1047780566" superClass="fr.ac6.managedbuild.gnu.cpp.compiler.option.misc.other" value="-fmessage-length=0" valueType="string" />
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.cpp.compiler.input.cpp.1500983427" superClass="fr.ac6.managedbuild.tool.gnu.cross.cpp.compiler.input.cpp" />
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.cpp.compiler.input.s.694394115" superClass="fr.ac6.managedbuild.tool.gnu.cross.cpp.compiler.input.s" />
@@ -183,10 +183,10 @@
                   <listOptionValue builtIn="false" value="LSI_VALUE=40000" />
                   <listOptionValue builtIn="false" value="VDD_VALUE=3300" />
                   <listOptionValue builtIn="false" value="PREFETCH_ENABLE=1" />
-                  <listOptionValue builtIn="false" value="__weak=__attribute__((weak))" />
-                  <listOptionValue builtIn="false" value="__packed=__attribute__((__packed__))" />
+                  
+                  
                   <listOptionValue builtIn="false" value="STM32F103xB" />
-                </option>
+                <listOptionValue builtIn="false" value="__weak=&quot;__attribute__((weak))&quot;" /><listOptionValue builtIn="false" value="__packed=&quot;__attribute__((__packed__))&quot;" /></option>
 								<option id="fr.ac6.managedbuild.gnu.c.compiler.option.misc.other.539207472" superClass="fr.ac6.managedbuild.gnu.c.compiler.option.misc.other" value="-fmessage-length=0" valueType="string" />
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.c.350165102" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.c" />
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.s.1630132201" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.s" />
@@ -210,10 +210,10 @@
                   <listOptionValue builtIn="false" value="LSI_VALUE=40000" />
                   <listOptionValue builtIn="false" value="VDD_VALUE=3300" />
                   <listOptionValue builtIn="false" value="PREFETCH_ENABLE=1" />
-                  <listOptionValue builtIn="false" value="__weak=__attribute__((weak))" />
-                  <listOptionValue builtIn="false" value="__packed=__attribute__((__packed__))" />
+                  
+                  
                   <listOptionValue builtIn="false" value="STM32F103xB" />
-                </option>
+                <listOptionValue builtIn="false" value="__weak=&quot;__attribute__((weak))&quot;" /><listOptionValue builtIn="false" value="__packed=&quot;__attribute__((__packed__))&quot;" /></option>
 								<option id="fr.ac6.managedbuild.gnu.cpp.compiler.option.misc.other.1047780566" superClass="fr.ac6.managedbuild.gnu.cpp.compiler.option.misc.other" value="-fmessage-length=0" valueType="string" />
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.cpp.compiler.input.cpp.1500983427" superClass="fr.ac6.managedbuild.tool.gnu.cross.cpp.compiler.input.cpp" />
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.cpp.compiler.input.s.694394115" superClass="fr.ac6.managedbuild.tool.gnu.cross.cpp.compiler.input.s" />
