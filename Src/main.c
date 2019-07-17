@@ -87,18 +87,18 @@
   volatile int waitForMessage = 0;
   volatile uint8_t arr[3] = {0,0,0};
   volatile uint8_t arrCol[12][3] = {
-		{255, 0, 0},
-		{255, 125, 0},
-		{255, 255, 0},
-		{125, 255, 0},
-		{0, 255, 0},
-		{0, 255, 125},
-		{0, 255, 255},
-		{0, 125, 255},
-		{0,0,255},
-		{125,0,255},
-		{255,0,255},
-		{255,0,125}
+		{255, 0, 0}, 	//red
+		{255, 127, 0},  //orange
+		{255, 255, 0},  //yellow
+		{127, 255, 0},  //green yellow
+		{0, 255, 0},    //green
+		{0, 255, 127},	//green cyan
+		{0, 255, 255},	//cyan
+		{0, 127, 255},	//blue cyan
+		{0,0,255},		//blue
+		{127,0,255},	//blue magenta
+		{255,0,255},	//magenta
+		{255,0,127}		//red magenta
   };
   uint8_t velocity = 0;
   Note note;
@@ -413,7 +413,7 @@ int main(void)
     //     WS2812_send(&eightbit[i], 4);
     //     LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
     //     LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
-    //     Delay(50000); // 1 = 0.125 us -> 8 MHz 		50000 -> 6.25ms
+    //     Delay(50000); // 1 = 0.127 us -> 8 MHz 		50000 -> 6.25ms
     //     LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
     //     Delay(1);
     //     LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
@@ -601,7 +601,7 @@ static void MX_USART2_UART_Init(void)
   /* USER CODE BEGIN USART2_Init 1 */
 
   /* USER CODE END USART2_Init 1 */
-  USART_InitStruct.BaudRate = 31250;
+  USART_InitStruct.BaudRate = 31270;
   USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
   USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
   USART_InitStruct.Parity = LL_USART_PARITY_NONE;
