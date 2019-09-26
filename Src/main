@@ -73,12 +73,16 @@ typedef struct Notes
 #define TIM3_CCR1_Address 0x40000434 // physical memory address of Timer 3 CCR1 register
 #define WS0 9						 //09/30
 #define WS1 17						 //17/30
-#define MAX_BRIGHT 0.5				 // 0 - 1
+#define MAX_BRIGHT 1				 // 0 - 1
 
-#define SIZE 7
-#define SIZEL SIZE - 1
-#define NLEDS SIZE *SIZE
+#define NLines 7
+#define NCols 7
 #define MAX_DIV 5
+#if NLines > NCols
+#define smaller NCols
+#else
+#define smaller NLines
+#endif
 
 /* USER CODE END PD */
 
@@ -92,6 +96,9 @@ typedef struct Notes
 /* USER CODE BEGIN PV */
 volatile int cntMessage = 0;
 volatile int waitForMessage = 0;
+volatile uint16_t memaddrLed = 0;
+volatile uint16_t buffersizeLed = 0;
+volatile uint16_t counterLed = 0;
 volatile int resto = 12;
 volatile uint8_t arr[3] = {0, 0, 0};
 volatile uint8_t arrCol[13][3] = {
@@ -113,8 +120,8 @@ Note note;
 
 uint16_t LED_BYTE_Buffer[2000];
 
+uint8_t effect[NLines * NCols][3], effect2[NLines * NCols][3];
 int currColor[3] = {60, 25, 0};
-uint8_t effect[NLEDS][3];
 
 uint8_t GammaE[] = {
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -157,116 +164,67 @@ void Delay(__IO uint32_t nCount)
 	}
 }
 
-void WS2812_reset()
-{
-	volatile uint8_t j;
-	volatile uint16_t memaddr, buffersize, len = NLEDS;
-
-	buffersize = (NLEDS * 24) + 42; // number of bytes needed is #LEDs * 24 bytes + 42 trailing bytes
-	memaddr = 0;					// reset buffer memory index
-
-	// fill transmit buffer with correct compare values to achieve
-	// correct pulse widths according to color values
-	while (len)
-	{
-		for (j = 0; j < 8; j++) // GREEN data
-		{
-			LED_BYTE_Buffer[memaddr] = WS0;
-			memaddr++;
-		}
-
-		for (j = 0; j < 8; j++) // RED data
-		{
-
-			LED_BYTE_Buffer[memaddr] = WS0;
-			memaddr++;
-		}
-
-		for (j = 0; j < 8; j++) // BLUE data
-		{
-			LED_BYTE_Buffer[memaddr] = WS0;
-			memaddr++;
-		}
-		len--;
-	}
-
-	// add needed delay at end of byte cycle, pulsewidth = 0
-	while (memaddr < buffersize)
-	{
-		LED_BYTE_Buffer[memaddr] = 0;
-		memaddr++;
-	}
-	LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_6, buffersize);
-	LL_DMA_EnableChannel(DMA1, LL_DMA_CHANNEL_6); // enable DMA channel 6
-	LL_TIM_EnableCounter(TIM3);					  // enable Timer 3
-	while (!LL_DMA_IsActiveFlag_TC6(DMA1))
-		;										   // wait until transfer complete
-	LL_TIM_DisableCounter(TIM3);				   // disable Timer 3
-	LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_6); // disable DMA channel 6
-	LL_DMA_ClearFlag_TC6(DMA1);					   // clear DMA1 Channel 6 transfer complete flag
-}
-
 void WS2812_sendColor(volatile uint8_t *color)
 {
-	volatile uint8_t j;
-	volatile uint16_t memaddr, buffersize, len = NLEDS;
+	volatile uint8_t x, y, j;
 	char str[100];
 
-	buffersize = (NLEDS * 24) + 42; // number of bytes needed is #LEDs * 24 bytes + 42 trailing bytes
-	memaddr = 0;					// reset buffer memory index
+	buffersizeLed += ((NCols * NLines) * 24); // number of bytes needed is #LEDs * 24 bytes + 42 trailing bytes
 
 	// fill transmit buffer with correct compare values to achieve
 	// correct pulse widths according to color values
-	while (len)
+	for (y = 0; y < NLines; y++)
 	{
-		for (j = 0; j < 8; j++) // GREEN data
+		for (x = 0; x < NCols; x++)
 		{
-			if ((color[1] << j) & 0x80) // data sent MSB first, j = 0 is MSB j = 7 is LSB
+			for (j = 0; j < 8; j++) // GREEN data
 			{
-				LED_BYTE_Buffer[memaddr] = WS1; // compare value for logical 1
+				if ((color[1] << j) & 0x80) // data sent MSB first, j = 0 is MSB j = 7 is LSB
+				{
+					LED_BYTE_Buffer[memaddrLed] = WS1; // compare value for logical 1
+				}
+				else
+				{
+					LED_BYTE_Buffer[memaddrLed] = WS0; // compare value for logical 0
+				}
+				memaddrLed++;
 			}
-			else
-			{
-				LED_BYTE_Buffer[memaddr] = WS0; // compare value for logical 0
-			}
-			memaddr++;
-		}
 
-		for (j = 0; j < 8; j++) // RED data
-		{
-			if ((color[0] << j) & 0x80) // data sent MSB first, j = 0 is MSB j = 7 is LSB
+			for (j = 0; j < 8; j++) // RED data
 			{
-				LED_BYTE_Buffer[memaddr] = WS1; // compare value for logical 1
+				if ((color[0] << j) & 0x80) // data sent MSB first, j = 0 is MSB j = 7 is LSB
+				{
+					LED_BYTE_Buffer[memaddrLed] = WS1; // compare value for logical 1
+				}
+				else
+				{
+					LED_BYTE_Buffer[memaddrLed] = WS0; // compare value for logical 0
+				}
+				memaddrLed++;
 			}
-			else
-			{
-				LED_BYTE_Buffer[memaddr] = WS0; // compare value for logical 0
-			}
-			memaddr++;
-		}
 
-		for (j = 0; j < 8; j++) // BLUE data
-		{
-			if ((color[2] << j) & 0x80) // data sent MSB first, j = 0 is MSB j = 7 is LSB
+			for (j = 0; j < 8; j++) // BLUE data
 			{
-				LED_BYTE_Buffer[memaddr] = WS1; // compare value for logical 1
+				if ((color[2] << j) & 0x80) // data sent MSB first, j = 0 is MSB j = 7 is LSB
+				{
+					LED_BYTE_Buffer[memaddrLed] = WS1; // compare value for logical 1
+				}
+				else
+				{
+					LED_BYTE_Buffer[memaddrLed] = WS0; // compare value for logical 0
+				}
+				memaddrLed++;
 			}
-			else
-			{
-				LED_BYTE_Buffer[memaddr] = WS0; // compare value for logical 0
-			}
-			memaddr++;
 		}
-		len--;
 	}
 
 	// add needed delay at end of byte cycle, pulsewidth = 0
-	while (memaddr < buffersize)
+	while (memaddrLed < buffersizeLed)
 	{
-		LED_BYTE_Buffer[memaddr] = 0;
-		memaddr++;
+		LED_BYTE_Buffer[memaddrLed] = 0;
+		memaddrLed++;
 	}
-	LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_6, buffersize);
+	LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_6, buffersizeLed);
 	LL_DMA_EnableChannel(DMA1, LL_DMA_CHANNEL_6); // enable DMA channel 6
 	LL_TIM_EnableCounter(TIM3);					  // enable Timer 3
 	while (!LL_DMA_IsActiveFlag_TC6(DMA1))
@@ -276,85 +234,160 @@ void WS2812_sendColor(volatile uint8_t *color)
 	LL_DMA_ClearFlag_TC6(DMA1);					   // clear DMA1 Channel 6 transfer complete flag
 }
 
-void WS2812_sendEffect()
+void WS2812_sendBuffer(uint8_t lineI, uint8_t lineF)
 {
-	volatile uint8_t x, y, z, j, mod, tempLine[SIZE][3];
-	volatile uint16_t memaddr, buffersize;
+	volatile uint8_t x, y, z, j, invX, mod, tempLine[NCols][3];
 	char str[100];
 
-	buffersize = ((NLEDS)*24) + 42; // number of bytes needed is #LEDs * 24 bytes + 42 trailing bytes
-	memaddr = 0;					// reset buffer memory index
+	buffersizeLed += (((lineF - lineI) * NCols) * 24); // number of bytes needed is #LEDs * 24 bytes + 42 trailing bytes
 
 	// fill transmit buffer with correct compare values to achieve
 	// correct pulse widths according to color values
-
-	for (y = 0; y < SIZE; y++)
+	for (y = lineI; y < lineF; y++)
 	{
 		mod = y % 2;
-		for (x = 0; x < SIZE; x++)
+		invX = NCols - 1;
+		for (x = 0; x < NCols; x++)
 		{
 			if (mod == 0)
 			{
 				for (z = 0; z < 3; z++)
 				{
-					tempLine[x][z] = effect[x + (y * SIZE)][z];
+					tempLine[x][z] = effect[x + (y * NCols)][z];
 				}
 			}
 			else
 			{
 				for (z = 0; z < 3; z++)
 				{
-					tempLine[x][z] = effect[SIZEL - x + (y * SIZE)][z];
+					tempLine[x][z] = effect[invX + (y * NCols)][z];
 				}
 			}
 			for (j = 0; j < 8; j++) // GREEN data
 			{
 				if ((tempLine[x][1] << j) & 0x80) // data sent MSB first, j = 0 is MSB j = 7 is LSB
 				{
-					LED_BYTE_Buffer[memaddr] = WS1; // compare value for logical 1
+					LED_BYTE_Buffer[memaddrLed] = WS1; // compare value for logical 1
 				}
 				else
 				{
-					LED_BYTE_Buffer[memaddr] = WS0; // compare value for logical 0
+					LED_BYTE_Buffer[memaddrLed] = WS0; // compare value for logical 0
 				}
-				memaddr++;
+				memaddrLed++;
 			}
 
 			for (j = 0; j < 8; j++) // RED data
 			{
 				if ((tempLine[x][0] << j) & 0x80) // data sent MSB first, j = 0 is MSB j = 7 is LSB
 				{
-					LED_BYTE_Buffer[memaddr] = WS1; // compare value for logical 1
+					LED_BYTE_Buffer[memaddrLed] = WS1; // compare value for logical 1
 				}
 				else
 				{
-					LED_BYTE_Buffer[memaddr] = WS0; // compare value for logical 0
+					LED_BYTE_Buffer[memaddrLed] = WS0; // compare value for logical 0
 				}
-				memaddr++;
+				memaddrLed++;
 			}
 
 			for (j = 0; j < 8; j++) // BLUE data
 			{
 				if ((tempLine[x][2] << j) & 0x80) // data sent MSB first, j = 0 is MSB j = 7 is LSB
 				{
-					LED_BYTE_Buffer[memaddr] = WS1; // compare value for logical 1
+					LED_BYTE_Buffer[memaddrLed] = WS1; // compare value for logical 1
 				}
 				else
 				{
-					LED_BYTE_Buffer[memaddr] = WS0; // compare value for logical 0
+					LED_BYTE_Buffer[memaddrLed] = WS0; // compare value for logical 0
 				}
-				memaddr++;
+				memaddrLed++;
 			}
+			invX--;
 		}
 	}
+}
 
-	// add needed delay at end of byte cycle, pulsewidth = 0
-	while (memaddr < buffersize)
+void WS2812_sendBuffer2(uint8_t lineI, uint8_t lineF)
+{
+	volatile uint8_t x, y, z, j, invX, mod, tempLine[NCols][3];
+	char str[100];
+
+	buffersizeLed += (((lineF - lineI) * NCols) * 24); // number of bytes needed is #LEDs * 24 bytes + 42 trailing bytes
+
+	// fill transmit buffer with correct compare values to achieve
+	// correct pulse widths according to color values
+	for (y = lineI; y < lineF; y++)
 	{
-		LED_BYTE_Buffer[memaddr] = 0;
-		memaddr++;
+		mod = y % 2;
+		invX = NCols - 1;
+		for (x = 0; x < NCols; x++)
+		{
+			if (mod == 0)
+			{
+				for (z = 0; z < 3; z++)
+				{
+					tempLine[x][z] = effect2[x + (y * NCols)][z];
+				}
+			}
+			else
+			{
+				for (z = 0; z < 3; z++)
+				{
+					tempLine[x][z] = effect2[invX + (y * NCols)][z];
+				}
+			}
+			for (j = 0; j < 8; j++) // GREEN data
+			{
+				if ((tempLine[x][1] << j) & 0x80) // data sent MSB first, j = 0 is MSB j = 7 is LSB
+				{
+					LED_BYTE_Buffer[memaddrLed] = WS1; // compare value for logical 1
+				}
+				else
+				{
+					LED_BYTE_Buffer[memaddrLed] = WS0; // compare value for logical 0
+				}
+				memaddrLed++;
+			}
+
+			for (j = 0; j < 8; j++) // RED data
+			{
+				if ((tempLine[x][0] << j) & 0x80) // data sent MSB first, j = 0 is MSB j = 7 is LSB
+				{
+					LED_BYTE_Buffer[memaddrLed] = WS1; // compare value for logical 1
+				}
+				else
+				{
+					LED_BYTE_Buffer[memaddrLed] = WS0; // compare value for logical 0
+				}
+				memaddrLed++;
+			}
+
+			for (j = 0; j < 8; j++) // BLUE data
+			{
+				if ((tempLine[x][2] << j) & 0x80) // data sent MSB first, j = 0 is MSB j = 7 is LSB
+				{
+					LED_BYTE_Buffer[memaddrLed] = WS1; // compare value for logical 1
+				}
+				else
+				{
+					LED_BYTE_Buffer[memaddrLed] = WS0; // compare value for logical 0
+				}
+				memaddrLed++;
+			}
+			invX--;
+		}
 	}
-	LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_6, buffersize);
+}
+
+void WS2812_sendOut()
+{
+	// add needed delay at end of byte cycle, pulsewidth = 0
+	buffersizeLed += 42;
+	while (memaddrLed < buffersizeLed)
+	{
+		LED_BYTE_Buffer[memaddrLed] = 0;
+		memaddrLed++;
+	}
+	LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_6, buffersizeLed);
 	LL_DMA_EnableChannel(DMA1, LL_DMA_CHANNEL_6); // enable DMA channel 6
 	LL_TIM_EnableCounter(TIM3);					  // enable Timer 3
 	while (!LL_DMA_IsActiveFlag_TC6(DMA1))
@@ -362,6 +395,9 @@ void WS2812_sendEffect()
 	LL_TIM_DisableCounter(TIM3);				   // disable Timer 3
 	LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_6); // disable DMA channel 6
 	LL_DMA_ClearFlag_TC6(DMA1);					   // clear DMA1 Channel 6 transfer complete flag
+	buffersizeLed = 0;
+	memaddrLed = 0;
+	counterLed = 0;
 }
 
 void setVelocity(uint8_t vel)
@@ -419,10 +455,9 @@ void setNote(int nt)
 	arr[0] = arrCol[resto][0];
 	arr[1] = arrCol[resto][1];
 	arr[2] = arrCol[resto][2];
-	// usart_send_string(note.symbol);
-	// usart_send_string(resStr);
-	// usart_send_string("\n");
-
+	usart_send_string(note.symbol);
+	usart_send_string(resStr);
+	usart_send_string("\n");
 	// strcpy(note.octave,resStr);
 	// strcpy(note.note,note.symbol);
 	// strcat(note.note, note.octave);
@@ -441,15 +476,15 @@ void calculateLeds()
 
 void drawCircle(int *color_steps)
 {
-	float z = ((float)SIZE / 2);
-	uint16_t coords = 0;
+	float z = ((float)smaller / 2);
+	int coords = 0;
 	uint8_t boarder;
 	int16_t temp;
-	for (int y = -(SIZE / 2); y <= (SIZE / 2); y++)
+	for (int y = -(NLines / 2); y <= (NLines / 2); y++)
 	{
-		for (int x = -(SIZE / 2); x <= (SIZE / 2); x++)
+		for (int x = -(NCols / 2); x <= (NCols / 2); x++)
 		{
-			coords = (x + (SIZE / 2)) + ((y + (SIZE / 2)) * SIZE);
+			coords = (x + (NCols / 2)) + ((y + (NLines / 2)) * NCols);
 			for (int i = 0; i < MAX_DIV; i++)
 			{
 				boarder = 1;
@@ -488,50 +523,71 @@ void drawCircle(int *color_steps)
 	}
 }
 
-void drawLines(int *color_steps)
+void drawCircle2(int *color_steps)
 {
-	uint16_t coords = 0;
-	for (int y = 0; y <= SIZE; y++)
+	float z = ((float)smaller / 2);
+	int coords = 0;
+	uint8_t boarder;
+	int16_t temp;
+	for (int y = -(NLines / 2); y <= (NLines / 2); y++)
 	{
-		for (int x = 0; x <= SIZE; x++)
+		for (int x = -(NCols / 2); x <= (NCols / 2); x++)
 		{
-			coords = x + (y * SIZE);
-
-			for (int z = 0; z < 3; z++)
+			coords = (x + (NCols / 2)) + ((y + (NLines / 2)) * NCols);
+			for (int i = 0; i < MAX_DIV; i++)
 			{
-				if (x == (SIZE / 2) || y == 0)
-					effect[coords][z] = color_steps[z];
-				else
-					effect[coords][z] = 0;
+				boarder = 1;
+				float perc = 1 - ((float)i / MAX_DIV);
+				// printf("%0.1f\n", perc);
+				if ((x * x) + (y * y) <= (z * z) * (perc))
+				{
+					for (int z = 0; z < 3; z++)
+					{
+						temp = currColor[z] + i * color_steps[z];
+						if (temp < 0)
+							temp = 0;
+						if (temp > 255)
+							temp = 255;
+						effect2[coords][z] = temp;
+					}
+					boarder = 0;
+				}
+			}
+			if (boarder)
+			{
+				if ((x * x) + (y * y) >= (z * z))
+				{
+					for (int z = 0; z < 3; z++)
+					{
+						temp = currColor[z] - color_steps[z];
+						if (temp < 0)
+							temp = 0;
+						if (temp > 255)
+							temp = 255;
+						effect2[coords][z] = temp;
+					}
+				}
 			}
 		}
 	}
 }
 
-void drawMatrix(int *color_steps)
+void drawLines(int *color_steps)
 {
-	uint16_t coords = 0;
-	uint8_t tempVector[NLEDS] = {
-		1, 1, 1, 0, 0, 0, 0,
-		1, 1, 0, 0, 0, 0, 0,
-		1, 0, 1, 0, 0, 0, 0,
-		0, 0, 0, 1, 0, 0, 0,
-		0, 0, 0, 0, 1, 0, 0,
-		0, 0, 0, 0, 0, 1, 0,
-		0, 0, 0, 0, 0, 0, 1};
-
-	for (int y = 0; y <= SIZE; y++)
+	int coords = 0;
+	int16_t temp;
+	for (int y = 0; y <= NLines; y++)
 	{
-		for (int x = 0; x <= SIZE; x++)
+		for (int x = 0; x <= NCols; x++)
 		{
-			coords = x + (y * SIZE);
+			coords = x + (y * NCols);
 
 			for (int z = 0; z < 3; z++)
 			{
-				if (tempVector[coords] == 1)
-					effect[coords][z] = color_steps[z];
+				if (x == 2 || y == 2)
+					effect2[coords][z] = color_steps[z];
 				else
-					effect[coords][z] = 0;
+					effect2[coords][z] = 0;
 			}
 		}
 	}
@@ -539,166 +595,97 @@ void drawMatrix(int *color_steps)
 
 void move(int8_t newX, int8_t newY)
 {
-	uint8_t tempVector[NLEDS][3];
-	uint8_t tempX, tempY;
-	for (int y = 0; y < SIZE; y++)
+	uint8_t tempVector[NCols * NLines][3];
+	uint8_t tempX, tempY, mod;
+	for (int y = 0; y < NLines; y++)
 	{
-		for (int x = 0; x < SIZE; x++)
+		for (int x = 0; x < NCols; x++)
 		{
 			for (int z = 0; z < 3; z++)
 			{
-				tempVector[x + (y * SIZE)][z] = effect[x + (y * SIZE)][z];
+				tempVector[x + (y * NCols)][z] = effect[x + (y * NCols)][z];
 			}
 		}
 	}
 
-	for (int y = 0; y < SIZE; y++)
+	for (int y = 0; y < NLines; y++)
 	{
 		if ((y - newY) < 0)
 		{
-			tempY = SIZE - (-y + newY);
+			tempY = NLines - (-y + newY);
 		}
-		else if ((y - newY) >= SIZE)
+		else if ((y - newY) >= NLines)
 		{
-			tempY = (y - newY) - SIZE;
+			tempY = (y - newY) - NLines;
 		}
 		else
 			tempY = y - newY;
 
-		for (int x = 0; x < SIZE; x++)
+		for (int x = 0; x < NCols; x++)
 		{
 			if ((x - newX) < 0)
 			{
-				tempX = SIZE - (-x + newX);
+				tempX = NCols - (-x + newX);
 			}
-			else if ((x - newX) >= SIZE)
+			else if ((x - newX) >= NCols)
 			{
-				tempX = (x - newX) - SIZE;
+				tempX = (x - newX) - NCols;
 			}
 			else
 				tempX = x - newX;
 
 			for (int z = 0; z < 3; z++)
 			{
-				effect[x + (y * SIZE)][z] = tempVector[tempX + (tempY * SIZE)][z];
+				effect[x + (y * NCols)][z] = tempVector[tempX + (tempY * NCols)][z];
 			}
 		}
 	}
 }
 
-/* void moveColor(int8_t newX, int8_t newY)
+void move2(int8_t newX, int8_t newY)
 {
-	uint8_t tempVector[NLEDS][3];
-	uint8_t tempX, tempY;
-	for (int y = 0; y < SIZE; y++)
+	uint8_t tempVector[NCols * NLines][3];
+	uint8_t tempX, tempY, mod;
+	for (int y = 0; y < NLines; y++)
 	{
-		for (int x = 0; x < SIZE; x++)
+		for (int x = 0; x < NCols; x++)
 		{
 			for (int z = 0; z < 3; z++)
 			{
-				tempVector[x + (y * SIZE)][z] = effect[x + (y * SIZE)][z];
+				tempVector[x + (y * NCols)][z] = effect2[x + (y * NCols)][z];
 			}
 		}
 	}
 
-	for (int y = 0; y < SIZE; y++)
+	for (int y = 0; y < NLines; y++)
 	{
 		if ((y - newY) < 0)
 		{
-			tempY = SIZE - (-y + newY);
+			tempY = NLines - (-y + newY);
 		}
-		else if ((y - newY) >= SIZE)
+		else if ((y - newY) >= NLines)
 		{
-			tempY = (y - newY) - SIZE;
+			tempY = (y - newY) - NLines;
 		}
 		else
 			tempY = y - newY;
 
-		for (int x = 0; x < SIZE; x++)
+		for (int x = 0; x < NCols; x++)
 		{
 			if ((x - newX) < 0)
 			{
-				tempX = SIZE - (-x + newX);
+				tempX = NCols - (-x + newX);
 			}
-			else if ((x - newX) >= SIZE)
+			else if ((x - newX) >= NCols)
 			{
-				tempX = (x - newX) - SIZE;
+				tempX = (x - newX) - NCols;
 			}
 			else
 				tempX = x - newX;
 
 			for (int z = 0; z < 3; z++)
 			{
-				effect[x + (y * SIZE)][z] = tempVector[tempX + (tempY * SIZE)][z];
-			}
-		}
-	}
-} */
-
-void rotate45()
-{
-	uint8_t tempVector[NLEDS][3];
-	uint16_t x, x1, z;
-	for (x = 0; x < SIZE; x++)
-	{
-		for (x1 = 0; x1 < SIZE; x1++)
-		{
-			for (z = 0; z < 3; z++)
-			{
-				tempVector[x + (x1 * SIZE)][z] = effect[x + (x1 * SIZE)][z];
-			}
-		}
-	}
-
-	for (x = 0; x < (SIZE / 2); x++)
-	{
-		for (x1 = 0; x1 < (SIZE / 2) + 1 - x; x1++)
-		{
-			for (z = 0; z < 3; z++)
-			{
-				effect[-x + SIZEL + ((x1 + (SIZE / 2)) * SIZE)][z] = tempVector[-x + SIZEL + ((x + x1) * SIZE)][z];
-				effect[-x + SIZEL + ((x + x1) * SIZE)][z] = tempVector[x1 + (SIZE / 2) + (x * SIZE)][z];
-				effect[x1 + (SIZE / 2) + (x * SIZE)][z] = tempVector[(x + x1) + (x * SIZE)][z];
-				effect[(x + x1) + (x * SIZE)][z] = tempVector[x + ((-x1 + (SIZE / 2)) * SIZE)][z];
-				effect[x + ((-x1 + (SIZE / 2)) * SIZE)][z] = tempVector[x + ((-x - x1 + SIZEL) * SIZE)][z];
-				effect[x + ((-x - x1 + SIZEL) * SIZE)][z] = tempVector[-x1 - (SIZE / 2) - 1 + (-x + SIZE) * SIZE][z];
-				effect[((SIZE / 2) - x1) + (SIZE - x - 1) * SIZE][z] = tempVector[-x - x1 - 1 + (SIZE - x) * SIZE][z];
-				effect[-x - x1 - 1 + (SIZE - x) * SIZE][z] = tempVector[-x + SIZEL + ((x1 + (SIZE / 2)) * SIZE)][z];
-
-				// effect[-x - 1 + ((x1 + (SIZE / 2) + 1) * SIZE)][z] = tempVector[-x - 1 + ((x + x1 + 1) * SIZE)][z];
-				// effect[-x - 1 + ((x + x1 + 1) * SIZE)][z] = tempVector[x1 + (SIZE / 2) + (x * SIZE)][z];
-				// effect[x1 + (SIZE / 2) + (x * SIZE)][z] = tempVector[(x + x1) + (x * SIZE)][z];
-				// effect[(x + x1) + (x * SIZE)][z] = tempVector[x + ((-x1 + (SIZE / 2)) * SIZE)][z];
-				// effect[x + ((-x1 + (SIZE / 2)) * SIZE)][z] = tempVector[x + ((-x - x1 + SIZE - 1) * SIZE)][z];
-				// effect[x + ((-x - x1 + SIZE - 1) * SIZE)][z] = tempVector[-x1 - (SIZE / 2) - 1 + (-x + SIZE) * SIZE][z];
-				// effect[((SIZE / 2) - x1) + (SIZE - x - 1) * SIZE][z] = tempVector[-x - x1 - 1 + (SIZE - x) * SIZE][z];
-				// effect[-x - x1 - 1 + (SIZE - x) * SIZE][z] = tempVector[-x - 1 + ((x1 + (SIZE / 2) + 1) * SIZE)][z];
-			}
-		}
-	}
-}
-
-void rotate90()
-{
-	int tempVector[NLEDS][3];
-	uint16_t x, y, z;
-	for (y = 0; y < SIZE; y++)
-	{
-		for (x = 0; x < SIZE; x++)
-		{
-			for (z = 0; z < 3; z++)
-			{
-				tempVector[x + (y * SIZE)][z] = effect[x + (y * SIZE)][z];
-			}
-		}
-	}
-	for (y = 0; y < SIZE; y++)
-	{
-		for (x = 0; x < SIZE; x++)
-		{
-			for (z = 0; z < 3; z++)
-			{
-				effect[-y - 1 + (x + 1) * SIZE][z] = tempVector[x + (y * SIZE)][z];
+				effect2[x + (y * NCols)][z] = tempVector[tempX + (tempY * NCols)][z];
 			}
 		}
 	}
@@ -712,6 +699,14 @@ void rotate90()
   */
 int main(void)
 {
+	/* USER CODE BEGIN 1 */
+
+	/* USER CODE END 1 */
+
+	/* MCU Configuration--------------------------------------------------------*/
+
+	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+
 	LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_AFIO);
 	LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
 
@@ -734,75 +729,31 @@ int main(void)
 	MX_DMA_Init();
 
 	usart_send_string("Init Done. \n");
-	WS2812_reset(arr);
+	WS2812_sendColor(arr);
+	WS2812_sendOut();
 
-	//  int16_t i;
-	/* while (1)
-  {
-    // for (i = 0; i < 766; i += 1)
-	  // 	{
-    //     WS2812_send(&eightbit[i], 4);
-    //     LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
-    //     LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
-    //     Delay(50000); // 1 = 0.127 us -> 8 MHz 		50000 -> 6.25ms
-    //     LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
-    //     Delay(1);
-    //     LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
-	  // 	}
-  } */
-	for (int y = 0; y < SIZE; y++)
-	{
-		for (int x = 0; x < SIZE; x++)
-		{
-			for (int z = 0; z < 3; z++)
-			{
-				effect[x + (y * SIZE)][z] = 0;
-			}
-		}
-	}
-	// move(1, 0);
-	// move(1, 1);
-	//int color[] = {5, 10, 30};
-	//drawLines(color);
-	//drawMatrix(color);
-	//WS2812_sendv3(NLEDS);
-	//int color2[] = {-10, 3, 5};
+	int color[] = {-10, 3, 10};
+	drawCircle(color);
+	int color2[] = {-10, 3, 5};
+	drawCircle2(color2);
+	WS2812_sendBuffer(0, 3);
+	WS2812_sendBuffer2(4, 7);
+	WS2812_sendOut();
+
 	while (1)
 	{
-		// rotate45();
-		// drawCircle(color2);
-		// for (int i = 0; i < 49; i++)
-		// {
-		// 	move(1, 0);
-		// 	WS2812_sendEffect();
-		// 	Delay(1000000L);
-		// }
-		// drawCircle(color2);
+		move(1, 0);
+		move2(-1, 0);
+		WS2812_sendBuffer(0, 4);
+		WS2812_sendBuffer2(4, 7);
+		WS2812_sendOut();
+		Delay(500000L);
 
-		// for (int i = 0; i < 49; i++)
-		// {
-		// 	move(1, 1);
-		// 	WS2812_sendEffect();
-		// 	Delay(1000000L);
-		// }
-		// drawMatrix(color);
-		// for (int i = 0; i < 49; i++)
-		// {
-		// 	rotate45();
-		// 	WS2812_sendEffect();
-		// 	Delay(1000000L);
-		// }
-		// drawLines(color);
-		// for (int i = 0; i < 49; i++)
-		// {
-		// 	move(1, 1);
-		// 	WS2812_sendEffect();
-		// 	Delay(1000000L);
-		// }
 		/* first cycle through the colors on 2 LEDs chained together
 		 * last LED in the chain will receive first sent triplet
 		 * --> last LED in the chain will 'lead' 
 		 */
+
 		/* cycle through the colors on only one LED
 		 * this time only the first LED that data is 
 		 * fed into will update
@@ -1132,13 +1083,11 @@ void USART2_IRQHandler(void)
 					if (i == 2)
 						setVelocity(temp);
 				}
-				//usart_send_string(str);
-				//usart_send_string("\n");
-				usart_send_string(note.symbol);
-				usart_send_string("\n\r");
+				usart_send_string(str);
+				usart_send_string("\n");
 
 				calculateLeds();
-				WS2812_sendColor(arr);
+				//WS2812_sendv2(arr, LED_NUMBER);
 				break;
 
 			case NOTE_OFF: //NOTE_OFF Channel 1
@@ -1153,8 +1102,8 @@ void USART2_IRQHandler(void)
 					if (i == 2)
 						setVelocity(temp);
 				}
-				// usart_send_string(str);
-				// usart_send_string("\n");
+				usart_send_string(str);
+				usart_send_string("\n");
 
 				break;
 
@@ -1168,10 +1117,10 @@ void USART2_IRQHandler(void)
 					if (i == 2)
 						setVelocity(temp);
 				}
-				// usart_send_string(str);
-				// usart_send_string("\n");
-				//calculateLeds();
-				// WS2812_sendv2(arr, LED_NUMBER);
+				usart_send_string(str);
+				usart_send_string("\n");
+				calculateLeds();
+				//WS2812_sendv2(arr, LED_NUMBER);
 				break;
 			}
 			waitForMessage = 0;
