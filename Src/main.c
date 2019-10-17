@@ -762,43 +762,43 @@ int main(void)
 	}
 	// move(1, 0);
 	// move(1, 1);
-	//int color[] = {5, 10, 30};
+	int color[] = {5, 10, 30};
 	//drawLines(color);
 	//drawMatrix(color);
 	//WS2812_sendv3(NLEDS);
-	//int color2[] = {-10, 3, 5};
+	int color2[] = {-10, 3, 5};
 	while (1)
 	{
-		// rotate45();
-		// drawCircle(color2);
-		// for (int i = 0; i < 49; i++)
-		// {
-		// 	move(1, 0);
-		// 	WS2812_sendEffect();
-		// 	Delay(1000000L);
-		// }
-		// drawCircle(color2);
+		rotate45();
+		drawCircle(color2);
+		for (int i = 0; i < 49; i++)
+		{
+			move(1, 0);
+			WS2812_sendEffect();
+			Delay(1000000L);
+		}
+		drawCircle(color2);
 
-		// for (int i = 0; i < 49; i++)
-		// {
-		// 	move(1, 1);
-		// 	WS2812_sendEffect();
-		// 	Delay(1000000L);
-		// }
-		// drawMatrix(color);
-		// for (int i = 0; i < 49; i++)
-		// {
-		// 	rotate45();
-		// 	WS2812_sendEffect();
-		// 	Delay(1000000L);
-		// }
-		// drawLines(color);
-		// for (int i = 0; i < 49; i++)
-		// {
-		// 	move(1, 1);
-		// 	WS2812_sendEffect();
-		// 	Delay(1000000L);
-		// }
+		for (int i = 0; i < 49; i++)
+		{
+			move(1, 1);
+			WS2812_sendEffect();
+			Delay(1000000L);
+		}
+		drawMatrix(color);
+		for (int i = 0; i < 49; i++)
+		{
+			rotate45();
+			WS2812_sendEffect();
+			Delay(1000000L);
+		}
+		drawLines(color);
+		for (int i = 0; i < 49; i++)
+		{
+			move(1, 1);
+			WS2812_sendEffect();
+			Delay(1000000L);
+		}
 		/* first cycle through the colors on 2 LEDs chained together
 		 * last LED in the chain will receive first sent triplet
 		 * --> last LED in the chain will 'lead' 
@@ -817,9 +817,9 @@ int main(void)
 
 void SystemClock_Config(void)
 {
-	LL_FLASH_SetLatency(LL_FLASH_LATENCY_0);
+	LL_FLASH_SetLatency(LL_FLASH_LATENCY_2);
 
-	if (LL_FLASH_GetLatency() != LL_FLASH_LATENCY_0)
+	if (LL_FLASH_GetLatency() != LL_FLASH_LATENCY_2)
 	{
 		Error_Handler();
 	}
@@ -829,7 +829,7 @@ void SystemClock_Config(void)
 	while (LL_RCC_HSE_IsReady() != 1)
 	{
 	}
-	LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSE_DIV_1, LL_RCC_PLL_MUL_3);
+	LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSE_DIV_1, LL_RCC_PLL_MUL_9);
 	LL_RCC_PLL_Enable();
 
 	/* Wait till PLL is ready */
@@ -837,7 +837,7 @@ void SystemClock_Config(void)
 	{
 	}
 	LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1);
-	LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_1);
+	LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_2);
 	LL_RCC_SetAPB2Prescaler(LL_RCC_APB2_DIV_1);
 	LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_PLL);
 
@@ -845,9 +845,9 @@ void SystemClock_Config(void)
 	while (LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_PLL)
 	{
 	}
-	LL_Init1msTick(24000000);
+	LL_Init1msTick(72000000);
 	LL_SYSTICK_SetClkSource(LL_SYSTICK_CLKSOURCE_HCLK);
-	LL_SetSystemCoreClock(24000000);
+	LL_SetSystemCoreClock(72000000);
 }
 
 LL_TIM_InitTypeDef TIM_InitStruct = {0};
@@ -954,7 +954,7 @@ static void MX_USART1_UART_Init(void)
 	LL_USART_ConfigAsyncMode(USART1);
 	LL_USART_Enable(USART1);
 	/* USER CODE BEGIN USART1_Init 2 */
-
+	//
 	/* USER CODE END USART1_Init 2 */
 }
 
