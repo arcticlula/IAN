@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=/Users/luissousa/Documents/workspace/Teste1994/Inc
+HeaderPath=/Users/luissousa/Documents/workspace/multiDMAF103/Inc
 HeaderFiles=stm32f1xx_it.h;stm32_assert.h;main.h;stm32f1xx_hal_conf.h;
-SourcePath=/Users/luissousa/Documents/workspace/Teste1994/Src
+SourcePath=/Users/luissousa/Documents/workspace/multiDMAF103/Src
 SourceFiles=stm32f1xx_it.c;main.c;stm32f1xx_hal_msp.c;
 
 [PreviousLibFiles]

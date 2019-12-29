@@ -157,7 +157,7 @@ Discarded input sections
                 0x0000000000000000       0x30 build/stm32f1xx_ll_exti.o
  .debug_ranges  0x0000000000000000       0x20 build/stm32f1xx_ll_exti.o
  .debug_line    0x0000000000000000      0x3f4 build/stm32f1xx_ll_exti.o
- .debug_str     0x0000000000000000      0x3be build/stm32f1xx_ll_exti.o
+ .debug_str     0x0000000000000000      0x3ca build/stm32f1xx_ll_exti.o
  .comment       0x0000000000000000       0x76 build/stm32f1xx_ll_exti.o
  .debug_frame   0x0000000000000000       0x58 build/stm32f1xx_ll_exti.o
  .ARM.attributes
@@ -236,7 +236,7 @@ Discarded input sections
                 0x0000000000000000       0x20 build/stm32f1xx_ll_pwr.o
  .debug_ranges  0x0000000000000000       0x10 build/stm32f1xx_ll_pwr.o
  .debug_line    0x0000000000000000      0x217 build/stm32f1xx_ll_pwr.o
- .debug_str     0x0000000000000000      0x2a6 build/stm32f1xx_ll_pwr.o
+ .debug_str     0x0000000000000000      0x2b2 build/stm32f1xx_ll_pwr.o
  .comment       0x0000000000000000       0x76 build/stm32f1xx_ll_pwr.o
  .debug_frame   0x0000000000000000       0x20 build/stm32f1xx_ll_pwr.o
  .ARM.attributes
@@ -923,7 +923,7 @@ LOAD /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-n
                 0x000000000000022d       0x17 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(lib_a-strlen.o)
  .ARM.attributes
                 0x0000000000000244       0x1d /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7-m/nofp/crtn.o
-OUTPUT(build/Teste1994.elf elf32-littlearm)
+OUTPUT(build/multiDMAF103.elf elf32-littlearm)
 
 .debug_info     0x0000000000000000     0x8840
  .debug_info    0x0000000000000000     0x3ff8 build/main.o
@@ -1005,27 +1005,27 @@ OUTPUT(build/Teste1994.elf elf32-littlearm)
  .debug_line    0x0000000000003e3e      0x4d5 build/stm32f1xx_ll_usart.o
  .debug_line    0x0000000000004313       0x72 build/startup_stm32f103xb.o
 
-.debug_str      0x0000000000000000     0x23f0
- .debug_str     0x0000000000000000     0x156a build/main.o
-                                       0x1689 (size before relaxing)
- .debug_str     0x000000000000156a      0x104 build/stm32f1xx_it.o
-                                        0x306 (size before relaxing)
- .debug_str     0x000000000000166e      0x11e build/stm32f1xx_ll_gpio.o
-                                        0x3b1 (size before relaxing)
- .debug_str     0x000000000000178c      0x12d build/stm32f1xx_ll_dma.o
-                                        0x486 (size before relaxing)
- .debug_str     0x00000000000018b9      0x478 build/stm32f1xx_ll_tim.o
-                                        0x8a8 (size before relaxing)
- .debug_str     0x0000000000001d31      0x2d9 build/stm32f1xx_ll_rcc.o
-                                        0x56f (size before relaxing)
- .debug_str     0x000000000000200a      0x1fa build/stm32f1xx_ll_utils.o
-                                        0x627 (size before relaxing)
- .debug_str     0x0000000000002204       0x46 build/system_stm32f1xx.o
-                                        0x2be (size before relaxing)
- .debug_str     0x000000000000224a      0x181 build/stm32f1xx_ll_usart.o
-                                        0x539 (size before relaxing)
- .debug_str     0x00000000000023cb       0x25 build/startup_stm32f103xb.o
-                                         0x54 (size before relaxing)
+.debug_str      0x0000000000000000     0x23bc
+ .debug_str     0x0000000000000000     0x1565 build/main.o
+                                       0x1684 (size before relaxing)
+ .debug_str     0x0000000000001565       0xd5 build/stm32f1xx_it.o
+                                        0x312 (size before relaxing)
+ .debug_str     0x000000000000163a      0x11e build/stm32f1xx_ll_gpio.o
+                                        0x3bd (size before relaxing)
+ .debug_str     0x0000000000001758      0x12d build/stm32f1xx_ll_dma.o
+                                        0x492 (size before relaxing)
+ .debug_str     0x0000000000001885      0x478 build/stm32f1xx_ll_tim.o
+                                        0x8b4 (size before relaxing)
+ .debug_str     0x0000000000001cfd      0x2d9 build/stm32f1xx_ll_rcc.o
+                                        0x57b (size before relaxing)
+ .debug_str     0x0000000000001fd6      0x1fa build/stm32f1xx_ll_utils.o
+                                        0x633 (size before relaxing)
+ .debug_str     0x00000000000021d0       0x46 build/system_stm32f1xx.o
+                                        0x2ca (size before relaxing)
+ .debug_str     0x0000000000002216      0x181 build/stm32f1xx_ll_usart.o
+                                        0x545 (size before relaxing)
+ .debug_str     0x0000000000002397       0x25 build/startup_stm32f103xb.o
+                                         0x60 (size before relaxing)
 
 .comment        0x0000000000000000       0x75
  .comment       0x0000000000000000       0x75 build/main.o
