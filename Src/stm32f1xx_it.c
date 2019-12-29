@@ -32,7 +32,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
- 
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -62,7 +62,7 @@
 /* USER CODE END EV */
 
 /******************************************************************************/
-/*           Cortex-M3 Processor Interruption and Exception Handlers          */ 
+/*           Cortex-M3 Processor Interruption and Exception Handlers          */
 /******************************************************************************/
 /**
   * @brief This function handles Non maskable interrupt.
@@ -184,7 +184,7 @@ void SysTick_Handler(void)
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
   /* USER CODE END SysTick_IRQn 0 */
-  
+
   /* USER CODE BEGIN SysTick_IRQn 1 */
 
   /* USER CODE END SysTick_IRQn 1 */
@@ -198,31 +198,72 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles DMA1 channel6 global interrupt.
+  * @brief This function handles DMA1 channel2 global interrupt.
   */
-void DMA1_Channel6_IRQHandler(void)
+void DMA1_Channel2_IRQHandler(void)
 {
-  /* USER CODE BEGIN DMA1_Channel6_IRQn 0 */
+  /* USER CODE BEGIN DMA1_Channel2_IRQn 0 */
 
-  /* USER CODE END DMA1_Channel6_IRQn 0 */
-  
-  /* USER CODE BEGIN DMA1_Channel6_IRQn 1 */
+  /* USER CODE END DMA1_Channel2_IRQn 0 */
 
-  /* USER CODE END DMA1_Channel6_IRQn 1 */
+  /* USER CODE BEGIN DMA1_Channel2_IRQn 1 */
+
+  /* USER CODE END DMA1_Channel2_IRQn 1 */
 }
 
 /**
-  * @brief This function handles USART2 global interrupt.
+  * @brief This function handles DMA1 channel5 global interrupt.
   */
-__weak void USART2_IRQHandler(void)
+void DMA1_Channel5_IRQHandler(void)
 {
-  /* USER CODE BEGIN USART2_IRQn 0 */
+  /* USER CODE BEGIN DMA1_Channel5_IRQn 0 */
 
-  /* USER CODE END USART2_IRQn 0 */
-  /* USER CODE BEGIN USART2_IRQn 1 */
+  /* USER CODE END DMA1_Channel5_IRQn 0 */
 
-  /* USER CODE END USART2_IRQn 1 */
+  /* USER CODE BEGIN DMA1_Channel5_IRQn 1 */
+
+  /* USER CODE END DMA1_Channel5_IRQn 1 */
 }
+
+/**
+  * @brief This function handles DMA1 channel7 global interrupt.
+  */
+// void DMA1_Channel7_IRQHandler(void)
+// {
+//   /* USER CODE BEGIN DMA1_Channel7_IRQn 0 */
+
+//   /* USER CODE END DMA1_Channel7_IRQn 0 */
+
+//   /* USER CODE BEGIN DMA1_Channel7_IRQn 1 */
+
+//   /* USER CODE END DMA1_Channel7_IRQn 1 */
+// }
+
+/**
+  * @brief This function handles TIM2 global interrupt.
+  */
+// void TIM2_IRQHandler(void)
+// {
+//   /* USER CODE BEGIN TIM2_IRQn 0 */
+
+//   /* USER CODE END TIM2_IRQn 0 */
+//   /* USER CODE BEGIN TIM2_IRQn 1 */
+
+//   /* USER CODE END TIM2_IRQn 1 */
+// }
+
+/**
+  * @brief This function handles USART3 global interrupt.
+  */
+// void USART3_IRQHandler(void)
+// {
+//   /* USER CODE BEGIN USART3_IRQn 0 */
+
+//   /* USER CODE END USART3_IRQn 0 */
+//   /* USER CODE BEGIN USART3_IRQn 1 */
+
+//   /* USER CODE END USART3_IRQn 1 */
+// }
 
 /* USER CODE BEGIN 1 */
 

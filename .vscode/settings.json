@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "stdlib.h": "c"
+        "chrono": "c",
+        "__config": "c",
+        "ios": "c"
     }
 }
