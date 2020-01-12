@@ -401,7 +401,7 @@ void clearFramebuffer()
     {
       for (uint16_t x = 0; x < NCOLS; x++)
       {
-        if ((x + (j * NCOLS) + (i * NLEDSCH)) > NLEDS - 2)
+        if ((x + (j * NCOLS) + (i * NLEDSCH)) > NLEDS - 1)
           break;
         WS2812_framedata_setPixel(i, x + (j * NCOLS), arrCol[12][0], arrCol[12][1], arrCol[12][2]);
       }
@@ -542,49 +542,44 @@ void drawCircle(uint8_t *color_steps)
   }
 }
 
-void drawScrollingString(char *frase, uint8_t *background, uint8_t *color, uint16_t interval_ms, uint8_t space, uint8_t pos, uint8_t letter, uint8_t offX, uint8_t offY)
+void drawScrollingString(char *frase, uint8_t *background, uint8_t *color, uint16_t interval_ms, uint8_t space, uint8_t offX, uint8_t offY)
 {
   int8_t posX, posY;
   uint8_t fill, val, col, width = 3 + space;
-  for (uint8_t i = letter, idx = 0; i < strlen(frase); i++, idx++)
+  for (uint8_t letter = 0; letter < strlen(frase); letter++)
   {
-    posX = (idx * width) + offX;
-    posY = offY;
-
-    for (int8_t y = posY, l = 0; y <= (posY + 5); y++, l++)
+    for (uint8_t pos = 0; pos < 3; pos++)
     {
-      if (y >= (NCOLS - offY))
-        break;
-      fill = getFontLine(frase[i], l);
-      for (int8_t x = posX - pos, aX = 3; x < (posX + width) - pos; x++, aX--)
+      for (uint8_t i = letter, idx = 0; i < strlen(frase); i++, idx++)
       {
-        if (x >= (NCOLS - offX))
-          break;
-        if (x >= offX)
+        posX = (idx * width) + offX;
+        posY = offY;
+
+        for (int8_t y = posY, l = 0; y < (posY + 5); y++, l++)
         {
-          val = fill & (1u << aX) ? 1 : 0;
-          for (uint8_t z = 0; z < 3; z++)
+          if (y >= (NCOLS - offY))
+            break;
+          fill = getFontLine(frase[i], l);
+          for (int8_t x = posX - pos, aX = 3; x < (posX + width) - pos; x++, aX--)
           {
-            col = val ? color[z] : background[z];
-            effect[x + (y * NCOLS)][z] = col;
+            if (x >= (NCOLS - offX))
+              break;
+            if (x >= offX)
+            {
+              val = fill & (1u << aX) ? 1 : 0;
+              for (uint8_t z = 0; z < 3; z++)
+              {
+                col = val ? color[z] : background[z];
+                effect[x + (y * NCOLS)][z] = col;
+              }
+            }
           }
         }
       }
-    }
-  }
-  fillFramebuffer();
-  WS2812_sendbuf(24 * NLEDSCH);
-  LL_mDelay(interval_ms);
-  clearFramebuffer();
-}
-
-void drawScrollingLine(char *frase, uint8_t *background, uint8_t *color, uint16_t interval_ms, uint8_t space, uint8_t x, uint8_t y)
-{
-  for (uint8_t i = 0; i < strlen(frase); i++)
-  {
-    for (uint8_t j = 0; j < 3; j++)
-    {
-      drawScrollingString(frase, background, color, interval_ms, space, j, i, x, y);
+      fillFramebuffer();
+      WS2812_sendbuf(24 * NLEDSCH);
+      LL_mDelay(interval_ms);
+      clearFramebuffer();
     }
   }
 }
@@ -678,9 +673,9 @@ int main(void)
   drawColor(background);
   fillFramebuffer();
   WS2812_sendbuf(24 * NLEDSCH);
-
-  drawScrollingLine("Ordem dos Engenheiros Tecnicos", background, colorLetter, 500, 1, 0, 0);
-
+  LL_mDelay(1000);
+  drawScrollingString("Ola", background, colorLetter, 500, 1, 0, 0);
+  WS2812_sendbuf(24 * NLEDSCH);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)

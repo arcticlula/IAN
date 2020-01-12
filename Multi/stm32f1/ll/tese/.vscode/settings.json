@@ -2,6 +2,9 @@
     "files.associations": {
         "chrono": "c",
         "__config": "c",
-        "ios": "c"
+        "ios": "c",
+        "__bit_reference": "c",
+        "algorithm": "c",
+        "array": "c"
     }
 }
