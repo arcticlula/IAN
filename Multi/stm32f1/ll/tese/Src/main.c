@@ -57,16 +57,28 @@
 #define MIDI_FLAT -1
 #define MIDI_OCTAVE 12
 
-#define MAX_BRIGHT 0.5 // 0 - 1
+#define MAX_BRIGHT 0.1 // 0 - 1
 
 #define WS2812_DEADPERIOD 40
-#define NCHANNELS 4
-#define NCOLS 7
+#define MAX_DIV 5
+#define NCHANNELS 8
+#define NCOLS 16
 #define NLINESCH 2
 #define NLEDSCH NCOLS *NLINESCH
 #define NCOLSL NCOLS - 1
 #define NLEDS NCOLS *NCOLS
-#define MAX_DIV 5
+
+#define DIV_8(a) ((a) / 8)
+#define REST_8(a) ((a) % 8)
+#define NLEDSMOD REST_8(NLEDS)
+#if NLEDSMOD
+#define NLEDSBIT DIV_8(NLEDS) + 1
+#else
+#define NLEDSBIT DIV_8(NLEDS)
+#endif
+#define BIT_SET(a, b) ((a) |= (1ULL << (b)))
+#define BIT_CLEAR(a, b) ((a) &= ~(1ULL << (b)))
+#define BIT_CHECK(a, b) (!!((a) & (1ULL << (b))))
 
 uint16_t WS2812_IO_High = 0xFFFF;
 uint16_t WS2812_IO_Low = 0x0000;
@@ -193,18 +205,21 @@ const uint8_t font4x6[96][2] = {
 uint8_t velocity = 0;
 typedef struct Notes
 {
-  char symbol[2];
-  char octave[1];
-  char note[3];
+  char symbol[3];
+  char octave;
+  char note[4];
 } Note;
-Note note;
+Note volatile note;
+char noteBuffer[10][5] = {"", "", "", "", "", "", "", "", "", ""};
 
 /* WS2812 framebuffer
  * buffersize = (#LEDs / 16) * 24 */
 uint16_t WS2812_IO_framedata[24 * NLEDSCH];
 
 uint8_t currColor[3] = {60, 25, 0};
-uint8_t effect[NLEDS][3];
+uint8_t backLayer[NLEDS][3];
+uint8_t textLayer[NLEDSBIT];
+uint8_t letterColor[3] = {0, 10, 0};
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -258,10 +273,11 @@ void setVelocity(uint8_t vel)
 void setNote(int nt)
 {
   resto = nt % MIDI_OCTAVE;
-  uint8_t res = nt / MIDI_OCTAVE;
-  char resStr[1];
-  sprintf(resStr, "%1d", res);
-  //strcpy(note.octave,resStr);
+  note.octave = (nt / MIDI_OCTAVE) + '0';
+  for (size_t i = 0; i < 3; i++)
+  {
+    letterColor[i] = arrCol[resto][i];
+  }
   switch (resto)
   {
   case MIDI_C0:
@@ -301,7 +317,12 @@ void setNote(int nt)
     strcpy(note.symbol, "B");
     break;
   }
-
+  sprintf(note.note, "%s%c", note.symbol, note.octave);
+  for (size_t k = ARRAY_LEN(noteBuffer); k > 0; k--)
+  {
+    strcpy(noteBuffer[k], noteBuffer[k - 1]);
+  }
+  sprintf(noteBuffer[0], "%s%c", note.note, ' ');
   arr[0] = arrCol[resto][0];
   arr[1] = arrCol[resto][1];
   arr[2] = arrCol[resto][2];
@@ -354,7 +375,7 @@ void move(int8_t newX, int8_t newY)
     {
       for (int z = 0; z < 3; z++)
       {
-        tempVector[x + (y * NCOLS)][z] = effect[x + (y * NCOLS)][z];
+        tempVector[x + (y * NCOLS)][z] = backLayer[x + (y * NCOLS)][z];
       }
     }
   }
@@ -387,7 +408,7 @@ void move(int8_t newX, int8_t newY)
 
       for (int z = 0; z < 3; z++)
       {
-        effect[x + (y * NCOLS)][z] = tempVector[tempX + (tempY * NCOLS)][z];
+        backLayer[x + (y * NCOLS)][z] = tempVector[tempX + (tempY * NCOLS)][z];
       }
     }
   }
@@ -409,31 +430,33 @@ void clearFramebuffer()
   }
 }
 
+void clearText()
+{
+  for (uint8_t i = 0; i < NLEDSBIT; i++)
+  {
+    textLayer[i] = 0;
+  }
+}
+
 void fillFramebuffer()
 {
   uint8_t mod, z, tempLine[NCOLS][3];
+  uint16_t coords;
   for (uint8_t i = 0; i < NCHANNELS; i++)
   {
     for (uint8_t j = 0; j < NLINESCH; j++)
     {
       mod = j % 2;
-      for (uint16_t x = 0; x < NCOLS; x++)
+      for (uint8_t x = 0; x < NCOLS; x++)
       {
-        if ((x + (j * NCOLS) + (i * NLEDSCH)) > NLEDS)
+        if ((x + (j * NCOLS) + (i * NLEDSCH)) > NLEDS - 1)
           break;
-        if (mod == 0)
+        // coords = mod ? NCOLSL - x + (j * NCOLS) + (i * NLEDSCH) : x + (j * NCOLS) + (i * NLEDSCH);
+        coords = mod ? x + (j * NCOLS) + (i * NLEDSCH) : NCOLSL - x + (j * NCOLS) + (i * NLEDSCH);
+        for (z = 0; z < 3; z++)
         {
-          for (z = 0; z < 3; z++)
-          {
-            tempLine[x][z] = effect[x + (j * NCOLS) + (i * NLEDSCH)][z];
-          }
-        }
-        else
-        {
-          for (z = 0; z < 3; z++)
-          {
-            tempLine[x][z] = effect[NCOLSL - x + (j * NCOLS) + (i * NLEDSCH)][z];
-          }
+          tempLine[x][z] = BIT_CHECK(textLayer[DIV_8(coords)], REST_8(coords)) ? letterColor[z] : backLayer[coords][z];
+          // tempLine[x][z] = backLayer[coords][z];
         }
         WS2812_framedata_setPixel(i, x + (j * NCOLS), tempLine[x][0], tempLine[x][1], tempLine[x][2]);
       }
@@ -450,9 +473,6 @@ void WS2812_sendbuf(uint32_t buffersize)
   LL_DMA_ClearFlag_TE2(DMA1);
   LL_DMA_ClearFlag_TE5(DMA1);
   LL_DMA_ClearFlag_TE7(DMA1);
-  // LL_DMA_ClearFlag_GI2(DMA1);
-  // LL_DMA_ClearFlag_GI5(DMA1);
-  // LL_DMA_ClearFlag_GI7(DMA1);
 
   // configure the number of bytes to be transferred by the DMA controller
   LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_2, buffersize);
@@ -487,7 +507,8 @@ void drawColor(volatile uint8_t *color)
     {
       for (int z = 0; z < 3; z++)
       {
-        effect[x + (y * NCOLS)][z] = color[z];
+        backLayer[x + (y * NCOLS)][z] = color[z];
+        // backLayer[x + (y * NCOLS)][z] = arrCol16[y][z];
       }
     }
   }
@@ -518,7 +539,7 @@ void drawCircle(uint8_t *color_steps)
               temp = 0;
             if (temp > 255)
               temp = 255;
-            effect[coords][z] = temp;
+            backLayer[coords][z] = temp;
           }
           boarder = 0;
         }
@@ -534,7 +555,7 @@ void drawCircle(uint8_t *color_steps)
               temp = 0;
             if (temp > 255)
               temp = 255;
-            effect[coords][z] = temp;
+            backLayer[coords][z] = temp;
           }
         }
       }
@@ -542,14 +563,32 @@ void drawCircle(uint8_t *color_steps)
   }
 }
 
-void drawScrollingString(char *frase, uint8_t *background, uint8_t *color, uint16_t interval_ms, uint8_t space, uint8_t offX, uint8_t offY)
+void drawLine(uint8_t xx, uint8_t yy)
+{
+  for (int y = 0; y <= NCOLS; y++)
+  {
+    for (int x = 0; x <= NCOLS; x++)
+    {
+      if (x == xx || y == yy)
+      {
+        for (int z = 0; z < 3; z++)
+        {
+          backLayer[x + (y * NCOLS)][z] = currColor[z];
+        }
+      }
+    }
+  }
+}
+
+void drawScrollingString(char *frase, uint16_t interval_ms, uint8_t space, uint8_t offX, uint8_t offY)
 {
   int8_t posX, posY;
-  uint8_t fill, val, col, width = 3 + space;
+  uint8_t fill, width = 3 + space;
   for (uint8_t letter = 0; letter < strlen(frase); letter++)
   {
     for (uint8_t pos = 0; pos < 3; pos++)
     {
+      clearText();
       for (uint8_t i = letter, idx = 0; i < strlen(frase); i++, idx++)
       {
         posX = (idx * width) + offX;
@@ -566,12 +605,8 @@ void drawScrollingString(char *frase, uint8_t *background, uint8_t *color, uint1
               break;
             if (x >= offX)
             {
-              val = fill & (1u << aX) ? 1 : 0;
-              for (uint8_t z = 0; z < 3; z++)
-              {
-                col = val ? color[z] : background[z];
-                effect[x + (y * NCOLS)][z] = col;
-              }
+              if (fill & (1u << aX))
+                BIT_SET(textLayer[DIV_8(x + (y * NCOLS))], REST_8(x + (y * NCOLS)));
             }
           }
         }
@@ -579,17 +614,18 @@ void drawScrollingString(char *frase, uint8_t *background, uint8_t *color, uint1
       fillFramebuffer();
       WS2812_sendbuf(24 * NLEDSCH);
       LL_mDelay(interval_ms);
-      clearFramebuffer();
     }
   }
 }
 
-void drawLetter(char letter, uint8_t *color, uint8_t px, uint8_t py)
+void drawLetter(char letter, uint8_t px, uint8_t py)
 {
   uint8_t fill;
   uint8_t val = 0;
   for (uint8_t y = py, l = 0; y <= (py + 5); y++, l++)
   {
+    if (y > NCOLS - 1)
+      break;
     fill = getFontLine(letter, l);
     for (uint8_t x = px, aX = 3; x <= (px + 3); x++, aX--)
     {
@@ -598,24 +634,59 @@ void drawLetter(char letter, uint8_t *color, uint8_t px, uint8_t py)
       {
         for (uint8_t z = 0; z < 3; z++)
         {
-          effect[x + (y * NCOLS)][z] = color[z];
+          BIT_SET(textLayer[DIV_8(x + (y * NCOLS))], REST_8(x + (y * NCOLS)));
         }
       }
     }
   }
 }
 
-void drawString(char *frase, uint8_t *color, uint8_t px, uint8_t py, uint8_t space)
+void drawStringArray(uint8_t px, uint8_t py, uint8_t spacex, uint8_t spacey)
 {
-  uint8_t posX, posY, nLine = 0, posI = 0;
+  uint8_t posX, incX = 0, posY, lastY = py, nLine = 0;
+  for (size_t j = 0; j < ARRAY_LEN(noteBuffer); j++)
+  {
+    for (size_t i = 0; i < strlen(noteBuffer[j]); i++)
+    {
+      posX = incX * (3 + spacex) + px;
+      if (posX + ((3 + spacex)) > NCOLS - 2)
+      {
+        posX = px;
+        nLine++;
+        incX = 0;
+      }
+      posY = nLine * (5 + spacey) + py;
+      drawLetter(noteBuffer[j][i], posX, posY);
+      // posX = (posI - (nLine * (NCOLS - 3))) + 1;
+      incX++;
+    }
+  }
+}
+
+void drawString(char *frase, uint8_t px, uint8_t py, uint8_t spacex, uint8_t spacey)
+{
+  uint8_t posX, incX = 0, posY, lastY = py, nLine = 0;
   for (size_t i = 0; i < strlen(frase); i++)
   {
-    posI = (i * (3 + space)) + px;
-    nLine = posI / (NCOLS - 2);
-    posY = (nLine * 6) + py;
-    posX = posI;
-    drawLetter(frase[i], color, posX, posY);
-    // posX = (posI - (nLine * (SIZE - 3))) + 1;
+    // posX = (char)frase[i] == (char)32 ? (i * 3) + px - 1 : (i * (3 + spacex)) + px;
+    posX = incX * (3 + spacex) + px;
+    if (posX + ((3 + spacex)) > NCOLS - 2)
+    {
+      posX = px;
+      nLine++;
+      incX = 0;
+    }
+    posY = nLine * (5 + spacey) + py;
+    if (posY + 5 > NCOLS - 1)
+    {
+      letterColor[0] = 10;
+      letterColor[1] = 0;
+      letterColor[2] = 0;
+      break;
+    }
+    drawLetter(frase[i], posX, posY);
+    // posX = (posI - (nLine * (NCOLS - 3))) + 1;
+    incX++;
   }
 }
 
@@ -662,20 +733,30 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   // uint8_t i = 0;
-  // uint8_t color[] = {5, 10, 30};
-  uint8_t background[] = {1, 1, 5};
-  uint8_t colorLetter[] = {10, 0, 0};
+  uint8_t color[] = {5, 10, 30};
+  // drawLetter('C', 0, 1);
+  // drawLetter('5', 4, 1);
 
-  // drawLetter('C', colorLetter, 0, 1);
-  // drawLetter('5', colorLetter, 4, 1);
-  // drawString("C5", colorLetter, 0, 1, 1);
   clearFramebuffer();
-  drawColor(background);
-  fillFramebuffer();
-  WS2812_sendbuf(24 * NLEDSCH);
-  LL_mDelay(1000);
-  drawScrollingString("Ola", background, colorLetter, 500, 1, 0, 0);
-  WS2812_sendbuf(24 * NLEDSCH);
+  clearText();
+  uint8_t blue[3] = {1, 1, 5};
+  uint8_t red[3] = {5, 1, 1};
+  uint8_t green[3] = {1, 5, 1};
+
+  // drawString("Porque e que", 1, 0, 1, 0);
+  // fillFramebuffer();
+  // drawColor(green);
+  // fillFramebuffer();
+  // WS2812_sendbuf(24 * NLEDSCH);
+  // LL_mDelay(1000);
+
+  // drawCircle(red);
+  // fillFramebuffer();
+  // WS2812_sendbuf(24 * NLEDSCH);
+  // WS2812_framedata_setPixel(0, 0, blue[0], blue[1], blue[2]);
+
+  // drawScrollingString("O lula", 500, 1, 1, 0);
+  // WS2812_sendbuf(24 * NLEDSCH);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -686,27 +767,15 @@ int main(void)
     {
       // wait until the last frame was transmitted
       while (!WS2812_TC)
-        ; 
-      // move(1, 0);
+        ;
+      // move(1, 1);
       // fillFramebuffer();
-
-      // fillFramebufferColor(RGB[i]);
-      // WS2812_framedata_setPixel(0, 0, 0xFF, 0, 0);
-      // WS2812_framedata_setPixel(0, 1, 0xFF, 0, 0);
-      // WS2812_framedata_setPixel(0, 2, 0xFF, 0, 0);
-      // WS2812_framedata_setPixel(0, 3, 0xFF, 0, 0);
-      // WS2812_framedata_setPixel(0, 4, 0, 0xFF, 0);
-      // WS2812_framedata_setPixel(0, 5, 0, 0xFF, 0);
-      // WS2812_framedata_setPixel(0, 6, 0, 0xFF, 0);
-      // WS2812_framedata_setPixel(0, 7, 0, 0, 0xFF);
-      // WS2812_framedata_setPixel(0, 8, 0, 0, 0xFF);
-      // WS2812_framedata_setPixel(0, 9, 0, 0, 0xFF);
-      // WS2812_framedata_setPixel(0, 1, 0b11111111, 0, 0);
-      move(0, 1);
-      // drawCircle(color);
+      // WS2812_sendbuf(24 * NLEDSCH);
+      // LL_mDelay(500);
+      // }
+      drawColor(arrCol[i]);
       fillFramebuffer();
       WS2812_sendbuf(24 * NLEDSCH);
-      //   // wait some amount of time
       LL_mDelay(1000);
     } */
   }
@@ -968,163 +1037,116 @@ void TIM2_IRQHandler(void)
   }
 }
 
-void drawNote(int nt, volatile uint8_t *colorLetter)
+void drawNote()
 {
-  resto = nt % MIDI_OCTAVE;
-  uint8_t res = nt / MIDI_OCTAVE;
-  char resStr[1];
-  sprintf(resStr, "%1d", res);
-  //strcpy(note.octave,resStr);
-  switch (resto)
-  {
-  case MIDI_C0:
-    drawLetter('C', colorLetter, 0, 1);
-    break;
-  case MIDI_C0 + MIDI_SHARP:
-    drawLetter('C', colorLetter, 0, 1);
-    break;
-  case MIDI_D0:
-    drawLetter('D', colorLetter, 0, 1);
-    break;
-  case MIDI_E0 + MIDI_FLAT:
-    drawLetter('E', colorLetter, 0, 1);
-    break;
-  case MIDI_E0:
-    drawLetter('E', colorLetter, 0, 1);
-    break;
-  case MIDI_F0:
-    drawLetter('F', colorLetter, 0, 1);
-    break;
-  case MIDI_F0 + MIDI_SHARP:
-    drawLetter('F', colorLetter, 0, 1);
-    break;
-  case MIDI_G0:
-    drawLetter('F', colorLetter, 0, 1);
-    break;
-  case MIDI_A0 + MIDI_FLAT:
-    drawLetter('A', colorLetter, 0, 1);
-    break;
-  case MIDI_A0:
-    drawLetter('A', colorLetter, 0, 1);
-    break;
-  case MIDI_B0 + MIDI_FLAT:
-    drawLetter('B', colorLetter, 0, 1);
-    break;
-  case MIDI_B0:
-    drawLetter('B', colorLetter, 0, 1);
-    break;
-  }
-  drawLetter('0' + res, colorLetter, 4, 1);
+  drawStringArray(1, 0, 1, 1);
 }
 
-// void USART3_IRQHandler(void)
-// {
-//   static uint8_t usart_rx_buffer;
-//   static uint8_t usart_rx_message[3];
-//   char str[100];
-//   long temp, noteTemp = 0;
-//   static uint8_t sizeMsg;
-//   volatile uint8_t colorLetter[] = {0, 0, 0};
-//   LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
-//   if (LL_USART_IsActiveFlag_RXNE(USART3) && LL_USART_IsEnabledIT_RXNE(USART3))
-//   {
-//     usart_rx_buffer = LL_USART_ReceiveData8(USART3);
-//     if (cntMessage == 0 && waitForMessage == 0)
-//     {
-//       switch (usart_rx_buffer)
-//       {
-//       case NOTE_ON: //NOTE_ON Channel 1
-//         sizeMsg = 3;
-//         cntMessage = 3;
-//         waitForMessage = 1;
-//         break;
+void USART3_IRQHandler(void)
+{
+  static uint8_t usart_rx_buffer;
+  static uint8_t usart_rx_message[3];
+  char str[100];
+  long temp;
+  static uint8_t sizeMsg;
+  // volatile uint8_t colorLetter[] = {0, 0, 0};
+  LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
+  if (LL_USART_IsActiveFlag_RXNE(USART3) && LL_USART_IsEnabledIT_RXNE(USART3))
+  {
+    usart_rx_buffer = LL_USART_ReceiveData8(USART3);
+    if (cntMessage == 0 && waitForMessage == 0)
+    {
+      switch (usart_rx_buffer)
+      {
+      case NOTE_ON: //NOTE_ON Channel 1
+        sizeMsg = 3;
+        cntMessage = 3;
+        waitForMessage = 1;
+        break;
 
-//       case NOTE_OFF: //NOTE_OFF Channel 1
-//         sizeMsg = 3;
-//         cntMessage = 3;
-//         waitForMessage = 1;
-//         break;
+      case NOTE_OFF: //NOTE_OFF Channel 1
+        sizeMsg = 3;
+        cntMessage = 3;
+        waitForMessage = 1;
+        break;
 
-//       case CTRL_CHANGE: //CTRL_CHANGE Channel 1
-//         sizeMsg = 3;
-//         cntMessage = 3;
-//         waitForMessage = 1;
-//         break;
-//       }
-//     }
-//     if (cntMessage > 1)
-//     {
-//       usart_rx_message[sizeMsg - cntMessage] = usart_rx_buffer;
-//       cntMessage--;
-//     }
-//     else if (waitForMessage)
-//     {
-//       usart_rx_message[sizeMsg - cntMessage] = usart_rx_buffer;
-//       switch (usart_rx_message[0])
-//       {
-//       case NOTE_ON: //NOTE_ON Channel 1
-//         for (int i = 0; i < ARRAY_LEN(usart_rx_message); i++)
-//         {
-//           sprintf(&str[i * 4], "%03x ", usart_rx_message[i]);
-//           temp = strtol(&str[i * 4], NULL, 16);
-//           if (i != 0)
-//             sprintf(&str[i * 4], "%03ld ", temp);
-//           if (i == 1)
-//           {
-//             setNote(temp);
-//             noteTemp = temp;
-//           }
-//           if (i == 2)
-//             setVelocity(temp);
-//         }
+      case CTRL_CHANGE: //CTRL_CHANGE Channel 1
+        sizeMsg = 3;
+        cntMessage = 3;
+        waitForMessage = 1;
+        break;
+      }
+    }
+    if (cntMessage > 1)
+    {
+      usart_rx_message[sizeMsg - cntMessage] = usart_rx_buffer;
+      cntMessage--;
+    }
+    else if (waitForMessage)
+    {
+      usart_rx_message[sizeMsg - cntMessage] = usart_rx_buffer;
+      switch (usart_rx_message[0])
+      {
+      case NOTE_ON: //NOTE_ON Channel 1
+        for (int i = 0; i < ARRAY_LEN(usart_rx_message); i++)
+        {
+          sprintf(&str[i * 4], "%03x ", usart_rx_message[i]);
+          temp = strtol(&str[i * 4], NULL, 16);
+          if (i != 0)
+            sprintf(&str[i * 4], "%03ld ", temp);
+          if (i == 1)
+          {
+            setNote(temp);
+          }
+          if (i == 2)
+            setVelocity(temp);
+        }
 
-//         calculateLeds();
-//         // drawColor(arr);
-//         // drawNote(noteTemp, colorLetter);
-//         drawColor(colorLetter);
-//         drawNote(noteTemp, arr);
-//         fillFramebuffer();
-//         WS2812_sendbuf(24 * NLEDSCH);
-//         break;
+        calculateLeds();
+        clearText();
+        drawNote();
+        fillFramebuffer();
+        WS2812_sendbuf(24 * NLEDSCH);
+        break;
 
-//       case NOTE_OFF: //NOTE_OFF Channel 1
-//         for (int i = 0; i < ARRAY_LEN(usart_rx_message); i++)
-//         {
-//           sprintf(&str[i * 4], "%03x ", usart_rx_message[i]);
-//           temp = strtol(&str[i * 4], NULL, 16);
-//           if (i != 0)
-//             sprintf(&str[i * 4], "%03ld ", temp);
-//           if (i == 1)
-//             setNote(temp);
-//           if (i == 2)
-//             setVelocity(temp);
-//         }
+      case NOTE_OFF: //NOTE_OFF Channel 1
+        for (int i = 0; i < ARRAY_LEN(usart_rx_message); i++)
+        {
+          sprintf(&str[i * 4], "%03x ", usart_rx_message[i]);
+          temp = strtol(&str[i * 4], NULL, 16);
+          if (i != 0)
+            sprintf(&str[i * 4], "%03ld ", temp);
+          if (i == 1)
+            setNote(temp);
+          if (i == 2)
+            setVelocity(temp);
+        }
 
-//         break;
+        break;
 
-//       case CTRL_CHANGE: //Velocity Channel 1
-//         for (int i = 0; i < ARRAY_LEN(usart_rx_message); i++)
-//         {
-//           sprintf(&str[i * 4], "%03x ", usart_rx_message[i]);
-//           temp = strtol(&str[i * 4], NULL, 16);
-//           if (i != 0)
-//             sprintf(&str[i * 4], "%03ld ", temp);
-//           if (i == 2)
-//             setVelocity(temp);
-//         }
-//         if (WS2812_TC)
-//         {
-//           //calculateLeds();
-//           //fillFramebufferColor(arr);
-//           //WS2812_sendbuf(24 * NLEDSCHCH);
-//         }
-//         break;
-//       }
-//       waitForMessage = 0;
-//       cntMessage = 0;
-//     }
-//   }
-// }
+      case CTRL_CHANGE: //Velocity Channel 1
+        for (int i = 0; i < ARRAY_LEN(usart_rx_message); i++)
+        {
+          sprintf(&str[i * 4], "%03x ", usart_rx_message[i]);
+          temp = strtol(&str[i * 4], NULL, 16);
+          if (i != 0)
+            sprintf(&str[i * 4], "%03ld ", temp);
+          if (i == 2)
+            setVelocity(temp);
+        }
+        if (WS2812_TC)
+        {
+          //calculateLeds();
+          //fillFramebufferColor(arr);
+          //WS2812_sendbuf(24 * NLEDSCHCH);
+        }
+        break;
+      }
+      waitForMessage = 0;
+      cntMessage = 0;
+    }
+  }
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.

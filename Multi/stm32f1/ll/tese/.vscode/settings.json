@@ -5,6 +5,7 @@
         "ios": "c",
         "__bit_reference": "c",
         "algorithm": "c",
-        "array": "c"
+        "array": "c",
+        "locale": "c"
     }
 }
