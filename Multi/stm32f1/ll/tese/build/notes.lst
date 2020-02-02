@@ -1,0 +1,677 @@
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"notes.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.global	__aeabi_i2d
+  16              		.global	__aeabi_dmul
+  17              		.global	__aeabi_d2uiz
+  18              		.section	.text.calculateLeds,"ax",%progbits
+  19              		.align	1
+  20              		.global	calculateLeds
+  21              		.arch armv7-m
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  25              		.fpu softvfp
+  27              	calculateLeds:
+  28              	.LFB3:
+  29              		.file 1 "Src/notes.c"
+   1:Src/notes.c   **** #include "stdint.h"
+   2:Src/notes.c   **** #include "stdio.h"
+   3:Src/notes.c   **** #include "string.h"
+   4:Src/notes.c   **** #include "definitions.h"
+   5:Src/notes.c   **** #include "notes.h"
+   6:Src/notes.c   **** 
+   7:Src/notes.c   **** volatile uint8_t cntMessage = 0;
+   8:Src/notes.c   **** volatile uint8_t waitForMessage = 0;
+   9:Src/notes.c   **** volatile uint8_t resto = 12;
+  10:Src/notes.c   **** 
+  11:Src/notes.c   **** uint8_t velocity = 0;
+  12:Src/notes.c   **** 
+  13:Src/notes.c   **** void calculateLeds(void)
+  14:Src/notes.c   **** {
+  30              		.loc 1 14 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34 0000 10B5     		push	{r4, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 4, -8
+  38              		.cfi_offset 14, -4
+  15:Src/notes.c   ****   for (uint8_t z = 0; z < 3; z++)
+  39              		.loc 1 15 3 view .LVU1
+  40              	.LBB2:
+  41              		.loc 1 15 8 view .LVU2
+  42              	.LVL0:
+  43              		.loc 1 15 16 is_stmt 0 view .LVU3
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s 			page 2
+
+
+  44 0002 0024     		movs	r4, #0
+  45              	.LVL1:
+  46              	.L2:
+  47              		.loc 1 15 3 discriminator 1 view .LVU4
+  48 0004 022C     		cmp	r4, #2
+  49 0006 1ED8     		bhi	.L5
+  16:Src/notes.c   ****   {
+  17:Src/notes.c   ****     backColor[z] = ((arrColor[resto][z] * (velocity + 1)) / 255) * MAX_BRIGHT;
+  50              		.loc 1 17 5 is_stmt 1 discriminator 3 view .LVU5
+  51              		.loc 1 17 37 is_stmt 0 discriminator 3 view .LVU6
+  52 0008 114B     		ldr	r3, .L6+8
+  53 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  54 000c 03EB4303 		add	r3, r3, r3, lsl #1
+  55 0010 104A     		ldr	r2, .L6+12
+  56 0012 1344     		add	r3, r3, r2
+  57 0014 185D     		ldrb	r0, [r3, r4]	@ zero_extendqisi2
+  58              		.loc 1 17 53 discriminator 3 view .LVU7
+  59 0016 104B     		ldr	r3, .L6+16
+  60 0018 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  61              		.loc 1 17 41 discriminator 3 view .LVU8
+  62 001a 03FB0003 		mla	r3, r3, r0, r0
+  63              		.loc 1 17 59 discriminator 3 view .LVU9
+  64 001e 0F48     		ldr	r0, .L6+20
+  65 0020 80FB0320 		smull	r2, r0, r0, r3
+  66 0024 1844     		add	r0, r0, r3
+  67              		.loc 1 17 66 discriminator 3 view .LVU10
+  68 0026 C011     		asrs	r0, r0, #7
+  69 0028 FFF7FEFF 		bl	__aeabi_i2d
+  70              	.LVL2:
+  71 002c 06A3     		adr	r3, .L6
+  72 002e D3E90023 		ldrd	r2, [r3]
+  73 0032 FFF7FEFF 		bl	__aeabi_dmul
+  74              	.LVL3:
+  75              		.loc 1 17 18 discriminator 3 view .LVU11
+  76 0036 FFF7FEFF 		bl	__aeabi_d2uiz
+  77              	.LVL4:
+  78 003a C0B2     		uxtb	r0, r0
+  79 003c 084B     		ldr	r3, .L6+24
+  80 003e 1855     		strb	r0, [r3, r4]
+  15:Src/notes.c   ****   for (uint8_t z = 0; z < 3; z++)
+  81              		.loc 1 15 31 discriminator 3 view .LVU12
+  82 0040 0134     		adds	r4, r4, #1
+  83              	.LVL5:
+  15:Src/notes.c   ****   for (uint8_t z = 0; z < 3; z++)
+  84              		.loc 1 15 31 discriminator 3 view .LVU13
+  85 0042 E4B2     		uxtb	r4, r4
+  86              	.LVL6:
+  15:Src/notes.c   ****   for (uint8_t z = 0; z < 3; z++)
+  87              		.loc 1 15 31 discriminator 3 view .LVU14
+  88 0044 DEE7     		b	.L2
+  89              	.L5:
+  15:Src/notes.c   ****   for (uint8_t z = 0; z < 3; z++)
+  90              		.loc 1 15 31 discriminator 3 view .LVU15
+  91              	.LBE2:
+  18:Src/notes.c   ****   }
+  19:Src/notes.c   **** }
+  92              		.loc 1 19 1 view .LVU16
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s 			page 3
+
+
+  93 0046 10BD     		pop	{r4, pc}
+  94              	.LVL7:
+  95              	.L7:
+  96              		.loc 1 19 1 view .LVU17
+  97              		.align	3
+  98              	.L6:
+  99 0048 9A999999 		.word	2576980378
+ 100 004c 9999B93F 		.word	1069128089
+ 101 0050 00000000 		.word	.LANCHOR0
+ 102 0054 00000000 		.word	arrColor
+ 103 0058 00000000 		.word	.LANCHOR1
+ 104 005c 81808080 		.word	-2139062143
+ 105 0060 00000000 		.word	backColor
+ 106              		.cfi_endproc
+ 107              	.LFE3:
+ 109              		.section	.text.setVelocity,"ax",%progbits
+ 110              		.align	1
+ 111              		.global	setVelocity
+ 112              		.syntax unified
+ 113              		.thumb
+ 114              		.thumb_func
+ 115              		.fpu softvfp
+ 117              	setVelocity:
+ 118              	.LVL8:
+ 119              	.LFB4:
+  20:Src/notes.c   **** 
+  21:Src/notes.c   **** void setVelocity(uint8_t vel)
+  22:Src/notes.c   **** {
+ 120              		.loc 1 22 1 is_stmt 1 view -0
+ 121              		.cfi_startproc
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124              		@ link register save eliminated.
+  23:Src/notes.c   ****   velocity = vel * 2;
+ 125              		.loc 1 23 3 view .LVU19
+ 126              		.loc 1 23 12 is_stmt 0 view .LVU20
+ 127 0000 4000     		lsls	r0, r0, #1
+ 128              	.LVL9:
+ 129              		.loc 1 23 12 view .LVU21
+ 130 0002 014B     		ldr	r3, .L9
+ 131 0004 1870     		strb	r0, [r3]
+  24:Src/notes.c   **** }
+ 132              		.loc 1 24 1 view .LVU22
+ 133 0006 7047     		bx	lr
+ 134              	.L10:
+ 135              		.align	2
+ 136              	.L9:
+ 137 0008 00000000 		.word	.LANCHOR1
+ 138              		.cfi_endproc
+ 139              	.LFE4:
+ 141              		.section	.text.setNote,"ax",%progbits
+ 142              		.align	1
+ 143              		.global	setNote
+ 144              		.syntax unified
+ 145              		.thumb
+ 146              		.thumb_func
+ 147              		.fpu softvfp
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s 			page 4
+
+
+ 149              	setNote:
+ 150              	.LVL10:
+ 151              	.LFB5:
+  25:Src/notes.c   **** 
+  26:Src/notes.c   **** void setNote(int nt)
+  27:Src/notes.c   **** {
+ 152              		.loc 1 27 1 is_stmt 1 view -0
+ 153              		.cfi_startproc
+ 154              		@ args = 0, pretend = 0, frame = 0
+ 155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156              		.loc 1 27 1 is_stmt 0 view .LVU24
+ 157 0000 10B5     		push	{r4, lr}
+ 158              	.LCFI1:
+ 159              		.cfi_def_cfa_offset 8
+ 160              		.cfi_offset 4, -8
+ 161              		.cfi_offset 14, -4
+  28:Src/notes.c   ****   resto = nt % MIDI_OCTAVE;
+ 162              		.loc 1 28 3 is_stmt 1 view .LVU25
+ 163              		.loc 1 28 14 is_stmt 0 view .LVU26
+ 164 0002 4B4A     		ldr	r2, .L32
+ 165 0004 82FB0032 		smull	r3, r2, r2, r0
+ 166 0008 C317     		asrs	r3, r0, #31
+ 167 000a C3EB6203 		rsb	r3, r3, r2, asr #1
+ 168 000e 1A46     		mov	r2, r3
+ 169 0010 03EB4303 		add	r3, r3, r3, lsl #1
+ 170 0014 9900     		lsls	r1, r3, #2
+ 171 0016 431A     		subs	r3, r0, r1
+ 172              		.loc 1 28 9 view .LVU27
+ 173 0018 DBB2     		uxtb	r3, r3
+ 174 001a 4649     		ldr	r1, .L32+4
+ 175 001c 0B70     		strb	r3, [r1]
+  29:Src/notes.c   ****   note.octave = (nt / MIDI_OCTAVE) + '0';
+ 176              		.loc 1 29 3 is_stmt 1 view .LVU28
+ 177              		.loc 1 29 36 is_stmt 0 view .LVU29
+ 178 001e 02F13003 		add	r3, r2, #48
+ 179 0022 DBB2     		uxtb	r3, r3
+ 180              		.loc 1 29 15 view .LVU30
+ 181 0024 444A     		ldr	r2, .L32+8
+ 182 0026 D370     		strb	r3, [r2, #3]
+  30:Src/notes.c   ****   for (uint8_t i = 0; i < 3; i++)
+ 183              		.loc 1 30 3 is_stmt 1 view .LVU31
+ 184              	.LBB3:
+ 185              		.loc 1 30 8 view .LVU32
+ 186              	.LVL11:
+ 187              		.loc 1 30 16 is_stmt 0 view .LVU33
+ 188 0028 0022     		movs	r2, #0
+ 189              		.loc 1 30 3 view .LVU34
+ 190 002a 0AE0     		b	.L12
+ 191              	.LVL12:
+ 192              	.L13:
+  31:Src/notes.c   ****   {
+  32:Src/notes.c   ****     textColor[i] = arrColor[resto][i];
+ 193              		.loc 1 32 5 is_stmt 1 discriminator 3 view .LVU35
+ 194              		.loc 1 32 35 is_stmt 0 discriminator 3 view .LVU36
+ 195 002c 4149     		ldr	r1, .L32+4
+ 196 002e 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 197 0030 01EB4101 		add	r1, r1, r1, lsl #1
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s 			page 5
+
+
+ 198 0034 4148     		ldr	r0, .L32+12
+ 199 0036 0144     		add	r1, r1, r0
+ 200 0038 885C     		ldrb	r0, [r1, r2]	@ zero_extendqisi2
+ 201              		.loc 1 32 18 discriminator 3 view .LVU37
+ 202 003a 4149     		ldr	r1, .L32+16
+ 203 003c 8854     		strb	r0, [r1, r2]
+  30:Src/notes.c   ****   for (uint8_t i = 0; i < 3; i++)
+ 204              		.loc 1 30 31 discriminator 3 view .LVU38
+ 205 003e 0132     		adds	r2, r2, #1
+ 206              	.LVL13:
+  30:Src/notes.c   ****   for (uint8_t i = 0; i < 3; i++)
+ 207              		.loc 1 30 31 discriminator 3 view .LVU39
+ 208 0040 D2B2     		uxtb	r2, r2
+ 209              	.LVL14:
+ 210              	.L12:
+  30:Src/notes.c   ****   for (uint8_t i = 0; i < 3; i++)
+ 211              		.loc 1 30 3 discriminator 1 view .LVU40
+ 212 0042 022A     		cmp	r2, #2
+ 213 0044 F2D9     		bls	.L13
+ 214              	.LBE3:
+  33:Src/notes.c   ****   }
+  34:Src/notes.c   ****   switch (resto)
+ 215              		.loc 1 34 3 is_stmt 1 view .LVU41
+ 216 0046 3B4A     		ldr	r2, .L32+4
+ 217              	.LVL15:
+ 218              		.loc 1 34 3 is_stmt 0 view .LVU42
+ 219 0048 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 220 004a D2B2     		uxtb	r2, r2
+ 221 004c 0B2A     		cmp	r2, #11
+ 222 004e 0BD8     		bhi	.L14
+ 223 0050 DFE802F0 		tbb	[pc, r2]
+ 224              	.L16:
+ 225 0054 06       		.byte	(.L27-.L16)/2
+ 226 0055 1E       		.byte	(.L26-.L16)/2
+ 227 0056 25       		.byte	(.L25-.L16)/2
+ 228 0057 2A       		.byte	(.L24-.L16)/2
+ 229 0058 31       		.byte	(.L23-.L16)/2
+ 230 0059 36       		.byte	(.L22-.L16)/2
+ 231 005a 3B       		.byte	(.L21-.L16)/2
+ 232 005b 42       		.byte	(.L20-.L16)/2
+ 233 005c 47       		.byte	(.L19-.L16)/2
+ 234 005d 4E       		.byte	(.L18-.L16)/2
+ 235 005e 53       		.byte	(.L17-.L16)/2
+ 236 005f 5A       		.byte	(.L15-.L16)/2
+ 237              		.p2align 1
+ 238              	.L27:
+  35:Src/notes.c   ****   {
+  36:Src/notes.c   ****   case MIDI_C0:
+  37:Src/notes.c   ****     strcpy(note.symbol, "C");
+ 239              		.loc 1 37 5 is_stmt 1 view .LVU43
+ 240 0060 384A     		ldr	r2, .L32+20
+ 241 0062 1188     		ldrh	r1, [r2]	@ unaligned
+ 242 0064 344A     		ldr	r2, .L32+8
+ 243 0066 1180     		strh	r1, [r2]	@ unaligned
+  38:Src/notes.c   ****     break;
+ 244              		.loc 1 38 5 view .LVU44
+ 245              	.L14:
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s 			page 6
+
+
+  39:Src/notes.c   ****   case MIDI_C0 + MIDI_SHARP:
+  40:Src/notes.c   ****     strcpy(note.symbol, "C#");
+  41:Src/notes.c   ****     break;
+  42:Src/notes.c   ****   case MIDI_D0:
+  43:Src/notes.c   ****     strcpy(note.symbol, "D");
+  44:Src/notes.c   ****     break;
+  45:Src/notes.c   ****   case MIDI_E0 + MIDI_FLAT:
+  46:Src/notes.c   ****     strcpy(note.symbol, "Eb");
+  47:Src/notes.c   ****     break;
+  48:Src/notes.c   ****   case MIDI_E0:
+  49:Src/notes.c   ****     strcpy(note.symbol, "E");
+  50:Src/notes.c   ****     break;
+  51:Src/notes.c   ****   case MIDI_F0:
+  52:Src/notes.c   ****     strcpy(note.symbol, "F");
+  53:Src/notes.c   ****     break;
+  54:Src/notes.c   ****   case MIDI_F0 + MIDI_SHARP:
+  55:Src/notes.c   ****     strcpy(note.symbol, "F#");
+  56:Src/notes.c   ****     break;
+  57:Src/notes.c   ****   case MIDI_G0:
+  58:Src/notes.c   ****     strcpy(note.symbol, "G");
+  59:Src/notes.c   ****     break;
+  60:Src/notes.c   ****   case MIDI_A0 + MIDI_FLAT:
+  61:Src/notes.c   ****     strcpy(note.symbol, "Ab");
+  62:Src/notes.c   ****     break;
+  63:Src/notes.c   ****   case MIDI_A0:
+  64:Src/notes.c   ****     strcpy(note.symbol, "A");
+  65:Src/notes.c   ****     break;
+  66:Src/notes.c   ****   case MIDI_B0 + MIDI_FLAT:
+  67:Src/notes.c   ****     strcpy(note.symbol, "Bb");
+  68:Src/notes.c   ****     break;
+  69:Src/notes.c   ****   case MIDI_B0:
+  70:Src/notes.c   ****     strcpy(note.symbol, "B");
+  71:Src/notes.c   ****     break;
+  72:Src/notes.c   ****   }
+  73:Src/notes.c   ****   sprintf(note.note, "%s%c", note.symbol, note.octave);
+ 246              		.loc 1 73 3 view .LVU45
+ 247 0068 3348     		ldr	r0, .L32+8
+ 248 006a 0246     		mov	r2, r0
+ 249 006c 3649     		ldr	r1, .L32+24
+ 250 006e 0430     		adds	r0, r0, #4
+ 251 0070 FFF7FEFF 		bl	sprintf
+ 252              	.LVL16:
+  74:Src/notes.c   ****   for (size_t k = ARRAY_LEN(noteBuffer); k > 0; k--)
+ 253              		.loc 1 74 3 view .LVU46
+ 254              	.LBB4:
+ 255              		.loc 1 74 8 view .LVU47
+ 256              		.loc 1 74 15 is_stmt 0 view .LVU48
+ 257 0074 0A24     		movs	r4, #10
+ 258              	.LVL17:
+ 259              	.L28:
+ 260              		.loc 1 74 3 discriminator 1 view .LVU49
+ 261 0076 002C     		cmp	r4, #0
+ 262 0078 4BD0     		beq	.L31
+  75:Src/notes.c   ****   {
+  76:Src/notes.c   ****     strcpy(noteBuffer[k], noteBuffer[k - 1]);
+ 263              		.loc 1 76 5 is_stmt 1 discriminator 3 view .LVU50
+ 264              		.loc 1 76 22 is_stmt 0 discriminator 3 view .LVU51
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s 			page 7
+
+
+ 265 007a 04EB8400 		add	r0, r4, r4, lsl #2
+ 266 007e 334B     		ldr	r3, .L32+28
+ 267              		.loc 1 76 40 discriminator 3 view .LVU52
+ 268 0080 013C     		subs	r4, r4, #1
+ 269              	.LVL18:
+ 270              		.loc 1 76 37 discriminator 3 view .LVU53
+ 271 0082 04EB8401 		add	r1, r4, r4, lsl #2
+ 272              		.loc 1 76 5 discriminator 3 view .LVU54
+ 273 0086 1944     		add	r1, r1, r3
+ 274 0088 1844     		add	r0, r0, r3
+ 275 008a FFF7FEFF 		bl	strcpy
+ 276              	.LVL19:
+ 277              		.loc 1 76 5 discriminator 3 view .LVU55
+ 278 008e F2E7     		b	.L28
+ 279              	.LVL20:
+ 280              	.L26:
+ 281              		.loc 1 76 5 discriminator 3 view .LVU56
+ 282              	.LBE4:
+  40:Src/notes.c   ****     break;
+ 283              		.loc 1 40 5 is_stmt 1 view .LVU57
+ 284 0090 294A     		ldr	r2, .L32+8
+ 285 0092 2F49     		ldr	r1, .L32+32
+ 286 0094 0888     		ldrh	r0, [r1]	@ unaligned
+ 287 0096 8978     		ldrb	r1, [r1, #2]	@ zero_extendqisi2
+ 288 0098 1080     		strh	r0, [r2]	@ unaligned
+ 289 009a 9170     		strb	r1, [r2, #2]
+  41:Src/notes.c   ****   case MIDI_D0:
+ 290              		.loc 1 41 5 view .LVU58
+ 291 009c E4E7     		b	.L14
+ 292              	.L25:
+  43:Src/notes.c   ****     break;
+ 293              		.loc 1 43 5 view .LVU59
+ 294 009e 2D4A     		ldr	r2, .L32+36
+ 295 00a0 1188     		ldrh	r1, [r2]	@ unaligned
+ 296 00a2 254A     		ldr	r2, .L32+8
+ 297 00a4 1180     		strh	r1, [r2]	@ unaligned
+  44:Src/notes.c   ****   case MIDI_E0 + MIDI_FLAT:
+ 298              		.loc 1 44 5 view .LVU60
+ 299 00a6 DFE7     		b	.L14
+ 300              	.L24:
+  46:Src/notes.c   ****     break;
+ 301              		.loc 1 46 5 view .LVU61
+ 302 00a8 234A     		ldr	r2, .L32+8
+ 303 00aa 2B49     		ldr	r1, .L32+40
+ 304 00ac 0888     		ldrh	r0, [r1]	@ unaligned
+ 305 00ae 8978     		ldrb	r1, [r1, #2]	@ zero_extendqisi2
+ 306 00b0 1080     		strh	r0, [r2]	@ unaligned
+ 307 00b2 9170     		strb	r1, [r2, #2]
+  47:Src/notes.c   ****   case MIDI_E0:
+ 308              		.loc 1 47 5 view .LVU62
+ 309 00b4 D8E7     		b	.L14
+ 310              	.L23:
+  49:Src/notes.c   ****     break;
+ 311              		.loc 1 49 5 view .LVU63
+ 312 00b6 294A     		ldr	r2, .L32+44
+ 313 00b8 1188     		ldrh	r1, [r2]	@ unaligned
+ 314 00ba 1F4A     		ldr	r2, .L32+8
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s 			page 8
+
+
+ 315 00bc 1180     		strh	r1, [r2]	@ unaligned
+  50:Src/notes.c   ****   case MIDI_F0:
+ 316              		.loc 1 50 5 view .LVU64
+ 317 00be D3E7     		b	.L14
+ 318              	.L22:
+  52:Src/notes.c   ****     break;
+ 319              		.loc 1 52 5 view .LVU65
+ 320 00c0 274A     		ldr	r2, .L32+48
+ 321 00c2 1188     		ldrh	r1, [r2]	@ unaligned
+ 322 00c4 1C4A     		ldr	r2, .L32+8
+ 323 00c6 1180     		strh	r1, [r2]	@ unaligned
+  53:Src/notes.c   ****   case MIDI_F0 + MIDI_SHARP:
+ 324              		.loc 1 53 5 view .LVU66
+ 325 00c8 CEE7     		b	.L14
+ 326              	.L21:
+  55:Src/notes.c   ****     break;
+ 327              		.loc 1 55 5 view .LVU67
+ 328 00ca 1B4A     		ldr	r2, .L32+8
+ 329 00cc 2549     		ldr	r1, .L32+52
+ 330 00ce 0888     		ldrh	r0, [r1]	@ unaligned
+ 331 00d0 8978     		ldrb	r1, [r1, #2]	@ zero_extendqisi2
+ 332 00d2 1080     		strh	r0, [r2]	@ unaligned
+ 333 00d4 9170     		strb	r1, [r2, #2]
+  56:Src/notes.c   ****   case MIDI_G0:
+ 334              		.loc 1 56 5 view .LVU68
+ 335 00d6 C7E7     		b	.L14
+ 336              	.L20:
+  58:Src/notes.c   ****     break;
+ 337              		.loc 1 58 5 view .LVU69
+ 338 00d8 234A     		ldr	r2, .L32+56
+ 339 00da 1188     		ldrh	r1, [r2]	@ unaligned
+ 340 00dc 164A     		ldr	r2, .L32+8
+ 341 00de 1180     		strh	r1, [r2]	@ unaligned
+  59:Src/notes.c   ****   case MIDI_A0 + MIDI_FLAT:
+ 342              		.loc 1 59 5 view .LVU70
+ 343 00e0 C2E7     		b	.L14
+ 344              	.L19:
+  61:Src/notes.c   ****     break;
+ 345              		.loc 1 61 5 view .LVU71
+ 346 00e2 154A     		ldr	r2, .L32+8
+ 347 00e4 2149     		ldr	r1, .L32+60
+ 348 00e6 0888     		ldrh	r0, [r1]	@ unaligned
+ 349 00e8 8978     		ldrb	r1, [r1, #2]	@ zero_extendqisi2
+ 350 00ea 1080     		strh	r0, [r2]	@ unaligned
+ 351 00ec 9170     		strb	r1, [r2, #2]
+  62:Src/notes.c   ****   case MIDI_A0:
+ 352              		.loc 1 62 5 view .LVU72
+ 353 00ee BBE7     		b	.L14
+ 354              	.L18:
+  64:Src/notes.c   ****     break;
+ 355              		.loc 1 64 5 view .LVU73
+ 356 00f0 1F4A     		ldr	r2, .L32+64
+ 357 00f2 1188     		ldrh	r1, [r2]	@ unaligned
+ 358 00f4 104A     		ldr	r2, .L32+8
+ 359 00f6 1180     		strh	r1, [r2]	@ unaligned
+  65:Src/notes.c   ****   case MIDI_B0 + MIDI_FLAT:
+ 360              		.loc 1 65 5 view .LVU74
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s 			page 9
+
+
+ 361 00f8 B6E7     		b	.L14
+ 362              	.L17:
+  67:Src/notes.c   ****     break;
+ 363              		.loc 1 67 5 view .LVU75
+ 364 00fa 0F4A     		ldr	r2, .L32+8
+ 365 00fc 1D49     		ldr	r1, .L32+68
+ 366 00fe 0888     		ldrh	r0, [r1]	@ unaligned
+ 367 0100 8978     		ldrb	r1, [r1, #2]	@ zero_extendqisi2
+ 368 0102 1080     		strh	r0, [r2]	@ unaligned
+ 369 0104 9170     		strb	r1, [r2, #2]
+  68:Src/notes.c   ****   case MIDI_B0:
+ 370              		.loc 1 68 5 view .LVU76
+ 371 0106 AFE7     		b	.L14
+ 372              	.L15:
+  70:Src/notes.c   ****     break;
+ 373              		.loc 1 70 5 view .LVU77
+ 374 0108 1B4A     		ldr	r2, .L32+72
+ 375 010a 1188     		ldrh	r1, [r2]	@ unaligned
+ 376 010c 0A4A     		ldr	r2, .L32+8
+ 377 010e 1180     		strh	r1, [r2]	@ unaligned
+  71:Src/notes.c   ****   }
+ 378              		.loc 1 71 5 view .LVU78
+ 379 0110 AAE7     		b	.L14
+ 380              	.LVL21:
+ 381              	.L31:
+  77:Src/notes.c   ****   }
+  78:Src/notes.c   ****   sprintf(noteBuffer[0], "%s%c", note.note, ' ');
+ 382              		.loc 1 78 3 view .LVU79
+ 383 0112 2023     		movs	r3, #32
+ 384 0114 194A     		ldr	r2, .L32+76
+ 385 0116 0C49     		ldr	r1, .L32+24
+ 386 0118 0C48     		ldr	r0, .L32+28
+ 387 011a FFF7FEFF 		bl	sprintf
+ 388              	.LVL22:
+  79:Src/notes.c   ****   setBackColor(arrColor[resto]);
+ 389              		.loc 1 79 3 view .LVU80
+ 390              		.loc 1 79 24 is_stmt 0 view .LVU81
+ 391 011e 054B     		ldr	r3, .L32+4
+ 392 0120 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 393 0122 00EB4000 		add	r0, r0, r0, lsl #1
+ 394              		.loc 1 79 3 view .LVU82
+ 395 0126 054B     		ldr	r3, .L32+12
+ 396 0128 1844     		add	r0, r0, r3
+ 397 012a FFF7FEFF 		bl	setBackColor
+ 398              	.LVL23:
+  80:Src/notes.c   **** }...
+ 399              		.loc 1 80 1 view .LVU83
+ 400 012e 10BD     		pop	{r4, pc}
+ 401              	.LVL24:
+ 402              	.L33:
+ 403              		.loc 1 80 1 view .LVU84
+ 404              		.align	2
+ 405              	.L32:
+ 406 0130 ABAAAA2A 		.word	715827883
+ 407 0134 00000000 		.word	.LANCHOR0
+ 408 0138 00000000 		.word	note
+ 409 013c 00000000 		.word	arrColor
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s 			page 10
+
+
+ 410 0140 00000000 		.word	textColor
+ 411 0144 00000000 		.word	.LC0
+ 412 0148 1C000000 		.word	.LC12
+ 413 014c 00000000 		.word	noteBuffer
+ 414 0150 24000000 		.word	.LC1
+ 415 0154 04000000 		.word	.LC2
+ 416 0158 28000000 		.word	.LC3
+ 417 015c 08000000 		.word	.LC4
+ 418 0160 0C000000 		.word	.LC5
+ 419 0164 2C000000 		.word	.LC6
+ 420 0168 10000000 		.word	.LC7
+ 421 016c 30000000 		.word	.LC8
+ 422 0170 14000000 		.word	.LC9
+ 423 0174 34000000 		.word	.LC10
+ 424 0178 18000000 		.word	.LC11
+ 425 017c 04000000 		.word	note+4
+ 426              		.cfi_endproc
+ 427              	.LFE5:
+ 429              		.global	velocity
+ 430              		.global	resto
+ 431              		.global	waitForMessage
+ 432              		.global	cntMessage
+ 433              		.comm	note,8,4
+ 434              		.comm	textLayer,32,4
+ 435              		.comm	backLayer,768,4
+ 436              		.section	.bss.cntMessage,"aw",%nobits
+ 439              	cntMessage:
+ 440 0000 00       		.space	1
+ 441              		.section	.bss.velocity,"aw",%nobits
+ 442              		.set	.LANCHOR1,. + 0
+ 445              	velocity:
+ 446 0000 00       		.space	1
+ 447              		.section	.bss.waitForMessage,"aw",%nobits
+ 450              	waitForMessage:
+ 451 0000 00       		.space	1
+ 452              		.section	.data.resto,"aw"
+ 453              		.set	.LANCHOR0,. + 0
+ 456              	resto:
+ 457 0000 0C       		.byte	12
+ 458              		.section	.rodata.setNote.str1.4,"aMS",%progbits,1
+ 459              		.align	2
+ 460              	.LC0:
+ 461 0000 4300     		.ascii	"C\000"
+ 462 0002 0000     		.space	2
+ 463              	.LC2:
+ 464 0004 4400     		.ascii	"D\000"
+ 465 0006 0000     		.space	2
+ 466              	.LC4:
+ 467 0008 4500     		.ascii	"E\000"
+ 468 000a 0000     		.space	2
+ 469              	.LC5:
+ 470 000c 4600     		.ascii	"F\000"
+ 471 000e 0000     		.space	2
+ 472              	.LC7:
+ 473 0010 4700     		.ascii	"G\000"
+ 474 0012 0000     		.space	2
+ 475              	.LC9:
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s 			page 11
+
+
+ 476 0014 4100     		.ascii	"A\000"
+ 477 0016 0000     		.space	2
+ 478              	.LC11:
+ 479 0018 4200     		.ascii	"B\000"
+ 480 001a 0000     		.space	2
+ 481              	.LC12:
+ 482 001c 25732563 		.ascii	"%s%c\000"
+ 482      00
+ 483 0021 000000   		.space	3
+ 484              	.LC1:
+ 485 0024 432300   		.ascii	"C#\000"
+ 486 0027 00       		.space	1
+ 487              	.LC3:
+ 488 0028 456200   		.ascii	"Eb\000"
+ 489 002b 00       		.space	1
+ 490              	.LC6:
+ 491 002c 462300   		.ascii	"F#\000"
+ 492 002f 00       		.space	1
+ 493              	.LC8:
+ 494 0030 416200   		.ascii	"Ab\000"
+ 495 0033 00       		.space	1
+ 496              	.LC10:
+ 497 0034 426200   		.ascii	"Bb\000"
+ 498              		.text
+ 499              	.Letext0:
+ 500              		.file 2 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_def
+ 501              		.file 3 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.
+ 502              		.file 4 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/includ
+ 503              		.file 5 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/lock.h"
+ 504              		.file 6 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_types.h
+ 505              		.file 7 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/reent.h"
+ 506              		.file 8 "Src/definitions.h"
+ 507              		.file 9 "Src/notes.h"
+ 508              		.file 10 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/string.h"
+ 509              		.file 11 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/stdio.h"
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 notes.c
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:19     .text.calculateLeds:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:27     .text.calculateLeds:0000000000000000 calculateLeds
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:99     .text.calculateLeds:0000000000000048 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:110    .text.setVelocity:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:117    .text.setVelocity:0000000000000000 setVelocity
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:137    .text.setVelocity:0000000000000008 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:142    .text.setNote:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:149    .text.setNote:0000000000000000 setNote
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:225    .text.setNote:0000000000000054 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:237    .text.setNote:0000000000000060 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:406    .text.setNote:0000000000000130 $d
+                            *COM*:0000000000000008 note
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:445    .bss.velocity:0000000000000000 velocity
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:456    .data.resto:0000000000000000 resto
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:450    .bss.waitForMessage:0000000000000000 waitForMessage
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:439    .bss.cntMessage:0000000000000000 cntMessage
+                            *COM*:0000000000000020 textLayer
+                            *COM*:0000000000000300 backLayer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:440    .bss.cntMessage:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:446    .bss.velocity:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:451    .bss.waitForMessage:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc0nqoZO.s:459    .rodata.setNote.str1.4:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+__aeabi_i2d
+__aeabi_dmul
+__aeabi_d2uiz
+arrColor
+backColor
+sprintf
+strcpy
+setBackColor
+textColor
+noteBuffer

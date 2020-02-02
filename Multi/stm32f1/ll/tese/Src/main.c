@@ -24,445 +24,27 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
+#include "definitions.h"
+#include "ws2812.h"
+#include "notes.h"
+#include "draw.h"
 /* this define sets the number of TIM2 overflows
  * to append to the data frame for the LEDs to 
  * load the received data into their registers */
 
-#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
-
-#define NOTE_OFF 0x80
-#define NOTE_ON 0x90
-#define POLY_PRESS 0xA0
-#define CTRL_CHANGE 0xB0
-#define PROG_CHANGE 0xC0
-#define CHAN_PRESS 0xD0
-#define PITCH_BEND 0xE0
-#define SYSTEM 0xF0
-
-#define MIDI_C0 0
-#define MIDI_D0 2
-#define MIDI_E0 4
-#define MIDI_F0 5
-#define MIDI_G0 7
-#define MIDI_A0 9
-#define MIDI_B0 11
-#define MIDI_C 60
-#define MIDI_D 62
-#define MIDI_E 64
-#define MIDI_F 65
-#define MIDI_G 67
-#define MIDI_A 69
-#define MIDI_B 71
-#define MIDI_SHARP 1
-#define MIDI_FLAT -1
-#define MIDI_OCTAVE 12
-
-#define MAX_BRIGHT 0.1 // 0 - 1
-
-#define WS2812_DEADPERIOD 40
-#define MAX_DIV 5
-#define NCHANNELS 8
-#define NCOLS 16
-#define NLINESCH 2
-#define NLEDSCH NCOLS *NLINESCH
-#define NCOLSL NCOLS - 1
-#define NLEDS NCOLS *NCOLS
-
-#define DIV_8(a) ((a) / 8)
-#define REST_8(a) ((a) % 8)
-#define NLEDSMOD REST_8(NLEDS)
-#if NLEDSMOD
-#define NLEDSBIT DIV_8(NLEDS) + 1
-#else
-#define NLEDSBIT DIV_8(NLEDS)
-#endif
-#define BIT_SET(a, b) ((a) |= (1ULL << (b)))
-#define BIT_CLEAR(a, b) ((a) &= ~(1ULL << (b)))
-#define BIT_CHECK(a, b) (!!((a) & (1ULL << (b))))
-
-uint16_t WS2812_IO_High = 0xFFFF;
-uint16_t WS2812_IO_Low = 0x0000;
-
-volatile uint8_t WS2812_TC = 1;
 volatile uint8_t TIM2_overflows = 0;
-
-volatile int cntMessage = 0;
-volatile int waitForMessage = 0;
-volatile int resto = 12;
-volatile uint8_t arr[3] = {0, 0, 0};
-volatile uint8_t arrCol[13][3] = {
-    {50, 0, 0},   //red ~~
-    {50, 25, 0},  //orange ~~
-    {50, 50, 0},  //amarelo ~~
-    {50, 38, 0},  //castanho ~~
-    {0, 50, 36},  //azul turquesa ~~
-    {25, 0, 50},  //cor de rosa ~~
-    {50, 0, 25},  //rosa choque ~~
-    {50, 0, 50},  //violeta escuro ~~
-    {0, 0, 40},   //azul escuro
-    {30, 30, 30}, //cinzento
-    {60, 60, 20}, //branca
-    {60, 30, 20}, //red magenta
-    {0, 0, 0}};
-const uint8_t font4x6[96][2] = {
-    {0x00, 0x00}, /*SPACE*/
-    {0x49, 0x08}, /*'!'*/
-    {0xb4, 0x00}, /*'"'*/
-    {0xbe, 0xf6}, /*'#'*/
-    {0x7b, 0x7a}, /*'$'*/
-    {0xa5, 0x94}, /*'%'*/
-    {0x55, 0xb8}, /*'&'*/
-    {0x48, 0x00}, /*'''*/
-    {0x29, 0x44}, /*'('*/
-    {0x44, 0x2a}, /*')'*/
-    {0x15, 0xa0}, /*'*'*/
-    {0x0b, 0x42}, /*'+'*/
-    {0x00, 0x50}, /*','*/
-    {0x03, 0x02}, /*'-'*/
-    {0x00, 0x08}, /*'.'*/
-    {0x25, 0x90}, /*'/'*/
-    {0x76, 0xba}, /*'0'*/
-    {0x59, 0x5c}, /*'1'*/
-    {0xc5, 0x9e}, /*'2'*/
-    {0xc5, 0x38}, /*'3'*/
-    {0x92, 0xe6}, /*'4'*/
-    {0xf3, 0x3a}, /*'5'*/
-    {0x73, 0xba}, /*'6'*/
-    {0xe5, 0x90}, /*'7'*/
-    {0x77, 0xba}, /*'8'*/
-    {0x77, 0x3a}, /*'9'*/
-    {0x08, 0x40}, /*':'*/
-    {0x08, 0x50}, /*';'*/
-    {0x2a, 0x44}, /*'<'*/
-    {0x1c, 0xe0}, /*'='*/
-    {0x88, 0x52}, /*'>'*/
-    {0xe5, 0x08}, /*'?'*/
-    {0x56, 0x8e}, /*'@'*/
-    {0x77, 0xb6}, /*'A'*/
-    {0x77, 0xb8}, /*'B'*/
-    {0x72, 0x8c}, /*'C'*/
-    {0xd6, 0xba}, /*'D'*/
-    {0x73, 0x9e}, /*'E'*/
-    {0x73, 0x92}, /*'F'*/
-    {0x72, 0xae}, /*'G'*/
-    {0xb7, 0xb6}, /*'H'*/
-    {0xe9, 0x5c}, /*'I'*/
-    {0x64, 0xaa}, /*'J'*/
-    {0xb7, 0xb4}, /*'K'*/
-    {0x92, 0x9c}, /*'L'*/
-    {0xbe, 0xb6}, /*'M'*/
-    {0xd6, 0xb6}, /*'N'*/
-    {0x56, 0xaa}, /*'O'*/
-    {0xd7, 0x92}, /*'P'*/
-    {0x76, 0xee}, /*'Q'*/
-    {0x77, 0xb4}, /*'R'*/
-    {0x71, 0x38}, /*'S'*/
-    {0xe9, 0x48}, /*'T'*/
-    {0xb6, 0xae}, /*'U'*/
-    {0xb6, 0xaa}, /*'V'*/
-    {0xb6, 0xf6}, /*'W'*/
-    {0xb5, 0xb4}, /*'X'*/
-    {0xb5, 0x48}, /*'Y'*/
-    {0xe5, 0x9c}, /*'Z'*/
-    {0x69, 0x4c}, /*'['*/
-    {0x91, 0x24}, /*'\'*/
-    {0x64, 0x2e}, /*']'*/
-    {0x54, 0x00}, /*'^'*/
-    {0x00, 0x1c}, /*'_'*/
-    {0x44, 0x00}, /*'`'*/
-    {0x0e, 0xae}, /*'a'*/
-    {0x9a, 0xba}, /*'b'*/
-    {0x0e, 0x8c}, /*'c'*/
-    {0x2e, 0xae}, /*'d'*/
-    {0x0e, 0xce}, /*'e'*/
-    {0x56, 0xd0}, /*'f'*/
-    {0x55, 0x3B}, /*'g'*/
-    {0x93, 0xb4}, /*'h'*/
-    {0x41, 0x44}, /*'i'*/
-    {0x41, 0x51}, /*'j'*/
-    {0x97, 0xb4}, /*'k'*/
-    {0x49, 0x44}, /*'l'*/
-    {0x17, 0xb6}, /*'m'*/
-    {0x1a, 0xb6}, /*'n'*/
-    {0x0a, 0xaa}, /*'o'*/
-    {0xd6, 0xd3}, /*'p'*/
-    {0x76, 0x67}, /*'q'*/
-    {0x17, 0x90}, /*'r'*/
-    {0x0f, 0x38}, /*'s'*/
-    {0x9a, 0x8c}, /*'t'*/
-    {0x16, 0xae}, /*'u'*/
-    {0x16, 0xba}, /*'v'*/
-    {0x16, 0xf6}, /*'w'*/
-    {0x15, 0xb4}, /*'x'*/
-    {0xb5, 0x2b}, /*'y'*/
-    {0x1c, 0x5e}, /*'z'*/
-    {0x6b, 0x4c}, /*'{'*/
-    {0x49, 0x48}, /*'|'*/
-    {0xc9, 0x5a}, /*'}'*/
-    {0x54, 0x00}, /*'~'*/
-    {0x56, 0xe2}  /*''*/
-};
-uint8_t velocity = 0;
-typedef struct Notes
-{
-  char symbol[3];
-  char octave;
-  char note[4];
-} Note;
-Note volatile note;
-char noteBuffer[10][5] = {"", "", "", "", "", "", "", "", "", ""};
 
 /* WS2812 framebuffer
  * buffersize = (#LEDs / 16) * 24 */
-uint16_t WS2812_IO_framedata[24 * NLEDSCH];
-
-uint8_t currColor[3] = {60, 25, 0};
-uint8_t backLayer[NLEDS][3];
-uint8_t textLayer[NLEDSBIT];
-uint8_t letterColor[3] = {0, 10, 0};
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+#ifdef USART_MIDI
 static void MX_USART3_UART_Init(void);
+#endif
 static void MX_DMA_Init(void);
 static void MX_TIM2_Init(void);
-
-unsigned char getFontLine(unsigned char data, int line_num)
-{
-  const uint8_t index = (data - 32);
-  unsigned char pixel = 0;
-  if ((font4x6[index][1] & 1) == 1)
-    line_num -= 1;
-  if (line_num == 0)
-  {
-    pixel = (font4x6[index][0]) >> 4;
-  }
-  else if (line_num == 1)
-  {
-    pixel = (font4x6[index][0]) >> 1;
-  }
-  else if (line_num == 2)
-  {
-    // Split over 2 bytes
-    return (((font4x6[index][0]) & 0x03) << 2) | (((font4x6[index][1]) & 0x02));
-  }
-  else if (line_num == 3)
-  {
-    pixel = (font4x6[index][1]) >> 4;
-  }
-  else if (line_num == 4)
-  {
-    pixel = (font4x6[index][1]) >> 1;
-  }
-  return pixel & 0xE;
-}
-
-void calculateLeds()
-{
-  arr[0] = ((arrCol[resto][0] * (velocity + 1)) / 255) * MAX_BRIGHT;
-  arr[1] = ((arrCol[resto][1] * (velocity + 1)) / 255) * MAX_BRIGHT;
-  arr[2] = ((arrCol[resto][2] * (velocity + 1)) / 255) * MAX_BRIGHT;
-}
-
-void setVelocity(uint8_t vel)
-{
-  velocity = vel * 2;
-}
-
-void setNote(int nt)
-{
-  resto = nt % MIDI_OCTAVE;
-  note.octave = (nt / MIDI_OCTAVE) + '0';
-  for (size_t i = 0; i < 3; i++)
-  {
-    letterColor[i] = arrCol[resto][i];
-  }
-  switch (resto)
-  {
-  case MIDI_C0:
-    strcpy(note.symbol, "C");
-    break;
-  case MIDI_C0 + MIDI_SHARP:
-    strcpy(note.symbol, "C#");
-    break;
-  case MIDI_D0:
-    strcpy(note.symbol, "D");
-    break;
-  case MIDI_E0 + MIDI_FLAT:
-    strcpy(note.symbol, "Eb");
-    break;
-  case MIDI_E0:
-    strcpy(note.symbol, "E");
-    break;
-  case MIDI_F0:
-    strcpy(note.symbol, "F");
-    break;
-  case MIDI_F0 + MIDI_SHARP:
-    strcpy(note.symbol, "F#");
-    break;
-  case MIDI_G0:
-    strcpy(note.symbol, "G");
-    break;
-  case MIDI_A0 + MIDI_FLAT:
-    strcpy(note.symbol, "Ab");
-    break;
-  case MIDI_A0:
-    strcpy(note.symbol, "A");
-    break;
-  case MIDI_B0 + MIDI_FLAT:
-    strcpy(note.symbol, "Bb");
-    break;
-  case MIDI_B0:
-    strcpy(note.symbol, "B");
-    break;
-  }
-  sprintf(note.note, "%s%c", note.symbol, note.octave);
-  for (size_t k = ARRAY_LEN(noteBuffer); k > 0; k--)
-  {
-    strcpy(noteBuffer[k], noteBuffer[k - 1]);
-  }
-  sprintf(noteBuffer[0], "%s%c", note.note, ' ');
-  arr[0] = arrCol[resto][0];
-  arr[1] = arrCol[resto][1];
-  arr[2] = arrCol[resto][2];
-}
-
-void WS2812_framedata_setPixel(uint8_t row, uint16_t column, uint8_t red, uint8_t green, uint8_t blue)
-{
-  uint8_t i;
-  for (i = 0; i < 8; i++)
-  {
-    // clear the data for pixel
-    WS2812_IO_framedata[((column * 24) + i)] &= ~(0x01 << row);
-    WS2812_IO_framedata[((column * 24) + 8 + i)] &= ~(0x01 << row);
-    WS2812_IO_framedata[((column * 24) + 16 + i)] &= ~(0x01 << row);
-    // write new data for pixel
-    WS2812_IO_framedata[((column * 24) + i)] |= ((((green << i) & 0x80) >> 7) << row);
-    WS2812_IO_framedata[((column * 24) + 8 + i)] |= ((((red << i) & 0x80) >> 7) << row);
-    WS2812_IO_framedata[((column * 24) + 16 + i)] |= ((((blue << i) & 0x80) >> 7) << row);
-  }
-}
-
-/* void WS2812_framedata_setPixel(uint8_t row, uint16_t column, uint8_t red, uint8_t green, uint8_t blue)
-{
-  uint8_t i;
-  for (i = 0; i < 8; i++)
-  {
-    // write new data for pixel
-    WS2812_IO_framedata[((column * 24) + i)] = 0;
-    WS2812_IO_framedata[((column * 24) + 8 + i)] = 0;
-    WS2812_IO_framedata[((column * 24) + 16 + i)] = 0b1111111;
-  }
-} */
-
-void WS2812_framedata_setRow(uint8_t row, uint16_t columns, uint8_t red, uint8_t green, uint8_t blue)
-{
-  uint8_t i;
-  for (i = 0; i < columns; i++)
-  {
-    WS2812_framedata_setPixel(row, i, red, green, blue);
-  }
-}
-
-void move(int8_t newX, int8_t newY)
-{
-  uint8_t tempVector[NLEDS][3];
-  uint8_t tempX, tempY;
-  for (int y = 0; y < NCOLS; y++)
-  {
-    for (int x = 0; x < NCOLS; x++)
-    {
-      for (int z = 0; z < 3; z++)
-      {
-        tempVector[x + (y * NCOLS)][z] = backLayer[x + (y * NCOLS)][z];
-      }
-    }
-  }
-
-  for (int y = 0; y < NCOLS; y++)
-  {
-    if ((y - newY) < 0)
-    {
-      tempY = NCOLS - (-y + newY);
-    }
-    else if ((y - newY) >= NCOLS)
-    {
-      tempY = (y - newY) - NCOLS;
-    }
-    else
-      tempY = y - newY;
-
-    for (int x = 0; x < NCOLS; x++)
-    {
-      if ((x - newX) < 0)
-      {
-        tempX = NCOLS - (-x + newX);
-      }
-      else if ((x - newX) >= NCOLS)
-      {
-        tempX = (x - newX) - NCOLS;
-      }
-      else
-        tempX = x - newX;
-
-      for (int z = 0; z < 3; z++)
-      {
-        backLayer[x + (y * NCOLS)][z] = tempVector[tempX + (tempY * NCOLS)][z];
-      }
-    }
-  }
-}
-
-void clearFramebuffer()
-{
-  for (uint8_t i = 0; i < NCHANNELS; i++)
-  {
-    for (uint8_t j = 0; j < NLINESCH; j++)
-    {
-      for (uint16_t x = 0; x < NCOLS; x++)
-      {
-        if ((x + (j * NCOLS) + (i * NLEDSCH)) > NLEDS - 1)
-          break;
-        WS2812_framedata_setPixel(i, x + (j * NCOLS), arrCol[12][0], arrCol[12][1], arrCol[12][2]);
-      }
-    }
-  }
-}
-
-void clearText()
-{
-  for (uint8_t i = 0; i < NLEDSBIT; i++)
-  {
-    textLayer[i] = 0;
-  }
-}
-
-void fillFramebuffer()
-{
-  uint8_t mod, z, tempLine[NCOLS][3];
-  uint16_t coords;
-  for (uint8_t i = 0; i < NCHANNELS; i++)
-  {
-    for (uint8_t j = 0; j < NLINESCH; j++)
-    {
-      mod = j % 2;
-      for (uint8_t x = 0; x < NCOLS; x++)
-      {
-        if ((x + (j * NCOLS) + (i * NLEDSCH)) > NLEDS - 1)
-          break;
-        // coords = mod ? NCOLSL - x + (j * NCOLS) + (i * NLEDSCH) : x + (j * NCOLS) + (i * NLEDSCH);
-        coords = mod ? x + (j * NCOLS) + (i * NLEDSCH) : NCOLSL - x + (j * NCOLS) + (i * NLEDSCH);
-        for (z = 0; z < 3; z++)
-        {
-          tempLine[x][z] = BIT_CHECK(textLayer[DIV_8(coords)], REST_8(coords)) ? letterColor[z] : backLayer[coords][z];
-          // tempLine[x][z] = backLayer[coords][z];
-        }
-        WS2812_framedata_setPixel(i, x + (j * NCOLS), tempLine[x][0], tempLine[x][1], tempLine[x][2]);
-      }
-    }
-  }
-}
 
 void WS2812_sendbuf(uint32_t buffersize)
 {
@@ -499,201 +81,6 @@ void WS2812_sendbuf(uint32_t buffersize)
   LL_TIM_EnableCounter(TIM2);
 }
 
-void drawColor(volatile uint8_t *color)
-{
-  for (int y = 0; y <= NCOLS; y++)
-  {
-    for (int x = 0; x <= NCOLS; x++)
-    {
-      for (int z = 0; z < 3; z++)
-      {
-        backLayer[x + (y * NCOLS)][z] = color[z];
-        // backLayer[x + (y * NCOLS)][z] = arrCol16[y][z];
-      }
-    }
-  }
-}
-
-void drawCircle(uint8_t *color_steps)
-{
-  float z = ((float)NCOLS / 2);
-  uint16_t coords = 0;
-  uint8_t boarder;
-  int16_t temp;
-  for (int y = -(NCOLS / 2); y <= (NCOLS / 2); y++)
-  {
-    for (int x = -(NCOLS / 2); x <= (NCOLS / 2); x++)
-    {
-      coords = (x + (NCOLS / 2)) + ((y + (NCOLS / 2)) * NCOLS);
-      for (int i = 0; i < MAX_DIV; i++)
-      {
-        boarder = 1;
-        float perc = 1 - ((float)i / MAX_DIV);
-        // printf("%0.1f\n", perc);
-        if ((x * x) + (y * y) <= (z * z) * (perc))
-        {
-          for (int z = 0; z < 3; z++)
-          {
-            temp = currColor[z] + i * color_steps[z];
-            if (temp < 0)
-              temp = 0;
-            if (temp > 255)
-              temp = 255;
-            backLayer[coords][z] = temp;
-          }
-          boarder = 0;
-        }
-      }
-      if (boarder)
-      {
-        if ((x * x) + (y * y) >= (z * z))
-        {
-          for (int z = 0; z < 3; z++)
-          {
-            temp = currColor[z] - color_steps[z];
-            if (temp < 0)
-              temp = 0;
-            if (temp > 255)
-              temp = 255;
-            backLayer[coords][z] = temp;
-          }
-        }
-      }
-    }
-  }
-}
-
-void drawLine(uint8_t xx, uint8_t yy)
-{
-  for (int y = 0; y <= NCOLS; y++)
-  {
-    for (int x = 0; x <= NCOLS; x++)
-    {
-      if (x == xx || y == yy)
-      {
-        for (int z = 0; z < 3; z++)
-        {
-          backLayer[x + (y * NCOLS)][z] = currColor[z];
-        }
-      }
-    }
-  }
-}
-
-void drawScrollingString(char *frase, uint16_t interval_ms, uint8_t space, uint8_t offX, uint8_t offY)
-{
-  int8_t posX, posY;
-  uint8_t fill, width = 3 + space;
-  for (uint8_t letter = 0; letter < strlen(frase); letter++)
-  {
-    for (uint8_t pos = 0; pos < 3; pos++)
-    {
-      clearText();
-      for (uint8_t i = letter, idx = 0; i < strlen(frase); i++, idx++)
-      {
-        posX = (idx * width) + offX;
-        posY = offY;
-
-        for (int8_t y = posY, l = 0; y < (posY + 5); y++, l++)
-        {
-          if (y >= (NCOLS - offY))
-            break;
-          fill = getFontLine(frase[i], l);
-          for (int8_t x = posX - pos, aX = 3; x < (posX + width) - pos; x++, aX--)
-          {
-            if (x >= (NCOLS - offX))
-              break;
-            if (x >= offX)
-            {
-              if (fill & (1u << aX))
-                BIT_SET(textLayer[DIV_8(x + (y * NCOLS))], REST_8(x + (y * NCOLS)));
-            }
-          }
-        }
-      }
-      fillFramebuffer();
-      WS2812_sendbuf(24 * NLEDSCH);
-      LL_mDelay(interval_ms);
-    }
-  }
-}
-
-void drawLetter(char letter, uint8_t px, uint8_t py)
-{
-  uint8_t fill;
-  uint8_t val = 0;
-  for (uint8_t y = py, l = 0; y <= (py + 5); y++, l++)
-  {
-    if (y > NCOLS - 1)
-      break;
-    fill = getFontLine(letter, l);
-    for (uint8_t x = px, aX = 3; x <= (px + 3); x++, aX--)
-    {
-      val = fill & (1u << aX) ? 1 : 0;
-      if (val)
-      {
-        for (uint8_t z = 0; z < 3; z++)
-        {
-          BIT_SET(textLayer[DIV_8(x + (y * NCOLS))], REST_8(x + (y * NCOLS)));
-        }
-      }
-    }
-  }
-}
-
-void drawStringArray(uint8_t px, uint8_t py, uint8_t spacex, uint8_t spacey)
-{
-  uint8_t posX, incX = 0, posY, lastY = py, nLine = 0;
-  for (size_t j = 0; j < ARRAY_LEN(noteBuffer); j++)
-  {
-    for (size_t i = 0; i < strlen(noteBuffer[j]); i++)
-    {
-      posX = incX * (3 + spacex) + px;
-      if (posX + ((3 + spacex)) > NCOLS - 2)
-      {
-        posX = px;
-        nLine++;
-        incX = 0;
-      }
-      posY = nLine * (5 + spacey) + py;
-      drawLetter(noteBuffer[j][i], posX, posY);
-      // posX = (posI - (nLine * (NCOLS - 3))) + 1;
-      incX++;
-    }
-  }
-}
-
-void drawString(char *frase, uint8_t px, uint8_t py, uint8_t spacex, uint8_t spacey)
-{
-  uint8_t posX, incX = 0, posY, lastY = py, nLine = 0;
-  for (size_t i = 0; i < strlen(frase); i++)
-  {
-    // posX = (char)frase[i] == (char)32 ? (i * 3) + px - 1 : (i * (3 + spacex)) + px;
-    posX = incX * (3 + spacex) + px;
-    if (posX + ((3 + spacex)) > NCOLS - 2)
-    {
-      posX = px;
-      nLine++;
-      incX = 0;
-    }
-    posY = nLine * (5 + spacey) + py;
-    if (posY + 5 > NCOLS - 1)
-    {
-      letterColor[0] = 10;
-      letterColor[1] = 0;
-      letterColor[2] = 0;
-      break;
-    }
-    drawLetter(frase[i], posX, posY);
-    // posX = (posI - (nLine * (NCOLS - 3))) + 1;
-    incX++;
-  }
-}
-
-/**
-  * @brief  The application entry point.
-  * @retval int
-  */
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -728,56 +115,53 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+#ifdef USART_MIDI
   MX_USART3_UART_Init();
+#endif
   MX_DMA_Init();
   MX_TIM2_Init();
-  /* USER CODE BEGIN 2 */
-  // uint8_t i = 0;
-  uint8_t color[] = {5, 10, 30};
+
+  char noteBuffer[10][5] = {"", "", "", "", "", "", "", "", "", ""};
   // drawLetter('C', 0, 1);
   // drawLetter('5', 4, 1);
 
   clearFramebuffer();
   clearText();
   uint8_t blue[3] = {1, 1, 5};
-  uint8_t red[3] = {5, 1, 1};
-  uint8_t green[3] = {1, 5, 1};
 
-  // drawString("Porque e que", 1, 0, 1, 0);
-  // fillFramebuffer();
-  // drawColor(green);
-  // fillFramebuffer();
-  // WS2812_sendbuf(24 * NLEDSCH);
-  // LL_mDelay(1000);
+  drawColor(blue);
+  fillFramebuffer();
+  WS2812_sendbuf(24 * NLEDSCH);
 
-  // drawCircle(red);
-  // fillFramebuffer();
-  // WS2812_sendbuf(24 * NLEDSCH);
-  // WS2812_framedata_setPixel(0, 0, blue[0], blue[1], blue[2]);
-
-  // drawScrollingString("O lula", 500, 1, 1, 0);
   // WS2812_sendbuf(24 * NLEDSCH);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  // drawString("Ola", 1, 1, 1, 0);
+  // drawScrollingString("OLA", 500, 1, 1, 0);
+  // drawLine(0, 0);
+  // drawPixel(1, 1);
+
   while (1)
   {
     // set two pixels (columns) in the defined row (channel 0) to the
     // color values defined in the colors array
-    /* for (i = 0; i < 6; i++)
-    {
-      // wait until the last frame was transmitted
-      while (!WS2812_TC)
-        ;
-      // move(1, 1);
-      // fillFramebuffer();
-      // WS2812_sendbuf(24 * NLEDSCH);
-      // LL_mDelay(500);
-      // }
-      drawColor(arrCol[i]);
-      fillFramebuffer();
-      WS2812_sendbuf(24 * NLEDSCH);
-      LL_mDelay(1000);
-    } */
+    // for (int i = 0; i < 6; i++)
+    // {
+    //   // wait until the last frame was transmitted
+    //   while (!WS2812_TC)
+    //     ;
+    //   // move(1, 1);
+    //   // fillFramebuffer();
+    //   // WS2812_sendbuf(24 * NLEDSCH);
+    //   // LL_mDelay(500);
+    //   // }
+    //   // drawString("Ordem dos Engenheiros Tecnicos", 1, 1, 1, 0);
+    //   // rotate()
+    //   // drawColor(arrCol[i]);
+    //   // fillFramebuffer();
+    //   // WS2812_sendbuf(24 * NLEDSCH);
+    //   // LL_mDelay(2000);
+    // }
   }
   /* USER CODE END 3 */
 }
@@ -954,6 +338,7 @@ static void MX_GPIO_Init(void)
   LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_13);
 }
 
+#ifdef USART_MIDI
 static void MX_USART3_UART_Init(void)
 {
 
@@ -994,6 +379,7 @@ static void MX_USART3_UART_Init(void)
   LL_USART_EnableIT_RXNE(USART3);
   /* USER CODE END USART3_Init 2 */
 }
+#endif
 
 void DMA1_Channel7_IRQHandler(void)
 {
@@ -1039,10 +425,33 @@ void TIM2_IRQHandler(void)
 
 void drawNote()
 {
-  drawStringArray(1, 0, 1, 1);
+  uint8_t blue[3] = {1, 1, 5};
+  uint8_t red[3] = {5, 1, 1};
+  uint8_t green[3] = {1, 5, 1};
+  // drawStringArray(1, 0, 1, 1);
+  //E5 C6 E6
+
+  if (noteBuffer[0][0] == 'C')
+    if (noteBuffer[1][0] == 'E')
+      drawColor(blue);
+
+  drawString(noteBuffer[0], 1, 1, 1, 0);
+  //B4 F5 D6
+
+  if (noteBuffer[0][0] == 'F')
+    if (noteBuffer[1][0] == 'B')
+      drawColor(red);
+
+  //A4 E5 C6
+
+  if (noteBuffer[0][0] == 'E')
+    if (noteBuffer[1][0] == 'A')
+      drawColor(green);
+
+  // drawString(note.note, 1, 1, 1, 0);
 }
 
-void USART3_IRQHandler(void)
+/* void USART3_IRQHandler(void)
 {
   static uint8_t usart_rx_buffer;
   static uint8_t usart_rx_message[3];
@@ -1146,7 +555,7 @@ void USART3_IRQHandler(void)
       cntMessage = 0;
     }
   }
-}
+} */
 
 /**
   * @brief  This function is executed in case of error occurrence.

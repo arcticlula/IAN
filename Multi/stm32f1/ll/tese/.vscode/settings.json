@@ -6,6 +6,10 @@
         "__bit_reference": "c",
         "algorithm": "c",
         "array": "c",
-        "locale": "c"
+        "locale": "c",
+        "stdint.h": "c",
+        "stddef.h": "c",
+        "main.h": "c",
+        "stm32f1xx_ll_dma.h": "c"
     }
 }

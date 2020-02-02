@@ -37,6 +37,10 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Src/main.c \
+Src/definitions.c \
+Src/draw.c \
+Src/ws2812.c \
+Src/notes.c \
 Src/stm32f1xx_it.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_dma.c \

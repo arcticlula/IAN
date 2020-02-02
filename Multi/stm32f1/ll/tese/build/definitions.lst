@@ -1,0 +1,108 @@
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccnceTwb.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"definitions.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.setBackColor,"ax",%progbits
+  16              		.align	1
+  17              		.global	setBackColor
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	setBackColor:
+  25              	.LVL0:
+  26              	.LFB0:
+  27              		.file 1 "Src/definitions.c"
+   1:Src/definitions.c **** #include "stdint.h"
+   2:Src/definitions.c **** #include "definitions.h"
+   3:Src/definitions.c **** 
+   4:Src/definitions.c **** void setBackColor(uint8_t *color)
+   5:Src/definitions.c **** {
+  28              		.loc 1 5 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+   6:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+  33              		.loc 1 6 3 view .LVU1
+  34              	.LBB2:
+  35              		.loc 1 6 8 view .LVU2
+  36              		.loc 1 6 16 is_stmt 0 view .LVU3
+  37 0000 0023     		movs	r3, #0
+  38              	.LVL1:
+  39              	.L2:
+  40              		.loc 1 6 3 discriminator 1 view .LVU4
+  41 0002 022B     		cmp	r3, #2
+  42 0004 05D8     		bhi	.L4
+   7:Src/definitions.c ****   {
+   8:Src/definitions.c ****     backColor[z] = color[z];
+  43              		.loc 1 8 5 is_stmt 1 discriminator 3 view .LVU5
+  44              		.loc 1 8 25 is_stmt 0 discriminator 3 view .LVU6
+  45 0006 C15C     		ldrb	r1, [r0, r3]	@ zero_extendqisi2
+  46              		.loc 1 8 18 discriminator 3 view .LVU7
+  47 0008 024A     		ldr	r2, .L5
+  48 000a D154     		strb	r1, [r2, r3]
+   6:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+  49              		.loc 1 6 31 discriminator 3 view .LVU8
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccnceTwb.s 			page 2
+
+
+  50 000c 0133     		adds	r3, r3, #1
+  51              	.LVL2:
+   6:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+  52              		.loc 1 6 31 discriminator 3 view .LVU9
+  53 000e DBB2     		uxtb	r3, r3
+  54              	.LVL3:
+   6:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+  55              		.loc 1 6 31 discriminator 3 view .LVU10
+  56 0010 F7E7     		b	.L2
+  57              	.L4:
+   6:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+  58              		.loc 1 6 31 discriminator 3 view .LVU11
+  59              	.LBE2:
+   9:Src/definitions.c ****   }
+  10:Src/definitions.c **** }...
+  60              		.loc 1 10 1 view .LVU12
+  61 0012 7047     		bx	lr
+  62              	.L6:
+  63              		.align	2
+  64              	.L5:
+  65 0014 00000000 		.word	backColor
+  66              		.cfi_endproc
+  67              	.LFE0:
+  69              		.comm	note,8,4
+  70              		.comm	textLayer,32,4
+  71              		.comm	backLayer,768,4
+  72              		.text
+  73              	.Letext0:
+  74              		.file 2 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_def
+  75              		.file 3 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.
+  76              		.file 4 "Src/definitions.h"
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccnceTwb.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 definitions.c
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccnceTwb.s:16     .text.setBackColor:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccnceTwb.s:24     .text.setBackColor:0000000000000000 setBackColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccnceTwb.s:65     .text.setBackColor:0000000000000014 $d
+                            *COM*:0000000000000008 note
+                            *COM*:0000000000000020 textLayer
+                            *COM*:0000000000000300 backLayer
+
+UNDEFINED SYMBOLS
+backColor
