@@ -7,7 +7,7 @@
 #define MEDIUM_BOARD 2
 #define BIG_BOARD 3
 
-#define BOARD MEDIUM_BOARD
+#define BOARD BIG_BOARD
 
 #define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
 #define BIT_SET(a, b) ((a) |= (1ULL << (b)))
@@ -55,23 +55,17 @@
 #endif
 
 uint8_t backLayer[NLEDS][3];
-uint8_t textLayer[NLEDSBIT];
+uint8_t textLayer[NLEDS][3];
 
-typedef struct Notes
-{
-  char symbol[3];
-  char octave;
-  char note[4];
-} Note;
-Note note;
-extern char noteBuffer[10][5];
+extern uint8_t arrColor[13][3];
 
-extern const uint8_t arrColor[13][3];
-
-extern volatile uint8_t backColor[3];
-extern uint8_t textColor[3];
+volatile uint8_t backColor[3];
+volatile uint8_t textColor[3];
 
 void setBackColor(uint8_t *color);
+void setTextColor(uint8_t *color);
+void setColor(uint8_t *dest, uint8_t *color);
+void setColorFB(uint8_t *dest, uint8_t *color);
 
 extern const uint8_t font4x6[96][2];
 

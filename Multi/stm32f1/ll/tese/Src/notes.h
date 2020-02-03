@@ -34,8 +34,26 @@ extern volatile uint8_t resto;
 
 extern uint8_t velocity;
 
+typedef struct Notes
+{
+    char symbol;
+    char pitch;
+    char octave;
+} Note;
+Note note;
+
+typedef struct notesBuffer
+{
+    Note note;
+    uint8_t color[3];
+} noteArray;
+
+noteArray noteBuffer[10];
+
 void calculateLeds(void);
 void setVelocity(uint8_t vel);
 void setNote(int nt);
+char getNoteBuffer(uint8_t index, uint8_t field);
+void clearNoteBuffer(void);
 
 #endif

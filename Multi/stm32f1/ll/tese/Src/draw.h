@@ -2,15 +2,19 @@
 #define __DRAW_H
 
 void fillFramebuffer(void);
-void clearText(void);
 void clearFramebuffer(void);
+void clearBack(void);
+void clearText(void);
 
 // void move(int8_t newX, int8_t newY);
 // void rotate(void);
 
 void drawColor(uint8_t *color);
-void drawCircle(uint8_t *color_steps);
-void drawLine(uint8_t px, uint8_t py);
+void drawPixel(uint8_t px, uint8_t py, uint8_t *color);
+void drawLine(uint8_t px, uint8_t py, uint8_t *color);
+void drawCircleNote(uint8_t orientation);
+void drawCircleNoteGrad(uint8_t orientation);
+void drawNote(void);
 
 // unsigned char getFontLine(unsigned char data, int line_num);
 void drawLetter(char letter, uint8_t px, uint8_t py);

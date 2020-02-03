@@ -2,6 +2,7 @@
 #include "string.h"
 #include "stm32f1xx_ll_utils.h"
 #include "definitions.h"
+#include "notes.h"
 #include "ws2812.h"
 #include "draw.h"
 
@@ -9,7 +10,7 @@ uint8_t currColor[3] = {60, 25, 0};
 uint8_t letterColor[3] = {0, 10, 0};
 
 volatile uint8_t arr[3] = {0, 0, 0};
-const uint8_t arrCol[13][3] = {
+uint8_t arrColor[13][3] = {
     {50, 0, 0},   //red ~~
     {50, 25, 0},  //orange ~~
     {50, 50, 0},  //amarelo ~~
@@ -125,7 +126,7 @@ const uint8_t font4x6[96][2] = {
 
 void fillFramebuffer(void)
 {
-  uint8_t mod, z, tempLine[NCOLS][3], invI, invJ, invX;
+  uint8_t mod, tempPoint[3], invI, invJ, invX, tmp;
   uint16_t coords;
 #if REVERSE_ORIENTATION
   for (uint8_t x = 0; x < NCOLS; x++)
@@ -183,22 +184,37 @@ void fillFramebuffer(void)
         invJ = j;
 #endif
 #endif
-        for (z = 0; z < 3; z++)
-        {
-          tempLine[x][z] = BIT_CHECK(textLayer[DIV_8(coords)], REST_8(coords)) ? letterColor[z] : backLayer[coords][z];
-          // tempLine[x][z] = backLayer[coords][z];
-        }
-        WS2812_framedata_setPixel(invI, invX + (invJ * NCOLS), tempLine[x][0], tempLine[x][1], tempLine[x][2]);
+        tmp = textLayer[coords][0] + textLayer[coords][1] + textLayer[coords][2];
+        if (tmp)
+          setColorFB(tempPoint, textLayer[coords]);
+        else
+          setColorFB(tempPoint, backLayer[coords]);
+
+        WS2812_framedata_setPixel(invI, invX + (invJ * NCOLS), tempPoint[0], tempPoint[1], tempPoint[2]);
       }
+    }
+  }
+}
+
+void clearBack(void)
+{
+  for (uint8_t y = 0; y < NCOLS; y++)
+  {
+    for (uint8_t x = 0; x < NCOLS; x++)
+    {
+      setColor(backLayer[x + (y * NCOLS)], arrColor[12]);
     }
   }
 }
 
 void clearText(void)
 {
-  for (uint8_t i = 0; i < NLEDSBIT; i++)
+  for (uint8_t y = 0; y < NCOLS; y++)
   {
-    textLayer[i] = 0;
+    for (uint8_t x = 0; x < NCOLS; x++)
+    {
+      setColor(textLayer[x + (y * NCOLS)], arrColor[12]);
+    }
   }
 }
 
@@ -212,7 +228,7 @@ void clearFramebuffer(void)
       {
         if ((x + (j * NCOLS) + (i * NLEDSCH)) > NLEDSL)
           break;
-        WS2812_framedata_setPixel(i, x + (j * NCOLS), arrCol[12][0], arrCol[12][1], arrCol[12][2]);
+        WS2812_framedata_setPixel(i, x + (j * NCOLS), arrColor[12][0], arrColor[12][1], arrColor[12][2]);
       }
     }
   }
@@ -295,15 +311,12 @@ void drawColor(uint8_t *color)
   {
     for (int x = 0; x <= NCOLS; x++)
     {
-      for (int z = 0; z < 3; z++)
-      {
-        backLayer[x + (y * NCOLS)][z] = color[z];
-      }
+      setColor(backLayer[x + (y * NCOLS)], color);
     }
   }
 }
 
-void drawCircle(uint8_t *color_steps)
+/* void drawCircle(uint8_t *color_steps)
 {
   float z = ((float)NCOLS / 2);
   uint16_t coords = 0;
@@ -350,9 +363,86 @@ void drawCircle(uint8_t *color_steps)
       }
     }
   }
+} */
+
+void drawCircleNote(uint8_t orientation)
+{
+  float z = ((float)NCOLS / 2);
+  uint16_t coords = 0;
+  uint8_t boarder;
+  uint8_t invI;
+  for (int y = -(NCOLS / 2); y <= (NCOLS / 2); y++)
+  {
+    for (int x = -(NCOLS / 2); x <= (NCOLS / 2); x++)
+    {
+      coords = (x + (NCOLS / 2)) + ((y + (NCOLS / 2)) * NCOLS);
+      for (int i = 0; i < MAX_DIV; i++)
+      {
+        invI = orientation ? MAX_DIV - 1 - i : i + 1;
+        boarder = 1;
+        float perc = 1 - ((float)i / MAX_DIV);
+        // printf("%0.1f\n", perc);
+        if ((x * x) + (y * y) <= (z * z) * (perc))
+        {
+          setColor(backLayer[coords], noteBuffer[invI].color);
+          boarder = 0;
+        }
+      }
+      if (boarder)
+      {
+        if ((x * x) + (y * y) >= (z * z))
+        {
+          invI = orientation ? MAX_DIV : 0;
+          setColor(backLayer[coords], noteBuffer[invI].color);
+        }
+      }
+    }
+  }
 }
 
-void drawLine(uint8_t px, uint8_t py)
+void drawCircleNoteGrad(uint8_t orientation)
+{
+  float z = ((float)NCOLS / 2);
+  uint16_t coords = 0;
+  uint8_t boarder, invI, invO;
+  int8_t diff[3];
+  invO = orientation ? 0 : 1;
+  for (uint8_t j = 0; j < 3; j++)
+  {
+    diff[j] = (noteBuffer[orientation].color[j] - noteBuffer[invO].color[j]) / MAX_DIV;
+  }
+
+  for (int y = -(NCOLS / 2); y <= (NCOLS / 2); y++)
+  {
+    for (int x = -(NCOLS / 2); x <= (NCOLS / 2); x++)
+    {
+      coords = (x + (NCOLS / 2)) + ((y + (NCOLS / 2)) * NCOLS);
+      for (int i = 0; i < MAX_DIV; i++)
+      {
+        boarder = 1;
+        float perc = 1 - ((float)i / MAX_DIV);
+        // printf("%0.1f\n", perc);
+        if ((x * x) + (y * y) <= (z * z) * (perc))
+        {
+          for (uint8_t j = 0; j < 3; j++)
+          {
+            backLayer[coords][j] = noteBuffer[orientation].color[j] - ((i + 1) * diff[j]);
+            boarder = 0;
+          }
+        }
+        if (boarder)
+        {
+          if ((x * x) + (y * y) >= (z * z))
+          {
+            setColor(backLayer[coords], noteBuffer[orientation].color);
+          }
+        }
+      }
+    }
+  }
+}
+
+void drawLine(uint8_t px, uint8_t py, uint8_t *color)
 {
   for (int y = 0; y <= NCOLS; y++)
   {
@@ -360,16 +450,13 @@ void drawLine(uint8_t px, uint8_t py)
     {
       if (x == px || y == py)
       {
-        for (int z = 0; z < 3; z++)
-        {
-          backLayer[x + (y * NCOLS)][z] = currColor[z];
-        }
+        setColor(backLayer[x + (y * NCOLS)], color);
       }
     }
   }
 }
 
-void drawPixel(uint8_t px, uint8_t py)
+void drawPixel(uint8_t px, uint8_t py, uint8_t *color)
 {
   for (int y = 0; y <= NCOLS; y++)
   {
@@ -377,13 +464,39 @@ void drawPixel(uint8_t px, uint8_t py)
     {
       if (x == px && y == py)
       {
-        for (int z = 0; z < 3; z++)
-        {
-          backLayer[x + (y * NCOLS)][z] = currColor[z];
-        }
+        setColor(backLayer[x + (y * NCOLS)], color);
       }
     }
   }
+}
+
+void drawNote(void)
+{
+  uint8_t blue[3] = {1, 1, 5};
+  uint8_t red[3] = {5, 1, 1};
+  uint8_t green[3] = {1, 5, 1};
+  // drawStringArray(1, 1, 1, 1);
+  //E5 C6 E6
+
+  if (noteBuffer[0].note.symbol == 'C')
+    if (noteBuffer[1].note.symbol == 'E')
+      drawColor(blue);
+
+  // drawString(noteBuffer[0], 1, 1, 1, 0);
+  // //B4 F5 D6
+
+  if (noteBuffer[0].note.symbol == 'F')
+    if (noteBuffer[1].note.symbol == 'B')
+      drawColor(red);
+
+  // //A4 E5 C6
+
+  if (noteBuffer[0].note.symbol == 'E')
+    if (noteBuffer[1].note.symbol == 'A')
+      drawColor(green);
+
+  setTextColor(noteBuffer[0].color);
+  drawLetter(note.symbol, 1, 1);
 }
 
 /* Draw Strings */
@@ -421,21 +534,16 @@ unsigned char getFontLine(unsigned char data, int line_num)
 void drawLetter(char letter, uint8_t px, uint8_t py)
 {
   uint8_t fill;
-  uint8_t val = 0;
   for (uint8_t y = py, l = 0; y <= (py + 5); y++, l++)
   {
-    if (y > NCOLS - 1)
+    if (y > NCOLSL)
       break;
     fill = getFontLine(letter, l);
     for (uint8_t x = px, aX = 3; x <= (px + 3); x++, aX--)
     {
-      val = fill & (1u << aX) ? 1 : 0;
-      if (val)
+      if (fill & (1u << aX))
       {
-        for (uint8_t z = 0; z < 3; z++)
-        {
-          BIT_SET(textLayer[DIV_8(x + (y * NCOLS))], REST_8(x + (y * NCOLS)));
-        }
+        setColor(textLayer[x + (y * NCOLS)], textColor);
       }
     }
   }
@@ -443,7 +551,7 @@ void drawLetter(char letter, uint8_t px, uint8_t py)
 
 void drawString(char *frase, uint8_t px, uint8_t py, uint8_t spacex, uint8_t spacey)
 {
-  uint8_t posX, incX = 0, posY, lastY = py, nLine = 0;
+  uint8_t posX, incX = 0, posY, nLine = 0;
   for (size_t i = 0; i < strlen(frase); i++)
   {
     // posX = (char)frase[i] == (char)32 ? (i * 3) + px - 1 : (i * (3 + spacex)) + px;
@@ -463,10 +571,12 @@ void drawString(char *frase, uint8_t px, uint8_t py, uint8_t spacex, uint8_t spa
 
 void drawStringArray(uint8_t px, uint8_t py, uint8_t spacex, uint8_t spacey)
 {
-  uint8_t posX, incX = 0, posY, lastY = py, nLine = 0;
-  for (size_t j = 0; j < ARRAY_LEN(noteBuffer); j++)
+  uint8_t posX, incX = 0, posY, nLine = 0;
+  char temp;
+  for (uint8_t j = 0; j < ARRAY_LEN(noteBuffer); j++)
   {
-    for (size_t i = 0; i < strlen(noteBuffer[j]); i++)
+    setTextColor(noteBuffer[j].color);
+    for (uint8_t i = 0; i < 3; i++)
     {
       posX = incX * (3 + spacex) + px;
       if (posX + ((3 + spacex)) > NCOLS - 2)
@@ -476,9 +586,12 @@ void drawStringArray(uint8_t px, uint8_t py, uint8_t spacex, uint8_t spacey)
         incX = 0;
       }
       posY = nLine * (5 + spacey) + py;
-      drawLetter(noteBuffer[j][i], posX, posY);
-      // posX = (posI - (nLine * (NCOLS - 3))) + 1;
-      incX++;
+      temp = getNoteBuffer(j, i);
+      if (temp)
+      {
+        drawLetter(temp, posX, posY);
+        incX++;
+      }
     }
   }
 }
@@ -509,7 +622,9 @@ void drawScrollingString(char *frase, uint16_t interval_ms, uint8_t space, uint8
             if (x >= offX)
             {
               if (fill & (1u << aX))
-                BIT_SET(textLayer[DIV_8(x + (y * NCOLS))], REST_8(x + (y * NCOLS)));
+              {
+                setColor(textLayer[x + (y * NCOLS)], textColor);
+              }
             }
           }
         }

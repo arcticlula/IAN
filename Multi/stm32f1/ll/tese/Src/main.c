@@ -40,7 +40,7 @@ volatile uint8_t TIM2_overflows = 0;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-#ifdef USART_MIDI
+#if USART_MIDI
 static void MX_USART3_UART_Init(void);
 #endif
 static void MX_DMA_Init(void);
@@ -115,29 +115,38 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-#ifdef USART_MIDI
+#if USART_MIDI
   MX_USART3_UART_Init();
 #endif
   MX_DMA_Init();
   MX_TIM2_Init();
 
-  char noteBuffer[10][5] = {"", "", "", "", "", "", "", "", "", ""};
   // drawLetter('C', 0, 1);
   // drawLetter('5', 4, 1);
 
-  clearFramebuffer();
+  clearNoteBuffer();
+  clearBack();
   clearText();
-  uint8_t blue[3] = {1, 1, 5};
+  clearFramebuffer();
+  // uint8_t blue[3] = {1, 1, 3};
+  // uint8_t red[3] = {5, 0, 1};
 
-  drawColor(blue);
-  fillFramebuffer();
-  WS2812_sendbuf(24 * NLEDSCH);
+  // setNote(24);
+  // setNote(15);
+  // setNote(87);
+  // setBackColor(blue);
+  // drawCircleNoteGrad(0);
+  // fillFramebuffer();
+  // WS2812_sendbuf(24 * NLEDSCH);
 
   // WS2812_sendbuf(24 * NLEDSCH);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  // drawString("Ola", 1, 1, 1, 0);
-  // drawScrollingString("OLA", 500, 1, 1, 0);
+  // setTextColor(red);
+  // drawString("ola", 1, 1, 1, 0);
+  // drawScrollingString("OLA meninos", 500, 1, 1, 0);
+  // fillFramebuffer();
+  // WS2812_sendbuf(24 * NLEDSCH);
   // drawLine(0, 0);
   // drawPixel(1, 1);
 
@@ -160,7 +169,25 @@ int main(void)
     //   // drawColor(arrCol[i]);
     //   // fillFramebuffer();
     //   // WS2812_sendbuf(24 * NLEDSCH);
-    //   // LL_mDelay(2000);
+    // setNote(28);
+    /* drawCircleNote(1);
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    LL_mDelay(2000);
+    drawCircleNoteGrad(1);
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    LL_mDelay(2000); */
+    // setNote(17);
+    // drawCircleNote(0);
+    // fillFramebuffer();
+    // WS2812_sendbuf(24 * NLEDSCH);
+    // LL_mDelay(2000);
+    // setNote(83);
+    // drawCircleNote(0);
+    // fillFramebuffer();
+    // WS2812_sendbuf(24 * NLEDSCH);
+    // LL_mDelay(2000);
     // }
   }
   /* USER CODE END 3 */
@@ -338,7 +365,7 @@ static void MX_GPIO_Init(void)
   LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_13);
 }
 
-#ifdef USART_MIDI
+#if USART_MIDI
 static void MX_USART3_UART_Init(void)
 {
 
@@ -423,35 +450,8 @@ void TIM2_IRQHandler(void)
   }
 }
 
-void drawNote()
-{
-  uint8_t blue[3] = {1, 1, 5};
-  uint8_t red[3] = {5, 1, 1};
-  uint8_t green[3] = {1, 5, 1};
-  // drawStringArray(1, 0, 1, 1);
-  //E5 C6 E6
-
-  if (noteBuffer[0][0] == 'C')
-    if (noteBuffer[1][0] == 'E')
-      drawColor(blue);
-
-  drawString(noteBuffer[0], 1, 1, 1, 0);
-  //B4 F5 D6
-
-  if (noteBuffer[0][0] == 'F')
-    if (noteBuffer[1][0] == 'B')
-      drawColor(red);
-
-  //A4 E5 C6
-
-  if (noteBuffer[0][0] == 'E')
-    if (noteBuffer[1][0] == 'A')
-      drawColor(green);
-
-  // drawString(note.note, 1, 1, 1, 0);
-}
-
-/* void USART3_IRQHandler(void)
+#if USART_MIDI
+void USART3_IRQHandler(void)
 {
   static uint8_t usart_rx_buffer;
   static uint8_t usart_rx_message[3];
@@ -511,9 +511,10 @@ void drawNote()
             setVelocity(temp);
         }
 
-        calculateLeds();
+        // calculateLeds();
         clearText();
         drawNote();
+        // drawCircleNoteGrad(0);
         fillFramebuffer();
         WS2812_sendbuf(24 * NLEDSCH);
         break;
@@ -526,9 +527,9 @@ void drawNote()
           if (i != 0)
             sprintf(&str[i * 4], "%03ld ", temp);
           if (i == 1)
-            setNote(temp);
-          if (i == 2)
-            setVelocity(temp);
+            // setNote(temp);
+            if (i == 2)
+              setVelocity(temp);
         }
 
         break;
@@ -555,7 +556,8 @@ void drawNote()
       cntMessage = 0;
     }
   }
-} */
+}
+#endif
 
 /**
   * @brief  This function is executed in case of error occurrence.
