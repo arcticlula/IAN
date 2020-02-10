@@ -512,9 +512,10 @@ void USART3_IRQHandler(void)
         }
 
         // calculateLeds();
-        clearText();
-        drawNote();
-        // drawCircleNoteGrad(0);
+        // clearText();
+        // drawNote();
+        // drawStringArray(1, 1, 1, 1);
+        drawCircleNote(1);
         fillFramebuffer();
         WS2812_sendbuf(24 * NLEDSCH);
         break;

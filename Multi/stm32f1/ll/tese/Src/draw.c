@@ -184,12 +184,19 @@ void fillFramebuffer(void)
         invJ = j;
 #endif
 #endif
+#if COLOR_1BIT
+        tmp = BIT_CHECK(textLayer[DIV_8(coords)], REST_8(coords));
+        if (tmp)
+          setColorFB(tempPoint, textColor);
+        else
+          setColorFB(tempPoint, backLayer[coords]);
+#else
         tmp = textLayer[coords][0] + textLayer[coords][1] + textLayer[coords][2];
         if (tmp)
           setColorFB(tempPoint, textLayer[coords]);
         else
           setColorFB(tempPoint, backLayer[coords]);
-
+#endif
         WS2812_framedata_setPixel(invI, invX + (invJ * NCOLS), tempPoint[0], tempPoint[1], tempPoint[2]);
       }
     }
@@ -209,6 +216,12 @@ void clearBack(void)
 
 void clearText(void)
 {
+#if COLOR_1BIT
+  for (uint8_t i = 0; i < NLEDSBIT; i++)
+  {
+    textLayer[i] = 0;
+  }
+#else
   for (uint8_t y = 0; y < NCOLS; y++)
   {
     for (uint8_t x = 0; x < NCOLS; x++)
@@ -216,6 +229,7 @@ void clearText(void)
       setColor(textLayer[x + (y * NCOLS)], arrColor[12]);
     }
   }
+#endif
 }
 
 void clearFramebuffer(void)
@@ -234,7 +248,7 @@ void clearFramebuffer(void)
   }
 }
 
-/* void move(int8_t newX, int8_t newY)
+void move(int8_t newX, int8_t newY)
 {
   uint8_t tempVector[NLEDS][3];
   uint8_t tempX, tempY;
@@ -279,39 +293,6 @@ void clearFramebuffer(void)
       {
         backLayer[x + (y * NCOLS)][z] = tempVector[tempX + (tempY * NCOLS)][z];
       }
-    }
-  }
-}
-
-void rotate(void)
-{
-  uint8_t tempVector[NLEDS];
-  uint8_t x, y;
-  for (y = 0; y < NCOLS; y++)
-  {
-    for (x = 0; x < NCOLS; x++)
-    {
-      tempVector[x + (y * NCOLS)] = backlayer[x + (y * NCOLS)];
-    }
-  }
-  printf("\n");
-
-  for (y = 0; y < NCOLS; y++)
-  {
-    for (x = 0; x < NCOLS; x++)
-    {
-      textlayer[-y - 1 + (x + 1) * NCOLS] = tempVector[x + (y * NCOLS)];
-    }
-  }
-} */
-
-void drawColor(uint8_t *color)
-{
-  for (int y = 0; y <= NCOLS; y++)
-  {
-    for (int x = 0; x <= NCOLS; x++)
-    {
-      setColor(backLayer[x + (y * NCOLS)], color);
     }
   }
 }
@@ -404,7 +385,7 @@ void drawCircleNoteGrad(uint8_t orientation)
 {
   float z = ((float)NCOLS / 2);
   uint16_t coords = 0;
-  uint8_t boarder, invI, invO;
+  uint8_t boarder, invO;
   int8_t diff[3];
   invO = orientation ? 0 : 1;
   for (uint8_t j = 0; j < 3; j++)
@@ -470,33 +451,55 @@ void drawPixel(uint8_t px, uint8_t py, uint8_t *color)
   }
 }
 
+void drawColor(uint8_t *color)
+{
+  for (int y = 0; y <= NCOLS; y++)
+  {
+    for (int x = 0; x <= NCOLS; x++)
+    {
+      setColor(backLayer[x + (y * NCOLS)], color);
+    }
+  }
+}
+
+void checkSequence(void)
+{
+  uint8_t arrayLen = ARRAY_LEN(noteSequence);
+  uint8_t cnt = 0;
+  uint8_t blue[3] = {1, 1, 20};
+  for (uint8_t j = 0; j < arrayLen; j++)
+  {
+    uint8_t len = ARRAY_LEN(noteSequence[j].note);
+    for (uint8_t i = 0; i < len; i++)
+    {
+      if (noteBuffer[i].note.symbol == noteSequence[j].note[len - 1 - i].symbol)
+      {
+        cnt++;
+        if (cnt == len)
+        {
+          clearText();
+          setTextColor(noteBuffer[0].color);
+          drawString(noteSequence[j].word, 1, 24, 1, 0);
+          // drawCenter(noteSequence[j].word, 1, 0);
+        }
+      }
+      else
+        break;
+    }
+  }
+}
+
 void drawNote(void)
 {
-  uint8_t blue[3] = {1, 1, 5};
-  uint8_t red[3] = {5, 1, 1};
-  uint8_t green[3] = {1, 5, 1};
+  // uint8_t red[3] = {20, 1, 1};
+  // uint8_t green[3] = {1, 20, 1};
   // drawStringArray(1, 1, 1, 1);
-  //E5 C6 E6
 
-  if (noteBuffer[0].note.symbol == 'C')
-    if (noteBuffer[1].note.symbol == 'E')
-      drawColor(blue);
-
+  checkSequence();
   // drawString(noteBuffer[0], 1, 1, 1, 0);
-  // //B4 F5 D6
-
-  if (noteBuffer[0].note.symbol == 'F')
-    if (noteBuffer[1].note.symbol == 'B')
-      drawColor(red);
-
-  // //A4 E5 C6
-
-  if (noteBuffer[0].note.symbol == 'E')
-    if (noteBuffer[1].note.symbol == 'A')
-      drawColor(green);
-
-  setTextColor(noteBuffer[0].color);
-  drawLetter(note.symbol, 1, 1);
+  // setTextColor(noteBuffer[0].color);
+  // drawColor(noteBuffer[0].color);
+  // drawLetter(note.symbol, 1, 10);
 }
 
 /* Draw Strings */
@@ -543,10 +546,24 @@ void drawLetter(char letter, uint8_t px, uint8_t py)
     {
       if (fill & (1u << aX))
       {
+#if COLOR_1BIT
+        BIT_SET(textLayer[DIV_8(x + (y * NCOLS))], REST_8(x + (y * NCOLS)));
+#else
         setColor(textLayer[x + (y * NCOLS)], textColor);
+#endif
       }
     }
   }
+}
+
+void drawCenter(char *frase, uint8_t spacex, uint8_t spacey)
+{
+  uint8_t len = strlen(frase) * (3 + spacex);
+  int8_t px = (NCOLS - len) / 2;
+  len = (5 + spacey);
+  int8_t py = (NCOLS - len) / 2;
+  px = px < 0 ? 0 : px;
+  drawString(frase, px, py, spacex, spacey);
 }
 
 void drawString(char *frase, uint8_t px, uint8_t py, uint8_t spacex, uint8_t spacey)
@@ -623,7 +640,11 @@ void drawScrollingString(char *frase, uint16_t interval_ms, uint8_t space, uint8
             {
               if (fill & (1u << aX))
               {
+#if COLOR_1BIT
+                BIT_SET(textLayer[DIV_8(x + (y * NCOLS))], REST_8(x + (y * NCOLS)));
+#else
                 setColor(textLayer[x + (y * NCOLS)], textColor);
+#endif
               }
             }
           }

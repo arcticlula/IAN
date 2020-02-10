@@ -2,11 +2,13 @@
 #define __DEFINITIONS_H
 
 #define USART_MIDI 1
+#define COLOR_1BIT 1
 
 #define SMALL_BOARD 1
 #define MEDIUM_BOARD 2
 #define BIG_BOARD 3
 
+// #define BOARD MEDIUM_BOARD
 #define BOARD BIG_BOARD
 
 #define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
@@ -14,8 +16,8 @@
 #define BIT_CLEAR(a, b) ((a) &= ~(1ULL << (b)))
 #define BIT_CHECK(a, b) (!!((a) & (1ULL << (b))))
 
-#define MAX_DIV 5
-#define MAX_BRIGHT 0.1 // 0 - 1
+#define MAX_DIV 3
+#define MAX_BRIGHT 0.2 // 0 - 1
 
 #if BOARD == SMALL_BOARD
 #define NCHANNELS 4
@@ -55,7 +57,11 @@
 #endif
 
 uint8_t backLayer[NLEDS][3];
+#if COLOR_1BIT
+uint8_t textLayer[NLEDSBIT];
+#else
 uint8_t textLayer[NLEDS][3];
+#endif
 
 extern uint8_t arrColor[13][3];
 

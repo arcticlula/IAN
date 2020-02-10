@@ -40,15 +40,23 @@ typedef struct Notes
     char pitch;
     char octave;
 } Note;
-Note note;
 
 typedef struct notesBuffer
 {
     Note note;
     uint8_t color[3];
-} noteArray;
+} NoteArray;
 
-noteArray noteBuffer[10];
+typedef struct notesWords
+{
+    Note note[3];
+    char word[10];
+} NoteWord;
+
+Note note;
+// Note noteSequence[3][3];
+NoteWord noteSequence[6];
+NoteArray noteBuffer[10];
 
 void calculateLeds(void);
 void setVelocity(uint8_t vel);

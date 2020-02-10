@@ -15,6 +15,7 @@ void drawLine(uint8_t px, uint8_t py, uint8_t *color);
 void drawCircleNote(uint8_t orientation);
 void drawCircleNoteGrad(uint8_t orientation);
 void drawNote(void);
+void drawCenter(char *frase, uint8_t spacex, uint8_t spacey);
 
 // unsigned char getFontLine(unsigned char data, int line_num);
 void drawLetter(char letter, uint8_t px, uint8_t py);
