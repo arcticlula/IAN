@@ -27,7 +27,7 @@
 						</b-row>
 						<b-row>
 							<b-col cols="12" md="6">
-								<b-card>
+								<b-card class="cardNoPad">
 									<template v-slot:header>
 										<h6 class="mb-0" v-b-toggle.collapse-grav>Dispositivos Gravados</h6>
 									</template>
@@ -144,3 +144,10 @@ export default {
 	}
 };
 </script>
+<style>
+.cardNoPad .card-body {
+	padding: 0px !important;
+	border: 0px !important;
+	border-radius: 0px;
+}
+</style>

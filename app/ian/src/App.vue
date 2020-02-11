@@ -2,17 +2,13 @@
 	<div id="app">
 		<b-row>
 			<b-col cols="12" class="mb-4">
-				<b-navbar type="dark" variant="info">
+				<b-navbar style="background: rgb(242, 206, 5); color: white;">
 					<b-navbar-nav>
-						<router-link to="/">
-							<b-button variant="light" size="sm" class="mr-2">
-								<b>Connection</b>
-							</b-button>
+						<router-link to="/" class="mr-1">
+							<b>Connection</b> |&nbsp;
 						</router-link>
 						<router-link to="/about">
-							<b-button size="sm" variant="light">
-								<b>Configuration</b>
-							</b-button>
+							&nbsp;<b>Configuration</b>
 						</router-link>
 					</b-navbar-nav>
 				</b-navbar>
@@ -42,6 +38,11 @@
 	  color: #3793a0;
 	}
   }
+}
+
+.navbar a {
+	color: white;
+	text-decoration: none;
 }
 
 .navbar button {

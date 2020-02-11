@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    bluetooth: { state: "", devices: { saved: [], unpaired: [] } }
+    bluetooth: { state: "", devices: { saved: [{name: 'lula',address: '12-34-56-78-9A-BC'},{name: 'lula',address: '12-34-56-78-9A-BC'}], unpaired: [] } }
   },
   mutations: {
     setState(state, estado) {
