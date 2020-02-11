@@ -1,11 +1,25 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+	<div id="app">
+		<b-row>
+			<b-col cols="12" class="mb-4">
+				<b-navbar type="dark" variant="info">
+					<b-navbar-nav>
+						<router-link to="/">
+							<b-button variant="light" size="sm" class="mr-2">
+								<b>Connection</b>
+							</b-button>
+						</router-link>
+						<router-link to="/about">
+							<b-button size="sm" variant="light">
+								<b>Configuration</b>
+							</b-button>
+						</router-link>
+					</b-navbar-nav>
+				</b-navbar>
+			</b-col>
+		</b-row>
+		<router-view/>
+	</div>
 </template>
 
 <style lang="scss">
@@ -21,12 +35,18 @@
   padding: 30px;
 
   a {
-    font-weight: bold;
-    color: #2c3e50;
+	font-weight: bold;
+	color: #2c3e50;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+	&.router-link-exact-active {
+	  color: #3793a0;
+	}
   }
 }
+
+.navbar button {
+  text-transform: uppercase;
+  opacity: 1;
+}
+
 </style>
