@@ -6,16 +6,31 @@
 					<b-tab title="Patterns" active>
 						<b-row class="mb-2" style="text-align: left;">
 							<b-col cols="12">
-								<b-button style="background: #ac2435;" size="sm" class="mr-1">
-									<b-icon-arrow-up></b-icon-arrow-up>
-								</b-button>
-								<b-button style="background: #ac2435;" size="sm" class="mr-1">Quadrado</b-button>
-								<b-button style="background: #ac2435;" size="sm">Triângulo</b-button>
+								<b-button
+									v-bind:class="{ active: patterns.shape == 'circle'}"
+									@click="setShape('circle')"
+									style="background: #ac2435;"
+									size="sm"
+									class="mr-1"
+								>Círculo</b-button>
+								<b-button
+									v-bind:class="{ active: patterns.shape == 'square'}"
+									@click="setShape('square')"
+									style="background: #ac2435;"
+									size="sm"
+									class="mr-1"
+								>Quadrado</b-button>
+								<b-button
+									v-bind:class="{ active: patterns.shape == 'triangle'}"
+									@click="setShape('triangle')"
+									style="background: #ac2435;"
+									size="sm"
+								>Triângulo</b-button>
 							</b-col>
 						</b-row>
 						<b-row class="mb-2">
 							<b-col cols="8" class="pr-0">
-								<b-form-select size="sm"></b-form-select>
+								<b-form-select v-model="patterns.shape" :options="currOptionShape" size="sm"></b-form-select>
 							</b-col>
 							<b-col cols="4">
 								<b-form-input size="sm"></b-form-input>
@@ -32,9 +47,9 @@
 								<b-button style="background: #ac2435;" size="sm" class="mr-1">Centro Dentro</b-button>
 							</b-col>
 						</b-row>
-						<b-row class="mb-2 px-3">
-							<b-col cols="12" style="border: 1px solid #3793a0; border-radius: 5px; height: 150px;">
-								O Canva vem para aqui
+						<b-row class="mb-2">
+							<b-col cols="12" style="border-radius: 5px; width: 100%;">
+								<canvas id="shapeCanvas" style="border: 1px solid #3793a0;"></canvas>
 							</b-col>
 						</b-row>
 						<b-row style="text-align: right;">
@@ -51,7 +66,7 @@
 						</b-row>
 						<b-row style="text-align: left;">
 							<b-col cols="12">
-								 <b-form-checkbox switch size="sm">Centrado</b-form-checkbox>
+								<b-form-checkbox switch size="sm">Centrado</b-form-checkbox>
 							</b-col>
 						</b-row>
 					</b-tab>
@@ -60,3 +75,47 @@
 		</b-col>
 	</b-row>
 </template>
+
+<script>
+// @ is an alias to /src
+import { mapState, mapMutations, mapGetters } from "vuex";
+import canvasShapes from "@/components/canvas.js";
+// import HelloWorld from "@/components/HelloWorld.vue";
+
+export default {
+	name: "Home",
+	// components: {
+	//   HelloWorld
+	// },
+	data: function() {
+		return {
+			currOptionShape: []
+		};
+	},
+	computed: {
+		...mapState(["bluetooth", "patterns"]),
+		...mapGetters(["optionsShape"])
+	},
+	methods: {
+		// ...mapMutations(["setDevicesSaved", "setDevicesUnpaired", "setState"]),
+		setShape(shape) {
+			this.patterns.shape = shape;
+			this.currOptionShape = this.patterns.optionsShape[shape];
+			// bluetoothSerial.write("S", this.success, this.failure);
+		},
+		success() {
+			console.log("sim");
+		},
+		failure() {
+			console.log("nao");
+		}
+	},
+	mounted() {
+		this.currOptionShape = this.patterns.optionsShape[this.patterns.shape];
+		let canvas = document.getElementById("shapeCanvas");
+		let ctx = canvas.getContext("2d");
+		let canvasObj = new canvasShapes(canvas, ctx);
+		canvasObj.draw();
+	}
+};
+</script>

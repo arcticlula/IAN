@@ -5,7 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    bluetooth: { state: "", devices: { saved: [{name: 'lula',address: '12-34-56-78-9A-BC'},{name: 'lula',address: '12-34-56-78-9A-BC'}], unpaired: [] } }
+    bluetooth: { state: "", devices: { saved: [], unpaired: [] } },
+    patterns: { shape: "circle", optionsShape: { circle: ["Normal", "Gradiente"], square: ["sq"], triangle: ["tr"] } }
+  },
+  getters: {
+    // optionsShape(state) {
+    //   console.log(state.patterns.shape, state.patterns.optionsShape[state.patterns.shape])
+    //   return state.patterns.optionsShape[state.patterns.shape]
+    // }
   },
   mutations: {
     setState(state, estado) {
