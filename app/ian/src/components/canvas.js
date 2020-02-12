@@ -13,8 +13,23 @@ export default function canvasShapes(canvas, context) {
 		console.log("draw canvas", this.canvas.height, this.canvas.width)
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.drawGrid();
-		// this.drawCircleNote(0);
-		this.drawCircleNoteGrad(0);
+		let patterns = store.state.patterns;
+		console.log(patterns.shape, patterns.selected)
+		switch (patterns.shape) {
+			case "circle":
+				if (patterns.selected == patterns.optionsShape[patterns.shape][0]) {
+					this.drawCircleNote(0);
+				}
+				else if (patterns.selected == patterns.optionsShape[patterns.shape][1]) {
+					this.drawCircleNoteGrad(0);
+				}
+				break;
+			case "square":
+				break;
+			case "triangle":
+				break;
+		}
+
 		// for (var i = 0; i < this.channels.length; i++) {
 		// 	// console.log(this.offsetX, this.offsetY)
 		// 	this.channels[i].draw(this.offsetX, this.offsetY);

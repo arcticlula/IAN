@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     bluetooth: { state: "", devices: { saved: [], unpaired: [] } },
-    patterns: { shape: "circle", optionsShape: { circle: ["Normal", "Gradiente"], square: ["sq"], triangle: ["tr"] } }
+    patterns: { shape: "circle", optionsShape: { circle: ["Normal", "Gradiente"], square: ["sq"], triangle: ["tr"] }, selected: "" }
   },
   getters: {
     // optionsShape(state) {
