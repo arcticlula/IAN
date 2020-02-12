@@ -9,21 +9,21 @@
 								<b-button
 									v-bind:class="{ active: patterns.shape == 'circle'}"
 									@click="setShape('circle')"
-									style="background: #3793a0;"
+									style="background: #ac2435;"
 									size="sm"
 									class="mr-1"
 								>Círculo</b-button>
 								<b-button
 									v-bind:class="{ active: patterns.shape == 'square'}"
 									@click="setShape('square')"
-									style="background: #3793a0;"
+									style="background: #ac2435;"
 									size="sm"
 									class="mr-1"
 								>Quadrado</b-button>
 								<b-button
 									v-bind:class="{ active: patterns.shape == 'triangle'}"
 									@click="setShape('triangle')"
-									style="background: #3793a0;"
+									style="background: #ac2435;"
 									size="sm"
 								>Triângulo</b-button>
 							</b-col>
@@ -48,8 +48,8 @@
 						</b-row>
 						<b-row class="mb-2" style="text-align: left;">
 							<b-col cols="12">
-								<b-button style="background: #3793a0;" size="sm" class="mr-1">Centro Fora</b-button>
-								<b-button style="background: #3793a0;" size="sm" class="mr-1">Centro Dentro</b-button>
+								<b-button style="background: #ac2435;" size="sm" class="mr-1">Centro Fora</b-button>
+								<b-button style="background: #ac2435;" size="sm" class="mr-1">Centro Dentro</b-button>
 							</b-col>
 						</b-row>
 						<b-row class="mb-2">
