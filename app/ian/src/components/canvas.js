@@ -13,8 +13,8 @@ export default function canvasShapes(canvas, context) {
 		console.log("draw canvas", this.canvas.height, this.canvas.width)
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.drawGrid();
-		// this.drawCircleNote(0);
-		this.drawCircleNoteGrad(0);
+		this.drawCircleNote(0);
+		// this.drawCircleNoteGrad(0);
 		// for (var i = 0; i < this.channels.length; i++) {
 		// 	// console.log(this.offsetX, this.offsetY)
 		// 	this.channels[i].draw(this.offsetX, this.offsetY);
