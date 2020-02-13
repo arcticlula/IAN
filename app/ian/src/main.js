@@ -6,7 +6,7 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import { BootstrapVue, BIcon, BIconCircleHalf, BIconSquareHalf, BIconTriangleHalf, BIconStarHalf, BIconArrowsAngleContract, BIconArrowsAngleExpand } from 'bootstrap-vue'
+import { BootstrapVue, BIcon, BIconCircleHalf, BIconSquareHalf, BIconTriangleHalf, BIconStarHalf, BIconArrowsAngleContract, BIconArrowsAngleExpand, BIconUpload } from 'bootstrap-vue'
 
 Vue.use(BootstrapVue)
 Vue.component('BIcon', BIcon)
@@ -16,6 +16,7 @@ Vue.component('BIconTriangleHalf', BIconTriangleHalf)
 Vue.component('BIconStarHalf', BIconStarHalf)
 Vue.component('BIconArrowsAngleContract', BIconArrowsAngleContract)
 Vue.component('BIconArrowsAngleExpand', BIconArrowsAngleExpand)
+Vue.component('BIconUpload', BIconUpload)
 Vue.config.productionTip = false
 
 new Vue({

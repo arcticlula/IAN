@@ -97,7 +97,9 @@
 						</b-row>
 						<b-row style="text-align: right;">
 							<b-col cols="12">
-								<b-button style="background: #3793a0;" size="sm">Set</b-button>
+								<b-button style="background: #3793a0;" size="sm">
+									<b-icon icon="upload"></b-icon>
+								</b-button>
 							</b-col>
 						</b-row>
 					</b-tab>
