@@ -7,6 +7,9 @@ export default function canvasShapes(canvas, context) {
 	this.canvas.height = this.canvas.width;
 	this.divWidth = this.canvas.width / this.NCOLS;
 	this.divHeight = this.canvas.height / this.NCOLS;
+	this.colors =
+		['rgb(84, 45, 220)', 'rgb(31, 83, 112)', 'rgb(139, 103, 87)', 'rgb(97, 164, 18)', 'rgb(5, 250, 24)', 'rgb(6, 51, 105)', 'rgb(10, 157, 84)', 'rgb(108, 16, 6)', 'rgb(86, 116, 84)', 'rgb(143, 234, 173)']
+
 	let scopeCanvas = this;
 
 	this.draw = function () {
@@ -18,13 +21,16 @@ export default function canvasShapes(canvas, context) {
 		switch (patterns.shape) {
 			case "circle":
 				if (patterns.selected == patterns.optionsShape[patterns.shape][0]) {
-					this.drawCircleNote(0);
+					this.drawCircleNote();
 				}
 				else if (patterns.selected == patterns.optionsShape[patterns.shape][1]) {
-					this.drawCircleNoteGrad(0);
+					this.drawCircleNoteGrad();
 				}
 				break;
 			case "square":
+				if (patterns.selected == patterns.optionsShape[patterns.shape][0]) {
+					this.drawSquareNote();
+				}
 				break;
 			case "triangle":
 				break;
@@ -66,17 +72,70 @@ export default function canvasShapes(canvas, context) {
 		this.context.globalAlpha = 1;
 	}
 
+	this.drawCircleNote = function () {
+		let z = (this.NCOLS / 2);
+		let orientation = store.state.patterns.orientation;
+		let div = store.state.patterns.div;
+		let invI;
+		let color = this.colors;
+		for (let y = -z; y <= z; y++) {
+			for (let x = -z; x <= z; x++) {
+				for (let i = div - 1; i > -1; i--) {
+					// boarder = 1;
+					let perc = 1 - (i / div);
+					if ((x * x) + (y * y) > (z * z)) {
+						invI = orientation ? div : 0;
+						this.drawPixel(x + z, y + z, color[invI]);
+						break;
+					}
+					if ((x * x) + (y * y) <= (z * z) * (perc)) {
+						invI = orientation ? div - 1 - i : i + 1;
+						this.drawPixel(x + z, y + z, color[invI]);
+						break;
+					}
+				}
+			}
+		}
+	}
+
 	// this.drawCircleNote = function (orientation) {
 	// 	let z = (this.NCOLS / 2);
-	// 	let color = ['rgba(225,0,0,0.5)', 'rgba(0,225,0,0.5)', 'rgba(0,0,225,0.5)'];
+	// 	// let div = store.state.patterns.div;
+	// 	let div = 2;
+	// 	let color = ['rgba(225,0,0,1)', 'rgba(0,225,0,1)', 'rgba(0,0,225,1)', 'rgba(120,20,200,1)', 'rgba(200,200,50,1)', 'rgba(56,200,150,1)'];
+	// 	let invI, lastperc;
+	// 	for (let i = 0; i < div; i++) {
+	// 		invI = orientation ? div - 1 - i : i + 1;
+	// 		let perc = 1 - (i / div);
+	// 		for (let y = -z; y <= z; y++) {
+	// 			for (let x = -z; x <= z; x++) {
+	// 				if ((x * x) + (y * y) <= (z * z) * (perc)) {
+	// 					this.drawPixel(x + z, y + z, color[invI]);
+	// 				}
+	// 				lastperc = perc;
+	// 			}
+	// 			// if (boarder) {
+	// 			// 	if ((x * x) + (y * y) >= (z * z)) {
+	// 			// 		invI = orientation ? div : 0;
+	// 			// 		this.drawPixel(x + z, y + z, color[invI]);
+	// 			// 	}
+	// 			// }
+	// 		}
+	// 	}
+	// }
+
+	// this.drawSquareNote = function (orientation) {
+	// 	let z = (this.NCOLS / 2);
+	// 	let div = store.state.patterns.div;
+	// 	let color = ['rgba(225,0,0,0.5)', 'rgba(0,225,0,0.5)', 'rgba(0,0,225,0.5)', 'rgba(120,20,200,0.5)', 'rgba(200,200,50,0.5)', 'rgba(56,200,150,0.5)'];
 	// 	let boarder;
 	// 	let invI;
 	// 	for (let y = -z; y <= z; y++) {
 	// 		for (let x = -z; x <= z; x++) {
-	// 			for (let i = 0; i < 3; i++) {
-	// 				invI = orientation ? 3 - 1 - i : i + 1;
+	// 			for (let i = 0; i < div; i++) {
+	// 				invI = orientation ? div - 1 - i : i + 1;
 	// 				boarder = 1;
-	// 				let perc = 1 - (i / 3);
+	// 				let perc = 1 - (i / div);
 	// 				if ((x * x) + (y * y) <= (z * z) * (perc)) {
 	// 					this.drawPixel(x + z, y + z, color[invI]);
 	// 					boarder = 0;
@@ -84,7 +143,7 @@ export default function canvasShapes(canvas, context) {
 	// 			}
 	// 			if (boarder) {
 	// 				if ((x * x) + (y * y) >= (z * z)) {
-	// 					invI = orientation ? 3 : 0;
+	// 					invI = orientation ? div : 0;
 	// 					this.drawPixel(x + z, y + z, color[invI]);
 	// 				}
 	// 			}
@@ -92,39 +151,13 @@ export default function canvasShapes(canvas, context) {
 	// 	}
 	// }
 
-	this.drawCircleNote = function (orientation) {
+	this.drawCircleNoteGrad = function () {
 		let z = (this.NCOLS / 2);
-		let div = store.state.patterns.div;
-		let color = ['rgba(225,0,0,0.5)', 'rgba(0,225,0,0.5)', 'rgba(0,0,225,0.5)', 'rgba(120,20,200,0.5)', 'rgba(200,200,50,0.5)', 'rgba(56,200,150,0.5)'];
-		let boarder;
-		let invI;
-		for (let y = -z; y <= z; y++) {
-			for (let x = -z; x <= z; x++) {
-				for (let i = 0; i < div; i++) {
-					invI = orientation ? div - 1 - i : i + 1;
-					boarder = 1;
-					let perc = 1 - (i / div);
-					if ((x * x) + (y * y) <= (z * z) * (perc)) {
-						this.drawPixel(x + z, y + z, color[invI]);
-						boarder = 0;
-					}
-				}
-				if (boarder) {
-					if ((x * x) + (y * y) >= (z * z)) {
-						invI = orientation ? div : 0;
-						this.drawPixel(x + z, y + z, color[invI]);
-					}
-				}
-			}
-		}
-	}
-
-	this.drawCircleNoteGrad = function (orientation) {
-		let z = (this.NCOLS / 2);
+		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let boarder, invO;
 		let diff = [];
-		let color = [[225, 0, 0, 0.5], [0, 200, 0, 0.5]];
+		let color = [[225, 0, 200, 0.5], [0, 0, 100, 0.5]];
 		let colorTemp;
 		invO = orientation ? 0 : 1;
 		for (let j = 0; j < 3; j++) {

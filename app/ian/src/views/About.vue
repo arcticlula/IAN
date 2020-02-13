@@ -12,20 +12,35 @@
 									style="background: #ac2435;"
 									size="sm"
 									class="mr-1"
-								>Círculo</b-button>
+								>
+									<b-icon icon="circleHalf"></b-icon>
+								</b-button>
 								<b-button
 									v-bind:class="{ active: patterns.shape == 'square'}"
 									@click="setShape('square')"
 									style="background: #ac2435;"
 									size="sm"
 									class="mr-1"
-								>Quadrado</b-button>
+								>
+									<b-icon icon="squareHalf"></b-icon>
+								</b-button>
 								<b-button
 									v-bind:class="{ active: patterns.shape == 'triangle'}"
 									@click="setShape('triangle')"
 									style="background: #ac2435;"
 									size="sm"
-								>Triângulo</b-button>
+									class="mr-1"
+								>
+									<b-icon icon="triangleHalf"></b-icon>
+								</b-button>
+								<b-button
+									v-bind:class="{ active: patterns.shape == 'star'}"
+									@click="setShape('star')"
+									style="background: #ac2435;"
+									size="sm"
+								>
+									<b-icon icon="starHalf"></b-icon>
+								</b-button>
 							</b-col>
 						</b-row>
 						<b-row class="mb-2">
@@ -55,8 +70,24 @@
 						</b-row>
 						<b-row class="mb-2" style="text-align: left;">
 							<b-col cols="12">
-								<b-button style="background: #ac2435;" size="sm" class="mr-1">Centro Fora</b-button>
-								<b-button style="background: #ac2435;" size="sm" class="mr-1">Centro Dentro</b-button>
+								<b-button
+									v-bind:class="{ active: patterns.orientation == 0}"
+									@click="setOrientation(0)"
+									style="background: #ac2435;"
+									size="sm"
+									class="mr-1"
+								>
+									<b-icon icon="arrowsAngleExpand"></b-icon>
+								</b-button>
+								<b-button
+									v-bind:class="{ active: patterns.shape == 1}"
+									@click="setOrientation(1)"
+									style="background: #ac2435;"
+									size="sm"
+									class="mr-1"
+								>
+									<b-icon icon="arrowsAngleContract"></b-icon>
+								</b-button>
 							</b-col>
 						</b-row>
 						<b-row class="mb-2">
@@ -128,6 +159,10 @@ export default {
 			];
 			this.patterns.div = this.currOptionDiv[0];
 			console.log(this.currOptionDiv);
+			this.canvasObj.draw();
+		},
+		setOrientation(orientation) {
+			this.patterns.orientation = orientation;
 			this.canvasObj.draw();
 		},
 		success() {
