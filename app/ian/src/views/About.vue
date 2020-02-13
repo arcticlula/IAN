@@ -30,10 +30,15 @@
             </b-row>
             <b-row class="mb-2">
               <b-col cols="8" class="pr-0">
-                <b-form-select v-model="patterns.shape" :options="currOptionShape" size="sm"></b-form-select>
+                <b-form-select
+                  @change="canvasObj.draw()"
+                  v-model="patterns.selected"
+                  :options="currOptionShape"
+                  size="sm"
+                ></b-form-select>
               </b-col>
               <b-col cols="4">
-                <b-form-input size="sm"></b-form-input>
+                <b-form-input v-model="patterns.div" size="sm"></b-form-input>
               </b-col>
             </b-row>
             <b-row class="mb-2">
@@ -89,7 +94,8 @@ export default {
   // },
   data: function() {
     return {
-      currOptionShape: []
+      currOptionShape: [],
+      canvasObj: {}
     };
   },
   computed: {
@@ -101,7 +107,12 @@ export default {
     setShape(shape) {
       this.patterns.shape = shape;
       this.currOptionShape = this.patterns.optionsShape[shape];
-      bluetoothSerial.write("S", this.success, this.failure);
+      this.patterns.selected = this.currOptionShape[0];
+      this.canvasObj.draw();
+      // bluetoothSerial.write("S", this.success, this.failure);
+    },
+    setShapeDraw() {
+      this.canvasObj.draw();
     },
     success() {
       console.log("sim");
@@ -112,10 +123,11 @@ export default {
   },
   mounted() {
     this.currOptionShape = this.patterns.optionsShape[this.patterns.shape];
+    this.patterns.selected = this.currOptionShape[0];
     let canvas = document.getElementById("shapeCanvas");
     let ctx = canvas.getContext("2d");
-    let canvasObj = new canvasShapes(canvas, ctx);
-    canvasObj.draw();
+    this.canvasObj = new canvasShapes(canvas, ctx);
+    this.canvasObj.draw();
   }
 };
 </script>
