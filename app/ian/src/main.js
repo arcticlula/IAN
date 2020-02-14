@@ -6,11 +6,11 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import { BootstrapVue, BIcon, BIconArrowUp } from 'bootstrap-vue'
+import { BootstrapVue, BIcon, BIconArrowsAngleContract } from 'bootstrap-vue'
 
 Vue.use(BootstrapVue)
 Vue.component('BIcon', BIcon)
-Vue.component('BIconArrowUp', BIconArrowUp)
+Vue.component('BIconArrowsAngleContract', BIconArrowsAngleContract)
 Vue.config.productionTip = false
 
 new Vue({

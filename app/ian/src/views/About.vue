@@ -44,7 +44,9 @@
 						<b-row class="mb-2" style="text-align: left;">
 							<b-col cols="12">
 								<b-button style="background: #ac2435;" size="sm" class="mr-1">Centro Fora</b-button>
-								<b-button style="background: #ac2435;" size="sm" class="mr-1">Centro Dentro</b-button>
+								<b-button style="background: #ac2435;" size="sm" class="mr-1">
+									<b-icon-arrows-angle-contract></b-icon-arrows-angle-contract>
+								</b-button>
 							</b-col>
 						</b-row>
 						<b-row class="mb-2">

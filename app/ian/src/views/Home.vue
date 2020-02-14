@@ -1,5 +1,5 @@
 <template>
-	<b-row class="home px-4">
+	<b-row class="home">
 		<b-col cols="12">
 			<b-card>
 		<!-- <img alt="Vue logo" src="../assets/logo.png" /> -->

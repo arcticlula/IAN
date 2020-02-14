@@ -1,21 +1,23 @@
 <template>
-	<div id="app">
-		<b-row>
-			<b-col cols="12" class="mb-4">
-				<b-navbar style="background: rgb(242, 206, 5); color: white;">
-					<b-navbar-nav>
-						<router-link to="/" class="mr-1">
-							<b>Connection</b> |&nbsp;
-						</router-link>
-						<router-link to="/about">
-							&nbsp;<b>Configuration</b>
-						</router-link>
-					</b-navbar-nav>
-				</b-navbar>
-			</b-col>
-		</b-row>
-		<router-view/>
-	</div>
+	<b-row id="app">
+		<b-col cols="12">
+			<b-row>
+				<b-col cols="12" class="mb-4">
+					<b-navbar style="background: rgb(242, 206, 5); color: white;">
+						<b-navbar-nav>
+							<router-link to="/" class="mr-1">
+								<b>Connection</b> |&nbsp;
+							</router-link>
+							<router-link to="/about">
+								&nbsp;<b>Configuration</b>
+							</router-link>
+						</b-navbar-nav>
+					</b-navbar>
+				</b-col>
+			</b-row>
+			<router-view/>
+		</b-col>
+	</b-row>
 </template>
 
 <style lang="scss">
