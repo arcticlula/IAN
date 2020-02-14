@@ -114,6 +114,7 @@
 						</b-col>
 					</b-row>
 				</b-tab>
+				<b-tab title="Colors" color="info"></b-tab>
 			</b-tabs>
 		</b-card>
 	</b-col>
