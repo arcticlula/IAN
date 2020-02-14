@@ -6,11 +6,18 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import { BootstrapVue, BIcon, BIconArrowsAngleContract } from 'bootstrap-vue'
+import { BootstrapVue, BIcon, BIconCircleHalf, BIconSquareHalf, BIconTriangleHalf, BIconStarHalf, BIconArrowsAngleContract, BIconArrowsAngleExpand, BIconUpload, BIconArrowRepeat } from 'bootstrap-vue'
 
 Vue.use(BootstrapVue)
 Vue.component('BIcon', BIcon)
+Vue.component('BIconCircleHalf', BIconCircleHalf)
+Vue.component('BIconSquareHalf', BIconSquareHalf)
+Vue.component('BIconTriangleHalf', BIconTriangleHalf)
+Vue.component('BIconStarHalf', BIconStarHalf)
 Vue.component('BIconArrowsAngleContract', BIconArrowsAngleContract)
+Vue.component('BIconArrowsAngleExpand', BIconArrowsAngleExpand)
+Vue.component('BIconUpload', BIconUpload)
+Vue.component('BIconArrowRepeat', BIconArrowRepeat)
 Vue.config.productionTip = false
 
 new Vue({
