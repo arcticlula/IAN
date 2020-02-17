@@ -15,6 +15,15 @@
 								<b-icon icon="circleHalf"></b-icon>
 							</b-button>
 							<b-button
+								v-bind:class="{ active: patterns.shape == 'cross'}"
+								@click="setShape('cross')"
+								size="sm"
+								class="mr-1"
+								variant="info"
+							>
+								<b-icon icon="grid-fill"></b-icon>
+							</b-button>
+							<b-button
 								v-bind:class="{ active: patterns.shape == 'square'}"
 								@click="setShape('square')"
 								size="sm"
@@ -22,6 +31,15 @@
 								variant="info"
 							>
 								<b-icon icon="squareHalf"></b-icon>
+							</b-button>
+							<b-button
+								v-bind:class="{ active: patterns.shape == 'lines'}"
+								@click="setShape('lines')"
+								size="sm"
+								class="mr-1"
+								variant="info"
+							>
+								<b-icon icon="pause"></b-icon>
 							</b-button>
 							<b-button
 								v-bind:class="{ active: patterns.shape == 'triangle'}"
