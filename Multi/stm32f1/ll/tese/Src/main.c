@@ -35,6 +35,7 @@
 
 volatile uint8_t TIM2_overflows = 0;
 drawshape_type drawshape_function;
+drawshape_type drawtext_function;
 
 /* WS2812 framebuffer
  * buffersize = (#LEDs / 16) * 24 */
@@ -94,22 +95,34 @@ void sendDataBluetooth(uint8_t data)
 
 #define MIDI_OFF 0x10
 #define MODE_BACK 0x20
-#define MODE_BACK_CIRCLE_1 0x21
-#define MODE_BACK_CIRCLE_2 0x22
-#define MODE_BACK_CROSS_1 0x25
-#define MODE_BACK_CROSS_2 0x26
-#define MODE_BACK_SQUARE_1 0x30
-#define MODE_BACK_SQUARE_2 0x31
+#define MODE_BACK_CIRCLE 0x21
+#define MODE_BACK_CIRCLE_GRAD 0x22
+#define MODE_BACK_CROSS 0x25
+#define MODE_BACK_CROSS_GRAD 0x26
+#define MODE_BACK_SQUARE 0x30
+#define MODE_BACK_SQUARE_GRAD 0x31
+#define MODE_BACK_LINES_H 0x35;
+#define MODE_BACK_LINES_H_GRAD 0x36;
+#define MODE_BACK_LINES_V 0x37;
+#define MODE_BACK_LINES_V_GRAD 0x38;
 
-#define MODE_BACK_TRIANGLE_1 0x35
-#define MODE_BACK_TRIANGLE_2 0x36
+// #define MODE_BACK_TRIANGLE 0x35
+// #define MODE_BACK_TRIANGLE_GRAD 0x36
 #define MODE_TEXT 0x06
 
-static inline void drawShape(uint8_t data)
+static inline void drawShape()
 {
   if (drawshape_function)
   {
-    (*drawshape_function)(data);
+    (*drawshape_function)();
+  }
+}
+
+static inline void drawText(uint8_t data)
+{
+  if (drawtext_function)
+  {
+    (*drawtext_function)(data);
   }
 }
 
@@ -119,15 +132,47 @@ void frame_handler_function(const uint8_t *frame_buffer, uint16_t frame_length)
   data = *frame_buffer++;
   switch (data)
   {
-  case MODE_BACK_CIRCLE_1:
+  case MODE_BACK_CIRCLE:
     drawshape_function = drawCircleNote;
     break;
-  case MODE_BACK_CIRCLE_2:
+  case MODE_BACK_CIRCLE_GRAD:
     drawshape_function = drawCircleNoteGrad;
+    break;
+  case MODE_BACK_CROSS:
+    drawshape_function = drawCrossNote;
+    break;
+  case MODE_BACK_CROSS_GRAD:
+    drawshape_function = drawCircleNoteGrad;
+    break;
+  case MODE_BACK_SQUARE:
+    drawshape_function = drawCrossNote;
+    break;
+  case MODE_BACK_SQUARE_GRAD:
+    drawshape_function = drawCircleNoteGrad;
+    break;
+  case MODE_BACK_LINES_H:
+    drawshape_function = drawLineNote;
+    callback_function = horizontal;
+    break;
+  case MODE_BACK_LINES_H_GRAD:
+    drawshape_function = drawLineNoteGrad;
+    callback_function = horizontal;
+    break;
+  case MODE_BACK_LINES_V:
+    drawshape_function = drawLineNote;
+    callback_function = vertical;
+    break;
+  case MODE_BACK_LINES_V_GRAD:
+    drawshape_function = drawLineNoteGrad;
+    callback_function = vertical;
     break;
   default:
     break;
   }
+  data = *frame_buffer++;
+  MAX_DIV = data;
+  data = *frame_buffer++;
+  orientation = data
   // while (frame_length)
   // {
   //   sendDataBluetooth(data);
@@ -201,14 +246,14 @@ int main(void)
   clearBack();
   clearText();
   clearFramebuffer();
-  uint8_t blue[3] = {1, 1, 3};
+  // uint8_t blue[3] = {1, 1, 3};
   // uint8_t red[3] = {5, 0, 1};
 
-  // setNote(24);
-  // setNote(15);
-  // setNote(87);
+  setNote(24);
+  setNote(15);
+  setNote(87);
+
   // setBackColor(blue);
-  // drawCircleNoteGrad(0);
   // fillFramebuffer();
   // WS2812_sendbuf(24 * NLEDSCH);
 
@@ -227,8 +272,6 @@ int main(void)
   {
     // set two pixels (columns) in the defined row (channel 0) to the
     // color values defined in the colors array
-    // for (int i = 0; i < 6; i++)
-    // {
     //   // wait until the last frame was transmitted
     //   while (!WS2812_TC)
     //     ;
@@ -242,26 +285,26 @@ int main(void)
     //   //   // drawColor(arrCol[i]);
     //   //   // fillFramebuffer();
     //   //   // WS2812_sendbuf(24 * NLEDSCH);
-    //   setNote(28);
-    //   drawShape(1);
-    //   fillFramebuffer();
-    //   WS2812_sendbuf(24 * NLEDSCH);
-    //   LL_mDelay(2000);
-    //   drawShape(1);
-    //   fillFramebuffer();
-    //   WS2812_sendbuf(24 * NLEDSCH);
-    //   LL_mDelay(2000);
-    //   setNote(17);
-    //   drawShape(1);
-    //   fillFramebuffer();
-    //   WS2812_sendbuf(24 * NLEDSCH);
-    //   LL_mDelay(2000);
-    //   setNote(83);
-    //   drawShape(1);
-    //   fillFramebuffer();
-    //   WS2812_sendbuf(24 * NLEDSCH);
-    //   LL_mDelay(2000);
-    // }
+    setNote(28);
+    drawShape();
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    LL_mDelay(2000);
+    setNote(58);
+    drawShape();
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    LL_mDelay(2000);
+    setNote(17);
+    drawShape();
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    LL_mDelay(2000);
+    setNote(83);
+    drawShape();
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    LL_mDelay(2000);
   }
   /* USER CODE END 3 */
 }
@@ -642,7 +685,7 @@ void USART3_IRQHandler(void)
         // clearText();
         // drawNote();
         // drawStringArray(1, 1, 1, 1);
-        drawShape(1);
+        drawShape();
         fillFramebuffer();
         WS2812_sendbuf(24 * NLEDSCH);
         break;

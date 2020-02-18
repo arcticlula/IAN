@@ -4,6 +4,8 @@ export default function canvasShapes(canvas, context) {
 	this.canvas = canvas;
 	this.context = context;
 	this.NCOLS = 45;
+	this.z = this.NCOLS / 2;
+	this.rz = Math.floor(this.z)
 	this.canvas.height = this.canvas.width;
 	this.divWidth = this.canvas.width / this.NCOLS;
 	this.divHeight = this.canvas.height / this.NCOLS;
@@ -21,7 +23,7 @@ export default function canvasShapes(canvas, context) {
 		this.drawGrid();
 		let patterns = store.state.patterns;
 		let optionsShape = store.state.optionsShape;
-		console.log(patterns.selected, optionsShape[patterns.shape])
+		// console.log(patterns.selected, optionsShape[patterns.shape])
 		switch (patterns.shape) {
 			case "circle":
 				if (patterns.selected == optionsShape[patterns.shape][0].value) {
@@ -48,7 +50,6 @@ export default function canvasShapes(canvas, context) {
 				}
 				break;
 			case "lines":
-				console.log(patterns.selected, optionsShape[patterns.shape])
 				if (patterns.selected == optionsShape[patterns.shape][0].value) {
 					this.drawLineHNote();
 				}
@@ -90,14 +91,15 @@ export default function canvasShapes(canvas, context) {
 	}
 
 	this.drawCircleNote = function () {
-		let z = (this.NCOLS / 2);
+		let z = this.z;
+		let rz = this.rz;
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let invI;
 		let color = this.colors;
-		for (let y = -z; y <= z; y++) {
-			for (let x = -z; x <= z; x++) {
-				for (let i = div - 1; i > -1; i--) {
+		for (let y = -rz; y <= rz; y++) {
+			for (let x = -rz; x <= rz; x++) {
+				for (let i = div - 1; i > 0; i--) {
 					let perc = 1 - (i / div);
 					if ((x * x) + (y * y) <= (z * z) * (perc)) {
 						invI = orientation ? div - 1 - i : i + 1;
@@ -105,21 +107,22 @@ export default function canvasShapes(canvas, context) {
 					}
 					invI = orientation ? div : 0;
 				}
-				this.drawPixel(x + z, y + z, color[invI]);
+				this.drawPixel(x + rz, y + rz, color[invI]);
 			}
 		}
 	}
 
 	this.drawCircleNoteGrad = function () {
-		let z = (this.NCOLS / 2);
+		let z = this.z;
+		let rz = this.rz;
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let invO = orientation ? 0 : 1;
 		let color = [[225, 0, 200, 0.5], [0, 0, 100, 0.5]];
 		let colorTemp;
 		let diff = [(color[orientation][0] - color[invO][0]) / div, (color[orientation][1] - color[invO][1]) / div, (color[orientation][2] - color[invO][2]) / div];
-		for (let y = -z; y <= z; y++) {
-			for (let x = -z; x <= z; x++) {
+		for (let y = -rz; y <= rz; y++) {
+			for (let x = -rz; x <= rz; x++) {
 				for (let i = div - 1; i > 0; i--) {
 					let perc = 1 - (i / div);
 					if ((x * x) + (y * y) <= (z * z) * (perc)) {
@@ -136,19 +139,20 @@ export default function canvasShapes(canvas, context) {
 					}
 					colorTemp += "1)";
 				}
-				this.drawPixel(x + z, y + z, colorTemp);
+				this.drawPixel(x + rz, y + rz, colorTemp);
 			}
 		}
 	}
 
 	this.drawCrossNote = function () {
-		let z = (this.NCOLS / 2);
+		let z = this.z;
+		let rz = this.rz;
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let invI;
 		let color = this.colors;
-		for (let y = -z; y <= z; y++) {
-			for (let x = -z; x <= z; x++) {
+		for (let y = -rz; y <= rz; y++) {
+			for (let x = -rz; x <= rz; x++) {
 				for (let i = 0; i < div; i++) {
 					let perc = (1 - (i / div)) * z;
 					if ((x <= -perc || x >= perc) && (y <= -perc || y >= perc)) {
@@ -157,21 +161,22 @@ export default function canvasShapes(canvas, context) {
 					}
 					invI = orientation ? div : 0;
 				}
-				this.drawPixel(x + z, y + z, color[invI]);
+				this.drawPixel(x + rz, y + rz, color[invI]);
 			}
 		}
 	}
 
 	this.drawCrossNoteGrad = function () {
-		let z = (this.NCOLS / 2);
+		let z = this.z;
+		let rz = this.rz;
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let invO = orientation ? 0 : 1;
 		let color = [[225, 0, 200, 0.5], [0, 0, 100, 0.5]];
 		let colorTemp;
 		let diff = [(color[orientation][0] - color[invO][0]) / div, (color[orientation][1] - color[invO][1]) / div, (color[orientation][2] - color[invO][2]) / div];
-		for (let y = -z; y <= z; y++) {
-			for (let x = -z; x <= z; x++) {
+		for (let y = -rz; y <= rz; y++) {
+			for (let x = -rz; x <= rz; x++) {
 				for (let i = 0; i < div; i++) {
 					let perc = (1 - (i / div)) * z;
 					if ((x <= -perc || x >= perc) && (y <= -perc || y >= perc)) {
@@ -188,19 +193,20 @@ export default function canvasShapes(canvas, context) {
 					}
 					colorTemp += "1)";
 				}
-				this.drawPixel(x + z, y + z, colorTemp);
+				this.drawPixel(x + rz, y + rz, colorTemp);
 			}
 		}
 	}
 
 	this.drawSquareNote = function () {
-		let z = (this.NCOLS / 2);
+		let z = this.z;
+		let rz = this.rz;
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let invI;
 		let color = this.colors;
-		for (let y = -z; y <= z; y++) {
-			for (let x = -z; x <= z; x++) {
+		for (let y = -rz; y <= rz; y++) {
+			for (let x = -rz; x <= rz; x++) {
 				for (let i = div - 1; i > 0; i--) {
 					let perc = (1 - (i / div)) * z;
 					if ((x >= -perc && x <= perc) && (y >= -perc && y <= perc)) {
@@ -209,21 +215,22 @@ export default function canvasShapes(canvas, context) {
 					}
 					invI = orientation ? div : 0;
 				}
-				this.drawPixel(x + z, y + z, color[invI]);
+				this.drawPixel(x + rz, y + rz, color[invI]);
 			}
 		}
 	}
 
 	this.drawSquareNoteGrad = function () {
-		let z = (this.NCOLS / 2);
+		let z = this.z;
+		let rz = this.rz;
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let invO = orientation ? 0 : 1;
 		let color = [[225, 0, 200, 0.5], [0, 0, 100, 0.5]];
 		let colorTemp;
 		let diff = [(color[orientation][0] - color[invO][0]) / div, (color[orientation][1] - color[invO][1]) / div, (color[orientation][2] - color[invO][2]) / div];
-		for (let y = -z; y <= z; y++) {
-			for (let x = -z; x <= z; x++) {
+		for (let y = -rz; y <= rz; y++) {
+			for (let x = -rz; x <= rz; x++) {
 				for (let i = div - 1; i > 0; i--) {
 					let perc = (1 - (i / div)) * z;
 					if ((x >= -perc && x <= perc) && (y >= -perc && y <= perc)) {
@@ -240,7 +247,7 @@ export default function canvasShapes(canvas, context) {
 					}
 					colorTemp += "1)";
 				}
-				this.drawPixel(x + z, y + z, colorTemp);
+				this.drawPixel(x + rz, y + rz, colorTemp);
 			}
 		}
 	}
@@ -254,13 +261,14 @@ export default function canvasShapes(canvas, context) {
 	}
 
 	this.drawLineNote = function (callback) {
-		let z = (this.NCOLS / 2);
+		let z = this.z;
+		let rz = this.rz;
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let invI;
 		let color = this.colors;
-		for (let y = -z; y <= z; y++) {
-			for (let x = -z; x <= z; x++) {
+		for (let y = -rz; y <= rz; y++) {
+			for (let x = -rz; x <= rz; x++) {
 				for (let i = 0; i < div; i++) {
 					let perc = (1 - (i / div)) * z;
 					if (callback(x, y, perc)) {
@@ -269,21 +277,22 @@ export default function canvasShapes(canvas, context) {
 					}
 					invI = orientation ? div : 0;
 				}
-				this.drawPixel(x + z, y + z, color[invI]);
+				this.drawPixel(x + rz, y + rz, color[invI]);
 			}
 		}
 	}
 
 	this.drawLineNoteGrad = function (callback) {
-		let z = (this.NCOLS / 2);
+		let z = this.z;
+		let rz = this.rz;
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let invO = orientation ? 0 : 1;
 		let color = [[225, 0, 200, 0.5], [0, 0, 100, 0.5]];
 		let colorTemp;
 		let diff = [(color[orientation][0] - color[invO][0]) / div, (color[orientation][1] - color[invO][1]) / div, (color[orientation][2] - color[invO][2]) / div];
-		for (let y = -z; y <= z; y++) {
-			for (let x = -z; x <= z; x++) {
+		for (let y = -rz; y <= rz; y++) {
+			for (let x = -rz; x <= rz; x++) {
 				for (let i = 0; i < div; i++) {
 					let perc = (1 - (i / div)) * z;
 					if (callback(x, y, perc)) {
@@ -300,7 +309,7 @@ export default function canvasShapes(canvas, context) {
 					}
 					colorTemp += "1)";
 				}
-				this.drawPixel(x + z, y + z, colorTemp);
+				this.drawPixel(x + rz, y + rz, colorTemp);
 			}
 		}
 	}
@@ -326,12 +335,12 @@ export default function canvasShapes(canvas, context) {
 		this.context.fillStyle = color;
 		// console.log(pixel)
 		switch (pixel) {
-			case "circle":
+			case "Circle":
 				this.context.beginPath();
 				this.context.arc(x * this.divWidth + this.divWidth / 2, y * this.divHeight + this.divHeight / 2, this.divWidth / 2, 0, 2 * Math.PI, false);
 				this.context.fill();
 				break;
-			case "square":
+			case "Square":
 				this.context.fillRect(x * this.divWidth, y * this.divHeight, this.divWidth, this.divHeight);
 				break;
 		}

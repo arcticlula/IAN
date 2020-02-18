@@ -1,7 +1,7 @@
 #ifndef __DEFINITIONS_H
 #define __DEFINITIONS_H
 
-#define USART_MIDI 1
+#define USART_MIDI 0
 #define COLOR_1BIT 1
 
 #define SMALL_BOARD 1
@@ -16,7 +16,6 @@
 #define BIT_CLEAR(a, b) ((a) &= ~(1ULL << (b)))
 #define BIT_CHECK(a, b) (!!((a) & (1ULL << (b))))
 
-#define MAX_DIV 3
 #define MAX_BRIGHT 0.2 // 0 - 1
 
 #if BOARD == SMALL_BOARD
