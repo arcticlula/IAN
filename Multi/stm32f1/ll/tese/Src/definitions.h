@@ -1,7 +1,7 @@
 #ifndef __DEFINITIONS_H
 #define __DEFINITIONS_H
 
-#define USART_MIDI 1
+#define USART_MIDI 0
 #define COLOR_1BIT 1
 
 #define SMALL_BOARD 1

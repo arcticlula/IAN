@@ -40,6 +40,7 @@ volatile uint8_t TIM2_overflows = 0;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_USART1_UART_Init(void);
 #if USART_MIDI
 static void MX_USART3_UART_Init(void);
 #endif
@@ -115,6 +116,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_USART1_UART_Init();
 #if USART_MIDI
   MX_USART3_UART_Init();
 #endif
@@ -346,10 +348,10 @@ static void MX_GPIO_Init(void)
 {
 
   /* GPIO Ports Clock Enable */
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOC);
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOD);
   LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOA);
   LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOB);
+  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOC);
+  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOD);
   // GPIOA Periph clock enable
 
   // GPIOA pins WS2812 data outputs
@@ -365,13 +367,55 @@ static void MX_GPIO_Init(void)
   LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_13);
 }
 
+static void MX_USART1_UART_Init(void)
+{
+
+  /* Peripheral clock enable */
+  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_USART1);
+  /**USART1 GPIO Configuration  
+  PB6   ------> USART1_TX
+  PB7   ------> USART1_RX 
+  */
+  GPIO_InitStruct.Pin = LL_GPIO_PIN_6;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
+  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = LL_GPIO_PIN_7;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_FLOATING;
+  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  LL_GPIO_AF_EnableRemap_USART1();
+  // __HAL_AFIO_REMAP_USART1_ENABLE();
+
+  /* USART1 interrupt Init */
+  NVIC_SetPriority(USART1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
+  NVIC_EnableIRQ(USART1_IRQn);
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  USART_InitStruct.BaudRate = 9600;
+  USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
+  USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
+  USART_InitStruct.Parity = LL_USART_PARITY_NONE;
+  USART_InitStruct.TransferDirection = LL_USART_DIRECTION_TX_RX;
+  USART_InitStruct.HardwareFlowControl = LL_USART_HWCONTROL_NONE;
+  LL_USART_Init(USART1, &USART_InitStruct);
+  LL_USART_ConfigAsyncMode(USART1);
+  LL_USART_Enable(USART1);
+  /* USER CODE BEGIN USART1_Init 2 */
+  LL_USART_EnableIT_RXNE(USART1);
+  /* USER CODE END USART1_Init 2 */
+}
+
 #if USART_MIDI
 static void MX_USART3_UART_Init(void)
 {
 
   LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART3);
 
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOB);
   /**USART3 GPIO Configuration
   PB10   ------> USART3_TX
   PB11   ------> USART3_RX
@@ -448,6 +492,24 @@ void TIM2_IRQHandler(void)
     // finally indicate that the data frame has been transmitted
     WS2812_TC = 1;
   }
+}
+
+void USART3_IRQHandler(void)
+{
+  __IO uint32_t received_char;
+
+  /* Read Received character. RXNE flag is cleared by reading of DR register */
+  received_char = LL_USART_ReceiveData8(USART3);
+
+  /* Check if received value is corresponding to specific one : S or s */
+  if ((received_char == 'S') || (received_char == 's'))
+  {
+    /* Turn LED2 On : Expected character has been received */
+    LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
+  }
+
+  /* Echo received character on TX */
+  LL_USART_TransmitData8(USART3, received_char);
 }
 
 #if USART_MIDI

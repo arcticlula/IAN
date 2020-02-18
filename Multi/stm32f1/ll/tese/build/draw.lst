@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
   30:Src/draw.c    ****     {0x49, 0x08}, /*'!'*/
   31:Src/draw.c    ****     {0xb4, 0x00}, /*'"'*/
   32:Src/draw.c    ****     {0xbe, 0xf6}, /*'#'*/
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 2
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 2
 
 
   33:Src/draw.c    ****     {0x7b, 0x7a}, /*'$'*/
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
   87:Src/draw.c    ****     {0xe5, 0x9c}, /*'Z'*/
   88:Src/draw.c    ****     {0x69, 0x4c}, /*'['*/
   89:Src/draw.c    ****     {0x91, 0x24}, /*'\'*/
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 3
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 3
 
 
   90:Src/draw.c    ****     {0x64, 0x2e}, /*']'*/
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
   42              		.cfi_offset 14, -4
   43 0004 85B0     		sub	sp, sp, #20
   44              	.LCFI1:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 4
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 4
 
 
   45              		.cfi_def_cfa_offset 56
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  162:Src/draw.c    **** #else
  163:Src/draw.c    ****   for (uint8_t i = 0; i < NCHANNELS; i++)
  164:Src/draw.c    ****   {
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 5
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 5
 
 
  165:Src/draw.c    ****     for (uint8_t j = 0; j < NLINESCH; j++)
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  195:Src/draw.c    ****         if (tmp)
  196:Src/draw.c    ****           setColorFB(tempPoint, textLayer[coords]);
  197:Src/draw.c    ****         else
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 6
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 6
 
 
  198:Src/draw.c    ****           setColorFB(tempPoint, backLayer[coords]);
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  141:Src/draw.c    **** 
  131              		.loc 1 141 16 view .LVU29
  132 0078 2144     		add	r1, r1, r4
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 7
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 7
 
 
  133 007a 89B2     		uxth	r1, r1
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  176              	.LBE3:
  132:Src/draw.c    ****   {
  177              		.loc 1 132 35 discriminator 2 view .LVU41
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 8
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 8
 
 
  178 00ac 09F10109 		add	r9, r9, #1
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  224              		@ frame_needed = 0, uses_anonymous_args = 0
  225 0000 38B5     		push	{r3, r4, r5, lr}
  226              	.LCFI3:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 9
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 9
 
 
  227              		.cfi_def_cfa_offset 16
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  271              		.loc 1 208 35 discriminator 2 view .LVU61
  272 0028 EDB2     		uxtb	r5, r5
  273              	.LVL28:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 10
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 10
 
 
  274              	.L19:
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  320              		.loc 1 220 3 discriminator 1 view .LVU70
  321 0002 FD2B     		cmp	r3, #253
  322 0004 05D8     		bhi	.L30
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 11
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 11
 
 
  221:Src/draw.c    ****   {
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  359              		.cfi_startproc
  360              		@ args = 0, pretend = 0, frame = 0
  361              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 12
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 12
 
 
  362 0000 70B5     		push	{r4, r5, r6, lr}
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  409 0022 02FB0633 		mla	r3, r2, r6, r3
  410              		.loc 1 243 12 view .LVU92
  411 0026 B3F5FD6F 		cmp	r3, #2024
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 13
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 13
 
 
  412 002a EDDC     		bgt	.L35
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  246:Src/draw.c    ****       }
  247:Src/draw.c    ****     }
  248:Src/draw.c    ****   }
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 14
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 14
 
 
  249:Src/draw.c    **** }
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  505              		.loc 1 255 8 view .LVU109
  506              	.LVL47:
  507              		.loc 1 255 12 is_stmt 0 view .LVU110
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 15
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 15
 
 
  508 0008 0025     		movs	r5, #0
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  553              	.LBE16:
  255:Src/draw.c    ****   {
  554              		.loc 1 255 31 discriminator 2 view .LVU124
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 16
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 16
 
 
  555 0036 0135     		adds	r5, r5, #1
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  589              	.LVL56:
  590              	.L54:
  591              		.loc 1 279 5 view .LVU135
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 17
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 17
 
 
  592              	.LBE20:
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  627 006e F5B2     		uxtb	r5, r6
  628 0070 C3B2     		uxtb	r3, r0
  290:Src/draw.c    **** 
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 18
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 18
 
 
  629              		.loc 1 290 15 view .LVU150
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  281:Src/draw.c    ****       {
  675              		.loc 1 281 10 is_stmt 0 view .LVU164
  676 00b2 331A     		subs	r3, r6, r0
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 19
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 19
 
 
  677 00b4 D6D4     		bmi	.L70
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  715              		.loc 1 274 13 view .LVU180
  716 00da ACF12D0C 		sub	ip, ip, #45
  717 00de 5FFA8CFC 		uxtb	ip, ip
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 20
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 20
 
 
  718              	.LVL68:
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  309:Src/draw.c    ****     {
  310:Src/draw.c    ****       coords = (x + (NCOLS / 2)) + ((y + (NCOLS / 2)) * NCOLS);
  311:Src/draw.c    ****       for (int i = 0; i < MAX_DIV; i++)
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 21
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 21
 
 
  312:Src/draw.c    ****       {
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  773              		.cfi_offset 10, -12
  774              		.cfi_offset 11, -8
  775              		.cfi_offset 14, -4
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 22
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 22
 
 
  776 0004 0746     		mov	r7, r0
@@ -1318,7 +1318,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  816 0028 FFF7FEFF 		bl	__aeabi_fsub
  817              	.LVL78:
  818 002c 8346     		mov	fp, r0
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 23
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 23
 
 
  819              	.LVL79:
@@ -1378,7 +1378,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  863 0066 E4B2     		uxtb	r4, r4
  864 0068 D5E7     		b	.L79
  865              	.LVL87:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 24
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 24
 
 
  866              	.L95:
@@ -1438,7 +1438,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  910 009e 0323     		movs	r3, #3
  911              	.L85:
  912              	.LVL93:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 25
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 25
 
 
  377:Src/draw.c    ****           setColor(backLayer[coords], noteBuffer[invI].color);
@@ -1498,7 +1498,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  956 00d8 BCE7     		b	.L77
  957              	.LVL99:
  958              	.L89:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 26
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 26
 
 
  360:Src/draw.c    ****       {
@@ -1558,7 +1558,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1004              	drawCircleNoteGrad:
  1005              	.LVL103:
  1006              	.LFB74:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 27
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 27
 
 
  383:Src/draw.c    **** 
@@ -1618,7 +1618,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1050              		.loc 1 393 45 is_stmt 0 discriminator 3 view .LVU268
  1051 0014 434A     		ldr	r2, .L124
  1052 0016 09EB4904 		add	r4, r9, r9, lsl #1
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 28
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 28
 
 
  1053 001a 6100     		lsls	r1, r4, #1
@@ -1678,7 +1678,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  402:Src/draw.c    ****       {
  403:Src/draw.c    ****         boarder = 1;
  404:Src/draw.c    ****         float perc = 1 - ((float)i / MAX_DIV);
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 29
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 29
 
 
  405:Src/draw.c    ****         // printf("%0.1f\n", perc);
@@ -1738,7 +1738,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1135              		.loc 1 414 12 is_stmt 0 view .LVU291
  1136 007e 7AB1     		cbz	r2, .L109
  1137 0080 2EE0     		b	.L107
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 30
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 30
 
 
  1138              	.LVL116:
@@ -1798,7 +1798,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  404:Src/draw.c    ****         // printf("%0.1f\n", perc);
  1181              		.loc 1 404 36 view .LVU304
  1182 00ac 2049     		ldr	r1, .L124+12
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 31
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 31
 
 
  1183 00ae FFF7FEFF 		bl	__aeabi_fdiv
@@ -1858,7 +1858,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1228              	.LBE34:
  398:Src/draw.c    ****     {
  1229              		.loc 1 398 51 discriminator 2 view .LVU314
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 32
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 32
 
 
  1230 00ee 0136     		adds	r6, r6, #1
@@ -1918,7 +1918,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1271              	.L123:
  1272              	.LBE40:
  1273              	.LBE32:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 33
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 33
 
 
  419:Src/draw.c    ****           }
@@ -1978,7 +1978,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  428:Src/draw.c    ****   for (int y = 0; y <= NCOLS; y++)
  1321              		.loc 1 428 3 is_stmt 1 view .LVU332
  1322              	.LBB41:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 34
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 34
 
 
  1323              		.loc 1 428 8 view .LVU333
@@ -2038,7 +2038,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1364              		.loc 1 432 19 discriminator 1 view .LVU347
  1365              	.LBE42:
  428:Src/draw.c    ****   {
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 35
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 35
 
 
  1366              		.loc 1 428 32 discriminator 2 view .LVU348
@@ -2098,7 +2098,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1413              		.cfi_offset 7, -12
  1414              		.cfi_offset 8, -8
  1415              		.cfi_offset 14, -4
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 36
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 36
 
 
  1416 0004 0546     		mov	r5, r0
@@ -2158,7 +2158,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1462              		.loc 1 442 32 discriminator 2 view .LVU370
  1463 0036 0136     		adds	r6, r6, #1
  1464              	.LVL149:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 37
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 37
 
 
  1465              	.L139:
@@ -2218,7 +2218,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1511              		.loc 1 456 3 is_stmt 1 view .LVU377
  1512              	.LBB47:
  1513              		.loc 1 456 8 view .LVU378
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 38
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 38
 
 
  1514              	.LVL152:
@@ -2278,7 +2278,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  462:Src/draw.c    ****   }
  463:Src/draw.c    **** }
  1558              		.loc 1 463 1 view .LVU391
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 39
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 39
 
 
  1559 0030 70BD     		pop	{r4, r5, r6, pc}
@@ -2338,7 +2338,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  499:Src/draw.c    ****   // drawString(noteBuffer[0], 1, 1, 1, 0);
  500:Src/draw.c    ****   // setTextColor(noteBuffer[0].color);
  501:Src/draw.c    ****   // drawColor(noteBuffer[0].color);
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 40
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 40
 
 
  502:Src/draw.c    ****   // drawLetter(note.symbol, 1, 10);
@@ -2398,7 +2398,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  519:Src/draw.c    ****     pixel = (font4x6[index][0]) >> 1;
  520:Src/draw.c    ****   }
  521:Src/draw.c    ****   else if (line_num == 2)
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 41
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 41
 
 
  522:Src/draw.c    ****   {
@@ -2458,7 +2458,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1646              		.loc 1 519 28 is_stmt 0 view .LVU421
  1647 0038 094B     		ldr	r3, .L171
  1648 003a 13F81000 		ldrb	r0, [r3, r0, lsl #1]	@ zero_extendqisi2
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 42
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 42
 
 
  519:Src/draw.c    ****   }
@@ -2518,7 +2518,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1691              		.align	1
  1692              		.global	drawLetter
  1693              		.syntax unified
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 43
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 43
 
 
  1694              		.thumb
@@ -2578,7 +2578,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1734              		.loc 1 550 9 view .LVU443
  1735 0010 4FEAEC0C 		asr	ip, ip, #3
  1736 0014 D3F1000E 		rsbs	lr, r3, #0
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 44
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 44
 
 
  1737 0018 03F00703 		and	r3, r3, #7
@@ -2638,7 +2638,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1781 006a 03F1070C 		add	ip, r3, #7
  1782 006e CFE7     		b	.L178
  1783              	.L182:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 45
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 45
 
 
  1784              	.LBE51:
@@ -2698,7 +2698,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1822              		.loc 1 545 5 view .LVU470
  1823 0092 D8E7     		b	.L176
  1824              	.LVL182:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 46
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 46
 
 
  1825              	.L173:
@@ -2758,7 +2758,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1860              		.cfi_offset 4, -36
  1861              		.cfi_offset 5, -32
  1862              		.cfi_offset 6, -28
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 47
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 47
 
 
  1863              		.cfi_offset 7, -24
@@ -2818,7 +2818,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1902 0026 785D     		ldrb	r0, [r7, r5]	@ zero_extendqisi2
  1903 0028 FFF7FEFF 		bl	drawLetter
  1904              	.LVL188:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 48
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 48
 
 
  584:Src/draw.c    ****     // posX = (posI - (nLine * (NCOLS - 3))) + 1;
@@ -2878,7 +2878,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1944              		.loc 1 579 12 view .LVU503
  1945 0052 F6B2     		uxtb	r6, r6
  1946              	.LVL196:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 49
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 49
 
 
  580:Src/draw.c    ****     }
@@ -2938,7 +2938,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  1992              		.loc 1 470 3 view .LVU514
  1993              	.LBB55:
  470:Src/draw.c    ****   {
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 50
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 50
 
 
  1994              		.loc 1 470 8 view .LVU515
@@ -2998,7 +2998,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  473:Src/draw.c    ****     {
  2038              		.loc 1 473 5 discriminator 1 view .LVU526
  2039 0036 022C     		cmp	r4, #2
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 51
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 51
 
 
  2040 0038 16D8     		bhi	.L193
@@ -3058,7 +3058,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2081              	.L192:
  470:Src/draw.c    ****   {
  2082              		.loc 1 470 3 discriminator 1 view .LVU540
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 52
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 52
 
 
  2083 006c 052D     		cmp	r5, #5
@@ -3118,7 +3118,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2133              		.loc 1 503 1 is_stmt 0 view .LVU546
  2134 0006 08BD     		pop	{r3, pc}
  2135              		.cfi_endproc
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 53
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 53
 
 
  2136              	.LFE79:
@@ -3178,7 +3178,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2183 001e 41F34701 		sbfx	r1, r1, #1, #8
  2184              	.LVL215:
  563:Src/draw.c    ****   int8_t py = (NCOLS - len) / 2;
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 54
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 54
 
 
  2185              		.loc 1 563 3 is_stmt 1 view .LVU556
@@ -3238,7 +3238,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2230              	drawStringArray:
  2231              	.LVL222:
  2232              	.LFB84:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 55
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 55
 
 
  588:Src/draw.c    **** 
@@ -3298,7 +3298,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  597:Src/draw.c    ****     {
  598:Src/draw.c    ****       posX = incX * (3 + spacex) + px;
  599:Src/draw.c    ****       if (posX + ((3 + spacex)) > NCOLS - 2)
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 56
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 56
 
 
  600:Src/draw.c    ****       {
@@ -3358,7 +3358,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2316              	.LVL230:
  599:Src/draw.c    ****       {
  2317              		.loc 1 599 7 is_stmt 1 view .LVU591
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 57
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 57
 
 
  599:Src/draw.c    ****       {
@@ -3418,7 +3418,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2359 006c 0137     		adds	r7, r7, #1
  2360              	.LVL239:
  593:Src/draw.c    ****   {
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 58
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 58
 
 
  2361              		.loc 1 593 51 discriminator 2 view .LVU608
@@ -3478,7 +3478,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2402              		.cfi_endproc
  2403              	.LFE84:
  2405              		.section	.text.drawScrollingString,"ax",%progbits
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 59
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 59
 
 
  2406              		.align	1
@@ -3538,7 +3538,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2455 0018 0023     		movs	r3, #0
  2456 001a 0893     		str	r3, [sp, #32]
  2457              		.loc 1 620 3 view .LVU630
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 60
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 60
 
 
  2458 001c 8AE0     		b	.L221
@@ -3598,7 +3598,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2485              		.loc 1 635 80 discriminator 2 view .LVU634
  2486 004e 013A     		subs	r2, r2, #1
  2487              	.LVL251:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 61
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 61
 
 
  635:Src/draw.c    ****           {
@@ -3658,7 +3658,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2528              		.loc 1 630 55 is_stmt 0 discriminator 2 view .LVU649
  2529 008a 0135     		adds	r5, r5, #1
  2530              	.LVL253:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 62
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 62
 
 
  630:Src/draw.c    ****         {
@@ -3718,7 +3718,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2571              		.loc 1 635 23 view .LVU663
  2572 00ba 5BB2     		sxtb	r3, r3
  2573              	.LVL259:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 63
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 63
 
 
  635:Src/draw.c    ****           {
@@ -3778,7 +3778,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2616 00ec 5CB2     		sxtb	r4, r3
  2617              	.LVL264:
  628:Src/draw.c    **** 
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 64
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 64
 
 
  2618              		.loc 1 628 9 is_stmt 1 view .LVU676
@@ -3838,7 +3838,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  622:Src/draw.c    ****     {
  2653              		.loc 1 622 5 discriminator 1 view .LVU688
  2654 0114 BAF1020F 		cmp	r10, #2
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 65
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 65
 
 
  2655 0118 06D8     		bhi	.L237
@@ -3898,7 +3898,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  622:Src/draw.c    ****     {
  2697              		.loc 1 622 18 view .LVU701
  2698 0140 4FF00008 		mov	r8, #0
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 66
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 66
 
 
  2699 0144 4B46     		mov	r3, r9
@@ -3958,7 +3958,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2753 0002 00       		.byte	0
  2754 0003 32       		.byte	50
  2755 0004 19       		.byte	25
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 67
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 67
 
 
  2756 0005 00       		.byte	0
@@ -4018,7 +4018,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2816 0004 B4       		.byte	-76
  2817 0005 00       		.byte	0
  2818 0006 BE       		.byte	-66
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 68
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 68
 
 
  2819 0007 F6       		.byte	-10
@@ -4078,7 +4078,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2873 003d 52       		.byte	82
  2874 003e E5       		.byte	-27
  2875 003f 08       		.byte	8
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 69
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 69
 
 
  2876 0040 56       		.byte	86
@@ -4138,7 +4138,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2930 0076 69       		.byte	105
  2931 0077 4C       		.byte	76
  2932 0078 91       		.byte	-111
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 70
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 70
 
 
  2933 0079 24       		.byte	36
@@ -4198,7 +4198,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  2987 00af F6       		.byte	-10
  2988 00b0 15       		.byte	21
  2989 00b1 B4       		.byte	-76
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 71
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 71
 
 
  2990 00b2 B5       		.byte	-75
@@ -4230,83 +4230,83 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 1
  3016              		.file 12 "Src/ws2812.h"
  3017              		.file 13 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/string.h"
  3018              		.file 14 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_utils.h"
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 72
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 72
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 draw.c
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:16     .text.fillFramebuffer:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:24     .text.fillFramebuffer:0000000000000000 fillFramebuffer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:205    .text.fillFramebuffer:00000000000000c8 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:16     .text.fillFramebuffer:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:24     .text.fillFramebuffer:0000000000000000 fillFramebuffer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:205    .text.fillFramebuffer:00000000000000c8 $d
                             *COM*:00000000000000fe textLayer
                             *COM*:0000000000000003 textColor
                             *COM*:00000000000017bb backLayer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:212    .text.clearBack:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:219    .text.clearBack:0000000000000000 clearBack
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:292    .text.clearBack:0000000000000034 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:298    .text.clearText:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:305    .text.clearText:0000000000000000 clearText
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:344    .text.clearText:0000000000000014 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:349    .text.clearFramebuffer:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:356    .text.clearFramebuffer:0000000000000000 clearFramebuffer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:467    .text.clearFramebuffer:0000000000000064 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:472    .text.move:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:479    .text.move:0000000000000000 move
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:737    .text.move:00000000000000ec $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:748    .text.drawCircleNote:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:755    .text.drawCircleNote:0000000000000000 drawCircleNote
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:989    .text.drawCircleNote:00000000000000f0 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:212    .text.clearBack:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:219    .text.clearBack:0000000000000000 clearBack
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:292    .text.clearBack:0000000000000034 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:298    .text.clearText:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:305    .text.clearText:0000000000000000 clearText
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:344    .text.clearText:0000000000000014 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:349    .text.clearFramebuffer:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:356    .text.clearFramebuffer:0000000000000000 clearFramebuffer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:467    .text.clearFramebuffer:0000000000000064 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:472    .text.move:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:479    .text.move:0000000000000000 move
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:737    .text.move:00000000000000ec $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:748    .text.drawCircleNote:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:755    .text.drawCircleNote:0000000000000000 drawCircleNote
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:989    .text.drawCircleNote:00000000000000f0 $d
                             *COM*:000000000000003c noteBuffer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:997    .text.drawCircleNoteGrad:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1004   .text.drawCircleNoteGrad:0000000000000000 drawCircleNoteGrad
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1285   .text.drawCircleNoteGrad:0000000000000124 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1294   .text.drawLine:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1301   .text.drawLine:0000000000000000 drawLine
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1387   .text.drawLine:0000000000000044 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1392   .text.drawPixel:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1399   .text.drawPixel:0000000000000000 drawPixel
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1483   .text.drawPixel:0000000000000044 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1488   .text.drawColor:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1495   .text.drawColor:0000000000000000 drawColor
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1565   .text.drawColor:0000000000000034 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1570   .text.getFontLine:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1577   .text.getFontLine:0000000000000000 getFontLine
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1686   .text.getFontLine:0000000000000060 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1691   .text.drawLetter:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1698   .text.drawLetter:0000000000000000 drawLetter
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1836   .text.drawLetter:0000000000000098 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1841   .text.drawString:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1848   .text.drawString:0000000000000000 drawString
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1964   .text.checkSequence:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:1971   .text.checkSequence:0000000000000000 checkSequence
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2105   .text.checkSequence:0000000000000078 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:997    .text.drawCircleNoteGrad:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1004   .text.drawCircleNoteGrad:0000000000000000 drawCircleNoteGrad
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1285   .text.drawCircleNoteGrad:0000000000000124 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1294   .text.drawLine:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1301   .text.drawLine:0000000000000000 drawLine
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1387   .text.drawLine:0000000000000044 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1392   .text.drawPixel:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1399   .text.drawPixel:0000000000000000 drawPixel
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1483   .text.drawPixel:0000000000000044 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1488   .text.drawColor:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1495   .text.drawColor:0000000000000000 drawColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1565   .text.drawColor:0000000000000034 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1570   .text.getFontLine:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1577   .text.getFontLine:0000000000000000 getFontLine
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1686   .text.getFontLine:0000000000000060 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1691   .text.drawLetter:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1698   .text.drawLetter:0000000000000000 drawLetter
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1836   .text.drawLetter:0000000000000098 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1841   .text.drawString:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1848   .text.drawString:0000000000000000 drawString
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1964   .text.checkSequence:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:1971   .text.checkSequence:0000000000000000 checkSequence
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2105   .text.checkSequence:0000000000000078 $d
                             *COM*:0000000000000072 noteSequence
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2112   .text.drawNote:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2119   .text.drawNote:0000000000000000 drawNote
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2139   .text.drawCenter:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2146   .text.drawCenter:0000000000000000 drawCenter
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2223   .text.drawStringArray:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2230   .text.drawStringArray:0000000000000000 drawStringArray
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2401   .text.drawStringArray:0000000000000090 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2406   .text.drawScrollingString:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2413   .text.drawScrollingString:0000000000000000 drawScrollingString
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s 			page 73
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2112   .text.drawNote:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2119   .text.drawNote:0000000000000000 drawNote
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2139   .text.drawCenter:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2146   .text.drawCenter:0000000000000000 drawCenter
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2223   .text.drawStringArray:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2230   .text.drawStringArray:0000000000000000 drawStringArray
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2401   .text.drawStringArray:0000000000000090 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2406   .text.drawScrollingString:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2413   .text.drawScrollingString:0000000000000000 drawScrollingString
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s 			page 73
 
 
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2722   .text.drawScrollingString:0000000000000154 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2811   .rodata.font4x6:0000000000000000 font4x6
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2750   .data.arrColor:0000000000000000 arrColor
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2743   .bss.arr:0000000000000000 arr
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2802   .data.letterColor:0000000000000000 letterColor
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2794   .data.currColor:0000000000000000 currColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2722   .text.drawScrollingString:0000000000000154 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2811   .rodata.font4x6:0000000000000000 font4x6
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2750   .data.arrColor:0000000000000000 arrColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2743   .bss.arr:0000000000000000 arr
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2802   .data.letterColor:0000000000000000 letterColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2794   .data.currColor:0000000000000000 currColor
                             *COM*:00000000000021c0 WS2812_IO_framedata
                             *COM*:0000000000000003 note
                             *COM*:0000000000000003 backColor
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2740   .bss.arr:0000000000000000 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2746   .data.arrColor:0000000000000000 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2791   .data.currColor:0000000000000000 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2799   .data.letterColor:0000000000000000 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccojdbgc.s:2807   .rodata.font4x6:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2740   .bss.arr:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2746   .data.arrColor:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2791   .data.currColor:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2799   .data.letterColor:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccEYH7bi.s:2807   .rodata.font4x6:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 setColorFB

@@ -13,22 +13,23 @@ export default function canvasShapes(canvas, context) {
 	let scopeCanvas = this;
 
 	this.draw = function () {
-		console.log("draw canvas", this.canvas.height, this.canvas.width)
+		// console.log("draw canvas", this.canvas.height, this.canvas.width)
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.drawGrid();
 		let patterns = store.state.patterns;
+		let optionsShape = store.state.optionsShape;
 		console.log(patterns.shape, patterns.selected)
 		switch (patterns.shape) {
 			case "circle":
-				if (patterns.selected == patterns.optionsShape[patterns.shape][0]) {
+				if (patterns.selected == optionsShape[patterns.shape][0].value) {
 					this.drawCircleNote();
 				}
-				else if (patterns.selected == patterns.optionsShape[patterns.shape][1]) {
+				else if (patterns.selected == optionsShape[patterns.shape][1].value) {
 					this.drawCircleNoteGrad();
 				}
 				break;
 			case "square":
-				if (patterns.selected == patterns.optionsShape[patterns.shape][0]) {
+				if (patterns.selected == optionsShape[patterns.shape][0].value) {
 					this.drawSquareNote();
 				}
 				break;
@@ -136,8 +137,8 @@ export default function canvasShapes(canvas, context) {
 		for (let j = 0; j < 3; j++) {
 			diff[j] = (color[orientation][j] - color[invO][j]) / div;
 		}
-		console.log(diff)
-		console.log(color[orientation], color[invO])
+		// console.log(diff)
+		// console.log(color[orientation], color[invO])
 		for (let y = -z; y <= z; y++) {
 			for (let x = -z; x <= z; x++) {
 				for (let i = 0; i < div; i++) {
@@ -215,7 +216,19 @@ export default function canvasShapes(canvas, context) {
 	// }
 
 	this.drawPixel = function (x, y, color) {
+		let pixel = store.state.patterns.pixel;
 		this.context.fillStyle = color;
-		this.context.fillRect(x * this.divWidth, y * this.divHeight, this.divWidth, this.divHeight);
+		// console.log(pixel)
+		switch (pixel) {
+			case "circle":
+				this.context.beginPath();
+				this.context.arc(x * this.divWidth + this.divWidth / 2, y * this.divHeight + this.divHeight / 2, this.divWidth / 2, 0, 2 * Math.PI, false);
+				this.context.fill();
+				break;
+			case "square":
+				this.context.fillRect(x * this.divWidth, y * this.divHeight, this.divWidth, this.divHeight);
+				break;
+		}
+
 	}
 }
