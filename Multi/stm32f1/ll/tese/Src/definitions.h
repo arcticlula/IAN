@@ -1,15 +1,15 @@
 #ifndef __DEFINITIONS_H
 #define __DEFINITIONS_H
 
-#define USART_MIDI 0
+#define USART_MIDI 1
 #define COLOR_1BIT 1
 
 #define SMALL_BOARD 1
 #define MEDIUM_BOARD 2
 #define BIG_BOARD 3
 
-// #define BOARD MEDIUM_BOARD
-#define BOARD BIG_BOARD
+#define BOARD MEDIUM_BOARD
+// #define BOARD BIG_BOARD
 
 #define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
 #define BIT_SET(a, b) ((a) |= (1ULL << (b)))
@@ -32,7 +32,7 @@
 #define NLINESCH 2
 #define MIRROR_X 1
 #define MIRROR_Y 0
-#define REVERSE_ORIENTATION 1
+#define REVERSE_ORIENTATION 0
 #elif BOARD == BIG_BOARD
 #define NCHANNELS 12
 #define NCOLS 45

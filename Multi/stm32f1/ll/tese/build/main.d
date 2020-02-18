@@ -15,7 +15,7 @@ build/main.o: Src/main.c Inc/main.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_tim.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usart.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_gpio.h Src/definitions.h \
- Src/ws2812.h Src/notes.h Src/draw.h
+ Src/ws2812.h Src/notes.h Src/draw.h Src/minihdlc-master/minihdlc.h
 
 Inc/main.h:
 
@@ -62,3 +62,5 @@ Src/ws2812.h:
 Src/notes.h:
 
 Src/draw.h:
+
+Src/minihdlc-master/minihdlc.h:

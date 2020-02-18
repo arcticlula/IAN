@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s 			page 1
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s 			page 1
   12:Src/ws2812.c  ****   for (i = 0; i < 8; i++)
   45              		.loc 1 12 3 view .LVU3
   46              	.LVL1:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s 			page 2
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s 			page 2
 
 
   47              		.loc 1 12 10 is_stmt 0 view .LVU4
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s 			page 1
   93              		.loc 1 20 5 is_stmt 1 discriminator 3 view .LVU19
   94              		.loc 1 20 61 is_stmt 0 discriminator 3 view .LVU20
   95 0064 02FA07F6 		lsl	r6, r2, r7
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s 			page 3
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s 			page 3
 
 
   96              		.loc 1 20 75 discriminator 3 view .LVU21
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s 			page 1
  146              	.LFB1:
   24:Src/ws2812.c  **** 
   25:Src/ws2812.c  **** void WS2812_framedata_setRow(uint8_t row, uint16_t columns, uint8_t red, uint8_t green, uint8_t blu
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s 			page 4
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s 			page 4
 
 
   26:Src/ws2812.c  **** {
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s 			page 1
  194              	.LVL11:
   28:Src/ws2812.c  ****   for (i = 0; i < columns; i++)
  195              		.loc 1 28 29 discriminator 3 view .LVU44
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s 			page 5
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s 			page 5
 
 
  196 002a F3E7     		b	.L8
@@ -257,11 +257,11 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s 			page 1
  208              		.global	WS2812_IO_Low
  209              		.global	WS2812_IO_High
  210              		.global	WS2812_TC
- 211              		.comm	WS2812_IO_framedata,8640,4
+ 211              		.comm	WS2812_IO_framedata,1536,4
  212              		.comm	textColor,3,4
  213              		.comm	backColor,3,4
- 214              		.comm	textLayer,254,4
- 215              		.comm	backLayer,6075,4
+ 214              		.comm	textLayer,32,4
+ 215              		.comm	backLayer,768,4
  216              		.section	.bss.WS2812_IO_Low,"aw",%nobits
  217              		.align	1
  220              	WS2812_IO_Low:
@@ -279,25 +279,25 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s 			page 1
  236              		.file 3 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.
  237              		.file 4 "Src/definitions.h"
  238              		.file 5 "Src/ws2812.h"
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s 			page 6
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ws2812.c
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s:16     .text.WS2812_framedata_setPixel:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s:24     .text.WS2812_framedata_setPixel:0000000000000000 WS2812_framedata_setPixel
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s:132    .text.WS2812_framedata_setPixel:000000000000009c $d
-                            *COM*:00000000000021c0 WS2812_IO_framedata
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s:137    .text.WS2812_framedata_setRow:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s:144    .text.WS2812_framedata_setRow:0000000000000000 WS2812_framedata_setRow
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s:220    .bss.WS2812_IO_Low:0000000000000000 WS2812_IO_Low
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s:226    .data.WS2812_IO_High:0000000000000000 WS2812_IO_High
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s:231    .data.WS2812_TC:0000000000000000 WS2812_TC
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s:16     .text.WS2812_framedata_setPixel:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s:24     .text.WS2812_framedata_setPixel:0000000000000000 WS2812_framedata_setPixel
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s:132    .text.WS2812_framedata_setPixel:000000000000009c $d
+                            *COM*:0000000000000600 WS2812_IO_framedata
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s:137    .text.WS2812_framedata_setRow:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s:144    .text.WS2812_framedata_setRow:0000000000000000 WS2812_framedata_setRow
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s:220    .bss.WS2812_IO_Low:0000000000000000 WS2812_IO_Low
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s:226    .data.WS2812_IO_High:0000000000000000 WS2812_IO_High
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s:231    .data.WS2812_TC:0000000000000000 WS2812_TC
                             *COM*:0000000000000003 textColor
                             *COM*:0000000000000003 backColor
-                            *COM*:00000000000000fe textLayer
-                            *COM*:00000000000017bb backLayer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s:217    .bss.WS2812_IO_Low:0000000000000000 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccMfCTjz.s:223    .data.WS2812_IO_High:0000000000000000 $d
+                            *COM*:0000000000000020 textLayer
+                            *COM*:0000000000000300 backLayer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s:217    .bss.WS2812_IO_Low:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cc2bituC.s:223    .data.WS2812_IO_High:0000000000000000 $d
 
 NO UNDEFINED SYMBOLS

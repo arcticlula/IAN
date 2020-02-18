@@ -15,6 +15,15 @@
                 <b-icon icon="circleHalf"></b-icon>
               </b-button>
               <b-button
+                v-bind:class="{ active: patterns.shape == 'cross'}"
+                @click="setShape('cross')"
+                size="sm"
+                class="mr-1"
+                variant="info"
+              >
+                <b-icon icon="grid-fill"></b-icon>
+              </b-button>
+              <b-button
                 v-bind:class="{ active: patterns.shape == 'square'}"
                 @click="setShape('square')"
                 size="sm"
@@ -22,6 +31,15 @@
                 variant="info"
               >
                 <b-icon icon="squareHalf"></b-icon>
+              </b-button>
+              <b-button
+                v-bind:class="{ active: patterns.shape == 'lines'}"
+                @click="setShape('lines')"
+                size="sm"
+                class="mr-1"
+                variant="info"
+              >
+                <b-icon icon="pause"></b-icon>
               </b-button>
               <b-button
                 v-bind:class="{ active: patterns.shape == 'triangle'}"
@@ -64,7 +82,7 @@
           </b-row>
           <b-row class="mb-2">
             <b-col cols="12">
-              <b-form-select size="sm"></b-form-select>
+              <!-- <b-form-select size="sm"></b-form-select> -->
             </b-col>
           </b-row>
           <b-row class="mb-2" style="text-align: left;">
@@ -168,22 +186,22 @@ export default {
   },
   methods: {
     // ...mapMutations(["setDevicesSaved", "setDevicesUnpaired", "setState"]),
-    sendCommBluetooth(message) {
-      let msg = this.enc.encode(message);
-      console.log(msg);
-      this.hdlc.minihdlc_send_frame(msg, msg.length);
-    },
+    // sendCommBluetooth(message) {
+    //   let msg = this.enc.encode(message);
+    //   console.log(msg);
+    //   this.hdlc.minihdlc_send_frame(msg, msg.length);
+    // },
     setPixel(px) {
       this.patterns.pixel = px;
       this.canvasObj.draw();
     },
     blueSend(data) {
-      // let hex = Number(data).toString(16);
-      // if (hex.length < 2) {
-      //   hex = "0" + hex;
-      // }
+      let hex = Number(data).toString(16);
+      if (hex.length < 2) {
+        hex = "0" + hex;
+      }
 
-      // console.log(data, hex);
+      console.log(data, hex);
       let element = new Uint8Array([data]);
       bluetoothSerial.write(element, this.success, this.failure);
     },
@@ -194,24 +212,23 @@ export default {
     },
     sendToDevice() {
       let msg = [];
-      console.log();
+      msg.push(this.patterns.selected);
+      msg.push(this.patterns.div);
+      msg.push(this.patterns.orientation);
       this.hdlc.minihdlc_send_frame(msg, msg.length);
     },
     setShape(shape) {
       this.patterns.shape = shape;
       this.currOptionShape = this.optionsShape[shape];
-      this.patterns.selected = this.currOptionShape[0];
-      console.log(this.patterns, this.currOptionShape);
+      this.patterns.selected = this.currOptionShape[0].value;
       this.currOptionDiv = this.optionsDiv[shape][this.patterns.selected];
       this.canvasObj.draw();
     },
     setShapeDraw() {
-      console.log(this.optionsDiv[this.patterns.shape], this.patterns.selected);
       this.currOptionDiv = this.optionsDiv[this.patterns.shape][
         this.patterns.selected
       ];
       this.patterns.div = this.currOptionDiv[0];
-      // console.log(this.currOptionDiv);
       this.canvasObj.draw();
     },
     setOrientation(orientation) {
@@ -230,6 +247,7 @@ export default {
     // this.enc = new TextEncoder(); // always utf-8
     this.currOptionShape = this.optionsShape[this.patterns.shape];
     this.patterns.selected = this.currOptionShape[0].value;
+    console.log(this.optionsDiv[this.patterns.shape], this.patterns.selected);
     this.currOptionDiv = this.optionsDiv[this.patterns.shape][
       this.patterns.selected
     ];

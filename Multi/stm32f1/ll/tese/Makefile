@@ -37,6 +37,7 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Src/main.c \
+Src/minihdlc-master/minihdlc.c \
 Src/definitions.c \
 Src/draw.c \
 Src/ws2812.c \

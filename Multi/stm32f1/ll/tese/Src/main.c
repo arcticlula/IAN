@@ -28,11 +28,13 @@
 #include "ws2812.h"
 #include "notes.h"
 #include "draw.h"
+#include "minihdlc-master/minihdlc.h"
 /* this define sets the number of TIM2 overflows
  * to append to the data frame for the LEDs to 
  * load the received data into their registers */
 
 volatile uint8_t TIM2_overflows = 0;
+drawshape_type drawshape_function;
 
 /* WS2812 framebuffer
  * buffersize = (#LEDs / 16) * 24 */
@@ -82,6 +84,73 @@ void WS2812_sendbuf(uint32_t buffersize)
   LL_TIM_EnableCounter(TIM2);
 }
 
+void sendDataBluetooth(uint8_t data)
+{
+  while (!LL_USART_IsActiveFlag_TXE(USART1))
+  {
+  }
+  LL_USART_TransmitData8(USART1, data);
+}
+
+#define MIDI_OFF 0x10
+#define MODE_BACK 0x20
+#define MODE_BACK_CIRCLE_1 0x21
+#define MODE_BACK_CIRCLE_2 0x22
+#define MODE_BACK_CROSS_1 0x25
+#define MODE_BACK_CROSS_2 0x26
+#define MODE_BACK_SQUARE_1 0x30
+#define MODE_BACK_SQUARE_2 0x31
+
+#define MODE_BACK_TRIANGLE_1 0x35
+#define MODE_BACK_TRIANGLE_2 0x36
+#define MODE_TEXT 0x06
+
+static inline void drawShape(uint8_t data)
+{
+  if (drawshape_function)
+  {
+    (*drawshape_function)(data);
+  }
+}
+
+void frame_handler_function(const uint8_t *frame_buffer, uint16_t frame_length)
+{
+  uint8_t data;
+  data = *frame_buffer++;
+  switch (data)
+  {
+  case MODE_BACK_CIRCLE_1:
+    drawshape_function = drawCircleNote;
+    break;
+  case MODE_BACK_CIRCLE_2:
+    drawshape_function = drawCircleNoteGrad;
+    break;
+  default:
+    break;
+  }
+  // while (frame_length)
+  // {
+  //   sendDataBluetooth(data);
+  //   frame_length--;
+  //   data = *frame_buffer++;
+  // }
+  // minihdlc_send_frame(frame_buffer, frame_length);
+}
+
+void startReception(void)
+{
+  minihdlc_init(sendDataBluetooth, frame_handler_function);
+  /* Clear Overrun flag, in case characters have already been sent to USART */
+  LL_USART_ClearFlag_ORE(USART1);
+
+  /* Enable RXNE and Error interrupts */
+  LL_USART_EnableIT_RXNE(USART1);
+  LL_USART_EnableIT_ERROR(USART1);
+  uint8_t buffer[] = "OLA amigo!";
+
+  minihdlc_send_frame(buffer, ARRAY_LEN(buffer));
+}
+
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -126,11 +195,13 @@ int main(void)
   // drawLetter('C', 0, 1);
   // drawLetter('5', 4, 1);
 
+  startReception();
+
   clearNoteBuffer();
   clearBack();
   clearText();
   clearFramebuffer();
-  // uint8_t blue[3] = {1, 1, 3};
+  uint8_t blue[3] = {1, 1, 3};
   // uint8_t red[3] = {5, 0, 1};
 
   // setNote(24);
@@ -161,35 +232,35 @@ int main(void)
     //   // wait until the last frame was transmitted
     //   while (!WS2812_TC)
     //     ;
-    //   // move(1, 1);
-    //   // fillFramebuffer();
-    //   // WS2812_sendbuf(24 * NLEDSCH);
-    //   // LL_mDelay(500);
-    //   // }
-    //   // drawString("Ordem dos Engenheiros Tecnicos", 1, 1, 1, 0);
-    //   // rotate()
-    //   // drawColor(arrCol[i]);
-    //   // fillFramebuffer();
-    //   // WS2812_sendbuf(24 * NLEDSCH);
-    // setNote(28);
-    /* drawCircleNote(1);
-    fillFramebuffer();
-    WS2812_sendbuf(24 * NLEDSCH);
-    LL_mDelay(2000);
-    drawCircleNoteGrad(1);
-    fillFramebuffer();
-    WS2812_sendbuf(24 * NLEDSCH);
-    LL_mDelay(2000); */
-    // setNote(17);
-    // drawCircleNote(0);
-    // fillFramebuffer();
-    // WS2812_sendbuf(24 * NLEDSCH);
-    // LL_mDelay(2000);
-    // setNote(83);
-    // drawCircleNote(0);
-    // fillFramebuffer();
-    // WS2812_sendbuf(24 * NLEDSCH);
-    // LL_mDelay(2000);
+    //   //   // move(1, 1);
+    //   //   // fillFramebuffer();
+    //   //   // WS2812_sendbuf(24 * NLEDSCH);
+    //   //   // LL_mDelay(500);
+    //   //   // }
+    //   //   // drawString("Ordem dos Engenheiros Tecnicos", 1, 1, 1, 0);
+    //   //   // rotate()
+    //   //   // drawColor(arrCol[i]);
+    //   //   // fillFramebuffer();
+    //   //   // WS2812_sendbuf(24 * NLEDSCH);
+    //   setNote(28);
+    //   drawShape(1);
+    //   fillFramebuffer();
+    //   WS2812_sendbuf(24 * NLEDSCH);
+    //   LL_mDelay(2000);
+    //   drawShape(1);
+    //   fillFramebuffer();
+    //   WS2812_sendbuf(24 * NLEDSCH);
+    //   LL_mDelay(2000);
+    //   setNote(17);
+    //   drawShape(1);
+    //   fillFramebuffer();
+    //   WS2812_sendbuf(24 * NLEDSCH);
+    //   LL_mDelay(2000);
+    //   setNote(83);
+    //   drawShape(1);
+    //   fillFramebuffer();
+    //   WS2812_sendbuf(24 * NLEDSCH);
+    //   LL_mDelay(2000);
     // }
   }
   /* USER CODE END 3 */
@@ -494,22 +565,16 @@ void TIM2_IRQHandler(void)
   }
 }
 
-void USART3_IRQHandler(void)
+void USART1_IRQHandler(void)
 {
-  __IO uint32_t received_char;
-
-  /* Read Received character. RXNE flag is cleared by reading of DR register */
-  received_char = LL_USART_ReceiveData8(USART3);
-
-  /* Check if received value is corresponding to specific one : S or s */
-  if ((received_char == 'S') || (received_char == 's'))
+  uint8_t RxBuffer;
+  if (LL_USART_IsActiveFlag_RXNE(USART1) && LL_USART_IsEnabledIT_RXNE(USART1))
   {
-    /* Turn LED2 On : Expected character has been received */
     LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
+    RxBuffer = LL_USART_ReceiveData8(USART1);
+    minihdlc_char_receiver(RxBuffer);
+    sendDataBluetooth(RxBuffer);
   }
-
-  /* Echo received character on TX */
-  LL_USART_TransmitData8(USART3, received_char);
 }
 
 #if USART_MIDI
@@ -577,7 +642,7 @@ void USART3_IRQHandler(void)
         // clearText();
         // drawNote();
         // drawStringArray(1, 1, 1, 1);
-        drawCircleNote(1);
+        drawShape(1);
         fillFramebuffer();
         WS2812_sendbuf(24 * NLEDSCH);
         break;
