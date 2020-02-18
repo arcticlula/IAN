@@ -101,20 +101,20 @@ void sendDataBluetooth(uint8_t data)
 #define MODE_BACK_CROSS_GRAD 0x26
 #define MODE_BACK_SQUARE 0x30
 #define MODE_BACK_SQUARE_GRAD 0x31
-#define MODE_BACK_LINES_H 0x35;
-#define MODE_BACK_LINES_H_GRAD 0x36;
-#define MODE_BACK_LINES_V 0x37;
-#define MODE_BACK_LINES_V_GRAD 0x38;
+#define MODE_BACK_LINES_H 0x35
+#define MODE_BACK_LINES_H_GRAD 0x36
+#define MODE_BACK_LINES_V 0x37
+#define MODE_BACK_LINES_V_GRAD 0x38
 
 // #define MODE_BACK_TRIANGLE 0x35
 // #define MODE_BACK_TRIANGLE_GRAD 0x36
 #define MODE_TEXT 0x06
 
-static inline void drawShape()
+static inline void drawShape(uint8_t data)
 {
   if (drawshape_function)
   {
-    (*drawshape_function)();
+    (*drawshape_function)(data);
   }
 }
 
@@ -142,37 +142,37 @@ void frame_handler_function(const uint8_t *frame_buffer, uint16_t frame_length)
     drawshape_function = drawCrossNote;
     break;
   case MODE_BACK_CROSS_GRAD:
-    drawshape_function = drawCircleNoteGrad;
+    drawshape_function = drawCrossNoteGrad;
     break;
   case MODE_BACK_SQUARE:
-    drawshape_function = drawCrossNote;
+    drawshape_function = drawSquareNote;
     break;
   case MODE_BACK_SQUARE_GRAD:
-    drawshape_function = drawCircleNoteGrad;
+    drawshape_function = drawSquareNoteGrad;
     break;
-  case MODE_BACK_LINES_H:
-    drawshape_function = drawLineNote;
-    callback_function = horizontal;
-    break;
-  case MODE_BACK_LINES_H_GRAD:
-    drawshape_function = drawLineNoteGrad;
-    callback_function = horizontal;
-    break;
-  case MODE_BACK_LINES_V:
-    drawshape_function = drawLineNote;
-    callback_function = vertical;
-    break;
-  case MODE_BACK_LINES_V_GRAD:
-    drawshape_function = drawLineNoteGrad;
-    callback_function = vertical;
-    break;
+  // case MODE_BACK_LINES_H:
+  //   drawshape_function = drawLineNote;
+  //   callback_function = horizontal;
+  //   break;
+  // case MODE_BACK_LINES_H_GRAD:
+  //   drawshape_function = drawLineNoteGrad;
+  //   callback_function = horizontal;
+  //   break;
+  // case MODE_BACK_LINES_V:
+  //   drawshape_function = drawLineNote;
+  //   callback_function = vertical;
+  //   break;
+  // case MODE_BACK_LINES_V_GRAD:
+  //   drawshape_function = drawLineNoteGrad;
+  //   callback_function = vertical;
+  //   break;
   default:
     break;
   }
   data = *frame_buffer++;
   MAX_DIV = data;
   data = *frame_buffer++;
-  orientation = data
+  orientation = data;
   // while (frame_length)
   // {
   //   sendDataBluetooth(data);
@@ -286,22 +286,22 @@ int main(void)
     //   //   // fillFramebuffer();
     //   //   // WS2812_sendbuf(24 * NLEDSCH);
     setNote(28);
-    drawShape();
+    drawShape(0);
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
     LL_mDelay(2000);
     setNote(58);
-    drawShape();
+    drawShape(0);
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
     LL_mDelay(2000);
     setNote(17);
-    drawShape();
+    drawShape(0);
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
     LL_mDelay(2000);
     setNote(83);
-    drawShape();
+    drawShape(0);
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
     LL_mDelay(2000);

@@ -9,23 +9,23 @@ void clearText(void);
 // void move(int8_t newX, int8_t newY);
 // void rotate(void);
 
+// typedef uint8_t (*callback_type)(uint8_t x, uint8_t y, float perc);
+
 extern uint8_t orientation;
 extern uint8_t MAX_DIV;
-extern callback_type callback_function;
-
-typedef uint8_t (*callback_type)(uint8_t x, uint8_t y, float perc);
+// extern callback_type callback_function;
 
 void drawColor(uint8_t *color);
 void drawPixel(uint8_t px, uint8_t py, uint8_t *color);
 void drawLine(uint8_t px, uint8_t py, uint8_t *color);
-void drawCircleNote();
-void drawCircleNoteGrad();
-void drawCrossNote();
-void drawCrossNoteGrad();
-void drawSquareNote();
-void drawSquareNoteGrad();
-void drawLineNote();
-void drawLineNoteGrad();
+void drawCircleNote(uint8_t dumdum);
+void drawCircleNoteGrad(uint8_t dumdum);
+void drawCrossNote(uint8_t dumdum);
+void drawCrossNoteGrad(uint8_t dumdum);
+void drawSquareNote(uint8_t dumdum);
+void drawSquareNoteGrad(uint8_t dumdum);
+// void drawLineNote(uint8_t dumdum);
+// void drawLineNoteGrad(uint8_t dumdum);
 
 uint8_t horizontal(uint8_t x, uint8_t y, float perc);
 uint8_t vertical(uint8_t x, uint8_t y, float perc);

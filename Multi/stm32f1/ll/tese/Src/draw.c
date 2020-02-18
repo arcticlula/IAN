@@ -127,13 +127,13 @@ const uint8_t font4x6[96][2] = {
 uint8_t orientation = 0;
 uint8_t MAX_DIV = 3;
 
-static inline uint8_t callback(uint8_t x, uint8_t y, float perc)
-{
-  if (callback_function)
-  {
-    (*callback_function)(x, y, perc);
-  }
-}
+// static inline uint8_t callback(uint8_t x, uint8_t y, float perc)
+// {
+//   if (callback_function)
+//   {
+//     (*callback_function)(x, y, perc);
+//   }
+// }
 
 void fillFramebuffer(void)
 {
@@ -308,32 +308,68 @@ void clearFramebuffer(void)
 //   }
 // }
 
-void drawCircleNote()
+// void drawCircleNote(uint8_t dumdum)
+// {
+//   float z = ((float)NCOLS / 2);
+//   uint16_t coords = 0;
+//   uint8_t invI;
+//   uint8_t MAX_DIV = 3;
+//   for (int y = -(NCOLS / 2); y <= (NCOLS / 2); y++)
+//   {
+//     for (int x = -(NCOLS / 2); x <= (NCOLS / 2); x++)
+//     {
+//       coords = (x + (NCOLS / 2)) + ((y + (NCOLS / 2)) * NCOLS);
+//       invI = orientation ? MAX_DIV : 0;
+//       for (int i = MAX_DIV - 1; i > 0; i--)
+//       {
+//         float perc = 1 - ((float)i / MAX_DIV);
+//         if ((x * x) + (y * y) <= (z * z) * (perc))
+//         {
+//           invI = orientation ? MAX_DIV - 1 - i : i + 1;
+//           break;
+//         }
+//       }
+//       setColor(backLayer[coords], noteBuffer[invI].color);
+//     }
+//   }
+// }
+
+void drawCircleNote(uint8_t dumdum)
 {
   float z = ((float)NCOLS / 2);
   uint16_t coords = 0;
+  uint8_t boarder;
   uint8_t invI;
   for (int y = -(NCOLS / 2); y <= (NCOLS / 2); y++)
   {
     for (int x = -(NCOLS / 2); x <= (NCOLS / 2); x++)
     {
       coords = (x + (NCOLS / 2)) + ((y + (NCOLS / 2)) * NCOLS);
-      for (int i = MAX_DIV - 1; i > 0; i--)
+      for (int i = 0; i < MAX_DIV; i++)
       {
+        invI = orientation ? MAX_DIV - 1 - i : i + 1;
+        boarder = 1;
         float perc = 1 - ((float)i / MAX_DIV);
+        // printf("%0.1f\n", perc);
         if ((x * x) + (y * y) <= (z * z) * (perc))
         {
-          invI = orientation ? MAX_DIV - 1 - i : i + 1;
-          break;
+          setColor(backLayer[coords], noteBuffer[invI].color);
+          boarder = 0;
         }
-        invI = orientation ? MAX_DIV : 0;
       }
-      setColor(backLayer[coords], noteBuffer[invI].color);
+      if (boarder)
+      {
+        if ((x * x) + (y * y) >= (z * z))
+        {
+          invI = orientation ? MAX_DIV : 0;
+          setColor(backLayer[coords], noteBuffer[invI].color);
+        }
+      }
     }
   }
 }
 
-void drawCircleNoteGrad()
+void drawCircleNoteGrad(uint8_t dumdum)
 {
   float z = ((float)NCOLS / 2);
   uint16_t coords = 0;
@@ -366,7 +402,7 @@ void drawCircleNoteGrad()
   }
 }
 
-void drawCrossNote()
+void drawCrossNote(uint8_t dumdum)
 {
   float z = ((float)NCOLS / 2);
   uint16_t coords = 0;
@@ -376,6 +412,7 @@ void drawCrossNote()
     for (int x = -(NCOLS / 2); x <= (NCOLS / 2); x++)
     {
       coords = (x + (NCOLS / 2)) + ((y + (NCOLS / 2)) * NCOLS);
+      invI = orientation ? MAX_DIV : 0;
       for (int i = 0; i < MAX_DIV; i++)
       {
         float perc = (1 - ((float)i / MAX_DIV)) * z;
@@ -384,14 +421,13 @@ void drawCrossNote()
           invI = orientation ? MAX_DIV - 1 - i : i + 1;
           break;
         }
-        invI = orientation ? MAX_DIV : 0;
       }
       setColor(backLayer[coords], noteBuffer[invI].color);
     }
   }
 }
 
-void drawCrossNoteGrad()
+void drawCrossNoteGrad(uint8_t dumdum)
 {
   float z = ((float)NCOLS / 2);
   uint16_t coords = 0;
@@ -424,7 +460,7 @@ void drawCrossNoteGrad()
   }
 }
 
-void drawSquareNote()
+void drawSquareNote(uint8_t dumdum)
 {
   float z = ((float)NCOLS / 2);
   uint16_t coords = 0;
@@ -434,6 +470,7 @@ void drawSquareNote()
     for (int x = -(NCOLS / 2); x <= (NCOLS / 2); x++)
     {
       coords = (x + (NCOLS / 2)) + ((y + (NCOLS / 2)) * NCOLS);
+      invI = orientation ? MAX_DIV : 0;
       for (int i = 0; i < MAX_DIV; i++)
       {
         float perc = (1 - ((float)i / MAX_DIV)) * z;
@@ -442,14 +479,13 @@ void drawSquareNote()
           invI = orientation ? MAX_DIV - 1 - i : i + 1;
           break;
         }
-        invI = orientation ? MAX_DIV : 0;
       }
       setColor(backLayer[coords], noteBuffer[invI].color);
     }
   }
 }
 
-void drawSquareNoteGrad()
+void drawSquareNoteGrad(uint8_t dumdum)
 {
   float z = ((float)NCOLS / 2);
   uint16_t coords = 0;
@@ -482,7 +518,7 @@ void drawSquareNoteGrad()
   }
 }
 
-void drawLineNote()
+/* void drawLineNote(uint8_t dumdum)
 {
   float z = ((float)NCOLS / 2);
   uint16_t coords = 0;
@@ -507,7 +543,7 @@ void drawLineNote()
   }
 }
 
-void drawLineNoteGrad()
+void drawLineNoteGrad(uint8_t dumdum)
 {
   float z = ((float)NCOLS / 2);
   uint16_t coords = 0;
@@ -538,7 +574,7 @@ void drawLineNoteGrad()
       }
     }
   }
-}
+} */
 
 uint8_t horizontal(uint8_t x, uint8_t y, float perc)
 {
@@ -547,7 +583,7 @@ uint8_t horizontal(uint8_t x, uint8_t y, float perc)
 
 uint8_t vertical(uint8_t x, uint8_t y, float perc)
 {
-  return ((x <= -perc || x >= perc) && (y >= -perc || y <= perc))
+  return ((x <= -perc || x >= perc) && (y >= -perc || y <= perc));
 }
 
 void drawLine(uint8_t px, uint8_t py, uint8_t *color)
