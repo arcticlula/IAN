@@ -66,7 +66,7 @@ uint8_t textLayer[NLEDS][3];
 extern uint8_t arrColor[13][3];
 
 volatile uint8_t backColor[3];
-volatile uint8_t textColor[3];
+uint8_t textColor[3];
 
 void setBackColor(uint8_t *color);
 void setTextColor(uint8_t *color);

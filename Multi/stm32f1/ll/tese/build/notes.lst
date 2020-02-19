@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
   31              		.cfi_startproc
   32              		@ args = 0, pretend = 0, frame = 0
   33              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 2
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 2
 
 
   34 0000 10B5     		push	{r4, lr}
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
   26:Src/notes.c   ****   for (uint8_t z = 0; z < 3; z++)
   84              		.loc 1 26 31 discriminator 3 view .LVU13
   85 0042 E4B2     		uxtb	r4, r4
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 3
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 3
 
 
   86              	.LVL6:
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  133 0006 7047     		bx	lr
  134              	.L10:
  135              		.align	2
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 4
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 4
 
 
  136              	.L9:
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
   76:Src/notes.c   ****     strcpy(note.symbol, "Bb");
   77:Src/notes.c   ****     break;
   78:Src/notes.c   ****   case MIDI_B0:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 5
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 5
 
 
   79:Src/notes.c   ****     strcpy(note.symbol, "B");
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  189 001a 2B44     		add	r3, r3, r5
  190 001c 1E68     		ldr	r6, [r3]	@ unaligned
  191 001e 2E51     		str	r6, [r5, r4]	@ unaligned
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 6
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 6
 
 
  192 0020 9B88     		ldrh	r3, [r3, #4]	@ unaligned
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  102:Src/notes.c   **** {
  239              		.loc 1 102 1 is_stmt 1 view -0
  240              		.cfi_startproc
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 7
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 7
 
 
  241              		@ args = 0, pretend = 0, frame = 0
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  290 003e 3E       		.byte	(.L22-.L21)/2
  291 003f 44       		.byte	(.L20-.L21)/2
  292              		.p2align 1
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 8
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 8
 
 
  293              	.L32:
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  303 0046 204B     		ldr	r3, .L34+4
  304 0048 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
  305              	.LVL19:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 9
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 9
 
 
  306              		.loc 1 151 25 view .LVU58
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  346              		.loc 1 122 5 is_stmt 1 view .LVU73
  347 0076 E6E7     		b	.L19
  348              	.L28:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 10
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 10
 
 
  124:Src/notes.c   ****     break;
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  387 009c 0B4B     		ldr	r3, .L34+8
  388 009e 4122     		movs	r2, #65
  389 00a0 1A70     		strb	r2, [r3]
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 11
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 11
 
 
  138:Src/notes.c   ****     break;
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  430 00d0 00000000 		.word	arrColor
  431              		.cfi_endproc
  432              	.LFE6:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 12
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 12
 
 
  434              		.section	.text.getNoteBuffer,"ax",%progbits
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  473              	.LVL26:
  474              	.L37:
  161:Src/notes.c   ****   case 2:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 13
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 13
 
 
  475              		.loc 1 161 5 is_stmt 1 view .LVU111
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  520              		.loc 1 171 3 view .LVU119
  172:Src/notes.c   ****   for (uint8_t z = 0; z < ARRAY_LEN(noteBuffer); z++)
  521              		.loc 1 172 3 view .LVU120
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 14
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 14
 
 
  522              	.LBB4:
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  570              		.loc 1 177 5 is_stmt 1 view .LVU135
  571              	.LVL36:
  572              	.L45:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 15
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 15
 
 
  573              		.loc 1 177 5 is_stmt 0 discriminator 1 view .LVU136
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  619              		.global	noteSequence
  620              		.comm	note,3,4
  621              		.comm	textColor,3,4
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 16
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 16
 
 
  622              		.comm	backColor,3,4
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  680 003b 34       		.byte	52
  681 003c 41       		.byte	65
  682 003d 00       		.byte	0
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 17
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 17
 
 
  683 003e 35       		.byte	53
@@ -1006,46 +1006,46 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 1
  724              		.file 7 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/reent.h"
  725              		.file 8 "Src/definitions.h"
  726              		.file 9 "Src/notes.h"
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s 			page 18
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 notes.c
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:19     .text.calculateLeds:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:27     .text.calculateLeds:0000000000000000 calculateLeds
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:99     .text.calculateLeds:0000000000000048 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:19     .text.calculateLeds:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:27     .text.calculateLeds:0000000000000000 calculateLeds
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:99     .text.calculateLeds:0000000000000048 $d
                             *COM*:0000000000000003 backColor
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:110    .text.setVelocity:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:117    .text.setVelocity:0000000000000000 setVelocity
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:137    .text.setVelocity:0000000000000008 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:142    .text.addNoteBuffer:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:149    .text.addNoteBuffer:0000000000000000 addNoteBuffer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:223    .text.addNoteBuffer:000000000000003c $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:110    .text.setVelocity:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:117    .text.setVelocity:0000000000000000 setVelocity
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:137    .text.setVelocity:0000000000000008 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:142    .text.addNoteBuffer:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:149    .text.addNoteBuffer:0000000000000000 addNoteBuffer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:223    .text.addNoteBuffer:000000000000003c $d
                             *COM*:000000000000003c noteBuffer
                             *COM*:0000000000000003 note
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:229    .text.setNote:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:236    .text.setNote:0000000000000000 setNote
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:280    .text.setNote:0000000000000034 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:292    .text.setNote:0000000000000040 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:427    .text.setNote:00000000000000c4 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:435    .text.getNoteBuffer:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:442    .text.getNoteBuffer:0000000000000000 getNoteBuffer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:501    .text.getNoteBuffer:0000000000000038 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:506    .text.clearNoteBuffer:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:513    .text.clearNoteBuffer:0000000000000000 clearNoteBuffer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:610    .text.clearNoteBuffer:0000000000000048 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:634    .bss.velocity:0000000000000000 velocity
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:715    .data.resto:0000000000000000 resto
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:639    .bss.waitForMessage:0000000000000000 waitForMessage
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:628    .bss.cntMessage:0000000000000000 cntMessage
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:645    .data.noteSequence:0000000000000000 noteSequence
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:229    .text.setNote:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:236    .text.setNote:0000000000000000 setNote
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:280    .text.setNote:0000000000000034 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:292    .text.setNote:0000000000000040 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:427    .text.setNote:00000000000000c4 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:435    .text.getNoteBuffer:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:442    .text.getNoteBuffer:0000000000000000 getNoteBuffer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:501    .text.getNoteBuffer:0000000000000038 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:506    .text.clearNoteBuffer:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:513    .text.clearNoteBuffer:0000000000000000 clearNoteBuffer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:610    .text.clearNoteBuffer:0000000000000048 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:634    .bss.velocity:0000000000000000 velocity
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:715    .data.resto:0000000000000000 resto
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:639    .bss.waitForMessage:0000000000000000 waitForMessage
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:628    .bss.cntMessage:0000000000000000 cntMessage
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:645    .data.noteSequence:0000000000000000 noteSequence
                             *COM*:0000000000000003 textColor
                             *COM*:0000000000000020 textLayer
                             *COM*:0000000000000300 backLayer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:629    .bss.cntMessage:0000000000000000 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:635    .bss.velocity:0000000000000000 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:640    .bss.waitForMessage:0000000000000000 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccaVO63K.s:642    .data.noteSequence:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:629    .bss.cntMessage:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:635    .bss.velocity:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:640    .bss.waitForMessage:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccpZE01V.s:642    .data.noteSequence:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 __aeabi_i2d

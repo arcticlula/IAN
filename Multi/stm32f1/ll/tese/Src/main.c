@@ -110,19 +110,19 @@ void sendDataBluetooth(uint8_t data)
 // #define MODE_BACK_TRIANGLE_GRAD 0x36
 #define MODE_TEXT 0x06
 
-static inline void drawShape(uint8_t data)
+static inline void drawShape(void)
 {
   if (drawshape_function)
   {
-    (*drawshape_function)(data);
+    (*drawshape_function)();
   }
 }
 
-static inline void drawText(uint8_t data)
+static inline void drawText(void)
 {
   if (drawtext_function)
   {
-    (*drawtext_function)(data);
+    (*drawtext_function)();
   }
 }
 
@@ -133,39 +133,45 @@ void frame_handler_function(const uint8_t *frame_buffer, uint16_t frame_length)
   switch (data)
   {
   case MODE_BACK_CIRCLE:
-    drawshape_function = drawCircleNote;
+    drawshape_function = drawShapeNote;
+    callback_function = circle;
     break;
   case MODE_BACK_CIRCLE_GRAD:
-    drawshape_function = drawCircleNoteGrad;
+    drawshape_function = drawShapeNoteGrad;
+    callback_function = circle;
     break;
   case MODE_BACK_CROSS:
-    drawshape_function = drawCrossNote;
+    drawshape_function = drawShapeNote;
+    callback_function = cross;
     break;
   case MODE_BACK_CROSS_GRAD:
-    drawshape_function = drawCrossNoteGrad;
+    drawshape_function = drawShapeNoteGrad;
+    callback_function = cross;
     break;
   case MODE_BACK_SQUARE:
-    drawshape_function = drawSquareNote;
+    drawshape_function = drawShapeNote;
+    callback_function = square;
     break;
   case MODE_BACK_SQUARE_GRAD:
-    drawshape_function = drawSquareNoteGrad;
+    drawshape_function = drawShapeNoteGrad;
+    callback_function = square;
     break;
-  // case MODE_BACK_LINES_H:
-  //   drawshape_function = drawLineNote;
-  //   callback_function = horizontal;
-  //   break;
-  // case MODE_BACK_LINES_H_GRAD:
-  //   drawshape_function = drawLineNoteGrad;
-  //   callback_function = horizontal;
-  //   break;
-  // case MODE_BACK_LINES_V:
-  //   drawshape_function = drawLineNote;
-  //   callback_function = vertical;
-  //   break;
-  // case MODE_BACK_LINES_V_GRAD:
-  //   drawshape_function = drawLineNoteGrad;
-  //   callback_function = vertical;
-  //   break;
+  case MODE_BACK_LINES_H:
+    drawshape_function = drawShapeNote;
+    callback_function = horizontal;
+    break;
+  case MODE_BACK_LINES_H_GRAD:
+    drawshape_function = drawShapeNoteGrad;
+    callback_function = horizontal;
+    break;
+  case MODE_BACK_LINES_V:
+    drawshape_function = drawShapeNote;
+    callback_function = vertical;
+    break;
+  case MODE_BACK_LINES_V_GRAD:
+    drawshape_function = drawShapeNoteGrad;
+    callback_function = vertical;
+    break;
   default:
     break;
   }
@@ -286,22 +292,22 @@ int main(void)
     //   //   // fillFramebuffer();
     //   //   // WS2812_sendbuf(24 * NLEDSCH);
     setNote(28);
-    drawShape(0);
+    drawShape();
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
     LL_mDelay(2000);
     setNote(58);
-    drawShape(0);
+    drawShape();
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
     LL_mDelay(2000);
     setNote(17);
-    drawShape(0);
+    drawShape();
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
     LL_mDelay(2000);
     setNote(83);
-    drawShape(0);
+    drawShape();
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
     LL_mDelay(2000);
