@@ -90,8 +90,7 @@ export default function canvasShapes(canvas, context) {
 		this.context.globalAlpha = 1;
 	}
 
-	this.drawCircleNote = function () {
-		let z = this.z;
+	this.drawShapeNote = function (callback) {
 		let rz = this.rz;
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
@@ -101,8 +100,8 @@ export default function canvasShapes(canvas, context) {
 			for (let x = -rz; x <= rz; x++) {
 				invI = orientation ? div - 1 : 0;
 				for (let i = 0; i < div - 1; i++) {
-					let perc = (i + 1) / div;
-					if ((x * x) + (y * y) <= (z * z) * (perc)) {
+					let layer = ((i + 1) / div);
+					if (callback(x, y, layer)) {
 						invI = orientation ? i : div - 1 - i;
 						break;
 					}
@@ -112,8 +111,7 @@ export default function canvasShapes(canvas, context) {
 		}
 	}
 
-	this.drawCircleNoteGrad = function () {
-		let z = this.z;
+	this.drawShapeNoteGrad = function (callback) {
 		let rz = this.rz;
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
@@ -129,8 +127,8 @@ export default function canvasShapes(canvas, context) {
 				}
 				colorTemp += "1)";
 				for (let i = 0; i < div - 1; i++) {
-					let perc = (i + 1) / div;
-					if ((x * x) + (y * y) <= (z * z) * (perc)) {
+					let layer = ((i + 1) / div);
+					if (callback(x, y, layer)) {
 						colorTemp = "rgba(";
 						for (let j = 0; j < 3; j++) {
 							colorTemp += color[invO][j] + ((i + 1) * diff[j]) + ',';
@@ -144,190 +142,73 @@ export default function canvasShapes(canvas, context) {
 		}
 	}
 
-	this.drawCrossNote = function () {
-		let z = this.z;
-		let rz = this.rz;
-		let orientation = store.state.patterns.orientation;
-		let div = store.state.patterns.div;
-		let invI;
-		let color = this.colors;
-		for (let y = -rz; y <= rz; y++) {
-			for (let x = -rz; x <= rz; x++) {
-				invI = orientation ? div - 1 : 0;
-				for (let i = 0; i < div - 1; i++) {
-					let perc = z - ((i + 1) / div) * z;
-					if ((x <= -perc || x >= perc) && (y <= -perc || y >= perc)) {
-						invI = orientation ? i : div - 1 - i;
-						break;
-					}
-				}
-				this.drawPixel(x + rz, y + rz, color[invI]);
-			}
-		}
+	function circle(x, y, layer) {
+		let z = scopeCanvas.z;
+		return ((x * x) + (y * y) <= (z * z) * layer)
 	}
 
-	this.drawCrossNoteGrad = function () {
-		let z = this.z;
-		let rz = this.rz;
-		let orientation = store.state.patterns.orientation;
-		let div = store.state.patterns.div;
-		let invO = orientation ? 0 : 1;
-		let color = [[225, 0, 200, 1], [0, 0, 100, 1]];
-		let colorTemp;
-		let diff = [(color[orientation][0] - color[invO][0]) / div, (color[orientation][1] - color[invO][1]) / div, (color[orientation][2] - color[invO][2]) / div];
-		for (let y = -rz; y <= rz; y++) {
-			for (let x = -rz; x <= rz; x++) {
-				colorTemp = "rgba(";
-				for (let j = 0; j < 3; j++) {
-					colorTemp += color[orientation][j] + ',';
-				}
-				colorTemp += "1)";
-				for (let i = 0; i < div - 1; i++) {
-					let perc = z - ((i + 1) / div) * z;
-					if ((x <= -perc || x >= perc) && (y <= -perc || y >= perc)) {
-						colorTemp = "rgba(";
-						for (let j = 0; j < 3; j++) {
-							colorTemp += color[invO][j] + ((i + 1) * diff[j]) + ',';
-						}
-						colorTemp += "1)";
-						break;
-					}
-				}
-				this.drawPixel(x + rz, y + rz, colorTemp);
-			}
-		}
+	function square(x, y, layer) {
+		let z = scopeCanvas.z;
+		let perc = layer * z;
+		return ((x >= -perc && x <= perc) && (y >= -perc && y <= perc))
 	}
 
-	this.drawSquareNote = function () {
-		let z = this.z;
-		let rz = this.rz;
-		let orientation = store.state.patterns.orientation;
-		let div = store.state.patterns.div;
-		let invI;
-		let color = this.colors;
-		for (let y = -rz; y <= rz; y++) {
-			for (let x = -rz; x <= rz; x++) {
-				invI = orientation ? div - 1 : 0;
-				for (let i = 0; i < div - 1; i++) {
-					let perc = ((i + 1) / div) * z;
-					if ((x >= -perc && x <= perc) && (y >= -perc && y <= perc)) {
-						invI = orientation ? i : div - 1 - i;
-						break;
-					}
-				}
-				this.drawPixel(x + rz, y + rz, color[invI]);
-			}
-		}
+	function cross(x, y, layer) {
+		let z = scopeCanvas.z;
+		let perc = z - layer * z;
+		return ((x <= -perc || x >= perc) && (y <= -perc || y >= perc))
 	}
 
-	this.drawSquareNoteGrad = function () {
-		let z = this.z;
-		let rz = this.rz;
-		let orientation = store.state.patterns.orientation;
-		let div = store.state.patterns.div;
-		let invO = orientation ? 0 : 1;
-		let color = [[225, 0, 200, 1], [0, 0, 100, 1]];
-		let colorTemp;
-		let diff = [(color[orientation][0] - color[invO][0]) / div, (color[orientation][1] - color[invO][1]) / div, (color[orientation][2] - color[invO][2]) / div];
-		for (let y = -rz; y <= rz; y++) {
-			for (let x = -rz; x <= rz; x++) {
-				colorTemp = "rgba(";
-				for (let j = 0; j < 3; j++) {
-					colorTemp += color[orientation][j] + ',';
-				}
-				colorTemp += "1)";
-				for (let i = 0; i < div - 1; i++) {
-					let perc = ((i + 1) / div) * z;
-					if ((x >= -perc && x <= perc) && (y >= -perc && y <= perc)) {
-						colorTemp = "rgba(";
-						for (let j = 0; j < 3; j++) {
-							colorTemp += color[invO][j] + ((i + 1) * diff[j]) + ',';
-						}
-						colorTemp += "1)";
-						break;
-					}
-				}
-				this.drawPixel(x + rz, y + rz, colorTemp);
-			}
-		}
-	}
-
-	function horizontal(x, y, perc) {
+	function horizontal(x, y, layer) {
+		let z = scopeCanvas.z;
+		let perc = z - layer * z;
 		return ((x >= -perc || x <= perc) && (y <= -perc || y >= perc));
 	}
 
-	function vertical(x, y, perc) {
+	function vertical(x, y, layer) {
+		let z = scopeCanvas.z;
+		let perc = z - layer * z;
 		return ((x <= -perc || x >= perc) && (y >= -perc || y <= perc))
 	}
 
-	this.drawLineNote = function (callback) {
-		let z = this.z;
-		let rz = this.rz;
-		let orientation = store.state.patterns.orientation;
-		let div = store.state.patterns.div;
-		let invI;
-		let color = this.colors;
-		for (let y = -rz; y <= rz; y++) {
-			for (let x = -rz; x <= rz; x++) {
-				invI = orientation ? div - 1 : 0;
-				for (let i = 0; i < div - 1; i++) {
-					let perc = z - ((i + 1) / div) * z;
-					if (callback(x, y, perc)) {
-						invI = orientation ? i : div - 1 - i;
-						break;
-					}
-				}
-				this.drawPixel(x + rz, y + rz, color[invI]);
-			}
-		}
+	this.drawCircleNote = function () {
+		this.drawShapeNote(circle);
 	}
 
-	this.drawLineNoteGrad = function (callback) {
-		let z = this.z;
-		let rz = this.rz;
-		let orientation = store.state.patterns.orientation;
-		let div = store.state.patterns.div;
-		let invO = orientation ? 0 : 1;
-		let color = [[225, 0, 200, 1], [0, 0, 100, 1]];
-		let colorTemp;
-		let diff = [(color[orientation][0] - color[invO][0]) / div, (color[orientation][1] - color[invO][1]) / div, (color[orientation][2] - color[invO][2]) / div];
-		for (let y = -rz; y <= rz; y++) {
-			for (let x = -rz; x <= rz; x++) {
-				colorTemp = "rgba(";
-				for (let j = 0; j < 3; j++) {
-					colorTemp += color[orientation][j] + ',';
-				}
-				colorTemp += "1)";
-				for (let i = 0; i < div - 1; i++) {
-					let perc = z - ((i + 1) / div) * z;
-					if (callback(x, y, perc)) {
-						colorTemp = "rgba(";
-						for (let j = 0; j < 3; j++) {
-							colorTemp += color[invO][j] + ((i + 1) * diff[j]) + ',';
-						}
-						colorTemp += "1)";
-						break;
-					}
-				}
-				this.drawPixel(x + rz, y + rz, colorTemp);
-			}
-		}
+	this.drawCircleNoteGrad = function () {
+		this.drawShapeNoteGrad(circle);
+	}
+
+	this.drawSquareNote = function () {
+		this.drawShapeNote(square);
+	}
+
+	this.drawSquareNoteGrad = function () {
+		this.drawShapeNoteGrad(square);
+	}
+
+	this.drawCrossNote = function () {
+		this.drawShapeNote(cross);
+	}
+
+	this.drawCrossNoteGrad = function () {
+		this.drawShapeNoteGrad(cross);
 	}
 
 	this.drawLineHNote = function () {
-		this.drawLineNote(horizontal);
+		this.drawShapeNote(horizontal);
 	}
 
 	this.drawLineVNote = function () {
-		this.drawLineNote(vertical);
+		this.drawShapeNote(vertical);
 	}
 
 	this.drawLineHNoteGrad = function () {
-		this.drawLineNoteGrad(horizontal);
+		this.drawShapeNoteGrad(horizontal);
 	}
 
 	this.drawLineVNoteGrad = function () {
-		this.drawLineNoteGrad(vertical);
+		this.drawShapeNoteGrad(vertical);
 	}
 
 	this.drawPixel = function (x, y, color) {
