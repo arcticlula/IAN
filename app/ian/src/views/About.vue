@@ -97,7 +97,7 @@
                 <b-icon icon="arrowsAngleExpand"></b-icon>
               </b-button>
               <b-button
-                v-bind:class="{ active: patterns.shape == 1}"
+                v-bind:class="{ active: patterns.orientation == 1}"
                 @click="setOrientation(1)"
                 size="sm"
                 class="mr-1"
@@ -215,6 +215,7 @@ export default {
       msg.push(this.patterns.selected);
       msg.push(this.patterns.div);
       msg.push(this.patterns.orientation);
+      console.log(msg);
       this.hdlc.minihdlc_send_frame(msg, msg.length);
     },
     setShape(shape) {

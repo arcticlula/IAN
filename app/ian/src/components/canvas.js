@@ -99,13 +99,13 @@ export default function canvasShapes(canvas, context) {
 		let color = this.colors;
 		for (let y = -rz; y <= rz; y++) {
 			for (let x = -rz; x <= rz; x++) {
-				for (let i = div - 1; i > 0; i--) {
-					let perc = 1 - (i / div);
+				invI = orientation ? div - 1 : 0;
+				for (let i = 0; i < div - 1; i++) {
+					let perc = (i + 1) / div;
 					if ((x * x) + (y * y) <= (z * z) * (perc)) {
-						invI = orientation ? div - 1 - i : i + 1;
+						invI = orientation ? i : div - 1 - i;
 						break;
 					}
-					invI = orientation ? div : 0;
 				}
 				this.drawPixel(x + rz, y + rz, color[invI]);
 			}
@@ -118,26 +118,26 @@ export default function canvasShapes(canvas, context) {
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let invO = orientation ? 0 : 1;
-		let color = [[225, 0, 200, 0.5], [0, 0, 100, 0.5]];
+		let color = [[225, 0, 200, 1], [0, 0, 100, 1]];
 		let colorTemp;
 		let diff = [(color[orientation][0] - color[invO][0]) / div, (color[orientation][1] - color[invO][1]) / div, (color[orientation][2] - color[invO][2]) / div];
 		for (let y = -rz; y <= rz; y++) {
 			for (let x = -rz; x <= rz; x++) {
-				for (let i = div - 1; i > 0; i--) {
-					let perc = 1 - (i / div);
+				colorTemp = "rgba(";
+				for (let j = 0; j < 3; j++) {
+					colorTemp += color[orientation][j] + ',';
+				}
+				colorTemp += "1)";
+				for (let i = 0; i < div - 1; i++) {
+					let perc = (i + 1) / div;
 					if ((x * x) + (y * y) <= (z * z) * (perc)) {
 						colorTemp = "rgba(";
 						for (let j = 0; j < 3; j++) {
-							colorTemp += color[orientation][j] - ((i + 1) * diff[j]) + ',';
+							colorTemp += color[invO][j] + ((i + 1) * diff[j]) + ',';
 						}
 						colorTemp += "1)";
 						break;
 					}
-					colorTemp = "rgba(";
-					for (let j = 0; j < 3; j++) {
-						colorTemp += color[orientation][j] + ',';
-					}
-					colorTemp += "1)";
 				}
 				this.drawPixel(x + rz, y + rz, colorTemp);
 			}
@@ -153,13 +153,13 @@ export default function canvasShapes(canvas, context) {
 		let color = this.colors;
 		for (let y = -rz; y <= rz; y++) {
 			for (let x = -rz; x <= rz; x++) {
-				for (let i = 0; i < div; i++) {
-					let perc = (1 - (i / div)) * z;
+				invI = orientation ? div - 1 : 0;
+				for (let i = 0; i < div - 1; i++) {
+					let perc = z - ((i + 1) / div) * z;
 					if ((x <= -perc || x >= perc) && (y <= -perc || y >= perc)) {
-						invI = orientation ? div - 1 - i : i + 1;
+						invI = orientation ? i : div - 1 - i;
 						break;
 					}
-					invI = orientation ? div : 0;
 				}
 				this.drawPixel(x + rz, y + rz, color[invI]);
 			}
@@ -172,26 +172,26 @@ export default function canvasShapes(canvas, context) {
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let invO = orientation ? 0 : 1;
-		let color = [[225, 0, 200, 0.5], [0, 0, 100, 0.5]];
+		let color = [[225, 0, 200, 1], [0, 0, 100, 1]];
 		let colorTemp;
 		let diff = [(color[orientation][0] - color[invO][0]) / div, (color[orientation][1] - color[invO][1]) / div, (color[orientation][2] - color[invO][2]) / div];
 		for (let y = -rz; y <= rz; y++) {
 			for (let x = -rz; x <= rz; x++) {
-				for (let i = 0; i < div; i++) {
-					let perc = (1 - (i / div)) * z;
+				colorTemp = "rgba(";
+				for (let j = 0; j < 3; j++) {
+					colorTemp += color[orientation][j] + ',';
+				}
+				colorTemp += "1)";
+				for (let i = 0; i < div - 1; i++) {
+					let perc = z - ((i + 1) / div) * z;
 					if ((x <= -perc || x >= perc) && (y <= -perc || y >= perc)) {
 						colorTemp = "rgba(";
 						for (let j = 0; j < 3; j++) {
-							colorTemp += color[orientation][j] - ((i + 1) * diff[j]) + ',';
+							colorTemp += color[invO][j] + ((i + 1) * diff[j]) + ',';
 						}
 						colorTemp += "1)";
 						break;
 					}
-					colorTemp = "rgba(";
-					for (let j = 0; j < 3; j++) {
-						colorTemp += color[orientation][j] + ',';
-					}
-					colorTemp += "1)";
 				}
 				this.drawPixel(x + rz, y + rz, colorTemp);
 			}
@@ -207,13 +207,13 @@ export default function canvasShapes(canvas, context) {
 		let color = this.colors;
 		for (let y = -rz; y <= rz; y++) {
 			for (let x = -rz; x <= rz; x++) {
-				for (let i = div - 1; i > 0; i--) {
-					let perc = (1 - (i / div)) * z;
+				invI = orientation ? div - 1 : 0;
+				for (let i = 0; i < div - 1; i++) {
+					let perc = ((i + 1) / div) * z;
 					if ((x >= -perc && x <= perc) && (y >= -perc && y <= perc)) {
-						invI = orientation ? div - 1 - i : i + 1;
+						invI = orientation ? i : div - 1 - i;
 						break;
 					}
-					invI = orientation ? div : 0;
 				}
 				this.drawPixel(x + rz, y + rz, color[invI]);
 			}
@@ -226,26 +226,26 @@ export default function canvasShapes(canvas, context) {
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let invO = orientation ? 0 : 1;
-		let color = [[225, 0, 200, 0.5], [0, 0, 100, 0.5]];
+		let color = [[225, 0, 200, 1], [0, 0, 100, 1]];
 		let colorTemp;
 		let diff = [(color[orientation][0] - color[invO][0]) / div, (color[orientation][1] - color[invO][1]) / div, (color[orientation][2] - color[invO][2]) / div];
 		for (let y = -rz; y <= rz; y++) {
 			for (let x = -rz; x <= rz; x++) {
-				for (let i = div - 1; i > 0; i--) {
-					let perc = (1 - (i / div)) * z;
+				colorTemp = "rgba(";
+				for (let j = 0; j < 3; j++) {
+					colorTemp += color[orientation][j] + ',';
+				}
+				colorTemp += "1)";
+				for (let i = 0; i < div - 1; i++) {
+					let perc = ((i + 1) / div) * z;
 					if ((x >= -perc && x <= perc) && (y >= -perc && y <= perc)) {
 						colorTemp = "rgba(";
 						for (let j = 0; j < 3; j++) {
-							colorTemp += color[orientation][j] - ((i + 1) * diff[j]) + ',';
+							colorTemp += color[invO][j] + ((i + 1) * diff[j]) + ',';
 						}
 						colorTemp += "1)";
 						break;
 					}
-					colorTemp = "rgba(";
-					for (let j = 0; j < 3; j++) {
-						colorTemp += color[orientation][j] + ',';
-					}
-					colorTemp += "1)";
 				}
 				this.drawPixel(x + rz, y + rz, colorTemp);
 			}
@@ -269,13 +269,13 @@ export default function canvasShapes(canvas, context) {
 		let color = this.colors;
 		for (let y = -rz; y <= rz; y++) {
 			for (let x = -rz; x <= rz; x++) {
-				for (let i = 0; i < div; i++) {
-					let perc = (1 - (i / div)) * z;
+				invI = orientation ? div - 1 : 0;
+				for (let i = 0; i < div - 1; i++) {
+					let perc = z - ((i + 1) / div) * z;
 					if (callback(x, y, perc)) {
-						invI = orientation ? div - 1 - i : i + 1;
+						invI = orientation ? i : div - 1 - i;
 						break;
 					}
-					invI = orientation ? div : 0;
 				}
 				this.drawPixel(x + rz, y + rz, color[invI]);
 			}
@@ -288,26 +288,26 @@ export default function canvasShapes(canvas, context) {
 		let orientation = store.state.patterns.orientation;
 		let div = store.state.patterns.div;
 		let invO = orientation ? 0 : 1;
-		let color = [[225, 0, 200, 0.5], [0, 0, 100, 0.5]];
+		let color = [[225, 0, 200, 1], [0, 0, 100, 1]];
 		let colorTemp;
 		let diff = [(color[orientation][0] - color[invO][0]) / div, (color[orientation][1] - color[invO][1]) / div, (color[orientation][2] - color[invO][2]) / div];
 		for (let y = -rz; y <= rz; y++) {
 			for (let x = -rz; x <= rz; x++) {
-				for (let i = 0; i < div; i++) {
-					let perc = (1 - (i / div)) * z;
+				colorTemp = "rgba(";
+				for (let j = 0; j < 3; j++) {
+					colorTemp += color[orientation][j] + ',';
+				}
+				colorTemp += "1)";
+				for (let i = 0; i < div - 1; i++) {
+					let perc = z - ((i + 1) / div) * z;
 					if (callback(x, y, perc)) {
 						colorTemp = "rgba(";
 						for (let j = 0; j < 3; j++) {
-							colorTemp += color[orientation][j] - ((i + 1) * diff[j]) + ',';
+							colorTemp += color[invO][j] + ((i + 1) * diff[j]) + ',';
 						}
 						colorTemp += "1)";
 						break;
 					}
-					colorTemp = "rgba(";
-					for (let j = 0; j < 3; j++) {
-						colorTemp += color[invO][j] + ',';
-					}
-					colorTemp += "1)";
 				}
 				this.drawPixel(x + rz, y + rz, colorTemp);
 			}

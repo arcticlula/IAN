@@ -65,11 +65,11 @@ export default function hdlc() {
 	/* Function to find valid HDLC frame from incoming data */
 	this.minihdlc_char_receiver = function (data) {
 		/* FRAME FLAG */
-		let hex = Number(data).toString(16);
-		if (hex.length < 2) {
-			hex = "0" + hex;
-		}
-		console.log(data, hex)
+		// let hex = Number(data).toString(16);
+		// if (hex.length < 2) {
+		// 	hex = "0" + hex;
+		// }
+		// console.log(data, hex)
 		if (data == FRAME_BOUNDARY_OCTET) {
 			if (this.mhst.escape_character == true) {
 				this.mhst.escape_character = false;
