@@ -33,20 +33,28 @@ export default function canvasShapes(canvas, context) {
 					this.drawCircleNoteGrad();
 				}
 				break;
-			case "cross":
-				if (patterns.selected == optionsShape[patterns.shape][0].value) {
-					this.drawCrossNote();
-				}
-				else if (patterns.selected == optionsShape[patterns.shape][1].value) {
-					this.drawCrossNoteGrad();
-				}
-				break;
 			case "square":
 				if (patterns.selected == optionsShape[patterns.shape][0].value) {
 					this.drawSquareNote();
 				}
 				else if (patterns.selected == optionsShape[patterns.shape][1].value) {
 					this.drawSquareNoteGrad();
+				}
+				break;
+			case "triangle":
+				if (patterns.selected == optionsShape[patterns.shape][0].value) {
+					this.drawTriangleNote();
+				}
+				else if (patterns.selected == optionsShape[patterns.shape][1].value) {
+					this.drawTriangleNoteGrad();
+				}
+				break;
+			case "cross":
+				if (patterns.selected == optionsShape[patterns.shape][0].value) {
+					this.drawCrossNote();
+				}
+				else if (patterns.selected == optionsShape[patterns.shape][1].value) {
+					this.drawCrossNoteGrad();
 				}
 				break;
 			case "lines":
@@ -62,8 +70,6 @@ export default function canvasShapes(canvas, context) {
 				else if (patterns.selected == optionsShape[patterns.shape][3].value) {
 					this.drawLineVNoteGrad();
 				}
-				break;
-			case "triangle":
 				break;
 		}
 	}
@@ -153,6 +159,14 @@ export default function canvasShapes(canvas, context) {
 		return ((x >= -perc && x <= perc) && (y >= -perc && y <= perc))
 	}
 
+	function triangle(x, y, layer) {
+		let z = scopeCanvas.z;
+		let perc = layer * z;
+		let offset = z / 7;
+		let m = y * 0.7 + perc;
+		return ((x > -m) && (x < m)) && (y < perc * 0.9 + offset)
+	}
+
 	function cross(x, y, layer) {
 		let z = scopeCanvas.z;
 		let perc = z - layer * z;
@@ -161,14 +175,14 @@ export default function canvasShapes(canvas, context) {
 
 	function horizontal(x, y, layer) {
 		let z = scopeCanvas.z;
-		let perc = z - layer * z;
-		return ((x >= -perc || x <= perc) && (y <= -perc || y >= perc));
+		let perc = layer * z;
+		return (y >= -perc && y <= perc);
 	}
 
 	function vertical(x, y, layer) {
 		let z = scopeCanvas.z;
-		let perc = z - layer * z;
-		return ((x <= -perc || x >= perc) && (y >= -perc || y <= perc))
+		let perc = layer * z;
+		return (x >= -perc && x <= perc)
 	}
 
 	this.drawCircleNote = function () {
@@ -185,6 +199,14 @@ export default function canvasShapes(canvas, context) {
 
 	this.drawSquareNoteGrad = function () {
 		this.drawShapeNoteGrad(square);
+	}
+
+	this.drawTriangleNote = function () {
+		this.drawShapeNote(triangle);
+	}
+
+	this.drawTriangleNoteGrad = function () {
+		this.drawShapeNoteGrad(triangle);
 	}
 
 	this.drawCrossNote = function () {

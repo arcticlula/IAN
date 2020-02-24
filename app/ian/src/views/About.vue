@@ -4,7 +4,7 @@
       <b-tabs content-class="mt-3">
         <b-tab title="Patterns" active variant="info">
           <b-row class="mb-2" style="text-align: left;">
-            <b-col cols="12">
+            <b-col cols="8">
               <b-button
                 v-bind:class="{ active: patterns.shape == 'circle'}"
                 @click="setShape('circle')"
@@ -13,15 +13,6 @@
                 variant="info"
               >
                 <b-icon icon="circleHalf"></b-icon>
-              </b-button>
-              <b-button
-                v-bind:class="{ active: patterns.shape == 'cross'}"
-                @click="setShape('cross')"
-                size="sm"
-                class="mr-1"
-                variant="info"
-              >
-                <b-icon icon="grid-fill"></b-icon>
               </b-button>
               <b-button
                 v-bind:class="{ active: patterns.shape == 'square'}"
@@ -33,6 +24,25 @@
                 <b-icon icon="squareHalf"></b-icon>
               </b-button>
               <b-button
+                v-bind:class="{ active: patterns.shape == 'triangle'}"
+                @click="setShape('triangle')"
+                size="sm"
+                class="mr-1"
+                variant="info"
+              >
+                <b-icon icon="triangleHalf"></b-icon>
+              </b-button>
+              <b-button
+                v-bind:class="{ active: patterns.shape == 'cross'}"
+                @click="setShape('cross')"
+                size="sm"
+                class="mr-1"
+                variant="info"
+              >
+                <b-icon icon="grid-fill"></b-icon>
+              </b-button>
+
+              <b-button
                 v-bind:class="{ active: patterns.shape == 'lines'}"
                 @click="setShape('lines')"
                 size="sm"
@@ -41,16 +51,18 @@
               >
                 <b-icon icon="pause"></b-icon>
               </b-button>
+            </b-col>
+            <b-col cols="4">
+              <b-form-checkbox
+                style="text-align: right;"
+                @change="setSingleDef('back')"
+                v-model="settings.power.back"
+                switch
+                value="On"
+                unchecked-value="Off"
+                size="md"
+              >{{settings.power.back}}</b-form-checkbox>
               <!-- <b-button
-								v-bind:class="{ active: patterns.shape == 'triangle'}"
-								@click="setShape('triangle')"
-								size="sm"
-								class="mr-1"
-								variant="info"
-							>
-								<b-icon icon="triangleHalf"></b-icon>
-							</b-button>
-							<b-button
 								v-bind:class="{ active: patterns.shape == 'star'}"
 								@click="setShape('star')"
 								size="sm"
@@ -137,8 +149,19 @@
         </b-tab>
         <b-tab title="Text" color="info">
           <b-row class="mb-2">
-            <b-col cols="12">
+            <b-col cols="8">
               <b-form-select size="sm"></b-form-select>
+            </b-col>
+            <b-col cols="4">
+              <b-form-checkbox
+                style="text-align: right;"
+                @change="setSingleDef('text')"
+                v-model="settings.power.text"
+                switch
+                value="On"
+                unchecked-value="Off"
+                size="md"
+              >{{settings.power.text}}</b-form-checkbox>
             </b-col>
           </b-row>
           <b-row style="text-align: left;">
@@ -147,10 +170,21 @@
             </b-col>
           </b-row>
         </b-tab>
-        <b-tab title="Colors" color="info">
+        <!-- <b-tab title="Colors" color="info">
           <swatches row-length="5" colors="basic" v-model="color"></swatches>
           <swatches row-length="5" colors="basic" v-model="color"></swatches>
           <swatches row-length="5" colors="basic" v-model="color"></swatches>
+        </b-tab>-->
+        <b-tab title="Settings" color="info">
+          <h6 class="mt-0">Brightness</h6>
+          <b-form-input
+            @change="setSingleDef('bright')"
+            type="range"
+            min="1"
+            max="20"
+            step="1"
+            v-model.number="settings.brightness"
+          />
         </b-tab>
       </b-tabs>
     </b-card>
@@ -182,7 +216,13 @@ export default {
   },
   components: { Swatches },
   computed: {
-    ...mapState(["bluetooth", "patterns", "optionsShape", "optionsDiv"])
+    ...mapState([
+      "bluetooth",
+      "settings",
+      "patterns",
+      "optionsShape",
+      "optionsDiv"
+    ])
   },
   methods: {
     // ...mapMutations(["setDevicesSaved", "setDevicesUnpaired", "setState"]),
@@ -196,12 +236,12 @@ export default {
       this.canvasObj.draw();
     },
     blueSend(data) {
-      let hex = Number(data).toString(16);
-      if (hex.length < 2) {
-        hex = "0" + hex;
-      }
+      // let hex = Number(data).toString(16);
+      // if (hex.length < 2) {
+      //   hex = "0" + hex;
+      // }
 
-      console.log(data, hex);
+      // console.log(data, hex);
       let element = new Uint8Array([data]);
       bluetoothSerial.write(element, this.success, this.failure);
     },
@@ -209,6 +249,26 @@ export default {
       for (let i = 0; i < length; i++) {
         console.log(String.fromCharCode(data[i]));
       }
+    },
+    setSingleDef(state) {
+      this.$nextTick(() => {
+        let msg = [];
+        switch (state) {
+          case "back":
+            msg.push(0x20);
+            this.settings.power.back == "On" ? msg.push(1) : msg.push(0);
+            break;
+          case "text":
+            msg.push(0x60);
+            this.settings.power.text == "On" ? msg.push(1) : msg.push(0);
+            break;
+          case "bright":
+            msg.push(0x11);
+            msg.push(this.settings.brightness);
+            break;
+        }
+        this.hdlc.minihdlc_send_frame(msg, msg.length);
+      });
     },
     sendToDevice() {
       let msg = [];
