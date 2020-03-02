@@ -28,11 +28,14 @@
 #include "ws2812.h"
 #include "notes.h"
 #include "draw.h"
+#include "minihdlc-master/minihdlc.h"
 /* this define sets the number of TIM2 overflows
  * to append to the data frame for the LEDs to 
  * load the received data into their registers */
 
 volatile uint8_t TIM2_overflows = 0;
+drawshape_type drawshape_function;
+drawshape_type drawtext_function;
 
 /* WS2812 framebuffer
  * buffersize = (#LEDs / 16) * 24 */
@@ -40,6 +43,7 @@ volatile uint8_t TIM2_overflows = 0;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_USART1_UART_Init(void);
 #if USART_MIDI
 static void MX_USART3_UART_Init(void);
 #endif
@@ -81,6 +85,123 @@ void WS2812_sendbuf(uint32_t buffersize)
   LL_TIM_EnableCounter(TIM2);
 }
 
+void sendDataBluetooth(uint8_t data)
+{
+  while (!LL_USART_IsActiveFlag_TXE(USART1))
+  {
+  }
+  LL_USART_TransmitData8(USART1, data);
+}
+
+#define MIDI_OFF 0x10
+#define MODE_BACK 0x20
+#define MODE_BACK_CIRCLE 0x21
+#define MODE_BACK_CIRCLE_GRAD 0x22
+#define MODE_BACK_CROSS 0x25
+#define MODE_BACK_CROSS_GRAD 0x26
+#define MODE_BACK_SQUARE 0x30
+#define MODE_BACK_SQUARE_GRAD 0x31
+#define MODE_BACK_LINES_H 0x35
+#define MODE_BACK_LINES_H_GRAD 0x36
+#define MODE_BACK_LINES_V 0x37
+#define MODE_BACK_LINES_V_GRAD 0x38
+
+// #define MODE_BACK_TRIANGLE 0x35
+// #define MODE_BACK_TRIANGLE_GRAD 0x36
+#define MODE_TEXT 0x06
+
+static inline void drawShape(void)
+{
+  if (drawshape_function)
+  {
+    (*drawshape_function)();
+  }
+}
+
+static inline void drawText(void)
+{
+  if (drawtext_function)
+  {
+    (*drawtext_function)();
+  }
+}
+
+void frame_handler_function(const uint8_t *frame_buffer, uint16_t frame_length)
+{
+  uint8_t data;
+  data = *frame_buffer++;
+  switch (data)
+  {
+  case MODE_BACK_CIRCLE:
+    drawshape_function = drawShapeNote;
+    callback_function = circle;
+    break;
+  case MODE_BACK_CIRCLE_GRAD:
+    drawshape_function = drawShapeNoteGrad;
+    callback_function = circle;
+    break;
+  case MODE_BACK_CROSS:
+    drawshape_function = drawShapeNote;
+    callback_function = cross;
+    break;
+  case MODE_BACK_CROSS_GRAD:
+    drawshape_function = drawShapeNoteGrad;
+    callback_function = cross;
+    break;
+  case MODE_BACK_SQUARE:
+    drawshape_function = drawShapeNote;
+    callback_function = square;
+    break;
+  case MODE_BACK_SQUARE_GRAD:
+    drawshape_function = drawShapeNoteGrad;
+    callback_function = square;
+    break;
+  case MODE_BACK_LINES_H:
+    drawshape_function = drawShapeNote;
+    callback_function = horizontal;
+    break;
+  case MODE_BACK_LINES_H_GRAD:
+    drawshape_function = drawShapeNoteGrad;
+    callback_function = horizontal;
+    break;
+  case MODE_BACK_LINES_V:
+    drawshape_function = drawShapeNote;
+    callback_function = vertical;
+    break;
+  case MODE_BACK_LINES_V_GRAD:
+    drawshape_function = drawShapeNoteGrad;
+    callback_function = vertical;
+    break;
+  default:
+    break;
+  }
+  data = *frame_buffer++;
+  MAX_DIV = data;
+  data = *frame_buffer++;
+  orientation = data;
+  // while (frame_length)
+  // {
+  //   sendDataBluetooth(data);
+  //   frame_length--;
+  //   data = *frame_buffer++;
+  // }
+  // minihdlc_send_frame(frame_buffer, frame_length);
+}
+
+void startReception(void)
+{
+  minihdlc_init(sendDataBluetooth, frame_handler_function);
+  /* Clear Overrun flag, in case characters have already been sent to USART */
+  LL_USART_ClearFlag_ORE(USART1);
+
+  /* Enable RXNE and Error interrupts */
+  LL_USART_EnableIT_RXNE(USART1);
+  LL_USART_EnableIT_ERROR(USART1);
+  uint8_t buffer[] = "OLA amigo!";
+
+  minihdlc_send_frame(buffer, ARRAY_LEN(buffer));
+}
+
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -115,6 +236,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_USART1_UART_Init();
 #if USART_MIDI
   MX_USART3_UART_Init();
 #endif
@@ -124,6 +246,8 @@ int main(void)
   // drawLetter('C', 0, 1);
   // drawLetter('5', 4, 1);
 
+  startReception();
+
   clearNoteBuffer();
   clearBack();
   clearText();
@@ -131,11 +255,11 @@ int main(void)
   // uint8_t blue[3] = {1, 1, 3};
   // uint8_t red[3] = {5, 0, 1};
 
-  // setNote(24);
-  // setNote(15);
-  // setNote(87);
+  setNote(24);
+  setNote(15);
+  setNote(87);
+
   // setBackColor(blue);
-  // drawCircleNoteGrad(0);
   // fillFramebuffer();
   // WS2812_sendbuf(24 * NLEDSCH);
 
@@ -154,41 +278,39 @@ int main(void)
   {
     // set two pixels (columns) in the defined row (channel 0) to the
     // color values defined in the colors array
-    // for (int i = 0; i < 6; i++)
-    // {
     //   // wait until the last frame was transmitted
     //   while (!WS2812_TC)
     //     ;
-    //   // move(1, 1);
-    //   // fillFramebuffer();
-    //   // WS2812_sendbuf(24 * NLEDSCH);
-    //   // LL_mDelay(500);
-    //   // }
-    //   // drawString("Ordem dos Engenheiros Tecnicos", 1, 1, 1, 0);
-    //   // rotate()
-    //   // drawColor(arrCol[i]);
-    //   // fillFramebuffer();
-    //   // WS2812_sendbuf(24 * NLEDSCH);
-    // setNote(28);
-    /* drawCircleNote(1);
+    //   //   // move(1, 1);
+    //   //   // fillFramebuffer();
+    //   //   // WS2812_sendbuf(24 * NLEDSCH);
+    //   //   // LL_mDelay(500);
+    //   //   // }
+    //   //   // drawString("Ordem dos Engenheiros Tecnicos", 1, 1, 1, 0);
+    //   //   // rotate()
+    //   //   // drawColor(arrCol[i]);
+    //   //   // fillFramebuffer();
+    //   //   // WS2812_sendbuf(24 * NLEDSCH);
+    setNote(28);
+    drawShape();
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
     LL_mDelay(2000);
-    drawCircleNoteGrad(1);
+    setNote(58);
+    drawShape();
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
-    LL_mDelay(2000); */
-    // setNote(17);
-    // drawCircleNote(0);
-    // fillFramebuffer();
-    // WS2812_sendbuf(24 * NLEDSCH);
-    // LL_mDelay(2000);
-    // setNote(83);
-    // drawCircleNote(0);
-    // fillFramebuffer();
-    // WS2812_sendbuf(24 * NLEDSCH);
-    // LL_mDelay(2000);
-    // }
+    LL_mDelay(2000);
+    setNote(17);
+    drawShape();
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    LL_mDelay(2000);
+    setNote(83);
+    drawShape();
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    LL_mDelay(2000);
   }
   /* USER CODE END 3 */
 }
@@ -346,10 +468,10 @@ static void MX_GPIO_Init(void)
 {
 
   /* GPIO Ports Clock Enable */
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOC);
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOD);
   LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOA);
   LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOB);
+  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOC);
+  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOD);
   // GPIOA Periph clock enable
 
   // GPIOA pins WS2812 data outputs
@@ -365,13 +487,55 @@ static void MX_GPIO_Init(void)
   LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_13);
 }
 
+static void MX_USART1_UART_Init(void)
+{
+
+  /* Peripheral clock enable */
+  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_USART1);
+  /**USART1 GPIO Configuration  
+  PB6   ------> USART1_TX
+  PB7   ------> USART1_RX 
+  */
+  GPIO_InitStruct.Pin = LL_GPIO_PIN_6;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
+  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = LL_GPIO_PIN_7;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_FLOATING;
+  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  LL_GPIO_AF_EnableRemap_USART1();
+  // __HAL_AFIO_REMAP_USART1_ENABLE();
+
+  /* USART1 interrupt Init */
+  NVIC_SetPriority(USART1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
+  NVIC_EnableIRQ(USART1_IRQn);
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  USART_InitStruct.BaudRate = 9600;
+  USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
+  USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
+  USART_InitStruct.Parity = LL_USART_PARITY_NONE;
+  USART_InitStruct.TransferDirection = LL_USART_DIRECTION_TX_RX;
+  USART_InitStruct.HardwareFlowControl = LL_USART_HWCONTROL_NONE;
+  LL_USART_Init(USART1, &USART_InitStruct);
+  LL_USART_ConfigAsyncMode(USART1);
+  LL_USART_Enable(USART1);
+  /* USER CODE BEGIN USART1_Init 2 */
+  LL_USART_EnableIT_RXNE(USART1);
+  /* USER CODE END USART1_Init 2 */
+}
+
 #if USART_MIDI
 static void MX_USART3_UART_Init(void)
 {
 
   LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART3);
 
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOB);
   /**USART3 GPIO Configuration
   PB10   ------> USART3_TX
   PB11   ------> USART3_RX
@@ -450,6 +614,18 @@ void TIM2_IRQHandler(void)
   }
 }
 
+void USART1_IRQHandler(void)
+{
+  uint8_t RxBuffer;
+  if (LL_USART_IsActiveFlag_RXNE(USART1) && LL_USART_IsEnabledIT_RXNE(USART1))
+  {
+    LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
+    RxBuffer = LL_USART_ReceiveData8(USART1);
+    minihdlc_char_receiver(RxBuffer);
+    sendDataBluetooth(RxBuffer);
+  }
+}
+
 #if USART_MIDI
 void USART3_IRQHandler(void)
 {
@@ -515,7 +691,7 @@ void USART3_IRQHandler(void)
         // clearText();
         // drawNote();
         // drawStringArray(1, 1, 1, 1);
-        drawCircleNote(1);
+        drawShape();
         fillFramebuffer();
         WS2812_sendbuf(24 * NLEDSCH);
         break;

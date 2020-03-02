@@ -124,6 +124,19 @@ const uint8_t font4x6[96][2] = {
     {0x56, 0xe2}  /*''*/
 };
 
+uint8_t orientation = 0;
+uint8_t MAX_DIV = 3;
+callback_type callback_function;
+
+static inline uint8_t callback(int8_t x, int8_t y, float layer)
+{
+  if (callback_function)
+  {
+    return (*callback_function)(x, y, layer);
+  }
+  return 0;
+}
+
 void fillFramebuffer(void)
 {
   uint8_t mod, tempPoint[3], invI, invJ, invX, tmp;
@@ -248,179 +261,144 @@ void clearFramebuffer(void)
   }
 }
 
-void move(int8_t newX, int8_t newY)
+// void move(int8_t newX, int8_t newY)
+// {
+//   uint8_t tempVector[NLEDS][3];
+//   uint8_t tempX, tempY;
+//   for (int y = 0; y < NCOLS; y++)
+//   {
+//     for (int x = 0; x < NCOLS; x++)
+//     {
+//       for (int z = 0; z < 3; z++)
+//       {
+//         tempVector[x + (y * NCOLS)][z] = backLayer[x + (y * NCOLS)][z];
+//       }
+//     }
+//   }
+
+//   for (int y = 0; y < NCOLS; y++)
+//   {
+//     if ((y - newY) < 0)
+//     {
+//       tempY = NCOLS - (-y + newY);
+//     }
+//     else if ((y - newY) >= NCOLS)
+//     {
+//       tempY = (y - newY) - NCOLS;
+//     }
+//     else
+//       tempY = y - newY;
+
+//     for (int x = 0; x < NCOLS; x++)
+//     {
+//       if ((x - newX) < 0)
+//       {
+//         tempX = NCOLS - (-x + newX);
+//       }
+//       else if ((x - newX) >= NCOLS)
+//       {
+//         tempX = (x - newX) - NCOLS;
+//       }
+//       else
+//         tempX = x - newX;
+
+//       for (int z = 0; z < 3; z++)
+//       {
+//         backLayer[x + (y * NCOLS)][z] = tempVector[tempX + (tempY * NCOLS)][z];
+//       }
+//     }
+//   }
+// }
+
+void drawShapeNote()
 {
-  uint8_t tempVector[NLEDS][3];
-  uint8_t tempX, tempY;
-  for (int y = 0; y < NCOLS; y++)
-  {
-    for (int x = 0; x < NCOLS; x++)
-    {
-      for (int z = 0; z < 3; z++)
-      {
-        tempVector[x + (y * NCOLS)][z] = backLayer[x + (y * NCOLS)][z];
-      }
-    }
-  }
-
-  for (int y = 0; y < NCOLS; y++)
-  {
-    if ((y - newY) < 0)
-    {
-      tempY = NCOLS - (-y + newY);
-    }
-    else if ((y - newY) >= NCOLS)
-    {
-      tempY = (y - newY) - NCOLS;
-    }
-    else
-      tempY = y - newY;
-
-    for (int x = 0; x < NCOLS; x++)
-    {
-      if ((x - newX) < 0)
-      {
-        tempX = NCOLS - (-x + newX);
-      }
-      else if ((x - newX) >= NCOLS)
-      {
-        tempX = (x - newX) - NCOLS;
-      }
-      else
-        tempX = x - newX;
-
-      for (int z = 0; z < 3; z++)
-      {
-        backLayer[x + (y * NCOLS)][z] = tempVector[tempX + (tempY * NCOLS)][z];
-      }
-    }
-  }
-}
-
-/* void drawCircle(uint8_t *color_steps)
-{
-  float z = ((float)NCOLS / 2);
+  uint8_t rz = NCOLS / 2;
   uint16_t coords = 0;
-  uint8_t boarder;
-  int16_t temp;
-  for (int y = -(NCOLS / 2); y <= (NCOLS / 2); y++)
-  {
-    for (int x = -(NCOLS / 2); x <= (NCOLS / 2); x++)
-    {
-      coords = (x + (NCOLS / 2)) + ((y + (NCOLS / 2)) * NCOLS);
-      for (int i = 0; i < MAX_DIV; i++)
-      {
-        boarder = 1;
-        float perc = 1 - ((float)i / MAX_DIV);
-        // printf("%0.1f\n", perc);
-        if ((x * x) + (y * y) <= (z * z) * (perc))
-        {
-          for (int z = 0; z < 3; z++)
-          {
-            temp = currColor[z] + i * color_steps[z];
-            if (temp < 0)
-              temp = 0;
-            if (temp > 255)
-              temp = 255;
-            backLayer[coords][z] = temp;
-          }
-          boarder = 0;
-        }
-      }
-      if (boarder)
-      {
-        if ((x * x) + (y * y) >= (z * z))
-        {
-          for (int z = 0; z < 3; z++)
-          {
-            temp = currColor[z] - color_steps[z];
-            if (temp < 0)
-              temp = 0;
-            if (temp > 255)
-              temp = 255;
-            backLayer[coords][z] = temp;
-          }
-        }
-      }
-    }
-  }
-} */
-
-void drawCircleNote(uint8_t orientation)
-{
-  float z = ((float)NCOLS / 2);
-  uint16_t coords = 0;
-  uint8_t boarder;
   uint8_t invI;
-  for (int y = -(NCOLS / 2); y <= (NCOLS / 2); y++)
+  for (int8_t y = -rz; y <= rz; y++)
   {
-    for (int x = -(NCOLS / 2); x <= (NCOLS / 2); x++)
+    for (int8_t x = -rz; x <= rz; x++)
     {
-      coords = (x + (NCOLS / 2)) + ((y + (NCOLS / 2)) * NCOLS);
-      for (int i = 0; i < MAX_DIV; i++)
+      coords = (x + rz) + ((y + rz) * NCOLS);
+      invI = orientation ? MAX_DIV - 1 : 0;
+      for (int8_t i = 0; i < MAX_DIV - 1; i++)
       {
-        invI = orientation ? MAX_DIV - 1 - i : i + 1;
-        boarder = 1;
-        float perc = 1 - ((float)i / MAX_DIV);
-        // printf("%0.1f\n", perc);
-        if ((x * x) + (y * y) <= (z * z) * (perc))
+        float layer = ((float)(i + 1) / MAX_DIV);
+        if (callback(x, y, layer))
         {
-          setColor(backLayer[coords], noteBuffer[invI].color);
-          boarder = 0;
+          invI = orientation ? i : MAX_DIV - 1 - i;
+          break;
         }
       }
-      if (boarder)
-      {
-        if ((x * x) + (y * y) >= (z * z))
-        {
-          invI = orientation ? MAX_DIV : 0;
-          setColor(backLayer[coords], noteBuffer[invI].color);
-        }
-      }
+      setColor(backLayer[coords], noteBuffer[invI].color);
     }
   }
 }
 
-void drawCircleNoteGrad(uint8_t orientation)
+void drawShapeNoteGrad()
 {
-  float z = ((float)NCOLS / 2);
+  uint8_t rz = NCOLS / 2;
   uint16_t coords = 0;
-  uint8_t boarder, invO;
+  uint8_t invO = orientation ? 0 : 1;
   int8_t diff[3];
-  invO = orientation ? 0 : 1;
   for (uint8_t j = 0; j < 3; j++)
   {
     diff[j] = (noteBuffer[orientation].color[j] - noteBuffer[invO].color[j]) / MAX_DIV;
   }
 
-  for (int y = -(NCOLS / 2); y <= (NCOLS / 2); y++)
+  for (int8_t y = -rz; y <= rz; y++)
   {
-    for (int x = -(NCOLS / 2); x <= (NCOLS / 2); x++)
+    for (int8_t x = -rz; x <= rz; x++)
     {
-      coords = (x + (NCOLS / 2)) + ((y + (NCOLS / 2)) * NCOLS);
-      for (int i = 0; i < MAX_DIV; i++)
+      coords = (x + rz) + ((y + rz) * NCOLS);
+      setColor(backLayer[coords], noteBuffer[orientation].color);
+      for (int8_t i = 0; i < MAX_DIV - 1; i++)
       {
-        boarder = 1;
-        float perc = 1 - ((float)i / MAX_DIV);
-        // printf("%0.1f\n", perc);
-        if ((x * x) + (y * y) <= (z * z) * (perc))
+        float layer = ((float)(i + 1) / MAX_DIV);
+        if (callback(x, y, layer))
         {
           for (uint8_t j = 0; j < 3; j++)
           {
-            backLayer[coords][j] = noteBuffer[orientation].color[j] - ((i + 1) * diff[j]);
-            boarder = 0;
+            backLayer[coords][j] = noteBuffer[invO].color[j] + ((i + 1) * diff[j]);
           }
-        }
-        if (boarder)
-        {
-          if ((x * x) + (y * y) >= (z * z))
-          {
-            setColor(backLayer[coords], noteBuffer[orientation].color);
-          }
+          break;
         }
       }
     }
   }
+}
+uint8_t circle(int8_t x, int8_t y, float layer)
+{
+  float z = ((float)NCOLS / 2);
+  return ((x * x) + (y * y) <= (z * z) * layer);
+}
+
+uint8_t square(int8_t x, int8_t y, float layer)
+{
+  float z = ((float)NCOLS / 2);
+  float perc = layer * z;
+  return ((x >= -perc && x <= perc) && (y >= -perc && y <= perc));
+}
+
+uint8_t cross(int8_t x, int8_t y, float layer)
+{
+  float z = ((float)NCOLS / 2);
+  float perc = z - layer * z;
+  return ((x <= -perc || x >= perc) && (y <= -perc || y >= perc));
+}
+
+uint8_t horizontal(int8_t x, int8_t y, float layer)
+{
+  float z = ((float)NCOLS / 2);
+  float perc = z - layer * z;
+  return ((x >= -perc || x <= perc) && (y <= -perc || y >= perc));
+}
+
+uint8_t vertical(int8_t x, int8_t y, float layer)
+{
+  float z = ((float)NCOLS / 2);
+  float perc = z - layer * z;
+  return ((x <= -perc || x >= perc) && (y >= -perc || y <= perc));
 }
 
 void drawLine(uint8_t px, uint8_t py, uint8_t *color)
@@ -466,7 +444,7 @@ void checkSequence(void)
 {
   uint8_t arrayLen = ARRAY_LEN(noteSequence);
   uint8_t cnt = 0;
-  uint8_t blue[3] = {1, 1, 20};
+  // uint8_t blue[3] = {1, 1, 20};
   for (uint8_t j = 0; j < arrayLen; j++)
   {
     uint8_t len = ARRAY_LEN(noteSequence[j].note);

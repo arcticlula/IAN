@@ -6,12 +6,14 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import { BootstrapVue, BIcon, BIconCircleHalf, BIconSquareHalf, BIconTriangleHalf, BIconStarHalf, BIconArrowsAngleContract, BIconArrowsAngleExpand, BIconUpload, BIconArrowRepeat } from 'bootstrap-vue'
+import { BootstrapVue, BIcon, BIconCircleHalf, BIconSquareHalf, BIconTriangleHalf, BIconStarHalf, BIconArrowsAngleContract, BIconArrowsAngleExpand, BIconUpload, BIconArrowRepeat, BIconGridFill, BIconPause } from 'bootstrap-vue'
 
 Vue.use(BootstrapVue)
 Vue.component('BIcon', BIcon)
 Vue.component('BIconCircleHalf', BIconCircleHalf)
+Vue.component('BIconGridFill', BIconGridFill)
 Vue.component('BIconSquareHalf', BIconSquareHalf)
+Vue.component('BIconPause', BIconPause)
 Vue.component('BIconTriangleHalf', BIconTriangleHalf)
 Vue.component('BIconStarHalf', BIconStarHalf)
 Vue.component('BIconArrowsAngleContract', BIconArrowsAngleContract)
@@ -21,7 +23,7 @@ Vue.component('BIconArrowRepeat', BIconArrowRepeat)
 Vue.config.productionTip = false
 
 new Vue({
-  router,
-  store,
-  render: function (h) { return h(App) }
+	router,
+	store,
+	render: function (h) { return h(App) }
 }).$mount('#app')

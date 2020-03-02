@@ -10,6 +10,7 @@
         "stdint.h": "c",
         "stddef.h": "c",
         "main.h": "c",
-        "stm32f1xx_ll_dma.h": "c"
+        "stm32f1xx_ll_dma.h": "c",
+        "sstream": "c"
     }
 }
