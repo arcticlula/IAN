@@ -1,6 +1,6 @@
 <template>
 	<b-col cols="12">
-		<b-card>
+		<b-card class="px-0">
 			<!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
 			<!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
 			<!-- <ul id="example-1">
@@ -13,23 +13,29 @@
 			<!-- {{bluetooth}} -->
 			<!-- {{unpaired}} -->
 
-			<b-col cols="12">
-				<b-row>
-					<b-col cols="12" style="text-align: center;">
-						<h5>
-							<b-badge>
+			<b-col cols="12" class="px-0">
+				<b-row v-if="spinnerShow">
+					<b-col cols="12" style="text-align: right;">
+						<h6>
+							<b-badge variant="light" style="background: none;">
 								{{bluetooth.state}}
-								<b-spinner v-if="spinnerShow" small></b-spinner>
+								<b-spinner small></b-spinner>
 							</b-badge>
-						</h5>
+						</h6>
 					</b-col>
 				</b-row>
 				<b-row>
-					<b-col cols="12" md="6">
-						<b-card class="cardNoPad">
-							<template v-slot:header>
-								<label class="mb-0" v-b-toggle.collapse-grav>Dispositivos Gravados</label>
-							</template>
+					<b-col cols="12" md="6" class="mb-1">
+						<b-card
+							class="cardNoPad"
+							no-body
+							header-tag="header"
+							v-b-toggle.collapse-grav
+							header="Dispositivos Gravados"
+							header-bg-variant="info"
+							header-text-variant="white"
+							align="center"
+						>
 							<b-collapse visible id="collapse-grav">
 								<b-list-group>
 									<b-list-group-item
@@ -39,19 +45,26 @@
 										@click="connect(dev)"
 									>
 										<div class="d-flex w-100 justify-content-between">
-											<div class="mb-1">{{ dev.name }}</div>
-											<small>{{ dev.address }}</small>
+											<label>{{ dev.name }}</label>
+											<label>
+												<small>{{ dev.address }}</small>
+											</label>
 										</div>
 									</b-list-group-item>
 								</b-list-group>
 							</b-collapse>
 						</b-card>
 					</b-col>
-					<b-col cols="12" md="6">
-						<b-card no-body header-tag="header">
-							<template v-slot:header>
-								<label class="mb-0" v-b-toggle.collapse-unpair>Dispositivos Descobertos</label>
-							</template>
+					<b-col cols="12" md="6" class="mb-1">
+						<b-card
+							no-body
+							header-tag="header"
+							v-b-toggle.collapse-unpair
+							header="Dispositivos Descobertos"
+							header-bg-variant="info"
+							header-text-variant="white"
+							align="center"
+						>
 							<b-collapse visible id="collapse-unpair">
 								<b-list-group>
 									<b-list-group-item
@@ -60,8 +73,10 @@
 										class="flex-column align-items-start"
 									>
 										<div class="d-flex w-100 justify-content-between">
-											<div class="mb-1">{{ dev.name? dev.name:"Sem Nome" }}</div>
-											<small>{{ dev.address }}</small>
+											<label>{{ dev.name? dev.name:"Sem Nome" }}</label>
+											<label>
+												<small>{{ dev.address }}</small>
+											</label>
 										</div>
 									</b-list-group-item>
 								</b-list-group>
@@ -71,8 +86,8 @@
 				</b-row>
 				<b-row class="mt-3" style="text-align: center;">
 					<b-col cols="12">
-						<b-button variant="info" size="sm" @click="refreshDevices">
-							<b-icon icon="arrowRepeat"></b-icon>
+						<b-button variant="danger" size="sm" @click="refreshDevices" style="width: 100%">
+							<b-icon icon="arrowRepeat"></b-icon>&nbsp;Refresh
 						</b-button>
 					</b-col>
 				</b-row>
@@ -160,5 +175,10 @@ export default {
 .card label {
 	font-size: 14px;
 	font-weight: 600;
+}
+
+.card-header {
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 </style>

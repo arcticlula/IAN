@@ -176,16 +176,14 @@
 								:options="optionsColors"
 								button-variant="outline-info"
 								buttons
+								size="sm"
 								name="colors"
 							></b-form-radio-group>
 						</b-col>
 					</b-row>
-					<b-row>
+					<b-row class="mt-2">
 						<b-col cols="12" style="width: 100%;">
-							<canvas
-								id="colorCanvas"
-								style="width: 100%; border-radius: 3px; border: 2.5px solid #17a2b8; "
-							></canvas>
+							<canvas id="colorCanvas" style="width: 100%; border-radius: 3px; "></canvas>
 						</b-col>
 					</b-row>
 					<!-- <swatches row-length="5" colors="basic" v-model="color"></swatches>
@@ -193,7 +191,7 @@
 					<swatches row-length="5" colors="basic" v-model="color"></swatches>-->
 				</b-tab>
 				<b-tab title="Settings" color="info">
-					<h6 class="mt-0">Brightness</h6>
+					<label class="mt-0">Brightness</label>
 					<b-form-input
 						@change="setSingleDef('bright')"
 						type="range"

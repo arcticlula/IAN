@@ -73,4 +73,12 @@ li a.active {
 	box-shadow: none !important;
 	outline: none !important;
 }
+
+label {
+	margin-bottom: 0px !important;
+}
+
+.card {
+	border: none !important;
+}
 </style>
