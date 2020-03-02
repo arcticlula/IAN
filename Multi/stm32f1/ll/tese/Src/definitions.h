@@ -17,7 +17,7 @@
 #define BIT_CHECK(a, b) (!!((a) & (1ULL << (b))))
 
 // #define MAX_DIV 3
-#define MAX_BRIGHT 0.2 // 0 - 1
+// #define MAX_BRIGHT 0.2 // 0 - 1
 
 #if BOARD == SMALL_BOARD
 #define NCHANNELS 4

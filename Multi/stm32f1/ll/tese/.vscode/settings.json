@@ -11,6 +11,12 @@
         "stddef.h": "c",
         "main.h": "c",
         "stm32f1xx_ll_dma.h": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "iterator": "c",
+        "string": "c",
+        "string_view": "c",
+        "vector": "c",
+        "draw.h": "c",
+        "stm32f1xx_ll_utils.h": "c"
     }
 }

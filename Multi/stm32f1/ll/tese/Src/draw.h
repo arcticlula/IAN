@@ -12,6 +12,9 @@ typedef uint8_t (*callback_type)(int8_t x, int8_t y, float layer);
 
 extern uint8_t orientation;
 extern uint8_t MAX_DIV;
+extern float MAX_BRIGHT;
+extern uint8_t MODE_BACK;
+extern uint8_t MODE_TEXT;
 extern callback_type callback_function;
 
 void drawColor(uint8_t *color);
@@ -22,6 +25,7 @@ void drawShapeNoteGrad(void);
 
 uint8_t circle(int8_t x, int8_t y, float layer);
 uint8_t square(int8_t x, int8_t y, float layer);
+uint8_t triangle(int8_t x, int8_t y, float layer);
 uint8_t cross(int8_t x, int8_t y, float layer);
 uint8_t horizontal(int8_t x, int8_t y, float layer);
 uint8_t vertical(int8_t x, int8_t y, float layer);

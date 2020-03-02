@@ -20,6 +20,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "gpio.h"
+#include "usart.h"
+#include "dma.h"
+#include "tim.h"
 #include "stdint.h"
 #include "stdio.h"
 #include "stdlib.h"
@@ -37,18 +41,7 @@ volatile uint8_t TIM2_overflows = 0;
 drawshape_type drawshape_function;
 drawshape_type drawtext_function;
 
-/* WS2812 framebuffer
- * buffersize = (#LEDs / 16) * 24 */
-
-/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-static void MX_USART1_UART_Init(void);
-#if USART_MIDI
-static void MX_USART3_UART_Init(void);
-#endif
-static void MX_DMA_Init(void);
-static void MX_TIM2_Init(void);
 
 void WS2812_sendbuf(uint32_t buffersize)
 {
@@ -93,8 +86,11 @@ void sendDataBluetooth(uint8_t data)
   LL_USART_TransmitData8(USART1, data);
 }
 
-#define MIDI_OFF 0x10
-#define MODE_BACK 0x20
+// #define MIDI_OFF 0x10
+#define ACK 0x01
+#define NACK 0x02
+#define SETTINGS_BRIGHT 0x11
+#define MODE_BACK_STATE 0x20
 #define MODE_BACK_CIRCLE 0x21
 #define MODE_BACK_CIRCLE_GRAD 0x22
 #define MODE_BACK_CROSS 0x25
@@ -105,14 +101,14 @@ void sendDataBluetooth(uint8_t data)
 #define MODE_BACK_LINES_H_GRAD 0x36
 #define MODE_BACK_LINES_V 0x37
 #define MODE_BACK_LINES_V_GRAD 0x38
+#define MODE_BACK_TRIANGLE 0x40
+#define MODE_BACK_TRIANGLE_GRAD 0x41
 
-// #define MODE_BACK_TRIANGLE 0x35
-// #define MODE_BACK_TRIANGLE_GRAD 0x36
-#define MODE_TEXT 0x06
+#define MODE_TEXT_STATE 0x60
 
 static inline void drawShape(void)
 {
-  if (drawshape_function)
+  if (drawshape_function && MODE_BACK)
   {
     (*drawshape_function)();
   }
@@ -120,7 +116,7 @@ static inline void drawShape(void)
 
 static inline void drawText(void)
 {
-  if (drawtext_function)
+  if (drawtext_function && MODE_TEXT)
   {
     (*drawtext_function)();
   }
@@ -130,8 +126,22 @@ void frame_handler_function(const uint8_t *frame_buffer, uint16_t frame_length)
 {
   uint8_t data;
   data = *frame_buffer++;
+  drawtext_function = drawNote;
   switch (data)
   {
+  case SETTINGS_BRIGHT:
+    data = *frame_buffer++;
+    MAX_BRIGHT = (float)data / 20;
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    break;
+  case MODE_BACK_STATE:
+    data = *frame_buffer++;
+    MODE_BACK = data;
+    clearBack();
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    break;
   case MODE_BACK_CIRCLE:
     drawshape_function = drawShapeNote;
     callback_function = circle;
@@ -156,6 +166,14 @@ void frame_handler_function(const uint8_t *frame_buffer, uint16_t frame_length)
     drawshape_function = drawShapeNoteGrad;
     callback_function = square;
     break;
+  case MODE_BACK_TRIANGLE:
+    drawshape_function = drawShapeNote;
+    callback_function = triangle;
+    break;
+  case MODE_BACK_TRIANGLE_GRAD:
+    drawshape_function = drawShapeNoteGrad;
+    callback_function = triangle;
+    break;
   case MODE_BACK_LINES_H:
     drawshape_function = drawShapeNote;
     callback_function = horizontal;
@@ -172,13 +190,25 @@ void frame_handler_function(const uint8_t *frame_buffer, uint16_t frame_length)
     drawshape_function = drawShapeNoteGrad;
     callback_function = vertical;
     break;
+  case MODE_TEXT_STATE:
+    data = *frame_buffer++;
+    MODE_TEXT = data;
+    clearText();
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    break;
   default:
     break;
   }
-  data = *frame_buffer++;
-  MAX_DIV = data;
-  data = *frame_buffer++;
-  orientation = data;
+
+  if (data > 0x20 && data < 0x60)
+  {
+    data = *frame_buffer++;
+    MAX_DIV = data;
+    data = *frame_buffer++;
+    orientation = data;
+    minihdlc_send_frame(frame_buffer, frame_length);
+  }
   // while (frame_length)
   // {
   //   sendDataBluetooth(data);
@@ -204,10 +234,6 @@ void startReception(void)
 
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
-
-  /* USER CODE END 1 */
-
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
@@ -230,10 +256,6 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
@@ -243,25 +265,20 @@ int main(void)
   MX_DMA_Init();
   MX_TIM2_Init();
 
-  // drawLetter('C', 0, 1);
-  // drawLetter('5', 4, 1);
-
   startReception();
 
   clearNoteBuffer();
   clearBack();
   clearText();
   clearFramebuffer();
-  // uint8_t blue[3] = {1, 1, 3};
-  // uint8_t red[3] = {5, 0, 1};
+  WS2812_sendbuf(24 * NLEDSCH);
 
-  setNote(24);
-  setNote(15);
-  setNote(87);
+  uint8_t blue[3] = {1, 1, 4};
+  uint8_t red[3] = {4, 1, 1};
 
-  // setBackColor(blue);
-  // fillFramebuffer();
-  // WS2812_sendbuf(24 * NLEDSCH);
+  drawColor(blue);
+  fillFramebuffer();
+  WS2812_sendbuf(24 * NLEDSCH);
 
   // WS2812_sendbuf(24 * NLEDSCH);
   /* Infinite loop */
@@ -279,40 +296,39 @@ int main(void)
     // set two pixels (columns) in the defined row (channel 0) to the
     // color values defined in the colors array
     //   // wait until the last frame was transmitted
+    // for (uint8_t i = 0; i < 12; i++)
+    // {
+    //   setNote(i);
+    //   drawShape();
+    //   fillFramebuffer();
+    //   WS2812_sendbuf(24 * NLEDSCH);
+    //   LL_mDelay(1000);
     //   while (!WS2812_TC)
     //     ;
-    //   //   // move(1, 1);
-    //   //   // fillFramebuffer();
-    //   //   // WS2812_sendbuf(24 * NLEDSCH);
-    //   //   // LL_mDelay(500);
-    //   //   // }
-    //   //   // drawString("Ordem dos Engenheiros Tecnicos", 1, 1, 1, 0);
-    //   //   // rotate()
-    //   //   // drawColor(arrCol[i]);
-    //   //   // fillFramebuffer();
-    //   //   // WS2812_sendbuf(24 * NLEDSCH);
-    setNote(28);
-    drawShape();
+    // }
+    // LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
+    while (!WS2812_TC)
+      ;
+    // LL_mDelay(800);
+    drawColor(blue);
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
-    LL_mDelay(2000);
-    setNote(58);
-    drawShape();
+    LL_mDelay(800);
+    drawColor(red);
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
-    LL_mDelay(2000);
-    setNote(17);
-    drawShape();
-    fillFramebuffer();
-    WS2812_sendbuf(24 * NLEDSCH);
-    LL_mDelay(2000);
-    setNote(83);
-    drawShape();
-    fillFramebuffer();
-    WS2812_sendbuf(24 * NLEDSCH);
-    LL_mDelay(2000);
+
+    // move(1, 1);
+    // fillFramebuffer();
+    // WS2812_sendbuf(24 * NLEDSCH);
+    // LL_mDelay(500);
+    // }
+    // drawString("Ordem dos Engenheiros Tecnicos", 1, 1, 1, 0);
+    // rotate()
+    // drawColor(arrCol[i]);
+    // fillFramebuffer();
+    // WS2812_sendbuf(24 * NLEDSCH);
   }
-  /* USER CODE END 3 */
 }
 
 /**
@@ -354,226 +370,9 @@ void SystemClock_Config(void)
   LL_SetSystemCoreClock(72000000);
 }
 
-LL_TIM_InitTypeDef TIM_InitStruct = {0};
-LL_TIM_OC_InitTypeDef TIM_OC_InitStruct = {0};
-LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
-LL_DMA_InitTypeDef DMA_InitStruct = {0};
-LL_USART_InitTypeDef USART_InitStruct = {0};
-
-static void MX_TIM2_Init(void)
-{
-  /* Peripheral clock enable */
-  LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM2);
-
-  /* TIM2 DMA Init */
-  LL_DMA_DeInit(DMA1, LL_DMA_CHANNEL_2);
-  DMA_InitStruct.PeriphOrM2MSrcAddress = (uint32_t)&GPIOA->ODR;
-  DMA_InitStruct.MemoryOrM2MDstAddress = (uint32_t)&WS2812_IO_High;
-  DMA_InitStruct.Direction = LL_DMA_DIRECTION_MEMORY_TO_PERIPH;
-  DMA_InitStruct.NbData = 0;
-  DMA_InitStruct.PeriphOrM2MSrcIncMode = LL_DMA_PERIPH_NOINCREMENT;
-  DMA_InitStruct.MemoryOrM2MDstIncMode = LL_DMA_MEMORY_NOINCREMENT;
-  DMA_InitStruct.PeriphOrM2MSrcDataSize = LL_DMA_PDATAALIGN_WORD;
-  DMA_InitStruct.MemoryOrM2MDstDataSize = LL_DMA_MDATAALIGN_HALFWORD;
-  DMA_InitStruct.Mode = LL_DMA_MODE_NORMAL;
-  DMA_InitStruct.Priority = LL_DMA_PRIORITY_VERYHIGH;
-  LL_DMA_Init(DMA1, LL_DMA_CHANNEL_2, &DMA_InitStruct);
-
-  LL_DMA_DeInit(DMA1, LL_DMA_CHANNEL_5);
-  DMA_InitStruct.PeriphOrM2MSrcAddress = (uint32_t)&GPIOA->ODR;
-  DMA_InitStruct.MemoryOrM2MDstAddress = (uint32_t)&WS2812_IO_framedata;
-  DMA_InitStruct.Direction = LL_DMA_DIRECTION_MEMORY_TO_PERIPH;
-  DMA_InitStruct.NbData = 0;
-  DMA_InitStruct.PeriphOrM2MSrcIncMode = LL_DMA_PERIPH_NOINCREMENT;
-  DMA_InitStruct.MemoryOrM2MDstIncMode = LL_DMA_MEMORY_INCREMENT;
-  DMA_InitStruct.PeriphOrM2MSrcDataSize = LL_DMA_PDATAALIGN_WORD;
-  DMA_InitStruct.MemoryOrM2MDstDataSize = LL_DMA_MDATAALIGN_HALFWORD;
-  DMA_InitStruct.Mode = LL_DMA_MODE_NORMAL;
-  DMA_InitStruct.Priority = LL_DMA_PRIORITY_VERYHIGH;
-  LL_DMA_Init(DMA1, LL_DMA_CHANNEL_5, &DMA_InitStruct);
-
-  /* TIM2_CH2_CH4 Init */
-  LL_DMA_DeInit(DMA1, LL_DMA_CHANNEL_7);
-  DMA_InitStruct.PeriphOrM2MSrcAddress = (uint32_t)&GPIOA->ODR;
-  DMA_InitStruct.MemoryOrM2MDstAddress = (uint32_t)&WS2812_IO_Low;
-  DMA_InitStruct.Direction = LL_DMA_DIRECTION_MEMORY_TO_PERIPH;
-  DMA_InitStruct.NbData = 0;
-  DMA_InitStruct.PeriphOrM2MSrcIncMode = LL_DMA_PERIPH_NOINCREMENT;
-  DMA_InitStruct.MemoryOrM2MDstIncMode = LL_DMA_MEMORY_NOINCREMENT;
-  DMA_InitStruct.PeriphOrM2MSrcDataSize = LL_DMA_PDATAALIGN_WORD;
-  DMA_InitStruct.MemoryOrM2MDstDataSize = LL_DMA_MDATAALIGN_HALFWORD;
-  DMA_InitStruct.Mode = LL_DMA_MODE_NORMAL;
-  DMA_InitStruct.Priority = LL_DMA_PRIORITY_VERYHIGH;
-  LL_DMA_Init(DMA1, LL_DMA_CHANNEL_7, &DMA_InitStruct);
-
-  /* TIM2 interrupt Init */
-  NVIC_SetPriority(TIM2_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
-  NVIC_EnableIRQ(TIM2_IRQn);
-
-  LL_DMA_EnableIT_TC(DMA1, LL_DMA_CHANNEL_7);
-
-  uint16_t PrescalerValue;
-
-  PrescalerValue = (uint16_t)(SystemCoreClock / 24000000) - 1;
-  /* Time base configuration */
-  TIM_InitStruct.Autoreload = 29; // 800kHz
-  TIM_InitStruct.Prescaler = PrescalerValue;
-  TIM_InitStruct.ClockDivision = 0;
-  TIM_InitStruct.CounterMode = LL_TIM_COUNTERMODE_UP;
-  LL_TIM_Init(TIM2, &TIM_InitStruct);
-  LL_TIM_DisableARRPreload(TIM2);
-
-  /* Timing Mode configuration: Channel 1 */
-  TIM_OC_InitStruct.OCMode = LL_TIM_OCMODE_FROZEN;
-  TIM_OC_InitStruct.OCState = LL_TIM_OCSTATE_DISABLE;
-  TIM_OC_InitStruct.CompareValue = 8;
-  LL_TIM_OC_Init(TIM2, LL_TIM_CHANNEL_CH1, &TIM_OC_InitStruct);
-  LL_TIM_OC_DisablePreload(TIM2, LL_TIM_CHANNEL_CH1);
-
-  /* Timing Mode configuration: Channel 2 */
-  TIM_OC_InitStruct.OCMode = LL_TIM_OCMODE_PWM1;
-  TIM_OC_InitStruct.OCState = LL_TIM_OCSTATE_DISABLE;
-  TIM_OC_InitStruct.CompareValue = 17;
-  LL_TIM_OC_Init(TIM2, LL_TIM_CHANNEL_CH2, &TIM_OC_InitStruct);
-  LL_TIM_OC_DisablePreload(TIM2, LL_TIM_CHANNEL_CH2);
-}
-
-/** 
-  * Enable DMA controller clock
-  */
-static void MX_DMA_Init(void)
-{
-  /* Init with LL driver */
-  /* DMA controller clock enable */
-  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_DMA1);
-
-  /* DMA interrupt init */
-  /* DMA1_Channel2_IRQn interrupt configuration */
-  // NVIC_SetPriority(DMA1_Channel2_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
-  // NVIC_EnableIRQ(DMA1_Channel2_IRQn);
-  // /* DMA1_Channel5_IRQn interrupt configuration */
-  // NVIC_SetPriority(DMA1_Channel5_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
-  // NVIC_EnableIRQ(DMA1_Channel5_IRQn);
-  /* DMA1_Channel7_IRQn interrupt configuration */
-  NVIC_SetPriority(DMA1_Channel7_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
-  NVIC_EnableIRQ(DMA1_Channel7_IRQn);
-}
-
-/**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_GPIO_Init(void)
-{
-
-  /* GPIO Ports Clock Enable */
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOA);
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOB);
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOC);
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOD);
-  // GPIOA Periph clock enable
-
-  // GPIOA pins WS2812 data outputs
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_ALL;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
-  LL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_13;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
-  LL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-  LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_13);
-}
-
-static void MX_USART1_UART_Init(void)
-{
-
-  /* Peripheral clock enable */
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_USART1);
-  /**USART1 GPIO Configuration  
-  PB6   ------> USART1_TX
-  PB7   ------> USART1_RX 
-  */
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_6;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
-  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_7;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_FLOATING;
-  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  LL_GPIO_AF_EnableRemap_USART1();
-  // __HAL_AFIO_REMAP_USART1_ENABLE();
-
-  /* USART1 interrupt Init */
-  NVIC_SetPriority(USART1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
-  NVIC_EnableIRQ(USART1_IRQn);
-
-  /* USER CODE BEGIN USART1_Init 1 */
-
-  /* USER CODE END USART1_Init 1 */
-  USART_InitStruct.BaudRate = 9600;
-  USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
-  USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
-  USART_InitStruct.Parity = LL_USART_PARITY_NONE;
-  USART_InitStruct.TransferDirection = LL_USART_DIRECTION_TX_RX;
-  USART_InitStruct.HardwareFlowControl = LL_USART_HWCONTROL_NONE;
-  LL_USART_Init(USART1, &USART_InitStruct);
-  LL_USART_ConfigAsyncMode(USART1);
-  LL_USART_Enable(USART1);
-  /* USER CODE BEGIN USART1_Init 2 */
-  LL_USART_EnableIT_RXNE(USART1);
-  /* USER CODE END USART1_Init 2 */
-}
-
-#if USART_MIDI
-static void MX_USART3_UART_Init(void)
-{
-
-  LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART3);
-
-  /**USART3 GPIO Configuration
-  PB10   ------> USART3_TX
-  PB11   ------> USART3_RX
-  */
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_10;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
-  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_11;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_FLOATING;
-  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /* USART3 interrupt Init */
-  NVIC_SetPriority(USART3_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
-  NVIC_EnableIRQ(USART3_IRQn);
-
-  /* USER CODE BEGIN USART3_Init 1 */
-
-  /* USER CODE END USART3_Init 1 */
-  USART_InitStruct.BaudRate = 31250;
-  USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
-  USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
-  USART_InitStruct.Parity = LL_USART_PARITY_NONE;
-  USART_InitStruct.TransferDirection = LL_USART_DIRECTION_RX;
-  USART_InitStruct.HardwareFlowControl = LL_USART_HWCONTROL_NONE;
-  LL_USART_Init(USART3, &USART_InitStruct);
-  LL_USART_ConfigAsyncMode(USART3);
-  LL_USART_Enable(USART3);
-  /* USER CODE BEGIN USART3_Init 2 */
-  LL_USART_EnableIT_RXNE(USART3);
-  /* USER CODE END USART3_Init 2 */
-}
-#endif
-
 void DMA1_Channel7_IRQHandler(void)
 {
+  LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
   LL_DMA_ClearFlag_TC7(DMA1);
   // enable TIM2 Update interrupt to append 50us dead period
   LL_TIM_EnableIT_UPDATE(TIM2);
@@ -589,6 +388,8 @@ void DMA1_Channel7_IRQHandler(void)
 
 void TIM2_IRQHandler(void)
 {
+  // if (LL_TIM_IsActiveFlag_UPDATE(TIM2))
+  // LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
   // Clear TIM2 Interrupt Flag
   LL_TIM_ClearFlag_UPDATE(TIM2);
 
@@ -619,7 +420,7 @@ void USART1_IRQHandler(void)
   uint8_t RxBuffer;
   if (LL_USART_IsActiveFlag_RXNE(USART1) && LL_USART_IsEnabledIT_RXNE(USART1))
   {
-    LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
+    // LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
     RxBuffer = LL_USART_ReceiveData8(USART1);
     minihdlc_char_receiver(RxBuffer);
     sendDataBluetooth(RxBuffer);
@@ -635,7 +436,7 @@ void USART3_IRQHandler(void)
   long temp;
   static uint8_t sizeMsg;
   // volatile uint8_t colorLetter[] = {0, 0, 0};
-  LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
+  // LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
   if (LL_USART_IsActiveFlag_RXNE(USART3) && LL_USART_IsEnabledIT_RXNE(USART3))
   {
     usart_rx_buffer = LL_USART_ReceiveData8(USART3);
@@ -692,6 +493,7 @@ void USART3_IRQHandler(void)
         // drawNote();
         // drawStringArray(1, 1, 1, 1);
         drawShape();
+        drawText();
         fillFramebuffer();
         WS2812_sendbuf(24 * NLEDSCH);
         break;

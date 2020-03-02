@@ -37,6 +37,10 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Src/main.c \
+Src/gpio.c \
+Src/dma.c \
+Src/tim.c \
+Src/usart.c \
 Src/minihdlc-master/minihdlc.c \
 Src/definitions.c \
 Src/draw.c \
