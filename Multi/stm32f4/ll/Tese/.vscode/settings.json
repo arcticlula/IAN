@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "stm32f4xx_it.h": "c",
+        "notes.h": "c",
+        "minihdlc.h": "c",
+        "chrono": "c"
+    }
+}

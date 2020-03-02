@@ -10,7 +10,7 @@ uint8_t currColor[3] = {60, 25, 0};
 uint8_t letterColor[3] = {0, 10, 0};
 
 volatile uint8_t arr[3] = {0, 0, 0};
-uint8_t arrColor[13][3] = {
+/* uint8_t arrColor[13][3] = {
     {50, 0, 0},   //red ~~
     {50, 25, 0},  //orange ~~
     {50, 50, 0},  //amarelo ~~
@@ -23,6 +23,51 @@ uint8_t arrColor[13][3] = {
     {30, 30, 30}, //cinzento
     {60, 60, 20}, //branca
     {60, 30, 20}, //red magenta
+    {0, 0, 0}}; */
+
+/* uint8_t arrColor[13][3] = {
+    {123, 0, 0},    //red ~~
+    {123, 90, 0},   //orange ~~
+    {123, 123, 0},  //amarelo ~~
+    {123, 109, 0},  //castanho ~~
+    {0, 123, 106},  //azul turquesa ~~
+    {90, 0, 123},   //cor de rosa ~~
+    {123, 0, 90},   //rosa choque ~~
+    {123, 0, 123},  //violeta escuro ~~
+    {0, 0, 112},    //azul escuro
+    {98, 98, 98},   //cinzento
+    {133, 133, 82}, //branca
+    {133, 98, 82},  //red magenta
+    {0, 0, 0}}; */
+
+/* uint8_t arrColor[13][3] = {
+    {51, 51, 51},    //red ~~
+    {62, 62, 62},    //orange ~~
+    {74, 74, 74},    //amarelo ~~
+    {85, 85, 85},    //castanho ~~
+    {96, 96, 96},    //azul turquesa ~~
+    {108, 108, 108}, //cor de rosa ~~
+    {119, 119, 119}, //rosa choque ~~
+    {130, 130, 130}, //violeta escuro ~~
+    {142, 142, 142}, //azul escuro
+    {153, 153, 153}, //cinzento
+    {164, 164, 164}, //branca
+    {176, 176, 176}, //red magenta
+    {0, 0, 0}}; */
+
+uint8_t arrColor[13][3] = {
+    {78, 78, 78},    //red ~~
+    {116, 99, 94},   //orange ~~
+    {101, 105, 105}, //amarelo ~~
+    {72, 72, 36},    //castanho ~~
+    {39, 39, 39},    //azul turquesa ~~
+    {58, 49, 47},    //cor de rosa ~~
+    {50, 53, 53},    //rosa choque ~~
+    {36, 36, 18},    //violeta escuro ~~
+    {117, 117, 117}, //azul escuro
+    {174, 148, 141}, //cinzento
+    {151, 158, 158}, //branca
+    {108, 108, 54},  //red magenta
     {0, 0, 0}};
 
 const uint8_t font4x6[96][2] = {
@@ -126,6 +171,9 @@ const uint8_t font4x6[96][2] = {
 
 uint8_t orientation = 0;
 uint8_t MAX_DIV = 3;
+float MAX_BRIGHT = 0.5;
+uint8_t MODE_BACK = 1;
+uint8_t MODE_TEXT = 1;
 callback_type callback_function;
 
 static inline uint8_t callback(int8_t x, int8_t y, float layer)
@@ -201,15 +249,14 @@ void fillFramebuffer(void)
         tmp = BIT_CHECK(textLayer[DIV_8(coords)], REST_8(coords));
         if (tmp)
           setColorFB(tempPoint, textColor);
-        else
-          setColorFB(tempPoint, backLayer[coords]);
 #else
         tmp = textLayer[coords][0] + textLayer[coords][1] + textLayer[coords][2];
         if (tmp)
           setColorFB(tempPoint, textLayer[coords]);
+#endif
         else
           setColorFB(tempPoint, backLayer[coords]);
-#endif
+
         WS2812_framedata_setPixel(invI, invX + (invJ * NCOLS), tempPoint[0], tempPoint[1], tempPoint[2]);
       }
     }
@@ -331,6 +378,10 @@ void drawShapeNote()
         }
       }
       setColor(backLayer[coords], noteBuffer[invI].color);
+      for (uint8_t z = 0, invz = 2; z < 3; z++, invz--)
+      {
+        textColor[z] = 150;
+      }
     }
   }
 }
@@ -378,6 +429,15 @@ uint8_t square(int8_t x, int8_t y, float layer)
   float z = ((float)NCOLS / 2);
   float perc = layer * z;
   return ((x >= -perc && x <= perc) && (y >= -perc && y <= perc));
+}
+
+uint8_t triangle(int8_t x, int8_t y, float layer)
+{
+  float z = ((float)NCOLS / 2);
+  float perc = layer * z;
+  float offset = z / 7;
+  float m = y * 0.7 + perc;
+  return ((x > -m) && (x < m)) && (y < perc * 0.9 + offset);
 }
 
 uint8_t cross(int8_t x, int8_t y, float layer)
@@ -456,9 +516,8 @@ void checkSequence(void)
         if (cnt == len)
         {
           clearText();
-          setTextColor(noteBuffer[0].color);
-          drawString(noteSequence[j].word, 1, 24, 1, 0);
-          // drawCenter(noteSequence[j].word, 1, 0);
+          // drawString(noteSequence[j].word, 1, 24, 1, 0);
+          drawCenter(noteSequence[j].word, 1, 0);
         }
       }
       else
@@ -474,6 +533,7 @@ void drawNote(void)
   // drawStringArray(1, 1, 1, 1);
 
   checkSequence();
+
   // drawString(noteBuffer[0], 1, 1, 1, 0);
   // setTextColor(noteBuffer[0].color);
   // drawColor(noteBuffer[0].color);

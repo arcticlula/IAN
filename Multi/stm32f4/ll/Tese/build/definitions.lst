@@ -1,0 +1,745 @@
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"definitions.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.setBackColor,"ax",%progbits
+  18              		.align	1
+  19              		.global	setBackColor
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	setBackColor:
+  27              	.LVL0:
+  28              	.LFB0:
+  29              		.file 1 "Src/definitions.c"
+   1:Src/definitions.c **** #include "stdint.h"
+   2:Src/definitions.c **** #include "definitions.h"
+   3:Src/definitions.c **** #include "draw.h"
+   4:Src/definitions.c **** 
+   5:Src/definitions.c **** void setBackColor(uint8_t *color)
+   6:Src/definitions.c **** {
+  30              		.loc 1 6 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+   7:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+  35              		.loc 1 7 3 view .LVU1
+  36              	.LBB2:
+  37              		.loc 1 7 8 view .LVU2
+  38              		.loc 1 7 16 is_stmt 0 view .LVU3
+  39 0000 0023     		movs	r3, #0
+  40              	.LVL1:
+  41              	.L2:
+  42              		.loc 1 7 3 discriminator 1 view .LVU4
+  43 0002 022B     		cmp	r3, #2
+  44 0004 05D8     		bhi	.L4
+   8:Src/definitions.c ****   {
+   9:Src/definitions.c ****     backColor[z] = color[z];
+  45              		.loc 1 9 5 is_stmt 1 discriminator 3 view .LVU5
+  46              		.loc 1 9 25 is_stmt 0 discriminator 3 view .LVU6
+  47 0006 C15C     		ldrb	r1, [r0, r3]	@ zero_extendqisi2
+  48              		.loc 1 9 18 discriminator 3 view .LVU7
+  49 0008 024A     		ldr	r2, .L5
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 2
+
+
+  50 000a D154     		strb	r1, [r2, r3]
+   7:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+  51              		.loc 1 7 31 discriminator 3 view .LVU8
+  52 000c 0133     		adds	r3, r3, #1
+  53              	.LVL2:
+   7:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+  54              		.loc 1 7 31 discriminator 3 view .LVU9
+  55 000e DBB2     		uxtb	r3, r3
+  56              	.LVL3:
+   7:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+  57              		.loc 1 7 31 discriminator 3 view .LVU10
+  58 0010 F7E7     		b	.L2
+  59              	.L4:
+   7:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+  60              		.loc 1 7 31 discriminator 3 view .LVU11
+  61              	.LBE2:
+  10:Src/definitions.c ****   }
+  11:Src/definitions.c **** }
+  62              		.loc 1 11 1 view .LVU12
+  63 0012 7047     		bx	lr
+  64              	.L6:
+  65              		.align	2
+  66              	.L5:
+  67 0014 00000000 		.word	backColor
+  68              		.cfi_endproc
+  69              	.LFE0:
+  71              		.section	.text.setTextColor,"ax",%progbits
+  72              		.align	1
+  73              		.global	setTextColor
+  74              		.syntax unified
+  75              		.thumb
+  76              		.thumb_func
+  77              		.fpu fpv4-sp-d16
+  79              	setTextColor:
+  80              	.LVL4:
+  81              	.LFB1:
+  12:Src/definitions.c **** 
+  13:Src/definitions.c **** void setTextColor(uint8_t *color)
+  14:Src/definitions.c **** {
+  82              		.loc 1 14 1 is_stmt 1 view -0
+  83              		.cfi_startproc
+  84              		@ args = 0, pretend = 0, frame = 0
+  85              		@ frame_needed = 0, uses_anonymous_args = 0
+  86              		@ link register save eliminated.
+  15:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+  87              		.loc 1 15 3 view .LVU14
+  88              	.LBB3:
+  89              		.loc 1 15 8 view .LVU15
+  90              		.loc 1 15 16 is_stmt 0 view .LVU16
+  91 0000 0023     		movs	r3, #0
+  92              	.LVL5:
+  93              	.L8:
+  94              		.loc 1 15 3 discriminator 1 view .LVU17
+  95 0002 022B     		cmp	r3, #2
+  96 0004 05D8     		bhi	.L10
+  16:Src/definitions.c ****   {
+  17:Src/definitions.c ****     textColor[z] = color[z];
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 3
+
+
+  97              		.loc 1 17 5 is_stmt 1 discriminator 3 view .LVU18
+  98              		.loc 1 17 25 is_stmt 0 discriminator 3 view .LVU19
+  99 0006 C15C     		ldrb	r1, [r0, r3]	@ zero_extendqisi2
+ 100              		.loc 1 17 18 discriminator 3 view .LVU20
+ 101 0008 024A     		ldr	r2, .L11
+ 102 000a D154     		strb	r1, [r2, r3]
+  15:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+ 103              		.loc 1 15 31 discriminator 3 view .LVU21
+ 104 000c 0133     		adds	r3, r3, #1
+ 105              	.LVL6:
+  15:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+ 106              		.loc 1 15 31 discriminator 3 view .LVU22
+ 107 000e DBB2     		uxtb	r3, r3
+ 108              	.LVL7:
+  15:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+ 109              		.loc 1 15 31 discriminator 3 view .LVU23
+ 110 0010 F7E7     		b	.L8
+ 111              	.L10:
+  15:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+ 112              		.loc 1 15 31 discriminator 3 view .LVU24
+ 113              	.LBE3:
+  18:Src/definitions.c ****   }
+  19:Src/definitions.c **** }
+ 114              		.loc 1 19 1 view .LVU25
+ 115 0012 7047     		bx	lr
+ 116              	.L12:
+ 117              		.align	2
+ 118              	.L11:
+ 119 0014 00000000 		.word	textColor
+ 120              		.cfi_endproc
+ 121              	.LFE1:
+ 123              		.section	.text.setColor,"ax",%progbits
+ 124              		.align	1
+ 125              		.global	setColor
+ 126              		.syntax unified
+ 127              		.thumb
+ 128              		.thumb_func
+ 129              		.fpu fpv4-sp-d16
+ 131              	setColor:
+ 132              	.LVL8:
+ 133              	.LFB2:
+  20:Src/definitions.c **** 
+  21:Src/definitions.c **** void setColor(uint8_t *dest, uint8_t *color)
+  22:Src/definitions.c **** {
+ 134              		.loc 1 22 1 is_stmt 1 view -0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138              		@ link register save eliminated.
+  23:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+ 139              		.loc 1 23 3 view .LVU27
+ 140              	.LBB4:
+ 141              		.loc 1 23 8 view .LVU28
+ 142              		.loc 1 23 16 is_stmt 0 view .LVU29
+ 143 0000 0023     		movs	r3, #0
+ 144              	.LVL9:
+ 145              	.L14:
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 4
+
+
+ 146              		.loc 1 23 3 discriminator 1 view .LVU30
+ 147 0002 022B     		cmp	r3, #2
+ 148 0004 04D8     		bhi	.L16
+  24:Src/definitions.c ****   {
+  25:Src/definitions.c ****     dest[z] = color[z];
+ 149              		.loc 1 25 5 is_stmt 1 discriminator 3 view .LVU31
+ 150              		.loc 1 25 20 is_stmt 0 discriminator 3 view .LVU32
+ 151 0006 CA5C     		ldrb	r2, [r1, r3]	@ zero_extendqisi2
+ 152              		.loc 1 25 13 discriminator 3 view .LVU33
+ 153 0008 C254     		strb	r2, [r0, r3]
+  23:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+ 154              		.loc 1 23 31 discriminator 3 view .LVU34
+ 155 000a 0133     		adds	r3, r3, #1
+ 156              	.LVL10:
+  23:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+ 157              		.loc 1 23 31 discriminator 3 view .LVU35
+ 158 000c DBB2     		uxtb	r3, r3
+ 159              	.LVL11:
+  23:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+ 160              		.loc 1 23 31 discriminator 3 view .LVU36
+ 161 000e F8E7     		b	.L14
+ 162              	.L16:
+  23:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+ 163              		.loc 1 23 31 discriminator 3 view .LVU37
+ 164              	.LBE4:
+  26:Src/definitions.c ****   }
+  27:Src/definitions.c **** }
+ 165              		.loc 1 27 1 view .LVU38
+ 166 0010 7047     		bx	lr
+ 167              		.cfi_endproc
+ 168              	.LFE2:
+ 170              		.section	.text.setColorFadeFB,"ax",%progbits
+ 171              		.align	1
+ 172              		.global	setColorFadeFB
+ 173              		.syntax unified
+ 174              		.thumb
+ 175              		.thumb_func
+ 176              		.fpu fpv4-sp-d16
+ 178              	setColorFadeFB:
+ 179              	.LVL12:
+ 180              	.LFB3:
+  28:Src/definitions.c **** 
+  29:Src/definitions.c **** /* void setColorFB(uint8_t *dest, uint8_t *color)
+  30:Src/definitions.c **** {
+  31:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+  32:Src/definitions.c ****   {
+  33:Src/definitions.c ****     dest[z] = color[z] * MAX_BRIGHT;
+  34:Src/definitions.c ****   }
+  35:Src/definitions.c **** } */
+  36:Src/definitions.c **** 
+  37:Src/definitions.c **** uint8_t gammaCorrection[256] = {
+  38:Src/definitions.c ****     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  39:Src/definitions.c ****     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1,
+  40:Src/definitions.c ****     1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2,
+  41:Src/definitions.c ****     2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5,
+  42:Src/definitions.c ****     5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 10,
+  43:Src/definitions.c ****     10, 10, 11, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 16, 16,
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 5
+
+
+  44:Src/definitions.c ****     17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 24, 24, 25,
+  45:Src/definitions.c ****     25, 26, 27, 27, 28, 29, 29, 30, 31, 32, 32, 33, 34, 35, 35, 36,
+  46:Src/definitions.c ****     37, 38, 39, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 50,
+  47:Src/definitions.c ****     51, 52, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68,
+  48:Src/definitions.c ****     69, 70, 72, 73, 74, 75, 77, 78, 79, 81, 82, 83, 85, 86, 87, 89,
+  49:Src/definitions.c ****     90, 92, 93, 95, 96, 98, 99, 101, 102, 104, 105, 107, 109, 110, 112, 114,
+  50:Src/definitions.c ****     115, 117, 119, 120, 122, 124, 126, 127, 129, 131, 133, 135, 137, 138, 140, 142,
+  51:Src/definitions.c ****     144, 146, 148, 150, 152, 154, 156, 158, 160, 162, 164, 167, 169, 171, 173, 175,
+  52:Src/definitions.c ****     177, 180, 182, 184, 186, 189, 191, 193, 196, 198, 200, 203, 205, 208, 210, 213,
+  53:Src/definitions.c ****     215, 218, 220, 223, 225, 228, 231, 233, 236, 239, 241, 244, 247, 249, 252, 255};
+  54:Src/definitions.c **** 
+  55:Src/definitions.c **** void setColorFadeFB(uint8_t *dest, uint8_t *color)
+  56:Src/definitions.c **** {
+ 181              		.loc 1 56 1 is_stmt 1 view -0
+ 182              		.cfi_startproc
+ 183              		@ args = 0, pretend = 0, frame = 0
+ 184              		@ frame_needed = 0, uses_anonymous_args = 0
+ 185              		@ link register save eliminated.
+  57:Src/definitions.c ****   uint8_t temp;
+ 186              		.loc 1 57 3 view .LVU40
+  58:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+ 187              		.loc 1 58 3 view .LVU41
+ 188              	.LBB5:
+ 189              		.loc 1 58 8 view .LVU42
+ 190              		.loc 1 58 16 is_stmt 0 view .LVU43
+ 191 0000 0022     		movs	r2, #0
+ 192              	.LVL13:
+ 193              		.loc 1 58 3 view .LVU44
+ 194 0002 022A     		cmp	r2, #2
+ 195 0004 19D8     		bhi	.L23
+ 196              	.LBE5:
+  56:Src/definitions.c ****   uint8_t temp;
+ 197              		.loc 1 56 1 view .LVU45
+ 198 0006 10B4     		push	{r4}
+ 199              	.LCFI0:
+ 200              		.cfi_def_cfa_offset 4
+ 201              		.cfi_offset 4, -4
+ 202              	.L19:
+ 203              	.LBB6:
+  59:Src/definitions.c ****   {
+  60:Src/definitions.c ****     temp = gammaCorrection[color[z]];
+ 204              		.loc 1 60 5 is_stmt 1 discriminator 3 view .LVU46
+ 205              		.loc 1 60 33 is_stmt 0 discriminator 3 view .LVU47
+ 206 0008 8B5C     		ldrb	r3, [r1, r2]	@ zero_extendqisi2
+ 207              		.loc 1 60 10 discriminator 3 view .LVU48
+ 208 000a 0C4C     		ldr	r4, .L24
+ 209 000c E35C     		ldrb	r3, [r4, r3]	@ zero_extendqisi2
+ 210              	.LVL14:
+  61:Src/definitions.c ****     dest[z] = (temp / 2) * MAX_BRIGHT;
+ 211              		.loc 1 61 5 is_stmt 1 discriminator 3 view .LVU49
+ 212              		.loc 1 61 21 is_stmt 0 discriminator 3 view .LVU50
+ 213 000e 5B08     		lsrs	r3, r3, #1
+ 214              	.LVL15:
+ 215              		.loc 1 61 21 discriminator 3 view .LVU51
+ 216 0010 07EE903A 		vmov	s15, r3	@ int
+ 217              		.loc 1 61 26 discriminator 3 view .LVU52
+ 218 0014 F8EEE77A 		vcvt.f32.s32	s15, s15
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 6
+
+
+ 219 0018 094B     		ldr	r3, .L24+4
+ 220 001a 93ED007A 		vldr.32	s14, [r3]
+ 221 001e 67EE877A 		vmul.f32	s15, s15, s14
+ 222              		.loc 1 61 13 discriminator 3 view .LVU53
+ 223 0022 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 224 0026 17EE903A 		vmov	r3, s15	@ int
+ 225 002a 8354     		strb	r3, [r0, r2]
+ 226              	.LVL16:
+  58:Src/definitions.c ****   {
+ 227              		.loc 1 58 31 discriminator 3 view .LVU54
+ 228 002c 0132     		adds	r2, r2, #1
+ 229              	.LVL17:
+  58:Src/definitions.c ****   {
+ 230              		.loc 1 58 31 discriminator 3 view .LVU55
+ 231 002e D2B2     		uxtb	r2, r2
+ 232              	.LVL18:
+  58:Src/definitions.c ****   {
+ 233              		.loc 1 58 3 discriminator 3 view .LVU56
+ 234 0030 022A     		cmp	r2, #2
+ 235 0032 E9D9     		bls	.L19
+ 236              	.LBE6:
+  62:Src/definitions.c ****   }
+  63:Src/definitions.c **** }
+ 237              		.loc 1 63 1 view .LVU57
+ 238 0034 5DF8044B 		ldr	r4, [sp], #4
+ 239              	.LCFI1:
+ 240              		.cfi_restore 4
+ 241              		.cfi_def_cfa_offset 0
+ 242 0038 7047     		bx	lr
+ 243              	.L23:
+ 244              		.loc 1 63 1 view .LVU58
+ 245 003a 7047     		bx	lr
+ 246              	.L25:
+ 247              		.align	2
+ 248              	.L24:
+ 249 003c 00000000 		.word	.LANCHOR0
+ 250 0040 00000000 		.word	MAX_BRIGHT
+ 251              		.cfi_endproc
+ 252              	.LFE3:
+ 254              		.section	.text.setColorFB,"ax",%progbits
+ 255              		.align	1
+ 256              		.global	setColorFB
+ 257              		.syntax unified
+ 258              		.thumb
+ 259              		.thumb_func
+ 260              		.fpu fpv4-sp-d16
+ 262              	setColorFB:
+ 263              	.LVL19:
+ 264              	.LFB4:
+  64:Src/definitions.c **** 
+  65:Src/definitions.c **** void setColorFB(uint8_t *dest, uint8_t *color)
+  66:Src/definitions.c **** {
+ 265              		.loc 1 66 1 is_stmt 1 view -0
+ 266              		.cfi_startproc
+ 267              		@ args = 0, pretend = 0, frame = 0
+ 268              		@ frame_needed = 0, uses_anonymous_args = 0
+ 269              		@ link register save eliminated.
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 7
+
+
+  67:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+ 270              		.loc 1 67 3 view .LVU60
+ 271              	.LBB7:
+ 272              		.loc 1 67 8 view .LVU61
+ 273              		.loc 1 67 16 is_stmt 0 view .LVU62
+ 274 0000 0022     		movs	r2, #0
+ 275              	.LVL20:
+ 276              		.loc 1 67 3 view .LVU63
+ 277 0002 022A     		cmp	r2, #2
+ 278 0004 18D8     		bhi	.L32
+ 279              	.LBE7:
+  66:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
+ 280              		.loc 1 66 1 view .LVU64
+ 281 0006 10B4     		push	{r4}
+ 282              	.LCFI2:
+ 283              		.cfi_def_cfa_offset 4
+ 284              		.cfi_offset 4, -4
+ 285              	.L28:
+ 286              	.LBB8:
+  68:Src/definitions.c ****   {
+  69:Src/definitions.c ****     dest[z] = gammaCorrection[color[z]] * MAX_BRIGHT;
+ 287              		.loc 1 69 5 is_stmt 1 discriminator 3 view .LVU65
+ 288              		.loc 1 69 36 is_stmt 0 discriminator 3 view .LVU66
+ 289 0008 8B5C     		ldrb	r3, [r1, r2]	@ zero_extendqisi2
+ 290              		.loc 1 69 30 discriminator 3 view .LVU67
+ 291 000a 0C4C     		ldr	r4, .L33
+ 292 000c E35C     		ldrb	r3, [r4, r3]	@ zero_extendqisi2
+ 293 000e 07EE903A 		vmov	s15, r3	@ int
+ 294              		.loc 1 69 41 discriminator 3 view .LVU68
+ 295 0012 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 296 0016 0A4B     		ldr	r3, .L33+4
+ 297 0018 93ED007A 		vldr.32	s14, [r3]
+ 298 001c 67EE877A 		vmul.f32	s15, s15, s14
+ 299              		.loc 1 69 13 discriminator 3 view .LVU69
+ 300 0020 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 301 0024 17EE903A 		vmov	r3, s15	@ int
+ 302 0028 8354     		strb	r3, [r0, r2]
+  67:Src/definitions.c ****   {
+ 303              		.loc 1 67 31 discriminator 3 view .LVU70
+ 304 002a 0132     		adds	r2, r2, #1
+ 305              	.LVL21:
+  67:Src/definitions.c ****   {
+ 306              		.loc 1 67 31 discriminator 3 view .LVU71
+ 307 002c D2B2     		uxtb	r2, r2
+ 308              	.LVL22:
+  67:Src/definitions.c ****   {
+ 309              		.loc 1 67 3 discriminator 3 view .LVU72
+ 310 002e 022A     		cmp	r2, #2
+ 311 0030 EAD9     		bls	.L28
+ 312              	.LBE8:
+  70:Src/definitions.c ****   }
+  71:Src/definitions.c **** }...
+ 313              		.loc 1 71 1 view .LVU73
+ 314 0032 5DF8044B 		ldr	r4, [sp], #4
+ 315              	.LCFI3:
+ 316              		.cfi_restore 4
+ 317              		.cfi_def_cfa_offset 0
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 8
+
+
+ 318 0036 7047     		bx	lr
+ 319              	.L32:
+ 320              		.loc 1 71 1 view .LVU74
+ 321 0038 7047     		bx	lr
+ 322              	.L34:
+ 323 003a 00BF     		.align	2
+ 324              	.L33:
+ 325 003c 00000000 		.word	.LANCHOR0
+ 326 0040 00000000 		.word	MAX_BRIGHT
+ 327              		.cfi_endproc
+ 328              	.LFE4:
+ 330              		.global	gammaCorrection
+ 331              		.comm	textColor,3,4
+ 332              		.comm	backColor,3,4
+ 333              		.comm	textLayer,768,4
+ 334              		.comm	backLayer,768,4
+ 335              		.section	.data.gammaCorrection,"aw"
+ 336              		.align	2
+ 337              		.set	.LANCHOR0,. + 0
+ 340              	gammaCorrection:
+ 341 0000 00       		.byte	0
+ 342 0001 00       		.byte	0
+ 343 0002 00       		.byte	0
+ 344 0003 00       		.byte	0
+ 345 0004 00       		.byte	0
+ 346 0005 00       		.byte	0
+ 347 0006 00       		.byte	0
+ 348 0007 00       		.byte	0
+ 349 0008 00       		.byte	0
+ 350 0009 00       		.byte	0
+ 351 000a 00       		.byte	0
+ 352 000b 00       		.byte	0
+ 353 000c 00       		.byte	0
+ 354 000d 00       		.byte	0
+ 355 000e 00       		.byte	0
+ 356 000f 00       		.byte	0
+ 357 0010 00       		.byte	0
+ 358 0011 00       		.byte	0
+ 359 0012 00       		.byte	0
+ 360 0013 00       		.byte	0
+ 361 0014 00       		.byte	0
+ 362 0015 00       		.byte	0
+ 363 0016 00       		.byte	0
+ 364 0017 00       		.byte	0
+ 365 0018 00       		.byte	0
+ 366 0019 00       		.byte	0
+ 367 001a 00       		.byte	0
+ 368 001b 00       		.byte	0
+ 369 001c 01       		.byte	1
+ 370 001d 01       		.byte	1
+ 371 001e 01       		.byte	1
+ 372 001f 01       		.byte	1
+ 373 0020 01       		.byte	1
+ 374 0021 01       		.byte	1
+ 375 0022 01       		.byte	1
+ 376 0023 01       		.byte	1
+ 377 0024 01       		.byte	1
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 9
+
+
+ 378 0025 01       		.byte	1
+ 379 0026 01       		.byte	1
+ 380 0027 01       		.byte	1
+ 381 0028 01       		.byte	1
+ 382 0029 02       		.byte	2
+ 383 002a 02       		.byte	2
+ 384 002b 02       		.byte	2
+ 385 002c 02       		.byte	2
+ 386 002d 02       		.byte	2
+ 387 002e 02       		.byte	2
+ 388 002f 02       		.byte	2
+ 389 0030 02       		.byte	2
+ 390 0031 03       		.byte	3
+ 391 0032 03       		.byte	3
+ 392 0033 03       		.byte	3
+ 393 0034 03       		.byte	3
+ 394 0035 03       		.byte	3
+ 395 0036 03       		.byte	3
+ 396 0037 03       		.byte	3
+ 397 0038 04       		.byte	4
+ 398 0039 04       		.byte	4
+ 399 003a 04       		.byte	4
+ 400 003b 04       		.byte	4
+ 401 003c 04       		.byte	4
+ 402 003d 05       		.byte	5
+ 403 003e 05       		.byte	5
+ 404 003f 05       		.byte	5
+ 405 0040 05       		.byte	5
+ 406 0041 06       		.byte	6
+ 407 0042 06       		.byte	6
+ 408 0043 06       		.byte	6
+ 409 0044 06       		.byte	6
+ 410 0045 07       		.byte	7
+ 411 0046 07       		.byte	7
+ 412 0047 07       		.byte	7
+ 413 0048 07       		.byte	7
+ 414 0049 08       		.byte	8
+ 415 004a 08       		.byte	8
+ 416 004b 08       		.byte	8
+ 417 004c 09       		.byte	9
+ 418 004d 09       		.byte	9
+ 419 004e 09       		.byte	9
+ 420 004f 0A       		.byte	10
+ 421 0050 0A       		.byte	10
+ 422 0051 0A       		.byte	10
+ 423 0052 0B       		.byte	11
+ 424 0053 0B       		.byte	11
+ 425 0054 0B       		.byte	11
+ 426 0055 0C       		.byte	12
+ 427 0056 0C       		.byte	12
+ 428 0057 0D       		.byte	13
+ 429 0058 0D       		.byte	13
+ 430 0059 0D       		.byte	13
+ 431 005a 0E       		.byte	14
+ 432 005b 0E       		.byte	14
+ 433 005c 0F       		.byte	15
+ 434 005d 0F       		.byte	15
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 10
+
+
+ 435 005e 10       		.byte	16
+ 436 005f 10       		.byte	16
+ 437 0060 11       		.byte	17
+ 438 0061 11       		.byte	17
+ 439 0062 12       		.byte	18
+ 440 0063 12       		.byte	18
+ 441 0064 13       		.byte	19
+ 442 0065 13       		.byte	19
+ 443 0066 14       		.byte	20
+ 444 0067 14       		.byte	20
+ 445 0068 15       		.byte	21
+ 446 0069 15       		.byte	21
+ 447 006a 16       		.byte	22
+ 448 006b 16       		.byte	22
+ 449 006c 17       		.byte	23
+ 450 006d 18       		.byte	24
+ 451 006e 18       		.byte	24
+ 452 006f 19       		.byte	25
+ 453 0070 19       		.byte	25
+ 454 0071 1A       		.byte	26
+ 455 0072 1B       		.byte	27
+ 456 0073 1B       		.byte	27
+ 457 0074 1C       		.byte	28
+ 458 0075 1D       		.byte	29
+ 459 0076 1D       		.byte	29
+ 460 0077 1E       		.byte	30
+ 461 0078 1F       		.byte	31
+ 462 0079 20       		.byte	32
+ 463 007a 20       		.byte	32
+ 464 007b 21       		.byte	33
+ 465 007c 22       		.byte	34
+ 466 007d 23       		.byte	35
+ 467 007e 23       		.byte	35
+ 468 007f 24       		.byte	36
+ 469 0080 25       		.byte	37
+ 470 0081 26       		.byte	38
+ 471 0082 27       		.byte	39
+ 472 0083 27       		.byte	39
+ 473 0084 28       		.byte	40
+ 474 0085 29       		.byte	41
+ 475 0086 2A       		.byte	42
+ 476 0087 2B       		.byte	43
+ 477 0088 2C       		.byte	44
+ 478 0089 2D       		.byte	45
+ 479 008a 2E       		.byte	46
+ 480 008b 2F       		.byte	47
+ 481 008c 30       		.byte	48
+ 482 008d 31       		.byte	49
+ 483 008e 32       		.byte	50
+ 484 008f 32       		.byte	50
+ 485 0090 33       		.byte	51
+ 486 0091 34       		.byte	52
+ 487 0092 36       		.byte	54
+ 488 0093 37       		.byte	55
+ 489 0094 38       		.byte	56
+ 490 0095 39       		.byte	57
+ 491 0096 3A       		.byte	58
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 11
+
+
+ 492 0097 3B       		.byte	59
+ 493 0098 3C       		.byte	60
+ 494 0099 3D       		.byte	61
+ 495 009a 3E       		.byte	62
+ 496 009b 3F       		.byte	63
+ 497 009c 40       		.byte	64
+ 498 009d 42       		.byte	66
+ 499 009e 43       		.byte	67
+ 500 009f 44       		.byte	68
+ 501 00a0 45       		.byte	69
+ 502 00a1 46       		.byte	70
+ 503 00a2 48       		.byte	72
+ 504 00a3 49       		.byte	73
+ 505 00a4 4A       		.byte	74
+ 506 00a5 4B       		.byte	75
+ 507 00a6 4D       		.byte	77
+ 508 00a7 4E       		.byte	78
+ 509 00a8 4F       		.byte	79
+ 510 00a9 51       		.byte	81
+ 511 00aa 52       		.byte	82
+ 512 00ab 53       		.byte	83
+ 513 00ac 55       		.byte	85
+ 514 00ad 56       		.byte	86
+ 515 00ae 57       		.byte	87
+ 516 00af 59       		.byte	89
+ 517 00b0 5A       		.byte	90
+ 518 00b1 5C       		.byte	92
+ 519 00b2 5D       		.byte	93
+ 520 00b3 5F       		.byte	95
+ 521 00b4 60       		.byte	96
+ 522 00b5 62       		.byte	98
+ 523 00b6 63       		.byte	99
+ 524 00b7 65       		.byte	101
+ 525 00b8 66       		.byte	102
+ 526 00b9 68       		.byte	104
+ 527 00ba 69       		.byte	105
+ 528 00bb 6B       		.byte	107
+ 529 00bc 6D       		.byte	109
+ 530 00bd 6E       		.byte	110
+ 531 00be 70       		.byte	112
+ 532 00bf 72       		.byte	114
+ 533 00c0 73       		.byte	115
+ 534 00c1 75       		.byte	117
+ 535 00c2 77       		.byte	119
+ 536 00c3 78       		.byte	120
+ 537 00c4 7A       		.byte	122
+ 538 00c5 7C       		.byte	124
+ 539 00c6 7E       		.byte	126
+ 540 00c7 7F       		.byte	127
+ 541 00c8 81       		.byte	-127
+ 542 00c9 83       		.byte	-125
+ 543 00ca 85       		.byte	-123
+ 544 00cb 87       		.byte	-121
+ 545 00cc 89       		.byte	-119
+ 546 00cd 8A       		.byte	-118
+ 547 00ce 8C       		.byte	-116
+ 548 00cf 8E       		.byte	-114
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 12
+
+
+ 549 00d0 90       		.byte	-112
+ 550 00d1 92       		.byte	-110
+ 551 00d2 94       		.byte	-108
+ 552 00d3 96       		.byte	-106
+ 553 00d4 98       		.byte	-104
+ 554 00d5 9A       		.byte	-102
+ 555 00d6 9C       		.byte	-100
+ 556 00d7 9E       		.byte	-98
+ 557 00d8 A0       		.byte	-96
+ 558 00d9 A2       		.byte	-94
+ 559 00da A4       		.byte	-92
+ 560 00db A7       		.byte	-89
+ 561 00dc A9       		.byte	-87
+ 562 00dd AB       		.byte	-85
+ 563 00de AD       		.byte	-83
+ 564 00df AF       		.byte	-81
+ 565 00e0 B1       		.byte	-79
+ 566 00e1 B4       		.byte	-76
+ 567 00e2 B6       		.byte	-74
+ 568 00e3 B8       		.byte	-72
+ 569 00e4 BA       		.byte	-70
+ 570 00e5 BD       		.byte	-67
+ 571 00e6 BF       		.byte	-65
+ 572 00e7 C1       		.byte	-63
+ 573 00e8 C4       		.byte	-60
+ 574 00e9 C6       		.byte	-58
+ 575 00ea C8       		.byte	-56
+ 576 00eb CB       		.byte	-53
+ 577 00ec CD       		.byte	-51
+ 578 00ed D0       		.byte	-48
+ 579 00ee D2       		.byte	-46
+ 580 00ef D5       		.byte	-43
+ 581 00f0 D7       		.byte	-41
+ 582 00f1 DA       		.byte	-38
+ 583 00f2 DC       		.byte	-36
+ 584 00f3 DF       		.byte	-33
+ 585 00f4 E1       		.byte	-31
+ 586 00f5 E4       		.byte	-28
+ 587 00f6 E7       		.byte	-25
+ 588 00f7 E9       		.byte	-23
+ 589 00f8 EC       		.byte	-20
+ 590 00f9 EF       		.byte	-17
+ 591 00fa F1       		.byte	-15
+ 592 00fb F4       		.byte	-12
+ 593 00fc F7       		.byte	-9
+ 594 00fd F9       		.byte	-7
+ 595 00fe FC       		.byte	-4
+ 596 00ff FF       		.byte	-1
+ 597              		.text
+ 598              	.Letext0:
+ 599              		.file 2 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_def
+ 600              		.file 3 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.
+ 601              		.file 4 "Inc/definitions.h"
+ 602              		.file 5 "Inc/draw.h"
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 definitions.c
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:18     .text.setBackColor:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:26     .text.setBackColor:0000000000000000 setBackColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:67     .text.setBackColor:0000000000000014 $d
+                            *COM*:0000000000000003 backColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:72     .text.setTextColor:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:79     .text.setTextColor:0000000000000000 setTextColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:119    .text.setTextColor:0000000000000014 $d
+                            *COM*:0000000000000003 textColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:124    .text.setColor:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:131    .text.setColor:0000000000000000 setColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:171    .text.setColorFadeFB:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:178    .text.setColorFadeFB:0000000000000000 setColorFadeFB
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:249    .text.setColorFadeFB:000000000000003c $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:255    .text.setColorFB:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:262    .text.setColorFB:0000000000000000 setColorFB
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:325    .text.setColorFB:000000000000003c $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:340    .data.gammaCorrection:0000000000000000 gammaCorrection
+                            *COM*:0000000000000300 textLayer
+                            *COM*:0000000000000300 backLayer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:336    .data.gammaCorrection:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+MAX_BRIGHT

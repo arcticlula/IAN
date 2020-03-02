@@ -69,6 +69,8 @@ li a.active {
 }
 
 :focus {
+	-webkit-box-shadow: none !important;
 	box-shadow: none !important;
+	outline: none !important;
 }
 </style>
