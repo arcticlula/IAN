@@ -170,11 +170,20 @@
             </b-col>
           </b-row>
         </b-tab>
-        <!-- <b-tab title="Colors" color="info">
+        <b-tab title="Colors" color="info">
+          <b-form-group label="Cores">
+            <b-form-radio-group
+              @change="setSingleDef('colors')"
+              v-model="patterns.cores"
+              :options="optionsCores"
+              buttons
+              name="colors"
+            ></b-form-radio-group>
+          </b-form-group>
+          <!-- <swatches row-length="5" colors="basic" v-model="color"></swatches>
           <swatches row-length="5" colors="basic" v-model="color"></swatches>
-          <swatches row-length="5" colors="basic" v-model="color"></swatches>
-          <swatches row-length="5" colors="basic" v-model="color"></swatches>
-        </b-tab>-->
+          <swatches row-length="5" colors="basic" v-model="color"></swatches>-->
+        </b-tab>
         <b-tab title="Settings" color="info">
           <h6 class="mt-0">Brightness</h6>
           <b-form-input
@@ -221,7 +230,8 @@ export default {
       "settings",
       "patterns",
       "optionsShape",
-      "optionsDiv"
+      "optionsDiv",
+      "optionsCores"
     ])
   },
   methods: {
@@ -265,6 +275,11 @@ export default {
           case "bright":
             msg.push(0x11);
             msg.push(this.settings.brightness);
+            break;
+          case "colors":
+            console.log(this.patterns.cores);
+            msg.push(this.patterns.cores);
+            // msg.push(this.settings.brightness);
             break;
         }
         this.hdlc.minihdlc_send_frame(msg, msg.length);

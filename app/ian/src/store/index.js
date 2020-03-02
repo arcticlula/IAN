@@ -19,15 +19,19 @@ let LINES_V = 0x37;
 let LINES_V_GRAD = 0x38;
 let TRIANGLE_NORMAL = 0x40;
 let TRIANGLE_GRAD = 0x41;
+let BACK_COLORS = 0x50;
+let BACK_COLORS_OG = 0x51;
+let BACK_COLORS_BW = 0x52;
 let TEXT_STATE = 0x60;
 
 export default new Vuex.Store({
   state: {
     bluetooth: { state: "", devices: { saved: [], unpaired: [] } },
     settings: { power: { back: "On", text: "Off" }, brightness: 1 },
-    patterns: { shape: "circle", div: 4, orientation: 0, pixel: "Circle", selected: "" },
+    patterns: { shape: "circle", div: 4, orientation: 0, pixel: "Circle", selected: "", cores: [] },
     optionsShape: { circle: [{ text: "Normal", value: CIRCLE_NORMAL }, { text: "Gradiente", value: CIRCLE_GRAD }], cross: [{ text: "Normal", value: CROSS_NORMAL }, { text: "Gradiente", value: CROSS_GRAD }], square: [{ text: "Normal", value: SQUARE_NORMAL }, { text: "Gradiente", value: SQUARE_GRAD }], lines: [{ text: "Horizontal", value: LINES_H }, { text: "H. Gradiente", value: LINES_H_GRAD }, { text: "Vertical", value: LINES_V }, { text: "V. Gradiente", value: LINES_V_GRAD }], triangle: [{ text: "Normal", value: TRIANGLE_NORMAL }, { text: "Gradiente", value: TRIANGLE_GRAD }], star: ["st"] },
-    optionsDiv: { circle: { [CIRCLE_NORMAL]: [2, 3, 4, 5, 6, 7, 8, 9], [CIRCLE_GRAD]: [3, 4, 5, 6, 7, 8, 9] }, cross: { [CROSS_NORMAL]: [2, 3, 4, 5, 6, 7, 8, 9], [CROSS_GRAD]: [3, 4, 5, 6, 7, 8, 9] }, square: { [SQUARE_NORMAL]: [2, 3, 4, 5, 6, 7, 8, 9], [SQUARE_GRAD]: [3, 4, 5, 6, 7, 8, 9] }, lines: { [LINES_H]: [2, 3, 4, 5, 6, 7, 8, 9], [LINES_H_GRAD]: [4, 5, 6, 7, 8, 9], [LINES_V]: [2, 3, 4, 5, 6, 7, 8, 9], [LINES_V_GRAD]: [4, 5, 6, 7, 8, 9] }, triangle: { [TRIANGLE_NORMAL]: [2, 3, 4, 5, 6, 7, 8, 9], [TRIANGLE_GRAD]: [3, 4, 5, 6, 7, 8, 9] }, star: ["st"] }
+    optionsDiv: { circle: { [CIRCLE_NORMAL]: [2, 3, 4, 5, 6, 7, 8, 9], [CIRCLE_GRAD]: [3, 4, 5, 6, 7, 8, 9] }, cross: { [CROSS_NORMAL]: [2, 3, 4, 5, 6, 7, 8, 9], [CROSS_GRAD]: [3, 4, 5, 6, 7, 8, 9] }, square: { [SQUARE_NORMAL]: [2, 3, 4, 5, 6, 7, 8, 9], [SQUARE_GRAD]: [3, 4, 5, 6, 7, 8, 9] }, lines: { [LINES_H]: [2, 3, 4, 5, 6, 7, 8, 9], [LINES_H_GRAD]: [4, 5, 6, 7, 8, 9], [LINES_V]: [2, 3, 4, 5, 6, 7, 8, 9], [LINES_V_GRAD]: [4, 5, 6, 7, 8, 9] }, triangle: { [TRIANGLE_NORMAL]: [2, 3, 4, 5, 6, 7, 8, 9], [TRIANGLE_GRAD]: [3, 4, 5, 6, 7, 8, 9] }, star: ["st"] },
+    optionsCores: [{ text: "Original", value: BACK_COLORS_OG }, { text: "BW", value: BACK_COLORS_BW }]
   },
   getters: {
     // optionsShape(state) {
