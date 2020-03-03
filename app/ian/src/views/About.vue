@@ -191,15 +191,43 @@
 					<swatches row-length="5" colors="basic" v-model="color"></swatches>-->
 				</b-tab>
 				<b-tab title="Settings" color="info">
-					<label class="mt-0">Brightness</label>
-					<b-form-input
-						@change="setSingleDef('bright')"
-						type="range"
-						min="1"
-						max="20"
-						step="1"
-						v-model.number="settings.brightness"
-					/>
+					<b-row>
+						<b-col cols="12">
+							<label class="mt-0">Brightness</label>
+						</b-col>
+					</b-row>
+					<b-row>
+						<b-col cols="12">
+							<b-form-input
+								@change="setSingleDef('bright')"
+								type="range"
+								min="1"
+								max="20"
+								step="1"
+								v-model.number="settings.brightness"
+							/>
+						</b-col>
+					</b-row>
+					<b-row>
+						<b-col cols="12" class="mb-2">
+							<b-button style="width: 100%;" variant="info">What the eyes cannot see</b-button>
+						</b-col>
+						<b-col cols="12" class="mb-2">
+							<b-button-group style="width: 100%;">
+								<b-button variant="info">Electric waves A</b-button>
+								<b-button variant="danger">Electric waves B</b-button>
+							</b-button-group>
+						</b-col>
+						<b-col cols="12" class="mb-2">
+							<b-button variant="info" style="width: 100%;">Boarding now</b-button>
+						</b-col>
+						<b-col cols="12" class="mb-2">
+							<b-button variant="info" style="width: 100%;">Black Celebration</b-button>
+						</b-col>
+						<b-col cols="12" class="mb-2">
+							<b-button variant="info" style="width: 100%;">No name</b-button>
+						</b-col>
+					</b-row>
 				</b-tab>
 			</b-tabs>
 		</b-card>
