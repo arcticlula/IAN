@@ -49,12 +49,12 @@ typedef struct notesBuffer
 
 typedef struct notesWords
 {
-    Note note[3];
+    Note note[1];
+    // Note note[3];
     char word[10];
 } NoteWord;
 
 Note note;
-// Note noteSequence[3][3];
 NoteWord noteSequence[6];
 NoteArray noteBuffer[10];
 

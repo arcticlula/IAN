@@ -214,6 +214,7 @@ import canvasColors from "@/components/canvasColors.js";
 import hdlc from "@/components/hdlc.js";
 import Swatches from "vue-swatches";
 import "vue-swatches/dist/vue-swatches.min.css";
+import GV from "../components/globalVars";
 // import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
@@ -228,7 +229,30 @@ export default {
 			canvasObj: {},
 			canvasColObj: {},
 			color: "",
-			enc: null
+			customPatterns: {
+				"1": [
+					GV.MODE_CUSTOM,
+					10,
+					1,
+					GV.CROSS_GRAD,
+					8,
+					0,
+					0,
+					GV.BACK_COLORS_OG
+				],
+				"2": [
+					GV.MODE_CUSTOM,
+					10,
+					1,
+					GV.SQUARE_GRAD,
+					8,
+					0,
+					0,
+					GV.BACK_COLORS_BW
+				],
+				"3": []
+			}
+			// Brilho 0-20, Modo Back 0-1, Pattern - Value, Max Div = Number, Orientation 0 - 1, Modo Text on/off, Colors - Value
 		};
 	},
 	components: { Swatches },
@@ -265,7 +289,8 @@ export default {
 		},
 		blueProcess(data, length) {
 			for (let i = 0; i < length; i++) {
-				console.log(String.fromCharCode(data[i]));
+				console.log(data[i]);
+				// console.log(String.fromCharCode(data[i]));
 			}
 		},
 		setSingleDef(state) {
@@ -273,26 +298,25 @@ export default {
 				let msg = [];
 				switch (state) {
 					case "back":
-						msg.push(0x20);
+						msg.push(GV.BACK_STATE);
 						this.settings.power.back == "On"
 							? msg.push(1)
 							: msg.push(0);
 						break;
 					case "text":
-						msg.push(0x60);
+						msg.push(GV.TEXT_STATE);
 						this.settings.power.text == "On"
 							? msg.push(1)
 							: msg.push(0);
 						break;
 					case "bright":
-						msg.push(0x11);
+						msg.push(GV.SETTINGS_BRIGHT);
 						msg.push(this.settings.brightness);
 						break;
 					case "colors":
 						console.log(this.patterns.color);
 						this.canvasColObj.draw();
 						msg.push(this.patterns.color);
-						// msg.push(this.settings.brightness);
 						break;
 				}
 				this.hdlc.minihdlc_send_frame(msg, msg.length);
@@ -304,6 +328,10 @@ export default {
 			msg.push(this.patterns.div);
 			msg.push(this.patterns.orientation);
 			console.log(msg);
+			this.hdlc.minihdlc_send_frame(msg, msg.length);
+		},
+		sendCustom() {
+			let msg = this.customPatterns["1"];
 			this.hdlc.minihdlc_send_frame(msg, msg.length);
 		},
 		setShape(shape) {
