@@ -26,16 +26,13 @@
 				</b-row>
 				<b-row>
 					<b-col cols="12" md="6" class="mb-1">
-						<b-card
-							class="cardNoPad"
-							no-body
-							header-tag="header"
-							v-b-toggle.collapse-grav
-							header="Dispositivos Gravados"
-							header-bg-variant="info"
-							header-text-variant="white"
-							align="center"
-						>
+						<b-card class="cardNoPad" no-body header-tag="header" align="center">
+							<b-card-header
+								header-bg-variant="info"
+								header-text-variant="white"
+								v-b-toggle.collapse-grav
+								header="Dispositivos Gravados"
+							/>
 							<b-collapse visible id="collapse-grav">
 								<b-list-group>
 									<b-list-group-item
@@ -56,15 +53,13 @@
 						</b-card>
 					</b-col>
 					<b-col cols="12" md="6" class="mb-1">
-						<b-card
-							no-body
-							header-tag="header"
-							v-b-toggle.collapse-unpair
-							header="Dispositivos Descobertos"
-							header-bg-variant="info"
-							header-text-variant="white"
-							align="center"
-						>
+						<b-card no-body header-tag="header" align="center">
+							<b-card-header
+								header-bg-variant="info"
+								header-text-variant="white"
+								v-b-toggle.collapse-unpair
+								header="Dispositivos Descobertos"
+							/>
 							<b-collapse visible id="collapse-unpair">
 								<b-list-group>
 									<b-list-group-item
