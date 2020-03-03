@@ -14,26 +14,10 @@ void sendDataBluetooth(uint8_t data)
   LL_USART_TransmitData8(USART1, data);
 }
 
-void receiveDataBluetooth(const uint8_t *frame_buffer, uint16_t frame_length)
+void setBackFunction(uint8_t mode)
 {
-  uint8_t data;
-  data = *frame_buffer++;
-  drawtext_function = drawNote;
-  switch (data)
+  switch (mode)
   {
-  case SETTINGS_BRIGHT:
-    data = *frame_buffer++;
-    MAX_BRIGHT = (float)data / 20;
-    fillFramebuffer();
-    WS2812_sendbuf(24 * NLEDSCH);
-    break;
-  case MODE_BACK_STATE:
-    data = *frame_buffer++;
-    MODE_BACK = data;
-    clearBack();
-    fillFramebuffer();
-    WS2812_sendbuf(24 * NLEDSCH);
-    break;
   case MODE_BACK_CIRCLE:
     drawshape_function = drawShapeNote;
     callback_function = circle;
@@ -82,13 +66,42 @@ void receiveDataBluetooth(const uint8_t *frame_buffer, uint16_t frame_length)
     drawshape_function = drawShapeNoteGrad;
     callback_function = vertical;
     break;
+  }
+}
+
+void setColorVariable(uint8_t color)
+{
+  switch (color)
+  {
   case MODE_BACK_COLORS_OG:
     arrColor = &colorOriginal[0];
     break;
   case MODE_BACK_COLORS_BW:
     arrColor = &colorBW[0];
     break;
+  }
+}
 
+void receiveDataBluetooth(const uint8_t *frame_buffer, uint16_t frame_length)
+{
+  uint8_t data;
+  data = *frame_buffer++;
+  drawtext_function = drawNote;
+  switch (data)
+  {
+  case SETTINGS_BRIGHT:
+    data = *frame_buffer++;
+    MAX_BRIGHT = (float)data / 20;
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    break;
+  case MODE_BACK_STATE:
+    data = *frame_buffer++;
+    MODE_BACK = data;
+    clearBack();
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    break;
   case MODE_TEXT_STATE:
     data = *frame_buffer++;
     MODE_TEXT = data;
@@ -96,25 +109,41 @@ void receiveDataBluetooth(const uint8_t *frame_buffer, uint16_t frame_length)
     fillFramebuffer();
     WS2812_sendbuf(24 * NLEDSCH);
     break;
-  default:
-    break;
-  }
-
-  if (data > 0x20 && data < 0x50)
-  {
+  case MODE_CUSTOM:
+    data = *frame_buffer++;
+    MAX_BRIGHT = (float)data / 20;
+    data = *frame_buffer++;
+    MODE_BACK = data;
+    data = *frame_buffer++;
+    setBackFunction(data);
     data = *frame_buffer++;
     MAX_DIV = data;
     data = *frame_buffer++;
     orientation = data;
-    minihdlc_send_frame(frame_buffer, frame_length);
+    data = *frame_buffer++;
+    MODE_TEXT = data;
+    data = *frame_buffer++;
+    setColorVariable(data);
+    fillFramebuffer();
+    WS2812_sendbuf(24 * NLEDSCH);
+    break;
+  default:
+    if (data > 0x20 && data < 0x50)
+    {
+      setBackFunction(data);
+      data = *frame_buffer++;
+      MAX_DIV = data;
+      data = *frame_buffer++;
+      orientation = data;
+      minihdlc_send_frame(ACK, 1);
+    }
+    else if (data > 0x50 && data < 0x60)
+    {
+      setColorVariable(data);
+      minihdlc_send_frame(ACK, 1);
+    }
+    break;
   }
-  // while (frame_length)
-  // {
-  //   sendDataBluetooth(data);
-  //   frame_length--;
-  //   data = *frame_buffer++;
-  // }
-  // minihdlc_send_frame(frame_buffer, frame_length);
 }
 
 void startReception(void)
