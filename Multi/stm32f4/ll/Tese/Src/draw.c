@@ -58,8 +58,8 @@ uint8_t colorBW[12][3] = {
     {116, 99, 94},   //orange ~~
     {101, 105, 105}, //amarelo ~~
     {72, 72, 36},    //castanho ~~
-    {39, 39, 39},    //azul turquesa ~~
-    {58, 49, 47},    //cor de rosa ~~
+    {42, 43, 44},    //azul turquesa ~~
+    {88, 79, 77},    //cor de rosa ~~
     {50, 53, 53},    //rosa choque ~~
     {36, 36, 18},    //violeta escuro ~~
     {117, 117, 117}, //azul escuro
@@ -172,7 +172,7 @@ uint8_t orientation = 0;
 uint8_t MAX_DIV = 3;
 float MAX_BRIGHT = 0.1;
 uint8_t MODE_BACK = 1;
-uint8_t MODE_TEXT = 0;
+uint8_t MODE_TEXT = 1;
 callback_type callback_function;
 
 static inline uint8_t callback(int8_t x, int8_t y, float layer)
@@ -250,9 +250,9 @@ void fillFramebuffer(void)
           setColorFB(tempPoint, textColor);
 #else
         tmp = textLayer[coords][0] + textLayer[coords][1] + textLayer[coords][2];
-        if (tmp == 765) //255+255+255
-          setColorFadeFB(tempPoint, backLayer[coords]);
-        else if (tmp)
+        // if (tmp == 765) //255+255+255
+        //   setColorFadeFB(tempPoint, backLayer[coords]);
+        if (tmp)
           setColorFB(tempPoint, textLayer[coords]);
 #endif
         else
@@ -397,7 +397,7 @@ void drawShapeNote()
       setColor(backLayer[coords], noteBuffer[invI].color);
       for (uint8_t z = 0, invz = 2; z < 3; z++, invz--)
       {
-        textColor[z] = 150;
+        textColor[z] = 254;
       }
     }
   }
@@ -548,10 +548,9 @@ void drawColor(uint8_t *color)
 
 void checkSequence(void)
 {
-  uint8_t arrayLen = ARRAY_LEN(noteSequence);
   uint8_t cnt = 0;
   // uint8_t blue[3] = {1, 1, 20};
-  for (uint8_t j = 0; j < arrayLen; j++)
+  for (uint8_t j = 0; j < noteSequenceSize; j++)
   {
     uint8_t len = ARRAY_LEN(noteSequence[j].note);
     for (uint8_t i = 0; i < len; i++)
@@ -621,7 +620,7 @@ unsigned char getFontLine(unsigned char data, int line_num)
 void drawLetter(char letter, uint8_t px, uint8_t py)
 {
   uint8_t fill;
-  for (uint8_t y = py, l = -1; y <= (py + 6); y++, l++)
+  for (uint8_t y = py, l = 0; y <= (py + 5); y++, l++)
   {
     if (y > NCOLSL)
       break;
@@ -636,10 +635,10 @@ void drawLetter(char letter, uint8_t px, uint8_t py)
         setColor(textLayer[x + (y * NCOLS)], textColor);
 #endif
       }
-      else if (~fill & (1u << aX))
-      {
-        setColor(textLayer[x + (y * NCOLS)], maxColor);
-      }
+      // else if (~fill & (1u << aX))
+      // {
+      //   setColor(textLayer[x + (y * NCOLS)], maxColor);
+      // }
     }
   }
 }
@@ -648,8 +647,7 @@ void drawCenter(char *frase, uint8_t spacex, uint8_t spacey)
 {
   uint8_t len = strlen(frase) * (3 + spacex);
   int8_t px = ((NCOLS - len) / 2);
-  len = (5 + spacey);
-  int8_t py = ((NCOLS - len) / 2);
+  int8_t py = (NCOLS / 2) - 3;
   px = px < 0 ? 0 : px;
   drawString(frase, px, py, spacex, spacey);
 }
@@ -660,8 +658,8 @@ void drawString(char *frase, uint8_t px, uint8_t py, uint8_t spacex, uint8_t spa
   for (size_t i = 0; i < strlen(frase); i++)
   {
     // posX = (char)frase[i] == (char)32 ? (i * 3) + px - 1 : (i * (3 + spacex)) + px;
-    posX = incX * (3 + spacex) + px;
-    if (posX + ((3 + spacex)) > NCOLS - 2)
+    posX = (incX * (3 + spacex)) + px;
+    if (posX + ((3 + spacex)) > NCOLS)
     {
       posX = px;
       nLine++;

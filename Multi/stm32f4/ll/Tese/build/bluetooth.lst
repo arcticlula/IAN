@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -33,22 +33,23 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
    3:Src/bluetooth.c **** #include "main.h"
    4:Src/bluetooth.c **** #include "definitions.h"
    5:Src/bluetooth.c **** #include "draw.h"
-   6:Src/bluetooth.c **** #include "ws2812.h"
-   7:Src/bluetooth.c **** #include "minihdlc-master/minihdlc.h"
-   8:Src/bluetooth.c **** 
-   9:Src/bluetooth.c **** void sendDataBluetooth(uint8_t data)
-  10:Src/bluetooth.c **** {
-  29              		.loc 1 10 1 view -0
+   6:Src/bluetooth.c **** #include "notes.h"
+   7:Src/bluetooth.c **** #include "ws2812.h"
+   8:Src/bluetooth.c **** #include "minihdlc-master/minihdlc.h"
+   9:Src/bluetooth.c **** 
+  10:Src/bluetooth.c **** void sendDataBluetooth(uint8_t data)
+  11:Src/bluetooth.c **** {
+  29              		.loc 1 11 1 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
   34              	.LVL0:
   35              	.L2:
-  11:Src/bluetooth.c ****   while (!LL_USART_IsActiveFlag_TXE(USART1))
-  12:Src/bluetooth.c ****   {
-  13:Src/bluetooth.c ****   }
-  36              		.loc 1 13 3 discriminator 1 view .LVU1
+  12:Src/bluetooth.c ****   while (!LL_USART_IsActiveFlag_TXE(USART1))
+  13:Src/bluetooth.c ****   {
+  14:Src/bluetooth.c ****   }
+  36              		.loc 1 14 3 discriminator 1 view .LVU1
   37              	.LBB18:
   38              	.LBI18:
   39              		.file 2 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h"
@@ -57,10 +58,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
    3:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @file    stm32f4xx_ll_usart.h
    4:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @author  MCD Application Team
    5:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief   Header file of USART LL module.
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 2
+
+
    6:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   ******************************************************************************
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 2
-
-
    7:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @attention
    8:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *
    9:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
@@ -117,10 +118,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
   60:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
   61:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @}
   62:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 3
+
+
   63:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #endif /*USE_FULL_LL_DRIVER*/
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 3
-
-
   64:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
   65:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /* Exported types ------------------------------------------------------------*/
   66:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #if defined(USE_FULL_LL_DRIVER)
@@ -177,10 +178,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  117:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   uint32_t ClockOutput;               /*!< Specifies whether the USART clock is enabled or disabled
  118:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****                                            This parameter can be a value of @ref USART_LL_EC_CLOCK.
  119:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 4
+
+
  120:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****                                            USART HW configuration can be modified afterwards using 
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 4
-
-
  121:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****                                            @ref LL_USART_EnableSCLKOutput() or @ref LL_USART_Disabl
  122:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****                                            For more details, refer to description of this function.
  123:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
@@ -237,10 +238,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  174:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief    IT defines which can be used with LL_USART_ReadReg and  LL_USART_WriteReg functions
  175:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @{
  176:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 5
+
+
  177:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #define LL_USART_CR1_IDLEIE                     USART_CR1_IDLEIE              /*!< IDLE interrupt e
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 5
-
-
  178:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #define LL_USART_CR1_RXNEIE                     USART_CR1_RXNEIE              /*!< Read data regist
  179:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #define LL_USART_CR1_TCIE                       USART_CR1_TCIE                /*!< Transmission com
  180:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #define LL_USART_CR1_TXEIE                      USART_CR1_TXEIE               /*!< Transmit data re
@@ -297,10 +298,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  231:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #define LL_USART_OVERSAMPLING_16                0x00000000U            /*!< Oversampling by 16 */
  232:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #define LL_USART_OVERSAMPLING_8                 USART_CR1_OVER8        /*!< Oversampling by 8 */
  233:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 6
+
+
  234:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @}
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 6
-
-
  235:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
  236:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
  237:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #if defined(USE_FULL_LL_DRIVER)
@@ -357,10 +358,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  288:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @{
  289:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
  290:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #define LL_USART_HWCONTROL_NONE                 0x00000000U                          /*!< CTS and R
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 7
+
+
  291:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #define LL_USART_HWCONTROL_RTS                  USART_CR3_RTSE                       /*!< RTS outpu
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 7
-
-
  292:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #define LL_USART_HWCONTROL_CTS                  USART_CR3_CTSE                       /*!< CTS mode 
  293:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** #define LL_USART_HWCONTROL_RTS_CTS              (USART_CR3_RTSE | USART_CR3_CTSE)    /*!< CTS and R
  294:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
@@ -417,10 +418,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  345:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
  346:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @}
  347:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 8
+
+
  348:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 8
-
-
  349:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /** @defgroup USART_LL_EM_Exported_Macros_Helper Exported_Macros_Helper
  350:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @{
  351:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
@@ -477,10 +478,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  402:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
  403:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
  404:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  USART Enable
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 9
+
+
  405:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll CR1          UE            LL_USART_Enable
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 9
-
-
  406:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @param  USARTx USART Instance
  407:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval None
  408:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
@@ -537,10 +538,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  459:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
  460:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
  461:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 10
+
+
  462:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Transmitter Enable
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 10
-
-
  463:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll CR1          TE            LL_USART_EnableDirectionTx
  464:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @param  USARTx USART Instance
  465:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval None
@@ -597,10 +598,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  516:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
  517:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
  518:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Configure Parity (enabled/disabled and parity mode if enabled).
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 11
+
+
  519:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   This function selects if hardware parity control (generation and detection) is enabled 
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 11
-
-
  520:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         When the parity control is enabled (Odd or Even), computed parity bit is inserted at th
  521:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         (9th or 8th bit depending on data width) and parity is checked on the received data.
  522:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll CR1          PS            LL_USART_SetParity\n
@@ -657,10 +658,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  573:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE uint32_t LL_USART_GetWakeUpMethod(USART_TypeDef *USARTx)
  574:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
  575:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   return (uint32_t)(READ_BIT(USARTx->CR1, USART_CR1_WAKE));
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 12
+
+
  576:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 12
-
-
  577:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
  578:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
  579:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Set Word length (i.e. nb of data bits, excluding start and stop bits)
@@ -717,10 +718,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  630:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
  631:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
  632:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 13
+
+
  633:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Configure if Clock pulse of the last data bit is output to the SCLK pin or not
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 13
-
-
  634:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Macro @ref IS_USART_INSTANCE(USARTx) can be used to check whether or not
  635:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         Synchronous mode is supported by the USARTx instance.
  636:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll CR2          LBCL          LL_USART_SetLastClkPulseOutput
@@ -777,10 +778,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  687:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         @arg @ref LL_USART_PHASE_1EDGE
  688:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         @arg @ref LL_USART_PHASE_2EDGE
  689:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 14
+
+
  690:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE uint32_t LL_USART_GetClockPhase(USART_TypeDef *USARTx)
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 14
-
-
  691:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
  692:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   return (uint32_t)(READ_BIT(USARTx->CR2, USART_CR2_CPHA));
  693:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
@@ -837,10 +838,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  744:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @param  LBCPOutput This parameter can be one of the following values:
  745:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         @arg @ref LL_USART_LASTCLKPULSE_NO_OUTPUT
  746:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         @arg @ref LL_USART_LASTCLKPULSE_OUTPUT
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 15
+
+
  747:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval None
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 15
-
-
  748:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
  749:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_ConfigClock(USART_TypeDef *USARTx, uint32_t Phase, uint32_t Polarity,
  750:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
@@ -897,10 +898,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  801:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         @arg @ref LL_USART_STOPBITS_2
  802:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval None
  803:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 16
+
+
  804:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_SetStopBitsLength(USART_TypeDef *USARTx, uint32_t StopBits)
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 16
-
-
  805:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
  806:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   MODIFY_REG(USARTx->CR2, USART_CR2_STOP, StopBits);
  807:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
@@ -957,10 +958,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  858:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   This is used in multiprocessor communication during Mute mode or Stop mode,
  859:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         for wake up with address mark detection.
  860:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll CR2          ADD           LL_USART_SetNodeAddress
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 17
+
+
  861:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @param  USARTx USART Instance
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 17
-
-
  862:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @param  NodeAddress 4 bit Address of the USART node.
  863:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval None
  864:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
@@ -1017,10 +1018,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  915:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
  916:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_EnableCTSHWFlowCtrl(USART_TypeDef *USARTx)
  917:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 18
+
+
  918:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   SET_BIT(USARTx->CR3, USART_CR3_CTSE);
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 18
-
-
  919:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
  920:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
  921:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
@@ -1077,10 +1078,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  972:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Enable One bit sampling method
  973:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll CR3          ONEBIT        LL_USART_EnableOneBitSamp
  974:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @param  USARTx USART Instance
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 19
+
+
  975:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval None
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 19
-
-
  976:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
  977:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_EnableOneBitSamp(USART_TypeDef *USARTx)
  978:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
@@ -1137,10 +1138,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1029:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   }
 1030:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
 1031:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 20
+
+
 1032:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 20
-
-
 1033:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Return current Baud Rate value, according to USARTDIV present in BRR register
 1034:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         (full BRR content), and to used Peripheral Clock and Oversampling mode values
 1035:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   In case of non-initialized or invalid value stored in BRR register, value 0 will be ret
@@ -1197,10 +1198,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1086:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
 1087:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   SET_BIT(USARTx->CR3, USART_CR3_IREN);
 1088:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 21
+
+
 1089:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 21
-
-
 1090:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
 1091:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Disable IrDA mode
 1092:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Macro @ref IS_IRDA_INSTANCE(USARTx) can be used to check whether or not
@@ -1257,10 +1258,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1143:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
 1144:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   return (uint32_t)(READ_BIT(USARTx->CR3, USART_CR3_IRLP));
 1145:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 22
+
+
 1146:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 22
-
-
 1147:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
 1148:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Set Irda prescaler value, used for dividing the USART clock source
 1149:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         to achieve the Irda Low Power frequency (8 bits value)
@@ -1317,10 +1318,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1200:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         Smartcard feature is supported by the USARTx instance.
 1201:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll CR3          NACK          LL_USART_DisableSmartcardNACK
 1202:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @param  USARTx USART Instance
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 23
+
+
 1203:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval None
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 23
-
-
 1204:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
 1205:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_DisableSmartcardNACK(USART_TypeDef *USARTx)
 1206:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
@@ -1377,10 +1378,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1257:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE uint32_t LL_USART_IsEnabledSmartcard(USART_TypeDef *USARTx)
 1258:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
 1259:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   return (READ_BIT(USARTx->CR3, USART_CR3_SCEN) == (USART_CR3_SCEN));
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 24
+
+
 1260:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 24
-
-
 1261:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
 1262:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
 1263:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Set Smartcard prescaler value, used for dividing the USART clock
@@ -1437,10 +1438,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1314:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
 1315:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE uint32_t LL_USART_GetSmartcardGuardTime(USART_TypeDef *USARTx)
 1316:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 25
+
+
 1317:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   return (uint32_t)(READ_BIT(USARTx->GTPR, USART_GTPR_GT) >> USART_POSITION_GTPR_GT);
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 25
-
-
 1318:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
 1319:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
 1320:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
@@ -1497,10 +1498,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1371:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /** @defgroup USART_LL_EF_Configuration_LIN Configuration functions related to LIN feature
 1372:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @{
 1373:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 26
+
+
 1374:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 26
-
-
 1375:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
 1376:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Set LIN Break Detection Length
 1377:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Macro @ref IS_UART_LIN_INSTANCE(USARTx) can be used to check whether or not
@@ -1557,10 +1558,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1428:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
 1429:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   CLEAR_BIT(USARTx->CR2, USART_CR2_LINEN);
 1430:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 27
+
+
 1431:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 27
-
-
 1432:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
 1433:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Indicate if LIN mode is enabled
 1434:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Macro @ref IS_UART_LIN_INSTANCE(USARTx) can be used to check whether or not
@@ -1617,10 +1618,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1485:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
 1486:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
 1487:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 28
+
+
 1488:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Perform basic configuration of USART for enabling use in Synchronous Mode
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 28
-
-
 1489:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   In Synchronous mode, the following bits must be kept cleared:
 1490:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *           - LINEN bit in the USART_CR2 register,
 1491:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *           - SCEN bit in the USART_CR3 register,
@@ -1677,10 +1678,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1542:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Other remaining configurations items related to LIN Mode
 1543:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         (as Baud Rate, Word length, LIN Break Detection Length, ...) should be set using
 1544:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         dedicated functions
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 29
+
+
 1545:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll CR2          CLKEN         LL_USART_ConfigLINMode\n
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 29
-
-
 1546:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         CR2          STOP          LL_USART_ConfigLINMode\n
 1547:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         CR2          LINEN         LL_USART_ConfigLINMode\n
 1548:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         CR3          IREN          LL_USART_ConfigLINMode\n
@@ -1737,10 +1738,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1599:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   /* set the UART/USART in Half Duplex mode */
 1600:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   SET_BIT(USARTx->CR3, USART_CR3_HDSEL);
 1601:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 30
+
+
 1602:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 30
-
-
 1603:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
 1604:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Perform basic configuration of USART for enabling use in Smartcard Mode
 1605:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   In Smartcard mode, the following bits must be kept cleared:
@@ -1797,10 +1798,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1656:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Call of this function is equivalent to following function call sequence :
 1657:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         - Clear LINEN in CR2 using @ref LL_USART_DisableLIN() function
 1658:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         - Clear CLKEN in CR2 using @ref LL_USART_DisableSCLKOutput() function
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 31
+
+
 1659:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         - Clear SCEN in CR3 using @ref LL_USART_DisableSmartcard() function
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 31
-
-
 1660:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         - Clear HDSEL in CR3 using @ref LL_USART_DisableHalfDuplex() function
 1661:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         - Configure STOP in CR2 using @ref LL_USART_SetStopBitsLength() function
 1662:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         - Set IREN in CR3 using @ref LL_USART_EnableIrda() function
@@ -1857,10 +1858,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1713:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_ConfigMultiProcessMode(USART_TypeDef *USARTx)
 1714:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
 1715:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   /* In Multi Processor mode, the following bits must be kept cleared:
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 32
+
+
 1716:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   - LINEN and CLKEN bits in the USART_CR2 register,
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 32
-
-
 1717:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   - IREN, SCEN and HDSEL bits in the USART_CR3 register.*/
 1718:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   CLEAR_BIT(USARTx->CR2, (USART_CR2_LINEN | USART_CR2_CLKEN));
 1719:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   CLEAR_BIT(USARTx->CR3, (USART_CR3_SCEN | USART_CR3_HDSEL | USART_CR3_IREN));
@@ -1917,10 +1918,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1770:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
 1771:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   return (READ_BIT(USARTx->SR, USART_SR_ORE) == (USART_SR_ORE));
 1772:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 33
+
+
 1773:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 33
-
-
 1774:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
 1775:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Check if the USART IDLE line detected Flag is set or not
 1776:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll SR           IDLE          LL_USART_IsActiveFlag_IDLE
@@ -1973,15 +1974,15 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
   47              		.loc 2 1815 11 discriminator 1 view .LVU5
   48              	.LBE19:
   49              	.LBE18:
-  11:Src/bluetooth.c ****   {
-  50              		.loc 1 11 9 discriminator 1 view .LVU6
+  12:Src/bluetooth.c ****   {
+  50              		.loc 1 12 9 discriminator 1 view .LVU6
   51 0004 13F0800F 		tst	r3, #128
   52 0008 FAD0     		beq	.L2
-  14:Src/bluetooth.c ****   LL_USART_TransmitData8(USART1, data);
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 34
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 34
 
 
-  53              		.loc 1 14 3 is_stmt 1 view .LVU7
+  15:Src/bluetooth.c ****   LL_USART_TransmitData8(USART1, data);
+  53              		.loc 1 15 3 is_stmt 1 view .LVU7
   54              	.LVL2:
   55              	.LBB20:
   56              	.LBI20:
@@ -2037,10 +2038,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1865:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
 1866:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
 1867:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Clear Parity Error Flag
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 35
+
+
 1868:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Clearing this flag is done by a read access to the USARTx_SR
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 35
-
-
 1869:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         register followed by a read access to the USARTx_DR register.
 1870:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Please also consider that when clearing this flag, other flags as
 1871:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         NE, FE, ORE, IDLE would also be cleared.
@@ -2097,10 +2098,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1922:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
 1923:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
 1924:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Clear OverRun Error Flag
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 36
+
+
 1925:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Clearing this flag is done by a read access to the USARTx_SR
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 36
-
-
 1926:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         register followed by a read access to the USARTx_DR register.
 1927:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Please also consider that when clearing this flag, other flags as
 1928:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         PE, NE, FE, IDLE would also be cleared.
@@ -2157,10 +2158,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 1979:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
 1980:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   WRITE_REG(USARTx->SR, ~(USART_SR_RXNE));
 1981:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 37
+
+
 1982:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 37
-
-
 1983:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
 1984:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Clear LIN Break Detection Flag
 1985:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Macro @ref IS_UART_LIN_INSTANCE(USARTx) can be used to check whether or not
@@ -2217,10 +2218,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 2036:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   SET_BIT(USARTx->CR1, USART_CR1_RXNEIE);
 2037:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
 2038:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 38
+
+
 2039:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 38
-
-
 2040:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Enable Transmission Complete Interrupt
 2041:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll CR1          TCIE          LL_USART_EnableIT_TC
 2042:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @param  USARTx USART Instance
@@ -2277,10 +2278,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 2093:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval None
 2094:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
 2095:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_EnableIT_ERROR(USART_TypeDef *USARTx)
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 39
+
+
 2096:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 39
-
-
 2097:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   SET_BIT(USARTx->CR3, USART_CR3_EIE);
 2098:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
 2099:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
@@ -2337,10 +2338,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 2150:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval None
 2151:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
 2152:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_DisableIT_TXE(USART_TypeDef *USARTx)
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 40
+
+
 2153:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 40
-
-
 2154:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   CLEAR_BIT(USARTx->CR1, USART_CR1_TXEIE);
 2155:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
 2156:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
@@ -2397,10 +2398,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 2207:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
 2208:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** 
 2209:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 41
+
+
 2210:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Check if the USART IDLE Interrupt  source is enabled or disabled.
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 41
-
-
 2211:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll CR1          IDLEIE        LL_USART_IsEnabledIT_IDLE
 2212:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @param  USARTx USART Instance
 2213:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval State of bit (1 or 0).
@@ -2457,10 +2458,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 2264:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** /**
 2265:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Check if the USART LIN Break Detection Interrupt is enabled or disabled.
 2266:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Macro @ref IS_UART_LIN_INSTANCE(USARTx) can be used to check whether or not
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 42
+
+
 2267:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   *         LIN feature is supported by the USARTx instance.
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 42
-
-
 2268:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll CR2          LBDIE         LL_USART_IsEnabledIT_LBD
 2269:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @param  USARTx USART Instance
 2270:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval State of bit (1 or 0).
@@ -2517,10 +2518,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 2321:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @brief  Disable DMA Mode for reception
 2322:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @rmtoll CR3          DMAR          LL_USART_DisableDMAReq_RX
 2323:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @param  USARTx USART Instance
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 43
+
+
 2324:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval None
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 43
-
-
 2325:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
 2326:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_DisableDMAReq_RX(USART_TypeDef *USARTx)
 2327:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
@@ -2577,10 +2578,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
 2378:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @note   Address of Data Register is valid for both Transmit and Receive transfers.
 2379:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @param  USARTx USART Instance
 2380:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   * @retval Address of data register
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 44
+
+
 2381:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   */
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 44
-
-
 2382:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** __STATIC_INLINE uint32_t LL_USART_DMA_GetRegAddr(USART_TypeDef *USARTx)
 2383:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
 2384:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   /* return address of DR register */
@@ -2637,11 +2638,11 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
   64              		.loc 2 2427 14 view .LVU11
   65              	.LBE21:
   66              	.LBE20:
-  15:Src/bluetooth.c **** }
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 45
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 45
 
 
-  67              		.loc 1 15 1 view .LVU12
+  16:Src/bluetooth.c **** }
+  67              		.loc 1 16 1 view .LVU12
   68 000e 7047     		bx	lr
   69              	.L4:
   70              		.align	2
@@ -2659,19 +2660,19 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
   84              	setBackFunction:
   85              	.LVL4:
   86              	.LFB861:
-  16:Src/bluetooth.c **** 
-  17:Src/bluetooth.c **** void setBackFunction(uint8_t mode)
-  18:Src/bluetooth.c **** {
-  87              		.loc 1 18 1 is_stmt 1 view -0
+  17:Src/bluetooth.c **** 
+  18:Src/bluetooth.c **** void setBackFunction(uint8_t mode)
+  19:Src/bluetooth.c **** {
+  87              		.loc 1 19 1 is_stmt 1 view -0
   88              		.cfi_startproc
   89              		@ args = 0, pretend = 0, frame = 0
   90              		@ frame_needed = 0, uses_anonymous_args = 0
   91              		@ link register save eliminated.
-  19:Src/bluetooth.c ****   switch (mode)
-  92              		.loc 1 19 3 view .LVU14
+  20:Src/bluetooth.c ****   switch (mode)
+  92              		.loc 1 20 3 view .LVU14
   93 0000 2138     		subs	r0, r0, #33
   94              	.LVL5:
-  95              		.loc 1 19 3 is_stmt 0 view .LVU15
+  95              		.loc 1 20 3 is_stmt 0 view .LVU15
   96 0002 2028     		cmp	r0, #32
   97 0004 65D8     		bhi	.L5
   98 0006 DFE800F0 		tbb	[pc, r0]
@@ -2697,10 +2698,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  118 001c 64       		.byte	(.L5-.L8)/2
  119 001d 64       		.byte	(.L5-.L8)/2
  120 001e 49       		.byte	(.L13-.L8)/2
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 46
+
+
  121 001f 50       		.byte	(.L12-.L8)/2
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 46
-
-
  122 0020 57       		.byte	(.L11-.L8)/2
  123 0021 5E       		.byte	(.L10-.L8)/2
  124 0022 64       		.byte	(.L5-.L8)/2
@@ -2714,222 +2715,222 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  132 002a 42       		.byte	(.L7-.L8)/2
  133 002b 00       		.p2align 1
  134              	.L19:
-  20:Src/bluetooth.c ****   {
-  21:Src/bluetooth.c ****   case MODE_BACK_CIRCLE:
-  22:Src/bluetooth.c ****     drawshape_function = drawShapeNote;
- 135              		.loc 1 22 5 is_stmt 1 view .LVU16
- 136              		.loc 1 22 24 is_stmt 0 view .LVU17
+  21:Src/bluetooth.c ****   {
+  22:Src/bluetooth.c ****   case MODE_BACK_CIRCLE:
+  23:Src/bluetooth.c ****     drawshape_function = drawShapeNote;
+ 135              		.loc 1 23 5 is_stmt 1 view .LVU16
+ 136              		.loc 1 23 24 is_stmt 0 view .LVU17
  137 002c 294B     		ldr	r3, .L20
  138 002e 2A4A     		ldr	r2, .L20+4
  139 0030 1A60     		str	r2, [r3]
-  23:Src/bluetooth.c ****     callback_function = circle;
- 140              		.loc 1 23 5 is_stmt 1 view .LVU18
- 141              		.loc 1 23 23 is_stmt 0 view .LVU19
+  24:Src/bluetooth.c ****     callback_function = circle;
+ 140              		.loc 1 24 5 is_stmt 1 view .LVU18
+ 141              		.loc 1 24 23 is_stmt 0 view .LVU19
  142 0032 2A4B     		ldr	r3, .L20+8
  143 0034 2A4A     		ldr	r2, .L20+12
  144 0036 1A60     		str	r2, [r3]
-  24:Src/bluetooth.c ****     break;
- 145              		.loc 1 24 5 is_stmt 1 view .LVU20
+  25:Src/bluetooth.c ****     break;
+ 145              		.loc 1 25 5 is_stmt 1 view .LVU20
  146 0038 7047     		bx	lr
  147              	.L18:
-  25:Src/bluetooth.c ****   case MODE_BACK_CIRCLE_GRAD:
-  26:Src/bluetooth.c ****     drawshape_function = drawShapeNoteGrad;
- 148              		.loc 1 26 5 view .LVU21
- 149              		.loc 1 26 24 is_stmt 0 view .LVU22
+  26:Src/bluetooth.c ****   case MODE_BACK_CIRCLE_GRAD:
+  27:Src/bluetooth.c ****     drawshape_function = drawShapeNoteGrad;
+ 148              		.loc 1 27 5 view .LVU21
+ 149              		.loc 1 27 24 is_stmt 0 view .LVU22
  150 003a 264B     		ldr	r3, .L20
  151 003c 294A     		ldr	r2, .L20+16
  152 003e 1A60     		str	r2, [r3]
-  27:Src/bluetooth.c ****     callback_function = circle;
- 153              		.loc 1 27 5 is_stmt 1 view .LVU23
- 154              		.loc 1 27 23 is_stmt 0 view .LVU24
+  28:Src/bluetooth.c ****     callback_function = circle;
+ 153              		.loc 1 28 5 is_stmt 1 view .LVU23
+ 154              		.loc 1 28 23 is_stmt 0 view .LVU24
  155 0040 264B     		ldr	r3, .L20+8
  156 0042 274A     		ldr	r2, .L20+12
  157 0044 1A60     		str	r2, [r3]
-  28:Src/bluetooth.c ****     break;
- 158              		.loc 1 28 5 is_stmt 1 view .LVU25
+  29:Src/bluetooth.c ****     break;
+ 158              		.loc 1 29 5 is_stmt 1 view .LVU25
  159 0046 7047     		bx	lr
  160              	.L17:
-  29:Src/bluetooth.c ****   case MODE_BACK_CROSS:
-  30:Src/bluetooth.c ****     drawshape_function = drawShapeNote;
- 161              		.loc 1 30 5 view .LVU26
- 162              		.loc 1 30 24 is_stmt 0 view .LVU27
+  30:Src/bluetooth.c ****   case MODE_BACK_CROSS:
+  31:Src/bluetooth.c ****     drawshape_function = drawShapeNote;
+ 161              		.loc 1 31 5 view .LVU26
+ 162              		.loc 1 31 24 is_stmt 0 view .LVU27
  163 0048 224B     		ldr	r3, .L20
  164 004a 234A     		ldr	r2, .L20+4
  165 004c 1A60     		str	r2, [r3]
-  31:Src/bluetooth.c ****     callback_function = cross;
- 166              		.loc 1 31 5 is_stmt 1 view .LVU28
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 47
+  32:Src/bluetooth.c ****     callback_function = cross;
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 47
 
 
- 167              		.loc 1 31 23 is_stmt 0 view .LVU29
+ 166              		.loc 1 32 5 is_stmt 1 view .LVU28
+ 167              		.loc 1 32 23 is_stmt 0 view .LVU29
  168 004e 234B     		ldr	r3, .L20+8
  169 0050 254A     		ldr	r2, .L20+20
  170 0052 1A60     		str	r2, [r3]
-  32:Src/bluetooth.c ****     break;
- 171              		.loc 1 32 5 is_stmt 1 view .LVU30
+  33:Src/bluetooth.c ****     break;
+ 171              		.loc 1 33 5 is_stmt 1 view .LVU30
  172 0054 7047     		bx	lr
  173              	.L16:
-  33:Src/bluetooth.c ****   case MODE_BACK_CROSS_GRAD:
-  34:Src/bluetooth.c ****     drawshape_function = drawShapeNoteGrad;
- 174              		.loc 1 34 5 view .LVU31
- 175              		.loc 1 34 24 is_stmt 0 view .LVU32
+  34:Src/bluetooth.c ****   case MODE_BACK_CROSS_GRAD:
+  35:Src/bluetooth.c ****     drawshape_function = drawShapeNoteGrad;
+ 174              		.loc 1 35 5 view .LVU31
+ 175              		.loc 1 35 24 is_stmt 0 view .LVU32
  176 0056 1F4B     		ldr	r3, .L20
  177 0058 224A     		ldr	r2, .L20+16
  178 005a 1A60     		str	r2, [r3]
-  35:Src/bluetooth.c ****     callback_function = cross;
- 179              		.loc 1 35 5 is_stmt 1 view .LVU33
- 180              		.loc 1 35 23 is_stmt 0 view .LVU34
+  36:Src/bluetooth.c ****     callback_function = cross;
+ 179              		.loc 1 36 5 is_stmt 1 view .LVU33
+ 180              		.loc 1 36 23 is_stmt 0 view .LVU34
  181 005c 1F4B     		ldr	r3, .L20+8
  182 005e 224A     		ldr	r2, .L20+20
  183 0060 1A60     		str	r2, [r3]
-  36:Src/bluetooth.c ****     break;
- 184              		.loc 1 36 5 is_stmt 1 view .LVU35
+  37:Src/bluetooth.c ****     break;
+ 184              		.loc 1 37 5 is_stmt 1 view .LVU35
  185 0062 7047     		bx	lr
  186              	.L15:
-  37:Src/bluetooth.c ****   case MODE_BACK_SQUARE:
-  38:Src/bluetooth.c ****     drawshape_function = drawShapeNote;
- 187              		.loc 1 38 5 view .LVU36
- 188              		.loc 1 38 24 is_stmt 0 view .LVU37
+  38:Src/bluetooth.c ****   case MODE_BACK_SQUARE:
+  39:Src/bluetooth.c ****     drawshape_function = drawShapeNote;
+ 187              		.loc 1 39 5 view .LVU36
+ 188              		.loc 1 39 24 is_stmt 0 view .LVU37
  189 0064 1B4B     		ldr	r3, .L20
  190 0066 1C4A     		ldr	r2, .L20+4
  191 0068 1A60     		str	r2, [r3]
-  39:Src/bluetooth.c ****     callback_function = square;
- 192              		.loc 1 39 5 is_stmt 1 view .LVU38
- 193              		.loc 1 39 23 is_stmt 0 view .LVU39
+  40:Src/bluetooth.c ****     callback_function = square;
+ 192              		.loc 1 40 5 is_stmt 1 view .LVU38
+ 193              		.loc 1 40 23 is_stmt 0 view .LVU39
  194 006a 1C4B     		ldr	r3, .L20+8
  195 006c 1F4A     		ldr	r2, .L20+24
  196 006e 1A60     		str	r2, [r3]
-  40:Src/bluetooth.c ****     break;
- 197              		.loc 1 40 5 is_stmt 1 view .LVU40
+  41:Src/bluetooth.c ****     break;
+ 197              		.loc 1 41 5 is_stmt 1 view .LVU40
  198 0070 7047     		bx	lr
  199              	.L14:
-  41:Src/bluetooth.c ****   case MODE_BACK_SQUARE_GRAD:
-  42:Src/bluetooth.c ****     drawshape_function = drawShapeNoteGrad;
- 200              		.loc 1 42 5 view .LVU41
- 201              		.loc 1 42 24 is_stmt 0 view .LVU42
+  42:Src/bluetooth.c ****   case MODE_BACK_SQUARE_GRAD:
+  43:Src/bluetooth.c ****     drawshape_function = drawShapeNoteGrad;
+ 200              		.loc 1 43 5 view .LVU41
+ 201              		.loc 1 43 24 is_stmt 0 view .LVU42
  202 0072 184B     		ldr	r3, .L20
  203 0074 1B4A     		ldr	r2, .L20+16
  204 0076 1A60     		str	r2, [r3]
-  43:Src/bluetooth.c ****     callback_function = square;
- 205              		.loc 1 43 5 is_stmt 1 view .LVU43
- 206              		.loc 1 43 23 is_stmt 0 view .LVU44
+  44:Src/bluetooth.c ****     callback_function = square;
+ 205              		.loc 1 44 5 is_stmt 1 view .LVU43
+ 206              		.loc 1 44 23 is_stmt 0 view .LVU44
  207 0078 184B     		ldr	r3, .L20+8
  208 007a 1C4A     		ldr	r2, .L20+24
  209 007c 1A60     		str	r2, [r3]
-  44:Src/bluetooth.c ****     break;
- 210              		.loc 1 44 5 is_stmt 1 view .LVU45
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 48
+  45:Src/bluetooth.c ****     break;
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 48
 
 
+ 210              		.loc 1 45 5 is_stmt 1 view .LVU45
  211 007e 7047     		bx	lr
  212              	.L9:
-  45:Src/bluetooth.c ****   case MODE_BACK_TRIANGLE:
-  46:Src/bluetooth.c ****     drawshape_function = drawShapeNote;
- 213              		.loc 1 46 5 view .LVU46
- 214              		.loc 1 46 24 is_stmt 0 view .LVU47
+  46:Src/bluetooth.c ****   case MODE_BACK_TRIANGLE:
+  47:Src/bluetooth.c ****     drawshape_function = drawShapeNote;
+ 213              		.loc 1 47 5 view .LVU46
+ 214              		.loc 1 47 24 is_stmt 0 view .LVU47
  215 0080 144B     		ldr	r3, .L20
  216 0082 154A     		ldr	r2, .L20+4
  217 0084 1A60     		str	r2, [r3]
-  47:Src/bluetooth.c ****     callback_function = triangle;
- 218              		.loc 1 47 5 is_stmt 1 view .LVU48
- 219              		.loc 1 47 23 is_stmt 0 view .LVU49
+  48:Src/bluetooth.c ****     callback_function = triangle;
+ 218              		.loc 1 48 5 is_stmt 1 view .LVU48
+ 219              		.loc 1 48 23 is_stmt 0 view .LVU49
  220 0086 154B     		ldr	r3, .L20+8
  221 0088 194A     		ldr	r2, .L20+28
  222 008a 1A60     		str	r2, [r3]
-  48:Src/bluetooth.c ****     break;
- 223              		.loc 1 48 5 is_stmt 1 view .LVU50
+  49:Src/bluetooth.c ****     break;
+ 223              		.loc 1 49 5 is_stmt 1 view .LVU50
  224 008c 7047     		bx	lr
  225              	.L7:
-  49:Src/bluetooth.c ****   case MODE_BACK_TRIANGLE_GRAD:
-  50:Src/bluetooth.c ****     drawshape_function = drawShapeNoteGrad;
- 226              		.loc 1 50 5 view .LVU51
- 227              		.loc 1 50 24 is_stmt 0 view .LVU52
+  50:Src/bluetooth.c ****   case MODE_BACK_TRIANGLE_GRAD:
+  51:Src/bluetooth.c ****     drawshape_function = drawShapeNoteGrad;
+ 226              		.loc 1 51 5 view .LVU51
+ 227              		.loc 1 51 24 is_stmt 0 view .LVU52
  228 008e 114B     		ldr	r3, .L20
  229 0090 144A     		ldr	r2, .L20+16
  230 0092 1A60     		str	r2, [r3]
-  51:Src/bluetooth.c ****     callback_function = triangle;
- 231              		.loc 1 51 5 is_stmt 1 view .LVU53
- 232              		.loc 1 51 23 is_stmt 0 view .LVU54
+  52:Src/bluetooth.c ****     callback_function = triangle;
+ 231              		.loc 1 52 5 is_stmt 1 view .LVU53
+ 232              		.loc 1 52 23 is_stmt 0 view .LVU54
  233 0094 114B     		ldr	r3, .L20+8
  234 0096 164A     		ldr	r2, .L20+28
  235 0098 1A60     		str	r2, [r3]
-  52:Src/bluetooth.c ****     break;
- 236              		.loc 1 52 5 is_stmt 1 view .LVU55
+  53:Src/bluetooth.c ****     break;
+ 236              		.loc 1 53 5 is_stmt 1 view .LVU55
  237 009a 7047     		bx	lr
  238              	.L13:
-  53:Src/bluetooth.c ****   case MODE_BACK_LINES_H:
-  54:Src/bluetooth.c ****     drawshape_function = drawShapeNote;
- 239              		.loc 1 54 5 view .LVU56
- 240              		.loc 1 54 24 is_stmt 0 view .LVU57
+  54:Src/bluetooth.c ****   case MODE_BACK_LINES_H:
+  55:Src/bluetooth.c ****     drawshape_function = drawShapeNote;
+ 239              		.loc 1 55 5 view .LVU56
+ 240              		.loc 1 55 24 is_stmt 0 view .LVU57
  241 009c 0D4B     		ldr	r3, .L20
  242 009e 0E4A     		ldr	r2, .L20+4
  243 00a0 1A60     		str	r2, [r3]
-  55:Src/bluetooth.c ****     callback_function = horizontal;
- 244              		.loc 1 55 5 is_stmt 1 view .LVU58
- 245              		.loc 1 55 23 is_stmt 0 view .LVU59
+  56:Src/bluetooth.c ****     callback_function = horizontal;
+ 244              		.loc 1 56 5 is_stmt 1 view .LVU58
+ 245              		.loc 1 56 23 is_stmt 0 view .LVU59
  246 00a2 0E4B     		ldr	r3, .L20+8
  247 00a4 134A     		ldr	r2, .L20+32
  248 00a6 1A60     		str	r2, [r3]
-  56:Src/bluetooth.c ****     break;
- 249              		.loc 1 56 5 is_stmt 1 view .LVU60
+  57:Src/bluetooth.c ****     break;
+ 249              		.loc 1 57 5 is_stmt 1 view .LVU60
  250 00a8 7047     		bx	lr
  251              	.L12:
-  57:Src/bluetooth.c ****   case MODE_BACK_LINES_H_GRAD:
-  58:Src/bluetooth.c ****     drawshape_function = drawShapeNoteGrad;
- 252              		.loc 1 58 5 view .LVU61
- 253              		.loc 1 58 24 is_stmt 0 view .LVU62
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 49
+  58:Src/bluetooth.c ****   case MODE_BACK_LINES_H_GRAD:
+  59:Src/bluetooth.c ****     drawshape_function = drawShapeNoteGrad;
+ 252              		.loc 1 59 5 view .LVU61
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 49
 
 
+ 253              		.loc 1 59 24 is_stmt 0 view .LVU62
  254 00aa 0A4B     		ldr	r3, .L20
  255 00ac 0D4A     		ldr	r2, .L20+16
  256 00ae 1A60     		str	r2, [r3]
-  59:Src/bluetooth.c ****     callback_function = horizontal;
- 257              		.loc 1 59 5 is_stmt 1 view .LVU63
- 258              		.loc 1 59 23 is_stmt 0 view .LVU64
+  60:Src/bluetooth.c ****     callback_function = horizontal;
+ 257              		.loc 1 60 5 is_stmt 1 view .LVU63
+ 258              		.loc 1 60 23 is_stmt 0 view .LVU64
  259 00b0 0A4B     		ldr	r3, .L20+8
  260 00b2 104A     		ldr	r2, .L20+32
  261 00b4 1A60     		str	r2, [r3]
-  60:Src/bluetooth.c ****     break;
- 262              		.loc 1 60 5 is_stmt 1 view .LVU65
+  61:Src/bluetooth.c ****     break;
+ 262              		.loc 1 61 5 is_stmt 1 view .LVU65
  263 00b6 7047     		bx	lr
  264              	.L11:
-  61:Src/bluetooth.c ****   case MODE_BACK_LINES_V:
-  62:Src/bluetooth.c ****     drawshape_function = drawShapeNote;
- 265              		.loc 1 62 5 view .LVU66
- 266              		.loc 1 62 24 is_stmt 0 view .LVU67
+  62:Src/bluetooth.c ****   case MODE_BACK_LINES_V:
+  63:Src/bluetooth.c ****     drawshape_function = drawShapeNote;
+ 265              		.loc 1 63 5 view .LVU66
+ 266              		.loc 1 63 24 is_stmt 0 view .LVU67
  267 00b8 064B     		ldr	r3, .L20
  268 00ba 074A     		ldr	r2, .L20+4
  269 00bc 1A60     		str	r2, [r3]
-  63:Src/bluetooth.c ****     callback_function = vertical;
- 270              		.loc 1 63 5 is_stmt 1 view .LVU68
- 271              		.loc 1 63 23 is_stmt 0 view .LVU69
+  64:Src/bluetooth.c ****     callback_function = vertical;
+ 270              		.loc 1 64 5 is_stmt 1 view .LVU68
+ 271              		.loc 1 64 23 is_stmt 0 view .LVU69
  272 00be 074B     		ldr	r3, .L20+8
  273 00c0 0D4A     		ldr	r2, .L20+36
  274 00c2 1A60     		str	r2, [r3]
-  64:Src/bluetooth.c ****     break;
- 275              		.loc 1 64 5 is_stmt 1 view .LVU70
+  65:Src/bluetooth.c ****     break;
+ 275              		.loc 1 65 5 is_stmt 1 view .LVU70
  276 00c4 7047     		bx	lr
  277              	.L10:
-  65:Src/bluetooth.c ****   case MODE_BACK_LINES_V_GRAD:
-  66:Src/bluetooth.c ****     drawshape_function = drawShapeNoteGrad;
- 278              		.loc 1 66 5 view .LVU71
- 279              		.loc 1 66 24 is_stmt 0 view .LVU72
+  66:Src/bluetooth.c ****   case MODE_BACK_LINES_V_GRAD:
+  67:Src/bluetooth.c ****     drawshape_function = drawShapeNoteGrad;
+ 278              		.loc 1 67 5 view .LVU71
+ 279              		.loc 1 67 24 is_stmt 0 view .LVU72
  280 00c6 034B     		ldr	r3, .L20
  281 00c8 064A     		ldr	r2, .L20+16
  282 00ca 1A60     		str	r2, [r3]
-  67:Src/bluetooth.c ****     callback_function = vertical;
- 283              		.loc 1 67 5 is_stmt 1 view .LVU73
- 284              		.loc 1 67 23 is_stmt 0 view .LVU74
+  68:Src/bluetooth.c ****     callback_function = vertical;
+ 283              		.loc 1 68 5 is_stmt 1 view .LVU73
+ 284              		.loc 1 68 23 is_stmt 0 view .LVU74
  285 00cc 034B     		ldr	r3, .L20+8
  286 00ce 0A4A     		ldr	r2, .L20+36
  287 00d0 1A60     		str	r2, [r3]
-  68:Src/bluetooth.c ****     break;
- 288              		.loc 1 68 5 is_stmt 1 view .LVU75
+  69:Src/bluetooth.c ****     break;
+ 288              		.loc 1 69 5 is_stmt 1 view .LVU75
  289              	.L5:
-  69:Src/bluetooth.c ****   }
-  70:Src/bluetooth.c **** }
- 290              		.loc 1 70 1 is_stmt 0 view .LVU76
+  70:Src/bluetooth.c ****   }
+  71:Src/bluetooth.c **** }
+ 290              		.loc 1 71 1 is_stmt 0 view .LVU76
  291 00d2 7047     		bx	lr
  292              	.L21:
  293              		.align	2
@@ -2937,10 +2938,10 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  295 00d4 00000000 		.word	drawshape_function
  296 00d8 00000000 		.word	drawShapeNote
  297 00dc 00000000 		.word	callback_function
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 50
+
+
  298 00e0 00000000 		.word	circle
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 50
-
-
  299 00e4 00000000 		.word	drawShapeNoteGrad
  300 00e8 00000000 		.word	cross
  301 00ec 00000000 		.word	square
@@ -2949,772 +2950,912 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 1
  304 00f8 00000000 		.word	vertical
  305              		.cfi_endproc
  306              	.LFE861:
- 308              		.section	.text.setColorVariable,"ax",%progbits
+ 308              		.section	.text.setTextFunction,"ax",%progbits
  309              		.align	1
- 310              		.global	setColorVariable
+ 310              		.global	setTextFunction
  311              		.syntax unified
  312              		.thumb
  313              		.thumb_func
  314              		.fpu fpv4-sp-d16
- 316              	setColorVariable:
+ 316              	setTextFunction:
  317              	.LVL6:
  318              	.LFB862:
-  71:Src/bluetooth.c **** 
-  72:Src/bluetooth.c **** void setColorVariable(uint8_t color)
-  73:Src/bluetooth.c **** {
- 319              		.loc 1 73 1 is_stmt 1 view -0
+  72:Src/bluetooth.c **** 
+  73:Src/bluetooth.c **** void setTextFunction(uint8_t mode)
+  74:Src/bluetooth.c **** {
+ 319              		.loc 1 74 1 is_stmt 1 view -0
  320              		.cfi_startproc
  321              		@ args = 0, pretend = 0, frame = 0
  322              		@ frame_needed = 0, uses_anonymous_args = 0
  323              		@ link register save eliminated.
-  74:Src/bluetooth.c ****   switch (color)
- 324              		.loc 1 74 3 view .LVU78
- 325 0000 5128     		cmp	r0, #81
+  75:Src/bluetooth.c ****   switch (mode)
+ 324              		.loc 1 75 3 view .LVU78
+ 325 0000 6128     		cmp	r0, #97
  326 0002 02D0     		beq	.L23
- 327 0004 5228     		cmp	r0, #82
- 328 0006 04D0     		beq	.L24
+ 327 0004 6228     		cmp	r0, #98
+ 328 0006 07D0     		beq	.L24
  329 0008 7047     		bx	lr
  330              	.L23:
-  75:Src/bluetooth.c ****   {
-  76:Src/bluetooth.c ****   case MODE_BACK_COLORS_OG:
-  77:Src/bluetooth.c ****     arrColor = &colorOriginal[0];
- 331              		.loc 1 77 5 view .LVU79
- 332              		.loc 1 77 14 is_stmt 0 view .LVU80
- 333 000a 044B     		ldr	r3, .L26
- 334 000c 044A     		ldr	r2, .L26+4
- 335 000e 1A60     		str	r2, [r3]
-  78:Src/bluetooth.c ****     break;
- 336              		.loc 1 78 5 is_stmt 1 view .LVU81
- 337 0010 7047     		bx	lr
- 338              	.L24:
-  79:Src/bluetooth.c ****   case MODE_BACK_COLORS_BW:
-  80:Src/bluetooth.c ****     arrColor = &colorBW[0];
- 339              		.loc 1 80 5 view .LVU82
- 340              		.loc 1 80 14 is_stmt 0 view .LVU83
- 341 0012 024B     		ldr	r3, .L26
- 342 0014 034A     		ldr	r2, .L26+8
- 343 0016 1A60     		str	r2, [r3]
-  81:Src/bluetooth.c ****     break;
- 344              		.loc 1 81 5 is_stmt 1 view .LVU84
-  82:Src/bluetooth.c ****   }
-  83:Src/bluetooth.c **** }
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 51
+  76:Src/bluetooth.c ****   {
+  77:Src/bluetooth.c ****   case MODE_TEXT_WORDS_WTECS:
+  78:Src/bluetooth.c ****     noteSequenceSize = 5;
+ 331              		.loc 1 78 5 view .LVU79
+ 332              		.loc 1 78 22 is_stmt 0 view .LVU80
+ 333 000a 074B     		ldr	r3, .L26
+ 334 000c 0522     		movs	r2, #5
+ 335 000e 1A70     		strb	r2, [r3]
+  79:Src/bluetooth.c ****     noteSequence = noteSequenceWTECS;
+ 336              		.loc 1 79 5 is_stmt 1 view .LVU81
+ 337              		.loc 1 79 18 is_stmt 0 view .LVU82
+ 338 0010 064B     		ldr	r3, .L26+4
+ 339 0012 074A     		ldr	r2, .L26+8
+ 340 0014 1A60     		str	r2, [r3]
+  80:Src/bluetooth.c ****     break;
+ 341              		.loc 1 80 5 is_stmt 1 view .LVU83
+ 342 0016 7047     		bx	lr
+ 343              	.L24:
+  81:Src/bluetooth.c ****   case MODE_TEXT_WORDS_OET:
+  82:Src/bluetooth.c ****     noteSequenceSize = 6;
+ 344              		.loc 1 82 5 view .LVU84
+ 345              		.loc 1 82 22 is_stmt 0 view .LVU85
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 51
 
 
- 345              		.loc 1 83 1 is_stmt 0 view .LVU85
- 346 0018 7047     		bx	lr
- 347              	.L27:
- 348 001a 00BF     		.align	2
- 349              	.L26:
- 350 001c 00000000 		.word	arrColor
- 351 0020 00000000 		.word	colorOriginal
- 352 0024 00000000 		.word	colorBW
- 353              		.cfi_endproc
- 354              	.LFE862:
- 356              		.section	.text.receiveDataBluetooth,"ax",%progbits
- 357              		.align	1
- 358              		.global	receiveDataBluetooth
- 359              		.syntax unified
- 360              		.thumb
- 361              		.thumb_func
- 362              		.fpu fpv4-sp-d16
- 364              	receiveDataBluetooth:
- 365              	.LVL7:
- 366              	.LFB863:
-  84:Src/bluetooth.c **** 
-  85:Src/bluetooth.c **** void receiveDataBluetooth(const uint8_t *frame_buffer, uint16_t frame_length)
-  86:Src/bluetooth.c **** {
- 367              		.loc 1 86 1 is_stmt 1 view -0
- 368              		.cfi_startproc
- 369              		@ args = 0, pretend = 0, frame = 0
- 370              		@ frame_needed = 0, uses_anonymous_args = 0
- 371              		.loc 1 86 1 is_stmt 0 view .LVU87
- 372 0000 10B5     		push	{r4, lr}
- 373              	.LCFI0:
- 374              		.cfi_def_cfa_offset 8
- 375              		.cfi_offset 4, -8
- 376              		.cfi_offset 14, -4
- 377 0002 0446     		mov	r4, r0
-  87:Src/bluetooth.c ****   uint8_t data;
- 378              		.loc 1 87 3 is_stmt 1 view .LVU88
-  88:Src/bluetooth.c ****   data = *frame_buffer++;
- 379              		.loc 1 88 3 view .LVU89
- 380              	.LVL8:
- 381              		.loc 1 88 8 is_stmt 0 view .LVU90
- 382 0004 0078     		ldrb	r0, [r0]	@ zero_extendqisi2
- 383              	.LVL9:
-  89:Src/bluetooth.c ****   drawtext_function = drawNote;
- 384              		.loc 1 89 3 is_stmt 1 view .LVU91
- 385              		.loc 1 89 21 is_stmt 0 view .LVU92
- 386 0006 3D4B     		ldr	r3, .L40
- 387 0008 3D4A     		ldr	r2, .L40+4
- 388 000a 1A60     		str	r2, [r3]
-  90:Src/bluetooth.c ****   switch (data)
- 389              		.loc 1 90 3 is_stmt 1 view .LVU93
- 390 000c 2028     		cmp	r0, #32
- 391 000e 3ED0     		beq	.L29
- 392 0010 28D9     		bls	.L38
- 393 0012 6028     		cmp	r0, #96
- 394 0014 47D0     		beq	.L33
- 395 0016 7028     		cmp	r0, #112
- 396 0018 51D1     		bne	.L32
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 52
-
-
+ 346 0018 034B     		ldr	r3, .L26
+ 347 001a 0622     		movs	r2, #6
+ 348 001c 1A70     		strb	r2, [r3]
+  83:Src/bluetooth.c ****     noteSequence = noteSequenceOET;
+ 349              		.loc 1 83 5 is_stmt 1 view .LVU86
+ 350              		.loc 1 83 18 is_stmt 0 view .LVU87
+ 351 001e 034B     		ldr	r3, .L26+4
+ 352 0020 044A     		ldr	r2, .L26+12
+ 353 0022 1A60     		str	r2, [r3]
+  84:Src/bluetooth.c ****     break;
+ 354              		.loc 1 84 5 is_stmt 1 view .LVU88
+  85:Src/bluetooth.c ****   }
+  86:Src/bluetooth.c **** }
+ 355              		.loc 1 86 1 is_stmt 0 view .LVU89
+ 356 0024 7047     		bx	lr
+ 357              	.L27:
+ 358 0026 00BF     		.align	2
+ 359              	.L26:
+ 360 0028 00000000 		.word	noteSequenceSize
+ 361 002c 00000000 		.word	noteSequence
+ 362 0030 00000000 		.word	noteSequenceWTECS
+ 363 0034 00000000 		.word	noteSequenceOET
+ 364              		.cfi_endproc
+ 365              	.LFE862:
+ 367              		.section	.text.setColorVariable,"ax",%progbits
+ 368              		.align	1
+ 369              		.global	setColorVariable
+ 370              		.syntax unified
+ 371              		.thumb
+ 372              		.thumb_func
+ 373              		.fpu fpv4-sp-d16
+ 375              	setColorVariable:
+ 376              	.LVL7:
+ 377              	.LFB863:
+  87:Src/bluetooth.c **** 
+  88:Src/bluetooth.c **** void setColorVariable(uint8_t color)
+  89:Src/bluetooth.c **** {
+ 378              		.loc 1 89 1 is_stmt 1 view -0
+ 379              		.cfi_startproc
+ 380              		@ args = 0, pretend = 0, frame = 0
+ 381              		@ frame_needed = 0, uses_anonymous_args = 0
+ 382              		@ link register save eliminated.
+  90:Src/bluetooth.c ****   switch (color)
+ 383              		.loc 1 90 3 view .LVU91
+ 384 0000 5128     		cmp	r0, #81
+ 385 0002 02D0     		beq	.L29
+ 386 0004 5228     		cmp	r0, #82
+ 387 0006 04D0     		beq	.L30
+ 388 0008 7047     		bx	lr
+ 389              	.L29:
   91:Src/bluetooth.c ****   {
-  92:Src/bluetooth.c ****   case SETTINGS_BRIGHT:
-  93:Src/bluetooth.c ****     data = *frame_buffer++;
-  94:Src/bluetooth.c ****     MAX_BRIGHT = (float)data / 20;
-  95:Src/bluetooth.c ****     fillFramebuffer();
-  96:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
+  92:Src/bluetooth.c ****   case MODE_BACK_COLORS_OG:
+  93:Src/bluetooth.c ****     arrColor = &colorOriginal[0];
+ 390              		.loc 1 93 5 view .LVU92
+ 391              		.loc 1 93 14 is_stmt 0 view .LVU93
+ 392 000a 044B     		ldr	r3, .L32
+ 393 000c 044A     		ldr	r2, .L32+4
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 52
+
+
+ 394 000e 1A60     		str	r2, [r3]
+  94:Src/bluetooth.c ****     break;
+ 395              		.loc 1 94 5 is_stmt 1 view .LVU94
+ 396 0010 7047     		bx	lr
+ 397              	.L30:
+  95:Src/bluetooth.c ****   case MODE_BACK_COLORS_BW:
+  96:Src/bluetooth.c ****     arrColor = &colorBW[0];
+ 398              		.loc 1 96 5 view .LVU95
+ 399              		.loc 1 96 14 is_stmt 0 view .LVU96
+ 400 0012 024B     		ldr	r3, .L32
+ 401 0014 034A     		ldr	r2, .L32+8
+ 402 0016 1A60     		str	r2, [r3]
   97:Src/bluetooth.c ****     break;
-  98:Src/bluetooth.c ****   case MODE_BACK_STATE:
-  99:Src/bluetooth.c ****     data = *frame_buffer++;
- 100:Src/bluetooth.c ****     MODE_BACK = data;
- 101:Src/bluetooth.c ****     clearBack();
- 102:Src/bluetooth.c ****     fillFramebuffer();
- 103:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
- 104:Src/bluetooth.c ****     break;
- 105:Src/bluetooth.c ****   case MODE_TEXT_STATE:
- 106:Src/bluetooth.c ****     data = *frame_buffer++;
- 107:Src/bluetooth.c ****     MODE_TEXT = data;
- 108:Src/bluetooth.c ****     clearText();
- 109:Src/bluetooth.c ****     fillFramebuffer();
- 110:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
- 111:Src/bluetooth.c ****     break;
- 112:Src/bluetooth.c ****   case MODE_CUSTOM:
- 113:Src/bluetooth.c ****     data = *frame_buffer++;
- 397              		.loc 1 113 5 view .LVU94
- 398              	.LVL10:
- 399              		.loc 1 113 10 is_stmt 0 view .LVU95
- 400 001a 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
- 401 001c 07EE903A 		vmov	s15, r3	@ int
- 402              	.LVL11:
- 114:Src/bluetooth.c ****     MAX_BRIGHT = (float)data / 20;
- 403              		.loc 1 114 5 is_stmt 1 view .LVU96
- 404              		.loc 1 114 18 is_stmt 0 view .LVU97
- 405 0020 F8EE677A 		vcvt.f32.u32	s15, s15
- 406              		.loc 1 114 30 view .LVU98
- 407 0024 F3EE046A 		vmov.f32	s13, #2.0e+1
- 408 0028 87EEA67A 		vdiv.f32	s14, s15, s13
- 409              		.loc 1 114 16 view .LVU99
- 410 002c 354B     		ldr	r3, .L40+8
- 411 002e 83ED007A 		vstr.32	s14, [r3]
- 412              	.LVL12:
+ 403              		.loc 1 97 5 is_stmt 1 view .LVU97
+  98:Src/bluetooth.c ****   }
+  99:Src/bluetooth.c **** }
+ 404              		.loc 1 99 1 is_stmt 0 view .LVU98
+ 405 0018 7047     		bx	lr
+ 406              	.L33:
+ 407 001a 00BF     		.align	2
+ 408              	.L32:
+ 409 001c 00000000 		.word	arrColor
+ 410 0020 00000000 		.word	colorOriginal
+ 411 0024 00000000 		.word	colorBW
+ 412              		.cfi_endproc
+ 413              	.LFE863:
+ 415              		.section	.text.receiveDataBluetooth,"ax",%progbits
+ 416              		.align	1
+ 417              		.global	receiveDataBluetooth
+ 418              		.syntax unified
+ 419              		.thumb
+ 420              		.thumb_func
+ 421              		.fpu fpv4-sp-d16
+ 423              	receiveDataBluetooth:
+ 424              	.LVL8:
+ 425              	.LFB864:
+ 100:Src/bluetooth.c **** 
+ 101:Src/bluetooth.c **** void receiveDataBluetooth(const uint8_t *frame_buffer, uint16_t frame_length)
+ 102:Src/bluetooth.c **** {
+ 426              		.loc 1 102 1 is_stmt 1 view -0
+ 427              		.cfi_startproc
+ 428              		@ args = 0, pretend = 0, frame = 8
+ 429              		@ frame_needed = 0, uses_anonymous_args = 0
+ 430              		.loc 1 102 1 is_stmt 0 view .LVU100
+ 431 0000 10B5     		push	{r4, lr}
+ 432              	.LCFI0:
+ 433              		.cfi_def_cfa_offset 8
+ 434              		.cfi_offset 4, -8
+ 435              		.cfi_offset 14, -4
+ 436 0002 82B0     		sub	sp, sp, #8
+ 437              	.LCFI1:
+ 438              		.cfi_def_cfa_offset 16
+ 439 0004 0446     		mov	r4, r0
+ 103:Src/bluetooth.c ****   uint8_t data;
+ 440              		.loc 1 103 3 is_stmt 1 view .LVU101
+ 104:Src/bluetooth.c ****   uint8_t ACKn[] = {0x10};
+ 441              		.loc 1 104 3 view .LVU102
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 53
+
+
+ 442              		.loc 1 104 11 is_stmt 0 view .LVU103
+ 443 0006 1023     		movs	r3, #16
+ 444 0008 8DF80430 		strb	r3, [sp, #4]
+ 105:Src/bluetooth.c ****   data = *frame_buffer++;
+ 445              		.loc 1 105 3 is_stmt 1 view .LVU104
+ 446              	.LVL9:
+ 447              		.loc 1 105 8 is_stmt 0 view .LVU105
+ 448 000c 0078     		ldrb	r0, [r0]	@ zero_extendqisi2
+ 449              	.LVL10:
+ 106:Src/bluetooth.c ****   switch (data)
+ 450              		.loc 1 106 3 is_stmt 1 view .LVU106
+ 451 000e 2028     		cmp	r0, #32
+ 452 0010 46D0     		beq	.L35
+ 453 0012 2FD9     		bls	.L46
+ 454 0014 6028     		cmp	r0, #96
+ 455 0016 4FD0     		beq	.L39
+ 456 0018 7028     		cmp	r0, #112
+ 457 001a 5FD1     		bne	.L38
+ 107:Src/bluetooth.c ****   {
+ 108:Src/bluetooth.c ****   case SETTINGS_BRIGHT:
+ 109:Src/bluetooth.c ****     data = *frame_buffer++;
+ 110:Src/bluetooth.c ****     MAX_BRIGHT = (float)data / 20;
+ 111:Src/bluetooth.c ****     fillFramebuffer();
+ 112:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
+ 113:Src/bluetooth.c ****     break;
+ 114:Src/bluetooth.c ****   case MODE_BACK_STATE:
  115:Src/bluetooth.c ****     data = *frame_buffer++;
- 413              		.loc 1 115 5 is_stmt 1 view .LVU100
- 414              		.loc 1 115 10 is_stmt 0 view .LVU101
- 415 0032 A278     		ldrb	r2, [r4, #2]	@ zero_extendqisi2
- 416              	.LVL13:
  116:Src/bluetooth.c ****     MODE_BACK = data;
- 417              		.loc 1 116 5 is_stmt 1 view .LVU102
- 418              		.loc 1 116 15 is_stmt 0 view .LVU103
- 419 0034 344B     		ldr	r3, .L40+12
- 420 0036 1A70     		strb	r2, [r3]
- 117:Src/bluetooth.c ****     data = *frame_buffer++;
- 421              		.loc 1 117 5 is_stmt 1 view .LVU104
- 422              	.LVL14:
- 118:Src/bluetooth.c ****     setBackFunction(data);
- 423              		.loc 1 118 5 view .LVU105
- 424 0038 E078     		ldrb	r0, [r4, #3]	@ zero_extendqisi2
- 425 003a FFF7FEFF 		bl	setBackFunction
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 53
+ 117:Src/bluetooth.c ****     clearBack();
+ 118:Src/bluetooth.c ****     fillFramebuffer();
+ 119:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
+ 120:Src/bluetooth.c ****     break;
+ 121:Src/bluetooth.c ****   case MODE_TEXT_STATE:
+ 122:Src/bluetooth.c ****     data = *frame_buffer++;
+ 123:Src/bluetooth.c ****     MODE_TEXT = data;
+ 124:Src/bluetooth.c ****     clearText();
+ 125:Src/bluetooth.c ****     fillFramebuffer();
+ 126:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
+ 127:Src/bluetooth.c ****     break;
+ 128:Src/bluetooth.c ****   case MODE_CUSTOM:
+ 129:Src/bluetooth.c ****     data = *frame_buffer++;
+ 458              		.loc 1 129 5 view .LVU107
+ 459              	.LVL11:
+ 460              		.loc 1 129 10 is_stmt 0 view .LVU108
+ 461 001c 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 462 001e 07EE903A 		vmov	s15, r3	@ int
+ 463              	.LVL12:
+ 130:Src/bluetooth.c ****     MAX_BRIGHT = (float)data / 20;
+ 464              		.loc 1 130 5 is_stmt 1 view .LVU109
+ 465              		.loc 1 130 18 is_stmt 0 view .LVU110
+ 466 0022 F8EE677A 		vcvt.f32.u32	s15, s15
+ 467              		.loc 1 130 30 view .LVU111
+ 468 0026 F3EE046A 		vmov.f32	s13, #2.0e+1
+ 469 002a 87EEA67A 		vdiv.f32	s14, s15, s13
+ 470              		.loc 1 130 16 view .LVU112
+ 471 002e 3A4B     		ldr	r3, .L50
+ 472 0030 83ED007A 		vstr.32	s14, [r3]
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 54
 
 
- 426              	.LVL15:
- 119:Src/bluetooth.c ****     data = *frame_buffer++;
- 427              		.loc 1 119 5 view .LVU106
- 428              		.loc 1 119 10 is_stmt 0 view .LVU107
- 429 003e 2279     		ldrb	r2, [r4, #4]	@ zero_extendqisi2
- 430              	.LVL16:
- 120:Src/bluetooth.c ****     MAX_DIV = data;
- 431              		.loc 1 120 5 is_stmt 1 view .LVU108
- 432              		.loc 1 120 13 is_stmt 0 view .LVU109
- 433 0040 324B     		ldr	r3, .L40+16
- 434 0042 1A70     		strb	r2, [r3]
- 121:Src/bluetooth.c ****     data = *frame_buffer++;
- 435              		.loc 1 121 5 is_stmt 1 view .LVU110
- 436              	.LVL17:
- 437              		.loc 1 121 10 is_stmt 0 view .LVU111
- 438 0044 6279     		ldrb	r2, [r4, #5]	@ zero_extendqisi2
- 439              	.LVL18:
- 122:Src/bluetooth.c ****     orientation = data;
- 440              		.loc 1 122 5 is_stmt 1 view .LVU112
- 441              		.loc 1 122 17 is_stmt 0 view .LVU113
- 442 0046 324B     		ldr	r3, .L40+20
- 443 0048 1A70     		strb	r2, [r3]
- 123:Src/bluetooth.c ****     data = *frame_buffer++;
- 444              		.loc 1 123 5 is_stmt 1 view .LVU114
- 445              	.LVL19:
- 446              		.loc 1 123 10 is_stmt 0 view .LVU115
- 447 004a A279     		ldrb	r2, [r4, #6]	@ zero_extendqisi2
- 448              	.LVL20:
- 124:Src/bluetooth.c ****     MODE_TEXT = data;
- 449              		.loc 1 124 5 is_stmt 1 view .LVU116
- 450              		.loc 1 124 15 is_stmt 0 view .LVU117
- 451 004c 314B     		ldr	r3, .L40+24
- 452 004e 1A70     		strb	r2, [r3]
- 125:Src/bluetooth.c ****     data = *frame_buffer++;
- 453              		.loc 1 125 5 is_stmt 1 view .LVU118
- 454              	.LVL21:
- 126:Src/bluetooth.c ****     setColorVariable(data);
- 455              		.loc 1 126 5 view .LVU119
- 456 0050 E079     		ldrb	r0, [r4, #7]	@ zero_extendqisi2
- 457 0052 FFF7FEFF 		bl	setColorVariable
- 458              	.LVL22:
- 127:Src/bluetooth.c ****     fillFramebuffer();
- 459              		.loc 1 127 5 view .LVU120
- 460 0056 FFF7FEFF 		bl	fillFramebuffer
- 461              	.LVL23:
- 128:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
- 462              		.loc 1 128 5 view .LVU121
- 463 005a 4FF44070 		mov	r0, #768
- 464 005e FFF7FEFF 		bl	WS2812_sendbuf
- 465              	.LVL24:
- 129:Src/bluetooth.c ****     break;
- 466              		.loc 1 129 5 view .LVU122
- 467 0062 13E0     		b	.L28
- 468              	.LVL25:
- 469              	.L38:
-  90:Src/bluetooth.c ****   {
- 470              		.loc 1 90 3 is_stmt 0 view .LVU123
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 54
+ 473              	.LVL13:
+ 131:Src/bluetooth.c ****     data = *frame_buffer++;
+ 474              		.loc 1 131 5 is_stmt 1 view .LVU113
+ 475              		.loc 1 131 10 is_stmt 0 view .LVU114
+ 476 0034 A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
+ 477              	.LVL14:
+ 132:Src/bluetooth.c ****     MODE_BACK = data;
+ 478              		.loc 1 132 5 is_stmt 1 view .LVU115
+ 479              		.loc 1 132 15 is_stmt 0 view .LVU116
+ 480 0036 394A     		ldr	r2, .L50+4
+ 481 0038 1370     		strb	r3, [r2]
+ 133:Src/bluetooth.c ****     if (MODE_BACK == 0)
+ 482              		.loc 1 133 5 is_stmt 1 view .LVU117
+ 483              		.loc 1 133 8 is_stmt 0 view .LVU118
+ 484 003a 002B     		cmp	r3, #0
+ 485 003c 48D0     		beq	.L47
+ 486              	.LVL15:
+ 487              	.L42:
+ 134:Src/bluetooth.c ****       clearBack();
+ 135:Src/bluetooth.c ****     data = *frame_buffer++;
+ 488              		.loc 1 135 5 is_stmt 1 view .LVU119
+ 136:Src/bluetooth.c ****     setBackFunction(data);
+ 489              		.loc 1 136 5 view .LVU120
+ 490 003e E078     		ldrb	r0, [r4, #3]	@ zero_extendqisi2
+ 491 0040 FFF7FEFF 		bl	setBackFunction
+ 492              	.LVL16:
+ 137:Src/bluetooth.c ****     data = *frame_buffer++;
+ 493              		.loc 1 137 5 view .LVU121
+ 494              		.loc 1 137 10 is_stmt 0 view .LVU122
+ 495 0044 2279     		ldrb	r2, [r4, #4]	@ zero_extendqisi2
+ 496              	.LVL17:
+ 138:Src/bluetooth.c ****     MAX_DIV = data;
+ 497              		.loc 1 138 5 is_stmt 1 view .LVU123
+ 498              		.loc 1 138 13 is_stmt 0 view .LVU124
+ 499 0046 364B     		ldr	r3, .L50+8
+ 500 0048 1A70     		strb	r2, [r3]
+ 139:Src/bluetooth.c ****     data = *frame_buffer++;
+ 501              		.loc 1 139 5 is_stmt 1 view .LVU125
+ 502              	.LVL18:
+ 503              		.loc 1 139 10 is_stmt 0 view .LVU126
+ 504 004a 6279     		ldrb	r2, [r4, #5]	@ zero_extendqisi2
+ 505              	.LVL19:
+ 140:Src/bluetooth.c ****     orientation = data;
+ 506              		.loc 1 140 5 is_stmt 1 view .LVU127
+ 507              		.loc 1 140 17 is_stmt 0 view .LVU128
+ 508 004c 354B     		ldr	r3, .L50+12
+ 509 004e 1A70     		strb	r2, [r3]
+ 141:Src/bluetooth.c ****     data = *frame_buffer++;
+ 510              		.loc 1 141 5 is_stmt 1 view .LVU129
+ 511              	.LVL20:
+ 512              		.loc 1 141 10 is_stmt 0 view .LVU130
+ 513 0050 A379     		ldrb	r3, [r4, #6]	@ zero_extendqisi2
+ 514              	.LVL21:
+ 142:Src/bluetooth.c ****     MODE_TEXT = data;
+ 515              		.loc 1 142 5 is_stmt 1 view .LVU131
+ 516              		.loc 1 142 15 is_stmt 0 view .LVU132
+ 517 0052 354A     		ldr	r2, .L50+16
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 55
 
 
- 471 0064 1128     		cmp	r0, #17
- 472 0066 2AD1     		bne	.L32
-  93:Src/bluetooth.c ****     MAX_BRIGHT = (float)data / 20;
- 473              		.loc 1 93 5 is_stmt 1 view .LVU124
- 474              	.LVL26:
-  93:Src/bluetooth.c ****     MAX_BRIGHT = (float)data / 20;
- 475              		.loc 1 93 10 is_stmt 0 view .LVU125
- 476 0068 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
- 477 006a 07EE903A 		vmov	s15, r3	@ int
- 478              	.LVL27:
-  94:Src/bluetooth.c ****     fillFramebuffer();
- 479              		.loc 1 94 5 is_stmt 1 view .LVU126
-  94:Src/bluetooth.c ****     fillFramebuffer();
- 480              		.loc 1 94 18 is_stmt 0 view .LVU127
- 481 006e F8EE677A 		vcvt.f32.u32	s15, s15
-  94:Src/bluetooth.c ****     fillFramebuffer();
- 482              		.loc 1 94 30 view .LVU128
- 483 0072 F3EE046A 		vmov.f32	s13, #2.0e+1
- 484 0076 87EEA67A 		vdiv.f32	s14, s15, s13
-  94:Src/bluetooth.c ****     fillFramebuffer();
- 485              		.loc 1 94 16 view .LVU129
- 486 007a 224B     		ldr	r3, .L40+8
- 487 007c 83ED007A 		vstr.32	s14, [r3]
- 488              	.LVL28:
-  95:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
- 489              		.loc 1 95 5 is_stmt 1 view .LVU130
- 490 0080 FFF7FEFF 		bl	fillFramebuffer
- 491              	.LVL29:
-  96:Src/bluetooth.c ****     break;
- 492              		.loc 1 96 5 view .LVU131
- 493 0084 4FF44070 		mov	r0, #768
- 494 0088 FFF7FEFF 		bl	WS2812_sendbuf
- 495              	.LVL30:
-  97:Src/bluetooth.c ****   case MODE_BACK_STATE:
- 496              		.loc 1 97 5 view .LVU132
- 497              	.L28:
- 130:Src/bluetooth.c ****   default:
- 131:Src/bluetooth.c ****     if (data > 0x20 && data < 0x50)
- 132:Src/bluetooth.c ****     {
- 133:Src/bluetooth.c ****       setBackFunction(data);
- 134:Src/bluetooth.c ****       data = *frame_buffer++;
- 135:Src/bluetooth.c ****       MAX_DIV = data;
- 136:Src/bluetooth.c ****       data = *frame_buffer++;
- 137:Src/bluetooth.c ****       orientation = data;
- 138:Src/bluetooth.c ****       minihdlc_send_frame(ACK, 1);
- 139:Src/bluetooth.c ****     }
- 140:Src/bluetooth.c ****     else if (data > 0x50 && data < 0x60)
- 141:Src/bluetooth.c ****     {
- 142:Src/bluetooth.c ****       setColorVariable(data);
- 143:Src/bluetooth.c ****       minihdlc_send_frame(ACK, 1);
- 144:Src/bluetooth.c ****     }
- 145:Src/bluetooth.c ****     break;
- 146:Src/bluetooth.c ****   }
- 147:Src/bluetooth.c **** }
- 498              		.loc 1 147 1 is_stmt 0 view .LVU133
- 499 008c 10BD     		pop	{r4, pc}
- 500              	.LVL31:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 55
+ 518 0054 1370     		strb	r3, [r2]
+ 143:Src/bluetooth.c ****     if (MODE_TEXT == 0)
+ 519              		.loc 1 143 5 is_stmt 1 view .LVU133
+ 520              		.loc 1 143 8 is_stmt 0 view .LVU134
+ 521 0056 002B     		cmp	r3, #0
+ 522 0058 3DD0     		beq	.L48
+ 523              	.LVL22:
+ 524              	.L43:
+ 144:Src/bluetooth.c ****       clearText();
+ 145:Src/bluetooth.c ****     data = *frame_buffer++;
+ 525              		.loc 1 145 5 is_stmt 1 view .LVU135
+ 146:Src/bluetooth.c ****     setTextFunction(data);
+ 526              		.loc 1 146 5 view .LVU136
+ 527 005a E079     		ldrb	r0, [r4, #7]	@ zero_extendqisi2
+ 528 005c FFF7FEFF 		bl	setTextFunction
+ 529              	.LVL23:
+ 147:Src/bluetooth.c ****     data = *frame_buffer++;
+ 530              		.loc 1 147 5 view .LVU137
+ 148:Src/bluetooth.c ****     setColorVariable(data);
+ 531              		.loc 1 148 5 view .LVU138
+ 532 0060 207A     		ldrb	r0, [r4, #8]	@ zero_extendqisi2
+ 533 0062 FFF7FEFF 		bl	setColorVariable
+ 534              	.LVL24:
+ 149:Src/bluetooth.c ****     fillFramebuffer();
+ 535              		.loc 1 149 5 view .LVU139
+ 536 0066 FFF7FEFF 		bl	fillFramebuffer
+ 537              	.LVL25:
+ 150:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
+ 538              		.loc 1 150 5 view .LVU140
+ 539 006a 4FF48750 		mov	r0, #4320
+ 540 006e FFF7FEFF 		bl	WS2812_sendbuf
+ 541              	.LVL26:
+ 151:Src/bluetooth.c ****     break;
+ 542              		.loc 1 151 5 view .LVU141
+ 543 0072 13E0     		b	.L34
+ 544              	.LVL27:
+ 545              	.L46:
+ 106:Src/bluetooth.c ****   {
+ 546              		.loc 1 106 3 is_stmt 0 view .LVU142
+ 547 0074 1128     		cmp	r0, #17
+ 548 0076 31D1     		bne	.L38
+ 109:Src/bluetooth.c ****     MAX_BRIGHT = (float)data / 20;
+ 549              		.loc 1 109 5 is_stmt 1 view .LVU143
+ 550              	.LVL28:
+ 109:Src/bluetooth.c ****     MAX_BRIGHT = (float)data / 20;
+ 551              		.loc 1 109 10 is_stmt 0 view .LVU144
+ 552 0078 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 553 007a 07EE903A 		vmov	s15, r3	@ int
+ 554              	.LVL29:
+ 110:Src/bluetooth.c ****     fillFramebuffer();
+ 555              		.loc 1 110 5 is_stmt 1 view .LVU145
+ 110:Src/bluetooth.c ****     fillFramebuffer();
+ 556              		.loc 1 110 18 is_stmt 0 view .LVU146
+ 557 007e F8EE677A 		vcvt.f32.u32	s15, s15
+ 110:Src/bluetooth.c ****     fillFramebuffer();
+ 558              		.loc 1 110 30 view .LVU147
+ 559 0082 F3EE046A 		vmov.f32	s13, #2.0e+1
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 56
 
 
- 501              	.L29:
-  99:Src/bluetooth.c ****     MODE_BACK = data;
- 502              		.loc 1 99 5 is_stmt 1 view .LVU134
-  99:Src/bluetooth.c ****     MODE_BACK = data;
- 503              		.loc 1 99 10 is_stmt 0 view .LVU135
- 504 008e 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
- 505              	.LVL32:
- 100:Src/bluetooth.c ****     clearBack();
- 506              		.loc 1 100 5 is_stmt 1 view .LVU136
- 100:Src/bluetooth.c ****     clearBack();
- 507              		.loc 1 100 15 is_stmt 0 view .LVU137
- 508 0090 1D4B     		ldr	r3, .L40+12
- 509 0092 1A70     		strb	r2, [r3]
- 101:Src/bluetooth.c ****     fillFramebuffer();
- 510              		.loc 1 101 5 is_stmt 1 view .LVU138
- 511 0094 FFF7FEFF 		bl	clearBack
- 512              	.LVL33:
- 102:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
- 513              		.loc 1 102 5 view .LVU139
- 514 0098 FFF7FEFF 		bl	fillFramebuffer
- 515              	.LVL34:
- 103:Src/bluetooth.c ****     break;
- 516              		.loc 1 103 5 view .LVU140
- 517 009c 4FF44070 		mov	r0, #768
- 518 00a0 FFF7FEFF 		bl	WS2812_sendbuf
- 519              	.LVL35:
- 104:Src/bluetooth.c ****   case MODE_TEXT_STATE:
- 520              		.loc 1 104 5 view .LVU141
- 521 00a4 F2E7     		b	.L28
- 522              	.LVL36:
- 523              	.L33:
- 106:Src/bluetooth.c ****     MODE_TEXT = data;
- 524              		.loc 1 106 5 view .LVU142
- 106:Src/bluetooth.c ****     MODE_TEXT = data;
- 525              		.loc 1 106 10 is_stmt 0 view .LVU143
- 526 00a6 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
- 527              	.LVL37:
- 107:Src/bluetooth.c ****     clearText();
- 528              		.loc 1 107 5 is_stmt 1 view .LVU144
- 107:Src/bluetooth.c ****     clearText();
- 529              		.loc 1 107 15 is_stmt 0 view .LVU145
- 530 00a8 1A4B     		ldr	r3, .L40+24
- 531 00aa 1A70     		strb	r2, [r3]
- 108:Src/bluetooth.c ****     fillFramebuffer();
- 532              		.loc 1 108 5 is_stmt 1 view .LVU146
- 533 00ac FFF7FEFF 		bl	clearText
- 534              	.LVL38:
- 109:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
- 535              		.loc 1 109 5 view .LVU147
- 536 00b0 FFF7FEFF 		bl	fillFramebuffer
- 537              	.LVL39:
- 110:Src/bluetooth.c ****     break;
- 538              		.loc 1 110 5 view .LVU148
- 539 00b4 4FF44070 		mov	r0, #768
- 540 00b8 FFF7FEFF 		bl	WS2812_sendbuf
- 541              	.LVL40:
- 111:Src/bluetooth.c ****   case MODE_CUSTOM:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 56
+ 560 0086 87EEA67A 		vdiv.f32	s14, s15, s13
+ 110:Src/bluetooth.c ****     fillFramebuffer();
+ 561              		.loc 1 110 16 view .LVU148
+ 562 008a 234B     		ldr	r3, .L50
+ 563 008c 83ED007A 		vstr.32	s14, [r3]
+ 564              	.LVL30:
+ 111:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
+ 565              		.loc 1 111 5 is_stmt 1 view .LVU149
+ 566 0090 FFF7FEFF 		bl	fillFramebuffer
+ 567              	.LVL31:
+ 112:Src/bluetooth.c ****     break;
+ 568              		.loc 1 112 5 view .LVU150
+ 569 0094 4FF48750 		mov	r0, #4320
+ 570 0098 FFF7FEFF 		bl	WS2812_sendbuf
+ 571              	.LVL32:
+ 113:Src/bluetooth.c ****   case MODE_BACK_STATE:
+ 572              		.loc 1 113 5 view .LVU151
+ 573              	.L34:
+ 152:Src/bluetooth.c ****   default:
+ 153:Src/bluetooth.c ****     if (data > 0x20 && data < 0x50)
+ 154:Src/bluetooth.c ****     {
+ 155:Src/bluetooth.c ****       setBackFunction(data);
+ 156:Src/bluetooth.c ****       data = *frame_buffer++;
+ 157:Src/bluetooth.c ****       MAX_DIV = data;
+ 158:Src/bluetooth.c ****       data = *frame_buffer++;
+ 159:Src/bluetooth.c ****       orientation = data;
+ 160:Src/bluetooth.c ****       minihdlc_send_frame(ACKn, 1);
+ 161:Src/bluetooth.c ****     }
+ 162:Src/bluetooth.c ****     else if (data > 0x50 && data < 0x60)
+ 163:Src/bluetooth.c ****     {
+ 164:Src/bluetooth.c ****       setColorVariable(data);
+ 165:Src/bluetooth.c ****       minihdlc_send_frame(ACKn, 1);
+ 166:Src/bluetooth.c ****     }
+ 167:Src/bluetooth.c ****     break;
+ 168:Src/bluetooth.c ****   }
+ 169:Src/bluetooth.c **** }
+ 574              		.loc 1 169 1 is_stmt 0 view .LVU152
+ 575 009c 02B0     		add	sp, sp, #8
+ 576              	.LCFI2:
+ 577              		.cfi_remember_state
+ 578              		.cfi_def_cfa_offset 8
+ 579              		@ sp needed
+ 580 009e 10BD     		pop	{r4, pc}
+ 581              	.LVL33:
+ 582              	.L35:
+ 583              	.LCFI3:
+ 584              		.cfi_restore_state
+ 115:Src/bluetooth.c ****     MODE_BACK = data;
+ 585              		.loc 1 115 5 is_stmt 1 view .LVU153
+ 115:Src/bluetooth.c ****     MODE_BACK = data;
+ 586              		.loc 1 115 10 is_stmt 0 view .LVU154
+ 587 00a0 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
+ 588              	.LVL34:
+ 116:Src/bluetooth.c ****     clearBack();
+ 589              		.loc 1 116 5 is_stmt 1 view .LVU155
+ 116:Src/bluetooth.c ****     clearBack();
+ 590              		.loc 1 116 15 is_stmt 0 view .LVU156
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 57
 
 
- 542              		.loc 1 111 5 view .LVU149
- 543 00bc E6E7     		b	.L28
- 544              	.LVL41:
- 545              	.L32:
- 131:Src/bluetooth.c ****     {
- 546              		.loc 1 131 5 view .LVU150
- 131:Src/bluetooth.c ****     {
- 547              		.loc 1 131 21 is_stmt 0 view .LVU151
- 548 00be A0F12103 		sub	r3, r0, #33
- 549 00c2 DBB2     		uxtb	r3, r3
- 131:Src/bluetooth.c ****     {
- 550              		.loc 1 131 8 view .LVU152
- 551 00c4 2E2B     		cmp	r3, #46
- 552 00c6 0BD9     		bls	.L39
- 140:Src/bluetooth.c ****     {
- 553              		.loc 1 140 10 is_stmt 1 view .LVU153
- 140:Src/bluetooth.c ****     {
- 554              		.loc 1 140 26 is_stmt 0 view .LVU154
- 555 00c8 A0F15103 		sub	r3, r0, #81
- 556 00cc DBB2     		uxtb	r3, r3
- 140:Src/bluetooth.c ****     {
- 557              		.loc 1 140 13 view .LVU155
- 558 00ce 0E2B     		cmp	r3, #14
- 559 00d0 DCD8     		bhi	.L28
- 142:Src/bluetooth.c ****       minihdlc_send_frame(ACK, 1);
- 560              		.loc 1 142 7 is_stmt 1 view .LVU156
- 561 00d2 FFF7FEFF 		bl	setColorVariable
- 562              	.LVL42:
- 143:Src/bluetooth.c ****     }
- 563              		.loc 1 143 7 view .LVU157
- 564 00d6 0121     		movs	r1, #1
- 565 00d8 0846     		mov	r0, r1
- 566 00da FFF7FEFF 		bl	minihdlc_send_frame
- 567              	.LVL43:
- 568              		.loc 1 147 1 is_stmt 0 view .LVU158
- 569 00de D5E7     		b	.L28
- 570              	.LVL44:
- 571              	.L39:
- 133:Src/bluetooth.c ****       data = *frame_buffer++;
- 572              		.loc 1 133 7 is_stmt 1 view .LVU159
- 573 00e0 FFF7FEFF 		bl	setBackFunction
- 574              	.LVL45:
- 134:Src/bluetooth.c ****       MAX_DIV = data;
- 575              		.loc 1 134 7 view .LVU160
- 134:Src/bluetooth.c ****       MAX_DIV = data;
- 576              		.loc 1 134 12 is_stmt 0 view .LVU161
- 577 00e4 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
- 578              	.LVL46:
- 135:Src/bluetooth.c ****       data = *frame_buffer++;
- 579              		.loc 1 135 7 is_stmt 1 view .LVU162
- 135:Src/bluetooth.c ****       data = *frame_buffer++;
- 580              		.loc 1 135 15 is_stmt 0 view .LVU163
- 581 00e6 094B     		ldr	r3, .L40+16
- 582 00e8 1A70     		strb	r2, [r3]
- 136:Src/bluetooth.c ****       orientation = data;
- 583              		.loc 1 136 7 is_stmt 1 view .LVU164
- 584              	.LVL47:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 57
+ 591 00a2 1E4B     		ldr	r3, .L50+4
+ 592 00a4 1A70     		strb	r2, [r3]
+ 117:Src/bluetooth.c ****     fillFramebuffer();
+ 593              		.loc 1 117 5 is_stmt 1 view .LVU157
+ 594 00a6 FFF7FEFF 		bl	clearBack
+ 595              	.LVL35:
+ 118:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
+ 596              		.loc 1 118 5 view .LVU158
+ 597 00aa FFF7FEFF 		bl	fillFramebuffer
+ 598              	.LVL36:
+ 119:Src/bluetooth.c ****     break;
+ 599              		.loc 1 119 5 view .LVU159
+ 600 00ae 4FF48750 		mov	r0, #4320
+ 601 00b2 FFF7FEFF 		bl	WS2812_sendbuf
+ 602              	.LVL37:
+ 120:Src/bluetooth.c ****   case MODE_TEXT_STATE:
+ 603              		.loc 1 120 5 view .LVU160
+ 604 00b6 F1E7     		b	.L34
+ 605              	.LVL38:
+ 606              	.L39:
+ 122:Src/bluetooth.c ****     MODE_TEXT = data;
+ 607              		.loc 1 122 5 view .LVU161
+ 122:Src/bluetooth.c ****     MODE_TEXT = data;
+ 608              		.loc 1 122 10 is_stmt 0 view .LVU162
+ 609 00b8 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
+ 610              	.LVL39:
+ 123:Src/bluetooth.c ****     clearText();
+ 611              		.loc 1 123 5 is_stmt 1 view .LVU163
+ 123:Src/bluetooth.c ****     clearText();
+ 612              		.loc 1 123 15 is_stmt 0 view .LVU164
+ 613 00ba 1B4B     		ldr	r3, .L50+16
+ 614 00bc 1A70     		strb	r2, [r3]
+ 124:Src/bluetooth.c ****     fillFramebuffer();
+ 615              		.loc 1 124 5 is_stmt 1 view .LVU165
+ 616 00be FFF7FEFF 		bl	clearText
+ 617              	.LVL40:
+ 125:Src/bluetooth.c ****     WS2812_sendbuf(24 * NLEDSCH);
+ 618              		.loc 1 125 5 view .LVU166
+ 619 00c2 FFF7FEFF 		bl	fillFramebuffer
+ 620              	.LVL41:
+ 126:Src/bluetooth.c ****     break;
+ 621              		.loc 1 126 5 view .LVU167
+ 622 00c6 4FF48750 		mov	r0, #4320
+ 623 00ca FFF7FEFF 		bl	WS2812_sendbuf
+ 624              	.LVL42:
+ 127:Src/bluetooth.c ****   case MODE_CUSTOM:
+ 625              		.loc 1 127 5 view .LVU168
+ 626 00ce E5E7     		b	.L34
+ 627              	.LVL43:
+ 628              	.L47:
+ 134:Src/bluetooth.c ****     data = *frame_buffer++;
+ 629              		.loc 1 134 7 view .LVU169
+ 630 00d0 FFF7FEFF 		bl	clearBack
+ 631              	.LVL44:
+ 134:Src/bluetooth.c ****     data = *frame_buffer++;
+ 632              		.loc 1 134 7 is_stmt 0 view .LVU170
+ 633 00d4 B3E7     		b	.L42
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 58
 
 
- 136:Src/bluetooth.c ****       orientation = data;
- 585              		.loc 1 136 12 is_stmt 0 view .LVU165
- 586 00ea A278     		ldrb	r2, [r4, #2]	@ zero_extendqisi2
- 587              	.LVL48:
- 137:Src/bluetooth.c ****       minihdlc_send_frame(ACK, 1);
- 588              		.loc 1 137 7 is_stmt 1 view .LVU166
- 137:Src/bluetooth.c ****       minihdlc_send_frame(ACK, 1);
- 589              		.loc 1 137 19 is_stmt 0 view .LVU167
- 590 00ec 084B     		ldr	r3, .L40+20
- 591 00ee 1A70     		strb	r2, [r3]
- 138:Src/bluetooth.c ****     }
- 592              		.loc 1 138 7 is_stmt 1 view .LVU168
- 593 00f0 0121     		movs	r1, #1
- 594 00f2 0846     		mov	r0, r1
- 595 00f4 FFF7FEFF 		bl	minihdlc_send_frame
- 596              	.LVL49:
- 138:Src/bluetooth.c ****     }
- 597              		.loc 1 138 7 is_stmt 0 view .LVU169
- 598 00f8 C8E7     		b	.L28
- 599              	.L41:
- 600 00fa 00BF     		.align	2
- 601              	.L40:
- 602 00fc 00000000 		.word	drawtext_function
- 603 0100 00000000 		.word	drawNote
- 604 0104 00000000 		.word	MAX_BRIGHT
- 605 0108 00000000 		.word	MODE_BACK
- 606 010c 00000000 		.word	MAX_DIV
- 607 0110 00000000 		.word	orientation
- 608 0114 00000000 		.word	MODE_TEXT
- 609              		.cfi_endproc
- 610              	.LFE863:
- 612              		.section	.text.startReception,"ax",%progbits
- 613              		.align	1
- 614              		.global	startReception
- 615              		.syntax unified
- 616              		.thumb
- 617              		.thumb_func
- 618              		.fpu fpv4-sp-d16
- 620              	startReception:
- 621              	.LFB864:
- 148:Src/bluetooth.c **** 
- 149:Src/bluetooth.c **** void startReception(void)
- 150:Src/bluetooth.c **** {
- 622              		.loc 1 150 1 is_stmt 1 view -0
- 623              		.cfi_startproc
- 624              		@ args = 0, pretend = 0, frame = 16
- 625              		@ frame_needed = 0, uses_anonymous_args = 0
- 626 0000 00B5     		push	{lr}
- 627              	.LCFI1:
- 628              		.cfi_def_cfa_offset 4
- 629              		.cfi_offset 14, -4
- 630 0002 85B0     		sub	sp, sp, #20
- 631              	.LCFI2:
- 632              		.cfi_def_cfa_offset 24
- 151:Src/bluetooth.c ****   minihdlc_init(sendDataBluetooth, receiveDataBluetooth);
- 633              		.loc 1 151 3 view .LVU171
- 634 0004 1049     		ldr	r1, .L44
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 58
+ 634              	.LVL45:
+ 635              	.L48:
+ 144:Src/bluetooth.c ****     data = *frame_buffer++;
+ 636              		.loc 1 144 7 is_stmt 1 view .LVU171
+ 637 00d6 FFF7FEFF 		bl	clearText
+ 638              	.LVL46:
+ 144:Src/bluetooth.c ****     data = *frame_buffer++;
+ 639              		.loc 1 144 7 is_stmt 0 view .LVU172
+ 640 00da BEE7     		b	.L43
+ 641              	.LVL47:
+ 642              	.L38:
+ 153:Src/bluetooth.c ****     {
+ 643              		.loc 1 153 5 is_stmt 1 view .LVU173
+ 153:Src/bluetooth.c ****     {
+ 644              		.loc 1 153 21 is_stmt 0 view .LVU174
+ 645 00dc A0F12103 		sub	r3, r0, #33
+ 646 00e0 DBB2     		uxtb	r3, r3
+ 153:Src/bluetooth.c ****     {
+ 647              		.loc 1 153 8 view .LVU175
+ 648 00e2 2E2B     		cmp	r3, #46
+ 649 00e4 0BD9     		bls	.L49
+ 162:Src/bluetooth.c ****     {
+ 650              		.loc 1 162 10 is_stmt 1 view .LVU176
+ 162:Src/bluetooth.c ****     {
+ 651              		.loc 1 162 26 is_stmt 0 view .LVU177
+ 652 00e6 A0F15103 		sub	r3, r0, #81
+ 653 00ea DBB2     		uxtb	r3, r3
+ 162:Src/bluetooth.c ****     {
+ 654              		.loc 1 162 13 view .LVU178
+ 655 00ec 0E2B     		cmp	r3, #14
+ 656 00ee D5D8     		bhi	.L34
+ 164:Src/bluetooth.c ****       minihdlc_send_frame(ACKn, 1);
+ 657              		.loc 1 164 7 is_stmt 1 view .LVU179
+ 658 00f0 FFF7FEFF 		bl	setColorVariable
+ 659              	.LVL48:
+ 165:Src/bluetooth.c ****     }
+ 660              		.loc 1 165 7 view .LVU180
+ 661 00f4 0121     		movs	r1, #1
+ 662 00f6 01A8     		add	r0, sp, #4
+ 663 00f8 FFF7FEFF 		bl	minihdlc_send_frame
+ 664              	.LVL49:
+ 665              		.loc 1 169 1 is_stmt 0 view .LVU181
+ 666 00fc CEE7     		b	.L34
+ 667              	.LVL50:
+ 668              	.L49:
+ 155:Src/bluetooth.c ****       data = *frame_buffer++;
+ 669              		.loc 1 155 7 is_stmt 1 view .LVU182
+ 670 00fe FFF7FEFF 		bl	setBackFunction
+ 671              	.LVL51:
+ 156:Src/bluetooth.c ****       MAX_DIV = data;
+ 672              		.loc 1 156 7 view .LVU183
+ 156:Src/bluetooth.c ****       MAX_DIV = data;
+ 673              		.loc 1 156 12 is_stmt 0 view .LVU184
+ 674 0102 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
+ 675              	.LVL52:
+ 157:Src/bluetooth.c ****       data = *frame_buffer++;
+ 676              		.loc 1 157 7 is_stmt 1 view .LVU185
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 59
 
 
- 635 0006 1148     		ldr	r0, .L44+4
- 636 0008 FFF7FEFF 		bl	minihdlc_init
- 637              	.LVL50:
- 152:Src/bluetooth.c ****   /* Clear Overrun flag, in case characters have already been sent to USART */
- 153:Src/bluetooth.c ****   LL_USART_ClearFlag_ORE(USART1);
- 638              		.loc 1 153 3 view .LVU172
- 639              	.LBB22:
- 640              	.LBI22:
+ 157:Src/bluetooth.c ****       data = *frame_buffer++;
+ 677              		.loc 1 157 15 is_stmt 0 view .LVU186
+ 678 0104 064B     		ldr	r3, .L50+8
+ 679 0106 1A70     		strb	r2, [r3]
+ 158:Src/bluetooth.c ****       orientation = data;
+ 680              		.loc 1 158 7 is_stmt 1 view .LVU187
+ 681              	.LVL53:
+ 158:Src/bluetooth.c ****       orientation = data;
+ 682              		.loc 1 158 12 is_stmt 0 view .LVU188
+ 683 0108 A278     		ldrb	r2, [r4, #2]	@ zero_extendqisi2
+ 684              	.LVL54:
+ 159:Src/bluetooth.c ****       minihdlc_send_frame(ACKn, 1);
+ 685              		.loc 1 159 7 is_stmt 1 view .LVU189
+ 159:Src/bluetooth.c ****       minihdlc_send_frame(ACKn, 1);
+ 686              		.loc 1 159 19 is_stmt 0 view .LVU190
+ 687 010a 064B     		ldr	r3, .L50+12
+ 688 010c 1A70     		strb	r2, [r3]
+ 160:Src/bluetooth.c ****     }
+ 689              		.loc 1 160 7 is_stmt 1 view .LVU191
+ 690 010e 0121     		movs	r1, #1
+ 691 0110 01A8     		add	r0, sp, #4
+ 692 0112 FFF7FEFF 		bl	minihdlc_send_frame
+ 693              	.LVL55:
+ 160:Src/bluetooth.c ****     }
+ 694              		.loc 1 160 7 is_stmt 0 view .LVU192
+ 695 0116 C1E7     		b	.L34
+ 696              	.L51:
+ 697              		.align	2
+ 698              	.L50:
+ 699 0118 00000000 		.word	MAX_BRIGHT
+ 700 011c 00000000 		.word	MODE_BACK
+ 701 0120 00000000 		.word	MAX_DIV
+ 702 0124 00000000 		.word	orientation
+ 703 0128 00000000 		.word	MODE_TEXT
+ 704              		.cfi_endproc
+ 705              	.LFE864:
+ 707              		.section	.text.startReception,"ax",%progbits
+ 708              		.align	1
+ 709              		.global	startReception
+ 710              		.syntax unified
+ 711              		.thumb
+ 712              		.thumb_func
+ 713              		.fpu fpv4-sp-d16
+ 715              	startReception:
+ 716              	.LFB865:
+ 170:Src/bluetooth.c **** 
+ 171:Src/bluetooth.c **** void startReception(void)
+ 172:Src/bluetooth.c **** {
+ 717              		.loc 1 172 1 is_stmt 1 view -0
+ 718              		.cfi_startproc
+ 719              		@ args = 0, pretend = 0, frame = 16
+ 720              		@ frame_needed = 0, uses_anonymous_args = 0
+ 721 0000 00B5     		push	{lr}
+ 722              	.LCFI4:
+ 723              		.cfi_def_cfa_offset 4
+ 724              		.cfi_offset 14, -4
+ 725 0002 85B0     		sub	sp, sp, #20
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 60
+
+
+ 726              	.LCFI5:
+ 727              		.cfi_def_cfa_offset 24
+ 173:Src/bluetooth.c ****   minihdlc_init(sendDataBluetooth, receiveDataBluetooth);
+ 728              		.loc 1 173 3 view .LVU194
+ 729 0004 1049     		ldr	r1, .L54
+ 730 0006 1148     		ldr	r0, .L54+4
+ 731 0008 FFF7FEFF 		bl	minihdlc_init
+ 732              	.LVL56:
+ 174:Src/bluetooth.c ****   /* Clear Overrun flag, in case characters have already been sent to USART */
+ 175:Src/bluetooth.c ****   LL_USART_ClearFlag_ORE(USART1);
+ 733              		.loc 1 175 3 view .LVU195
+ 734              	.LBB22:
+ 735              	.LBI22:
 1933:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
- 641              		.loc 2 1933 22 view .LVU173
- 642              	.LBB23:
+ 736              		.loc 2 1933 22 view .LVU196
+ 737              	.LBB23:
 1935:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   tmpreg = USARTx->SR;
- 643              		.loc 2 1935 3 view .LVU174
+ 738              		.loc 2 1935 3 view .LVU197
 1936:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   (void) tmpreg;
- 644              		.loc 2 1936 3 view .LVU175
+ 739              		.loc 2 1936 3 view .LVU198
 1936:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   (void) tmpreg;
- 645              		.loc 2 1936 18 is_stmt 0 view .LVU176
- 646 000c 104B     		ldr	r3, .L44+8
- 647 000e 1A68     		ldr	r2, [r3]
+ 740              		.loc 2 1936 18 is_stmt 0 view .LVU199
+ 741 000c 104B     		ldr	r3, .L54+8
+ 742 000e 1A68     		ldr	r2, [r3]
 1936:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   (void) tmpreg;
- 648              		.loc 2 1936 10 view .LVU177
- 649 0010 0092     		str	r2, [sp]
+ 743              		.loc 2 1936 10 view .LVU200
+ 744 0010 0092     		str	r2, [sp]
 1937:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   tmpreg = USARTx->DR;
- 650              		.loc 2 1937 3 is_stmt 1 view .LVU178
- 651 0012 009A     		ldr	r2, [sp]
+ 745              		.loc 2 1937 3 is_stmt 1 view .LVU201
+ 746 0012 009A     		ldr	r2, [sp]
 1938:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   (void) tmpreg;
- 652              		.loc 2 1938 3 view .LVU179
+ 747              		.loc 2 1938 3 view .LVU202
 1938:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   (void) tmpreg;
- 653              		.loc 2 1938 18 is_stmt 0 view .LVU180
- 654 0014 5A68     		ldr	r2, [r3, #4]
+ 748              		.loc 2 1938 18 is_stmt 0 view .LVU203
+ 749 0014 5A68     		ldr	r2, [r3, #4]
 1938:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h ****   (void) tmpreg;
- 655              		.loc 2 1938 10 view .LVU181
- 656 0016 0092     		str	r2, [sp]
+ 750              		.loc 2 1938 10 view .LVU204
+ 751 0016 0092     		str	r2, [sp]
 1939:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 657              		.loc 2 1939 3 is_stmt 1 view .LVU182
- 658 0018 009A     		ldr	r2, [sp]
- 659              	.LVL51:
+ 752              		.loc 2 1939 3 is_stmt 1 view .LVU205
+ 753 0018 009A     		ldr	r2, [sp]
+ 754              	.LVL57:
 1939:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 660              		.loc 2 1939 3 is_stmt 0 view .LVU183
- 661              	.LBE23:
- 662              	.LBE22:
- 154:Src/bluetooth.c **** 
- 155:Src/bluetooth.c ****   /* Enable RXNE and Error interrupts */
- 156:Src/bluetooth.c ****   LL_USART_EnableIT_RXNE(USART1);
- 663              		.loc 1 156 3 is_stmt 1 view .LVU184
- 664              	.LBB24:
- 665              	.LBI24:
+ 755              		.loc 2 1939 3 is_stmt 0 view .LVU206
+ 756              	.LBE23:
+ 757              	.LBE22:
+ 176:Src/bluetooth.c **** 
+ 177:Src/bluetooth.c ****   /* Enable RXNE and Error interrupts */
+ 178:Src/bluetooth.c ****   LL_USART_EnableIT_RXNE(USART1);
+ 758              		.loc 1 178 3 is_stmt 1 view .LVU207
+ 759              	.LBB24:
+ 760              	.LBI24:
 2034:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
- 666              		.loc 2 2034 22 view .LVU185
- 667              	.LBB25:
+ 761              		.loc 2 2034 22 view .LVU208
+ 762              	.LBB25:
 2036:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 668              		.loc 2 2036 3 view .LVU186
- 669 001a DA68     		ldr	r2, [r3, #12]
- 670 001c 42F02002 		orr	r2, r2, #32
- 671 0020 DA60     		str	r2, [r3, #12]
- 672              	.LVL52:
-2036:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 59
+ 763              		.loc 2 2036 3 view .LVU209
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 61
 
 
- 673              		.loc 2 2036 3 is_stmt 0 view .LVU187
- 674              	.LBE25:
- 675              	.LBE24:
- 157:Src/bluetooth.c ****   LL_USART_EnableIT_ERROR(USART1);
- 676              		.loc 1 157 3 is_stmt 1 view .LVU188
- 677              	.LBB26:
- 678              	.LBI26:
+ 764 001a DA68     		ldr	r2, [r3, #12]
+ 765 001c 42F02002 		orr	r2, r2, #32
+ 766 0020 DA60     		str	r2, [r3, #12]
+ 767              	.LVL58:
+2036:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ 768              		.loc 2 2036 3 is_stmt 0 view .LVU210
+ 769              	.LBE25:
+ 770              	.LBE24:
+ 179:Src/bluetooth.c ****   LL_USART_EnableIT_ERROR(USART1);
+ 771              		.loc 1 179 3 is_stmt 1 view .LVU211
+ 772              	.LBB26:
+ 773              	.LBI26:
 2095:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
- 679              		.loc 2 2095 22 view .LVU189
- 680              	.LBB27:
+ 774              		.loc 2 2095 22 view .LVU212
+ 775              	.LBB27:
 2097:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 681              		.loc 2 2097 3 view .LVU190
- 682 0022 5A69     		ldr	r2, [r3, #20]
- 683 0024 42F00102 		orr	r2, r2, #1
- 684 0028 5A61     		str	r2, [r3, #20]
- 685              	.LVL53:
+ 776              		.loc 2 2097 3 view .LVU213
+ 777 0022 5A69     		ldr	r2, [r3, #20]
+ 778 0024 42F00102 		orr	r2, r2, #1
+ 779 0028 5A61     		str	r2, [r3, #20]
+ 780              	.LVL59:
 2097:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 686              		.loc 2 2097 3 is_stmt 0 view .LVU191
- 687              	.LBE27:
- 688              	.LBE26:
- 158:Src/bluetooth.c ****   uint8_t buffer[] = "OLA amigo!";
- 689              		.loc 1 158 3 is_stmt 1 view .LVU192
- 690              		.loc 1 158 11 is_stmt 0 view .LVU193
- 691 002a 0A4A     		ldr	r2, .L44+12
- 692 002c 01AB     		add	r3, sp, #4
- 693 002e 07CA     		ldm	r2, {r0, r1, r2}
- 694 0030 03C3     		stmia	r3!, {r0, r1}
- 695 0032 23F8022B 		strh	r2, [r3], #2	@ movhi
- 696 0036 120C     		lsrs	r2, r2, #16
- 697 0038 1A70     		strb	r2, [r3]
- 159:Src/bluetooth.c **** 
- 160:Src/bluetooth.c ****   minihdlc_send_frame(buffer, ARRAY_LEN(buffer));
- 698              		.loc 1 160 3 is_stmt 1 view .LVU194
- 699 003a 0B21     		movs	r1, #11
- 700 003c 01A8     		add	r0, sp, #4
- 701 003e FFF7FEFF 		bl	minihdlc_send_frame
- 702              	.LVL54:
- 161:Src/bluetooth.c **** }
- 703              		.loc 1 161 1 is_stmt 0 view .LVU195
- 704 0042 05B0     		add	sp, sp, #20
- 705              	.LCFI3:
- 706              		.cfi_def_cfa_offset 4
- 707              		@ sp needed
- 708 0044 5DF804FB 		ldr	pc, [sp], #4
- 709              	.L45:
- 710              		.align	2
- 711              	.L44:
- 712 0048 00000000 		.word	receiveDataBluetooth
- 713 004c 00000000 		.word	sendDataBluetooth
- 714 0050 00100140 		.word	1073811456
- 715 0054 00000000 		.word	.LC0
- 716              		.cfi_endproc
- 717              	.LFE864:
- 719              		.section	.text.USART1_IRQHandler,"ax",%progbits
- 720              		.align	1
- 721              		.global	USART1_IRQHandler
- 722              		.syntax unified
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 60
-
-
- 723              		.thumb
- 724              		.thumb_func
- 725              		.fpu fpv4-sp-d16
- 727              	USART1_IRQHandler:
- 728              	.LFB865:
- 162:Src/bluetooth.c **** 
- 163:Src/bluetooth.c **** void USART1_IRQHandler(void)
- 164:Src/bluetooth.c **** {
- 729              		.loc 1 164 1 is_stmt 1 view -0
- 730              		.cfi_startproc
- 731              		@ args = 0, pretend = 0, frame = 0
- 732              		@ frame_needed = 0, uses_anonymous_args = 0
- 165:Src/bluetooth.c ****   uint8_t RxBuffer;
- 733              		.loc 1 165 3 view .LVU197
- 166:Src/bluetooth.c ****   if (LL_USART_IsActiveFlag_RXNE(USART1) && LL_USART_IsEnabledIT_RXNE(USART1))
- 734              		.loc 1 166 3 view .LVU198
- 735              	.LVL55:
- 736              	.LBB28:
- 737              	.LBI28:
-1791:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
- 738              		.loc 2 1791 26 view .LVU199
- 739              	.LBB29:
-1793:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 740              		.loc 2 1793 3 view .LVU200
-1793:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 741              		.loc 2 1793 11 is_stmt 0 view .LVU201
- 742 0000 0A4B     		ldr	r3, .L53
- 743 0002 1B68     		ldr	r3, [r3]
- 744              	.LVL56:
-1793:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 745              		.loc 2 1793 11 view .LVU202
- 746              	.LBE29:
- 747              	.LBE28:
- 748              		.loc 1 166 6 view .LVU203
- 749 0004 13F0200F 		tst	r3, #32
- 750 0008 04D0     		beq	.L49
- 751              	.LVL57:
- 752              	.LBB30:
- 753              	.LBI30:
-2226:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
- 754              		.loc 2 2226 26 is_stmt 1 view .LVU204
- 755              	.LBB31:
-2228:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 756              		.loc 2 2228 3 view .LVU205
-2228:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 757              		.loc 2 2228 11 is_stmt 0 view .LVU206
- 758 000a 084B     		ldr	r3, .L53
- 759 000c DB68     		ldr	r3, [r3, #12]
- 760              	.LVL58:
-2228:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 761              		.loc 2 2228 11 view .LVU207
- 762              	.LBE31:
- 763              	.LBE30:
- 764              		.loc 1 166 42 view .LVU208
- 765 000e 13F0200F 		tst	r3, #32
- 766 0012 00D1     		bne	.L52
- 767              	.L49:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 61
-
-
- 768 0014 7047     		bx	lr
- 769              	.L52:
- 164:Src/bluetooth.c ****   uint8_t RxBuffer;
- 770              		.loc 1 164 1 view .LVU209
- 771 0016 10B5     		push	{r4, lr}
- 772              	.LCFI4:
- 773              		.cfi_def_cfa_offset 8
- 774              		.cfi_offset 4, -8
- 775              		.cfi_offset 14, -4
- 167:Src/bluetooth.c ****   {
- 168:Src/bluetooth.c ****     // LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
- 169:Src/bluetooth.c ****     RxBuffer = LL_USART_ReceiveData8(USART1);
- 776              		.loc 1 169 5 is_stmt 1 view .LVU210
- 777              	.LVL59:
- 778              	.LBB32:
- 779              	.LBI32:
-2402:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
- 780              		.loc 2 2402 25 view .LVU211
- 781              	.LBB33:
-2404:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 782              		.loc 2 2404 3 view .LVU212
-2404:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 783              		.loc 2 2404 20 is_stmt 0 view .LVU213
- 784 0018 044B     		ldr	r3, .L53
- 785 001a 5C68     		ldr	r4, [r3, #4]
-2404:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 786              		.loc 2 2404 10 view .LVU214
- 787 001c E4B2     		uxtb	r4, r4
- 788              	.LVL60:
-2404:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
- 789              		.loc 2 2404 10 view .LVU215
- 790              	.LBE33:
- 791              	.LBE32:
- 170:Src/bluetooth.c ****     minihdlc_char_receiver(RxBuffer);
- 792              		.loc 1 170 5 is_stmt 1 view .LVU216
- 793 001e 2046     		mov	r0, r4
- 794 0020 FFF7FEFF 		bl	minihdlc_char_receiver
- 795              	.LVL61:
- 171:Src/bluetooth.c ****     sendDataBluetooth(RxBuffer);
- 796              		.loc 1 171 5 view .LVU217
- 797 0024 2046     		mov	r0, r4
- 798 0026 FFF7FEFF 		bl	sendDataBluetooth
- 799              	.LVL62:
- 172:Src/bluetooth.c ****   }
- 173:Src/bluetooth.c **** }
- 800              		.loc 1 173 1 is_stmt 0 view .LVU218
- 801 002a 10BD     		pop	{r4, pc}
- 802              	.LVL63:
- 803              	.L54:
- 804              		.loc 1 173 1 view .LVU219
+ 781              		.loc 2 2097 3 is_stmt 0 view .LVU214
+ 782              	.LBE27:
+ 783              	.LBE26:
+ 180:Src/bluetooth.c ****   uint8_t buffer[] = "OLA amigo!";
+ 784              		.loc 1 180 3 is_stmt 1 view .LVU215
+ 785              		.loc 1 180 11 is_stmt 0 view .LVU216
+ 786 002a 0A4A     		ldr	r2, .L54+12
+ 787 002c 01AB     		add	r3, sp, #4
+ 788 002e 07CA     		ldm	r2, {r0, r1, r2}
+ 789 0030 03C3     		stmia	r3!, {r0, r1}
+ 790 0032 23F8022B 		strh	r2, [r3], #2	@ movhi
+ 791 0036 120C     		lsrs	r2, r2, #16
+ 792 0038 1A70     		strb	r2, [r3]
+ 181:Src/bluetooth.c **** 
+ 182:Src/bluetooth.c ****   minihdlc_send_frame(buffer, ARRAY_LEN(buffer));
+ 793              		.loc 1 182 3 is_stmt 1 view .LVU217
+ 794 003a 0B21     		movs	r1, #11
+ 795 003c 01A8     		add	r0, sp, #4
+ 796 003e FFF7FEFF 		bl	minihdlc_send_frame
+ 797              	.LVL60:
+ 183:Src/bluetooth.c **** }
+ 798              		.loc 1 183 1 is_stmt 0 view .LVU218
+ 799 0042 05B0     		add	sp, sp, #20
+ 800              	.LCFI6:
+ 801              		.cfi_def_cfa_offset 4
+ 802              		@ sp needed
+ 803 0044 5DF804FB 		ldr	pc, [sp], #4
+ 804              	.L55:
  805              		.align	2
- 806              	.L53:
- 807 002c 00100140 		.word	1073811456
- 808              		.cfi_endproc
- 809              	.LFE865:
- 811              		.comm	WS2812_IO_framedata,1536,4
- 812              		.comm	textColor,3,4
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 62
+ 806              	.L54:
+ 807 0048 00000000 		.word	receiveDataBluetooth
+ 808 004c 00000000 		.word	sendDataBluetooth
+ 809 0050 00100140 		.word	1073811456
+ 810 0054 00000000 		.word	.LC0
+ 811              		.cfi_endproc
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 62
 
 
- 813              		.comm	backColor,3,4
- 814              		.comm	textLayer,768,4
- 815              		.comm	backLayer,768,4
- 816              		.section	.rodata.startReception.str1.4,"aMS",%progbits,1
- 817              		.align	2
- 818              	.LC0:
- 819 0000 4F4C4120 		.ascii	"OLA amigo!\000"
- 819      616D6967 
- 819      6F2100
- 820              		.text
- 821              	.Letext0:
- 822              		.file 3 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_def
- 823              		.file 4 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.
- 824              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
- 825              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
- 826              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xc.h"
- 827              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
- 828              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h"
- 829              		.file 10 "Inc/definitions.h"
- 830              		.file 11 "Inc/draw.h"
- 831              		.file 12 "Inc/ws2812.h"
- 832              		.file 13 "Src/minihdlc-master/minihdlc.h"
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 63
+ 812              	.LFE865:
+ 814              		.section	.text.USART1_IRQHandler,"ax",%progbits
+ 815              		.align	1
+ 816              		.global	USART1_IRQHandler
+ 817              		.syntax unified
+ 818              		.thumb
+ 819              		.thumb_func
+ 820              		.fpu fpv4-sp-d16
+ 822              	USART1_IRQHandler:
+ 823              	.LFB866:
+ 184:Src/bluetooth.c **** 
+ 185:Src/bluetooth.c **** void USART1_IRQHandler(void)
+ 186:Src/bluetooth.c **** {
+ 824              		.loc 1 186 1 is_stmt 1 view -0
+ 825              		.cfi_startproc
+ 826              		@ args = 0, pretend = 0, frame = 0
+ 827              		@ frame_needed = 0, uses_anonymous_args = 0
+ 187:Src/bluetooth.c ****   uint8_t RxBuffer;
+ 828              		.loc 1 187 3 view .LVU220
+ 188:Src/bluetooth.c ****   if (LL_USART_IsActiveFlag_RXNE(USART1) && LL_USART_IsEnabledIT_RXNE(USART1))
+ 829              		.loc 1 188 3 view .LVU221
+ 830              	.LVL61:
+ 831              	.LBB28:
+ 832              	.LBI28:
+1791:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
+ 833              		.loc 2 1791 26 view .LVU222
+ 834              	.LBB29:
+1793:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ 835              		.loc 2 1793 3 view .LVU223
+1793:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ 836              		.loc 2 1793 11 is_stmt 0 view .LVU224
+ 837 0000 0A4B     		ldr	r3, .L63
+ 838 0002 1B68     		ldr	r3, [r3]
+ 839              	.LVL62:
+1793:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ 840              		.loc 2 1793 11 view .LVU225
+ 841              	.LBE29:
+ 842              	.LBE28:
+ 843              		.loc 1 188 6 view .LVU226
+ 844 0004 13F0200F 		tst	r3, #32
+ 845 0008 04D0     		beq	.L59
+ 846              	.LVL63:
+ 847              	.LBB30:
+ 848              	.LBI30:
+2226:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
+ 849              		.loc 2 2226 26 is_stmt 1 view .LVU227
+ 850              	.LBB31:
+2228:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ 851              		.loc 2 2228 3 view .LVU228
+2228:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ 852              		.loc 2 2228 11 is_stmt 0 view .LVU229
+ 853 000a 084B     		ldr	r3, .L63
+ 854 000c DB68     		ldr	r3, [r3, #12]
+ 855              	.LVL64:
+2228:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ 856              		.loc 2 2228 11 view .LVU230
+ 857              	.LBE31:
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 63
+
+
+ 858              	.LBE30:
+ 859              		.loc 1 188 42 view .LVU231
+ 860 000e 13F0200F 		tst	r3, #32
+ 861 0012 00D1     		bne	.L62
+ 862              	.L59:
+ 863 0014 7047     		bx	lr
+ 864              	.L62:
+ 186:Src/bluetooth.c ****   uint8_t RxBuffer;
+ 865              		.loc 1 186 1 view .LVU232
+ 866 0016 10B5     		push	{r4, lr}
+ 867              	.LCFI7:
+ 868              		.cfi_def_cfa_offset 8
+ 869              		.cfi_offset 4, -8
+ 870              		.cfi_offset 14, -4
+ 189:Src/bluetooth.c ****   {
+ 190:Src/bluetooth.c ****     // LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
+ 191:Src/bluetooth.c ****     RxBuffer = LL_USART_ReceiveData8(USART1);
+ 871              		.loc 1 191 5 is_stmt 1 view .LVU233
+ 872              	.LVL65:
+ 873              	.LBB32:
+ 874              	.LBI32:
+2402:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** {
+ 875              		.loc 2 2402 25 view .LVU234
+ 876              	.LBB33:
+2404:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ 877              		.loc 2 2404 3 view .LVU235
+2404:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ 878              		.loc 2 2404 20 is_stmt 0 view .LVU236
+ 879 0018 044B     		ldr	r3, .L63
+ 880 001a 5C68     		ldr	r4, [r3, #4]
+2404:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ 881              		.loc 2 2404 10 view .LVU237
+ 882 001c E4B2     		uxtb	r4, r4
+ 883              	.LVL66:
+2404:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h **** }
+ 884              		.loc 2 2404 10 view .LVU238
+ 885              	.LBE33:
+ 886              	.LBE32:
+ 192:Src/bluetooth.c ****     minihdlc_char_receiver(RxBuffer);
+ 887              		.loc 1 192 5 is_stmt 1 view .LVU239
+ 888 001e 2046     		mov	r0, r4
+ 889 0020 FFF7FEFF 		bl	minihdlc_char_receiver
+ 890              	.LVL67:
+ 193:Src/bluetooth.c ****     sendDataBluetooth(RxBuffer);
+ 891              		.loc 1 193 5 view .LVU240
+ 892 0024 2046     		mov	r0, r4
+ 893 0026 FFF7FEFF 		bl	sendDataBluetooth
+ 894              	.LVL68:
+ 194:Src/bluetooth.c ****   }
+ 195:Src/bluetooth.c **** }
+ 895              		.loc 1 195 1 is_stmt 0 view .LVU241
+ 896 002a 10BD     		pop	{r4, pc}
+ 897              	.LVL69:
+ 898              	.L64:
+ 899              		.loc 1 195 1 view .LVU242
+ 900              		.align	2
+ 901              	.L63:
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 64
+
+
+ 902 002c 00100140 		.word	1073811456
+ 903              		.cfi_endproc
+ 904              	.LFE866:
+ 906              		.comm	WS2812_IO_framedata,8640,4
+ 907              		.comm	noteBuffer,60,4
+ 908              		.comm	noteSequence,4,4
+ 909              		.comm	noteSequenceOET,78,4
+ 910              		.comm	noteSequenceSize,1,1
+ 911              		.comm	noteSequenceWTECS,65,4
+ 912              		.comm	note,3,4
+ 913              		.comm	textColor,3,4
+ 914              		.comm	backColor,3,4
+ 915              		.comm	textLayer,6075,4
+ 916              		.comm	backLayer,6075,4
+ 917              		.section	.rodata.startReception.str1.4,"aMS",%progbits,1
+ 918              		.align	2
+ 919              	.LC0:
+ 920 0000 4F4C4120 		.ascii	"OLA amigo!\000"
+ 920      616D6967 
+ 920      6F2100
+ 921              		.text
+ 922              	.Letext0:
+ 923              		.file 3 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_def
+ 924              		.file 4 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.
+ 925              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
+ 926              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 927              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xc.h"
+ 928              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
+ 929              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h"
+ 930              		.file 10 "Inc/definitions.h"
+ 931              		.file 11 "Inc/draw.h"
+ 932              		.file 12 "Inc/notes.h"
+ 933              		.file 13 "Inc/ws2812.h"
+ 934              		.file 14 "Src/minihdlc-master/minihdlc.h"
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 65
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 bluetooth.c
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:18     .text.sendDataBluetooth:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:26     .text.sendDataBluetooth:0000000000000000 sendDataBluetooth
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:72     .text.sendDataBluetooth:0000000000000010 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:77     .text.setBackFunction:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:84     .text.setBackFunction:0000000000000000 setBackFunction
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:100    .text.setBackFunction:000000000000000a $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:295    .text.setBackFunction:00000000000000d4 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:309    .text.setColorVariable:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:316    .text.setColorVariable:0000000000000000 setColorVariable
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:350    .text.setColorVariable:000000000000001c $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:357    .text.receiveDataBluetooth:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:364    .text.receiveDataBluetooth:0000000000000000 receiveDataBluetooth
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:602    .text.receiveDataBluetooth:00000000000000fc $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:613    .text.startReception:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:620    .text.startReception:0000000000000000 startReception
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:712    .text.startReception:0000000000000048 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:720    .text.USART1_IRQHandler:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:727    .text.USART1_IRQHandler:0000000000000000 USART1_IRQHandler
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:807    .text.USART1_IRQHandler:000000000000002c $d
-                            *COM*:0000000000000600 WS2812_IO_framedata
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:18     .text.sendDataBluetooth:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:26     .text.sendDataBluetooth:0000000000000000 sendDataBluetooth
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:72     .text.sendDataBluetooth:0000000000000010 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:77     .text.setBackFunction:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:84     .text.setBackFunction:0000000000000000 setBackFunction
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:100    .text.setBackFunction:000000000000000a $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:295    .text.setBackFunction:00000000000000d4 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:309    .text.setTextFunction:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:316    .text.setTextFunction:0000000000000000 setTextFunction
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:360    .text.setTextFunction:0000000000000028 $d
+                            *COM*:0000000000000001 noteSequenceSize
+                            *COM*:0000000000000004 noteSequence
+                            *COM*:0000000000000041 noteSequenceWTECS
+                            *COM*:000000000000004e noteSequenceOET
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:368    .text.setColorVariable:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:375    .text.setColorVariable:0000000000000000 setColorVariable
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:409    .text.setColorVariable:000000000000001c $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:416    .text.receiveDataBluetooth:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:423    .text.receiveDataBluetooth:0000000000000000 receiveDataBluetooth
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:699    .text.receiveDataBluetooth:0000000000000118 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:708    .text.startReception:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:715    .text.startReception:0000000000000000 startReception
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:807    .text.startReception:0000000000000048 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:815    .text.USART1_IRQHandler:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:822    .text.USART1_IRQHandler:0000000000000000 USART1_IRQHandler
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:902    .text.USART1_IRQHandler:000000000000002c $d
+                            *COM*:00000000000021c0 WS2812_IO_framedata
+                            *COM*:000000000000003c noteBuffer
+                            *COM*:0000000000000003 note
                             *COM*:0000000000000003 textColor
                             *COM*:0000000000000003 backColor
-                            *COM*:0000000000000300 textLayer
-                            *COM*:0000000000000300 backLayer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:817    .rodata.startReception.str1.4:0000000000000000 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:133    .text.setBackFunction:000000000000002b $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s:133    .text.setBackFunction:000000000000002c $t
+                            *COM*:00000000000017bb textLayer
+                            *COM*:00000000000017bb backLayer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:918    .rodata.startReception.str1.4:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:133    .text.setBackFunction:000000000000002b $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s:133    .text.setBackFunction:000000000000002c $t
 
 UNDEFINED SYMBOLS
 drawshape_function
@@ -3734,16 +3875,14 @@ fillFramebuffer
 WS2812_sendbuf
 clearBack
 clearText
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccmKAZoH.s 			page 66
+
+
 minihdlc_send_frame
-drawtext_function
-drawNote
 MAX_BRIGHT
 MODE_BACK
 MAX_DIV
 orientation
 MODE_TEXT
 minihdlc_init
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccxVpUCo.s 			page 64
-
-
 minihdlc_char_receiver

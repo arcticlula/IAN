@@ -52,15 +52,15 @@ uint8_t gammaCorrection[256] = {
     177, 180, 182, 184, 186, 189, 191, 193, 196, 198, 200, 203, 205, 208, 210, 213,
     215, 218, 220, 223, 225, 228, 231, 233, 236, 239, 241, 244, 247, 249, 252, 255};
 
-void setColorFadeFB(uint8_t *dest, uint8_t *color)
-{
-  uint8_t temp;
-  for (uint8_t z = 0; z < 3; z++)
-  {
-    temp = gammaCorrection[color[z]];
-    dest[z] = temp * MAX_BRIGHT;
-  }
-}
+// void setColorFadeFB(uint8_t *dest, uint8_t *color)
+// {
+//   uint8_t temp;
+//   for (uint8_t z = 0; z < 3; z++)
+//   {
+//     temp = gammaCorrection[color[z]];
+//     dest[z] = temp * MAX_BRIGHT;
+//   }
+// }
 
 void setColorFB(uint8_t *dest, uint8_t *color)
 {

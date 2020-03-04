@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -50,21 +50,21 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
   20:Src/notes.c   **** //                             {{{'F', '\0', '4'}, {'A', '\0', '5'}, {'A', '\0', '6'}}, "Saber"},
   21:Src/notes.c   **** //                             {{{'A', '\0', '4'}, {'E', '\0', '5'}, {'A', '\0', '6'}}, "Ser"}};
   22:Src/notes.c   **** 
-  23:Src/notes.c   **** NoteWord noteSequence[5] = {{{{'A', '\0', '1'}}, "What"},
-  24:Src/notes.c   ****                             {{{'B', '\0', '4'}}, "The"},
-  25:Src/notes.c   ****                             {{{'C', '\0', '4'}}, "Eyes"},
-  26:Src/notes.c   ****                             {{{'D', '\0', '4'}}, "Cannot"},
-  27:Src/notes.c   ****                             {{{'G', '\0', '4'}}, "See"}};
+  23:Src/notes.c   **** NoteWord noteSequenceWTECS[5] = {{{{'A', '\0', '1'}}, "What"},
+  24:Src/notes.c   ****                                  {{{'B', '\0', '4'}}, "The"},
+  25:Src/notes.c   ****                                  {{{'C', '\0', '4'}}, "Eyes"},
+  26:Src/notes.c   ****                                  {{{'D', '\0', '4'}}, "Cannot"},
+  27:Src/notes.c   ****                                  {{{'G', '\0', '4'}}, "See"}};
   28:Src/notes.c   **** 
-  29:Src/notes.c   **** /* NoteWord noteSequence[6] = {{{{'D', '\0', '1'}}, "Tecnologia"},
-  30:Src/notes.c   ****                             {{{'E', '\0', '4'}}, "Musica"},
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 2
+  29:Src/notes.c   **** NoteWord noteSequenceOET[6] = {{{{'D', '\0', '1'}}, "Tecnologia"},
+  30:Src/notes.c   ****                                {{{'E', '\0', '4'}}, "Musica"},
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 2
 
 
-  31:Src/notes.c   ****                             {{{'F', '\0', '4'}}, "Ser"},
-  32:Src/notes.c   ****                             {{{'G', '\0', '4'}}, "E"},
-  33:Src/notes.c   ****                             {{{'A', '\0', '4'}}, "Saber"},
-  34:Src/notes.c   ****                             {{{'F', '\0', '4'}}, "Ser"}}; */
+  31:Src/notes.c   ****                                {{{'F', '\0', '4'}}, "Ser"},
+  32:Src/notes.c   ****                                {{{'G', '\0', '4'}}, "E"},
+  33:Src/notes.c   ****                                {{{'A', '\0', '4'}}, "Saber"},
+  34:Src/notes.c   ****                                {{{'F', '\0', '4'}}, "Ser"}};
   35:Src/notes.c   **** 
   36:Src/notes.c   **** uint8_t velocity = 0;
   37:Src/notes.c   **** 
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
   70 0028 DB11     		asrs	r3, r3, #7
   71 002a 07EE903A 		vmov	s15, r3	@ int
   72              		.loc 1 42 66 discriminator 3 view .LVU12
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 3
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 3
 
 
   73 002e F8EEE77A 		vcvt.f32.s32	s15, s15
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  124              	.LFB4:
   45:Src/notes.c   **** 
   46:Src/notes.c   **** void setVelocity(uint8_t vel)
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 4
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 4
 
 
   47:Src/notes.c   **** {
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
   71:Src/notes.c   ****   case MIDI_E0:
   72:Src/notes.c   ****     strcpy(note.symbol, "E");
   73:Src/notes.c   ****     break;
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 5
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 5
 
 
   74:Src/notes.c   ****   case MIDI_F0:
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  177 0004 0A23     		movs	r3, #10
  178              	.LVL8:
  179              	.L14:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 6
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 6
 
 
  180              		.loc 1 107 3 discriminator 1 view .LVU29
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  225              	.L19:
  226              		.align	2
  227              	.L18:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 7
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 7
 
 
  228 003c 00000000 		.word	noteBuffer
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  120:Src/notes.c   ****   // setTextColor(arrColor[resto]);
  121:Src/notes.c   ****   switch (resto)
  278              		.loc 1 121 3 is_stmt 1 view .LVU53
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 8
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 8
 
 
  279 0028 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  149:Src/notes.c   ****     break;
  150:Src/notes.c   ****   case MIDI_A0 + MIDI_FLAT:
  151:Src/notes.c   ****     note.symbol = 'A';
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 9
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 9
 
 
  152:Src/notes.c   ****     note.pitch = 'b';
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  338 006a 1A70     		strb	r2, [r3]
  132:Src/notes.c   ****   case MIDI_E0 + MIDI_FLAT:
  339              		.loc 1 132 5 is_stmt 1 view .LVU68
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 10
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 10
 
 
  340 006c EBE7     		b	.L21
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  146:Src/notes.c   ****   case MIDI_G0:
  379              		.loc 1 146 5 is_stmt 1 view .LVU84
  380 0094 D7E7     		b	.L21
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 11
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 11
 
 
  381              	.L27:
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  419              		.loc 1 160 5 is_stmt 1 view .LVU100
  420 00bc C3E7     		b	.L21
  421              	.L22:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 12
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 12
 
 
  162:Src/notes.c   ****     break;
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  462              		.loc 1 179 12 is_stmt 0 view .LVU106
  463 000c 0020     		movs	r0, #0
  464              	.LVL19:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 13
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 13
 
 
  465              		.loc 1 179 12 view .LVU107
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  508              	.LFE7:
  510              		.section	.text.clearNoteBuffer,"ax",%progbits
  511              		.align	1
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 14
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 14
 
 
  512              		.global	clearNoteBuffer
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  559              		.loc 1 188 23 is_stmt 0 view .LVU129
  560 0012 0446     		mov	r4, r0
  561              		.loc 1 188 31 view .LVU130
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 15
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 15
 
 
  562 0014 0C4D     		ldr	r5, .L56
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  604              		.cfi_restore 5
  605              		.cfi_restore 4
  606              		.cfi_def_cfa_offset 0
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 16
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 16
 
 
  607 0042 7047     		bx	lr
@@ -917,115 +917,164 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 1
  621              		.global	waitForMessage
  622              		.global	cntMessage
  623              		.comm	noteBuffer,60,4
- 624              		.global	noteSequence
- 625              		.comm	note,3,4
- 626              		.comm	textColor,3,4
- 627              		.comm	backColor,3,4
- 628              		.comm	textLayer,768,4
- 629              		.comm	backLayer,768,4
- 630              		.section	.bss.cntMessage,"aw",%nobits
- 633              	cntMessage:
- 634 0000 00       		.space	1
- 635              		.section	.bss.velocity,"aw",%nobits
- 636              		.set	.LANCHOR1,. + 0
- 639              	velocity:
- 640 0000 00       		.space	1
- 641              		.section	.bss.waitForMessage,"aw",%nobits
- 644              	waitForMessage:
- 645 0000 00       		.space	1
- 646              		.section	.data.noteSequence,"aw"
- 647              		.align	2
- 650              	noteSequence:
- 651 0000 41       		.byte	65
- 652 0001 00       		.byte	0
- 653 0002 31       		.byte	49
- 654 0003 57686174 		.ascii	"What\000"
- 654      00
- 655 0008 00000000 		.space	5
- 655      00
- 656 000d 42       		.byte	66
- 657 000e 00       		.byte	0
- 658 000f 34       		.byte	52
- 659 0010 54686500 		.ascii	"The\000"
- 660 0014 00000000 		.space	6
- 660      0000
- 661 001a 43       		.byte	67
- 662 001b 00       		.byte	0
- 663 001c 34       		.byte	52
- 664 001d 45796573 		.ascii	"Eyes\000"
- 664      00
- 665 0022 00000000 		.space	5
- 665      00
- 666 0027 44       		.byte	68
- 667 0028 00       		.byte	0
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 17
+ 624              		.comm	noteSequence,4,4
+ 625              		.global	noteSequenceOET
+ 626              		.comm	noteSequenceSize,1,1
+ 627              		.global	noteSequenceWTECS
+ 628              		.comm	note,3,4
+ 629              		.comm	textColor,3,4
+ 630              		.comm	backColor,3,4
+ 631              		.comm	textLayer,6075,4
+ 632              		.comm	backLayer,6075,4
+ 633              		.section	.bss.cntMessage,"aw",%nobits
+ 636              	cntMessage:
+ 637 0000 00       		.space	1
+ 638              		.section	.bss.velocity,"aw",%nobits
+ 639              		.set	.LANCHOR1,. + 0
+ 642              	velocity:
+ 643 0000 00       		.space	1
+ 644              		.section	.bss.waitForMessage,"aw",%nobits
+ 647              	waitForMessage:
+ 648 0000 00       		.space	1
+ 649              		.section	.data.noteSequenceOET,"aw"
+ 650              		.align	2
+ 653              	noteSequenceOET:
+ 654 0000 44       		.byte	68
+ 655 0001 00       		.byte	0
+ 656 0002 31       		.byte	49
+ 657 0003 5465636E 		.ascii	"Tecnologia"
+ 657      6F6C6F67 
+ 657      6961
+ 658 000d 45       		.byte	69
+ 659 000e 00       		.byte	0
+ 660 000f 34       		.byte	52
+ 661 0010 4D757369 		.ascii	"Musica\000"
+ 661      636100
+ 662 0017 000000   		.space	3
+ 663 001a 46       		.byte	70
+ 664 001b 00       		.byte	0
+ 665 001c 34       		.byte	52
+ 666 001d 53657200 		.ascii	"Ser\000"
+ 667 0021 00000000 		.space	6
+ 667      0000
+ 668 0027 47       		.byte	71
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 17
 
 
- 668 0029 34       		.byte	52
- 669 002a 43616E6E 		.ascii	"Cannot\000"
- 669      6F7400
- 670 0031 000000   		.space	3
- 671 0034 47       		.byte	71
- 672 0035 00       		.byte	0
- 673 0036 34       		.byte	52
- 674 0037 53656500 		.ascii	"See\000"
- 675 003b 00000000 		.space	6
- 675      0000
- 676              		.section	.data.resto,"aw"
- 677              		.set	.LANCHOR0,. + 0
- 680              	resto:
- 681 0000 0C       		.byte	12
- 682              		.text
- 683              	.Letext0:
- 684              		.file 2 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_def
- 685              		.file 3 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.
- 686              		.file 4 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/lock.h"
- 687              		.file 5 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_types.h
- 688              		.file 6 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/includ
- 689              		.file 7 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/reent.h"
- 690              		.file 8 "Inc/definitions.h"
- 691              		.file 9 "Inc/notes.h"
- 692              		.file 10 "Inc/draw.h"
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s 			page 18
+ 669 0028 00       		.byte	0
+ 670 0029 34       		.byte	52
+ 671 002a 4500     		.ascii	"E\000"
+ 672 002c 00000000 		.space	8
+ 672      00000000 
+ 673 0034 41       		.byte	65
+ 674 0035 00       		.byte	0
+ 675 0036 34       		.byte	52
+ 676 0037 53616265 		.ascii	"Saber\000"
+ 676      7200
+ 677 003d 00000000 		.space	4
+ 678 0041 46       		.byte	70
+ 679 0042 00       		.byte	0
+ 680 0043 34       		.byte	52
+ 681 0044 53657200 		.ascii	"Ser\000"
+ 682 0048 00000000 		.space	6
+ 682      0000
+ 683              		.section	.data.noteSequenceWTECS,"aw"
+ 684              		.align	2
+ 687              	noteSequenceWTECS:
+ 688 0000 41       		.byte	65
+ 689 0001 00       		.byte	0
+ 690 0002 31       		.byte	49
+ 691 0003 57686174 		.ascii	"What\000"
+ 691      00
+ 692 0008 00000000 		.space	5
+ 692      00
+ 693 000d 42       		.byte	66
+ 694 000e 00       		.byte	0
+ 695 000f 34       		.byte	52
+ 696 0010 54686500 		.ascii	"The\000"
+ 697 0014 00000000 		.space	6
+ 697      0000
+ 698 001a 43       		.byte	67
+ 699 001b 00       		.byte	0
+ 700 001c 34       		.byte	52
+ 701 001d 45796573 		.ascii	"Eyes\000"
+ 701      00
+ 702 0022 00000000 		.space	5
+ 702      00
+ 703 0027 44       		.byte	68
+ 704 0028 00       		.byte	0
+ 705 0029 34       		.byte	52
+ 706 002a 43616E6E 		.ascii	"Cannot\000"
+ 706      6F7400
+ 707 0031 000000   		.space	3
+ 708 0034 47       		.byte	71
+ 709 0035 00       		.byte	0
+ 710 0036 34       		.byte	52
+ 711 0037 53656500 		.ascii	"See\000"
+ 712 003b 00000000 		.space	6
+ 712      0000
+ 713              		.section	.data.resto,"aw"
+ 714              		.set	.LANCHOR0,. + 0
+ 717              	resto:
+ 718 0000 0C       		.byte	12
+ 719              		.text
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 18
+
+
+ 720              	.Letext0:
+ 721              		.file 2 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_def
+ 722              		.file 3 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.
+ 723              		.file 4 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/lock.h"
+ 724              		.file 5 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_types.h
+ 725              		.file 6 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/includ
+ 726              		.file 7 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/reent.h"
+ 727              		.file 8 "Inc/definitions.h"
+ 728              		.file 9 "Inc/notes.h"
+ 729              		.file 10 "Inc/draw.h"
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 notes.c
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:18     .text.calculateLeds:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:26     .text.calculateLeds:0000000000000000 calculateLeds
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:105    .text.calculateLeds:000000000000005c $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:18     .text.calculateLeds:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:26     .text.calculateLeds:0000000000000000 calculateLeds
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:105    .text.calculateLeds:000000000000005c $d
                             *COM*:0000000000000003 backColor
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:115    .text.setVelocity:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:122    .text.setVelocity:0000000000000000 setVelocity
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:142    .text.setVelocity:0000000000000008 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:147    .text.addNoteBuffer:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:154    .text.addNoteBuffer:0000000000000000 addNoteBuffer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:228    .text.addNoteBuffer:000000000000003c $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:115    .text.setVelocity:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:122    .text.setVelocity:0000000000000000 setVelocity
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:142    .text.setVelocity:0000000000000008 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:147    .text.addNoteBuffer:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:154    .text.addNoteBuffer:0000000000000000 addNoteBuffer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:228    .text.addNoteBuffer:000000000000003c $d
                             *COM*:000000000000003c noteBuffer
                             *COM*:0000000000000003 note
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:234    .text.setNote:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:241    .text.setNote:0000000000000000 setNote
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:285    .text.setNote:0000000000000034 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:297    .text.setNote:0000000000000040 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:432    .text.setNote:00000000000000c8 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:440    .text.getNoteBuffer:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:447    .text.getNoteBuffer:0000000000000000 getNoteBuffer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:506    .text.getNoteBuffer:0000000000000038 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:511    .text.clearNoteBuffer:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:518    .text.clearNoteBuffer:0000000000000000 clearNoteBuffer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:615    .text.clearNoteBuffer:0000000000000048 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:639    .bss.velocity:0000000000000000 velocity
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:680    .data.resto:0000000000000000 resto
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:644    .bss.waitForMessage:0000000000000000 waitForMessage
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:633    .bss.cntMessage:0000000000000000 cntMessage
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:650    .data.noteSequence:0000000000000000 noteSequence
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:234    .text.setNote:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:241    .text.setNote:0000000000000000 setNote
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:285    .text.setNote:0000000000000034 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:297    .text.setNote:0000000000000040 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:432    .text.setNote:00000000000000c8 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:440    .text.getNoteBuffer:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:447    .text.getNoteBuffer:0000000000000000 getNoteBuffer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:506    .text.getNoteBuffer:0000000000000038 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:511    .text.clearNoteBuffer:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:518    .text.clearNoteBuffer:0000000000000000 clearNoteBuffer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:615    .text.clearNoteBuffer:0000000000000048 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:642    .bss.velocity:0000000000000000 velocity
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:717    .data.resto:0000000000000000 resto
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:647    .bss.waitForMessage:0000000000000000 waitForMessage
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:636    .bss.cntMessage:0000000000000000 cntMessage
+                            *COM*:0000000000000004 noteSequence
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:653    .data.noteSequenceOET:0000000000000000 noteSequenceOET
+                            *COM*:0000000000000001 noteSequenceSize
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:687    .data.noteSequenceWTECS:0000000000000000 noteSequenceWTECS
                             *COM*:0000000000000003 textColor
-                            *COM*:0000000000000300 textLayer
-                            *COM*:0000000000000300 backLayer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:634    .bss.cntMessage:0000000000000000 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:640    .bss.velocity:0000000000000000 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:645    .bss.waitForMessage:0000000000000000 $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cciYDyJJ.s:647    .data.noteSequence:0000000000000000 $d
+                            *COM*:00000000000017bb textLayer
+                            *COM*:00000000000017bb backLayer
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:637    .bss.cntMessage:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:643    .bss.velocity:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:648    .bss.waitForMessage:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:650    .data.noteSequenceOET:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccqGnqmY.s:684    .data.noteSequenceWTECS:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 arrColor

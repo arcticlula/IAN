@@ -16,7 +16,7 @@ build/bluetooth.o: Src/bluetooth.c Inc/bluetooth.h Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h Inc/definitions.h \
- Inc/draw.h Inc/ws2812.h Src/minihdlc-master/minihdlc.h
+ Inc/draw.h Inc/notes.h Inc/ws2812.h Src/minihdlc-master/minihdlc.h
 
 Inc/bluetooth.h:
 
@@ -63,6 +63,8 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:
 Inc/definitions.h:
 
 Inc/draw.h:
+
+Inc/notes.h:
 
 Inc/ws2812.h:
 

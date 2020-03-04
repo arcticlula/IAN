@@ -3,6 +3,7 @@
 #include "main.h"
 #include "definitions.h"
 #include "draw.h"
+#include "notes.h"
 #include "ws2812.h"
 #include "minihdlc-master/minihdlc.h"
 
@@ -69,6 +70,21 @@ void setBackFunction(uint8_t mode)
   }
 }
 
+void setTextFunction(uint8_t mode)
+{
+  switch (mode)
+  {
+  case MODE_TEXT_WORDS_WTECS:
+    noteSequenceSize = 5;
+    noteSequence = noteSequenceWTECS;
+    break;
+  case MODE_TEXT_WORDS_OET:
+    noteSequenceSize = 6;
+    noteSequence = noteSequenceOET;
+    break;
+  }
+}
+
 void setColorVariable(uint8_t color)
 {
   switch (color)
@@ -85,8 +101,8 @@ void setColorVariable(uint8_t color)
 void receiveDataBluetooth(const uint8_t *frame_buffer, uint16_t frame_length)
 {
   uint8_t data;
+  uint8_t ACKn[] = {0x10};
   data = *frame_buffer++;
-  drawtext_function = drawNote;
   switch (data)
   {
   case SETTINGS_BRIGHT:
@@ -114,6 +130,8 @@ void receiveDataBluetooth(const uint8_t *frame_buffer, uint16_t frame_length)
     MAX_BRIGHT = (float)data / 20;
     data = *frame_buffer++;
     MODE_BACK = data;
+    if (MODE_BACK == 0)
+      clearBack();
     data = *frame_buffer++;
     setBackFunction(data);
     data = *frame_buffer++;
@@ -122,6 +140,10 @@ void receiveDataBluetooth(const uint8_t *frame_buffer, uint16_t frame_length)
     orientation = data;
     data = *frame_buffer++;
     MODE_TEXT = data;
+    if (MODE_TEXT == 0)
+      clearText();
+    data = *frame_buffer++;
+    setTextFunction(data);
     data = *frame_buffer++;
     setColorVariable(data);
     fillFramebuffer();
@@ -135,12 +157,12 @@ void receiveDataBluetooth(const uint8_t *frame_buffer, uint16_t frame_length)
       MAX_DIV = data;
       data = *frame_buffer++;
       orientation = data;
-      minihdlc_send_frame(ACK, 1);
+      minihdlc_send_frame(ACKn, 1);
     }
     else if (data > 0x50 && data < 0x60)
     {
       setColorVariable(data);
-      minihdlc_send_frame(ACK, 1);
+      minihdlc_send_frame(ACKn, 1);
     }
     break;
   }

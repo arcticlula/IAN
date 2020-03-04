@@ -3,6 +3,12 @@
         "stm32f4xx_it.h": "c",
         "notes.h": "c",
         "minihdlc.h": "c",
-        "chrono": "c"
+        "chrono": "c",
+        "algorithm": "cpp",
+        "array": "c",
+        "iterator": "c",
+        "string": "c",
+        "string_view": "c",
+        "vector": "c"
     }
 }

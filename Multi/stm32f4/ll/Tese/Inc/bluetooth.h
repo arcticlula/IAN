@@ -22,6 +22,8 @@
 #define MODE_BACK_COLORS_OG 0x51
 #define MODE_BACK_COLORS_BW 0x52
 #define MODE_TEXT_STATE 0x60
+#define MODE_TEXT_WORDS_WTECS 0x61
+#define MODE_TEXT_WORDS_OET 0x62
 #define MODE_CUSTOM 0x70
 
 void startReception(void);

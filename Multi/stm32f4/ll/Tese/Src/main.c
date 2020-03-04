@@ -63,8 +63,11 @@ int main(void)
   MX_TIM1_Init();
 
   arrColor = &colorOriginal[0];
+  noteSequenceSize = 5;
+  noteSequence = noteSequenceWTECS;
   drawshape_function = drawShapeNote;
   callback_function = circle;
+  drawtext_function = drawNote;
   startReception();
 
   clearNoteBuffer();
@@ -76,18 +79,18 @@ int main(void)
 
   while (1)
   {
-    for (uint8_t i = 0; i < 12; i++)
-    {
-      setNote(i);
-      drawShape();
-      // drawColor(blue);
-      drawCenter("Ola", 0, 0);
-      fillFramebuffer();
-      WS2812_sendbuf(24 * NLEDSCH);
-      LL_mDelay(1000);
-      while (!WS2812_TC)
-        ;
-    }
+    // for (uint8_t i = 0; i < 12; i++)
+    // {
+    //   setNote(i);
+    //   drawShape();
+    //   // drawColor(blue);
+    //   drawCenter("Ola", 0, 0);
+    //   fillFramebuffer();
+    //   WS2812_sendbuf(24 * NLEDSCH);
+    //   LL_mDelay(1000);
+    //   while (!WS2812_TC)
+    //     ;
+    // }
   }
 
   // LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
@@ -196,7 +199,7 @@ void USART6_IRQHandler(void)
   long temp;
   static uint8_t sizeMsg;
   // volatile uint8_t colorLetter[] = {0, 0, 0};
-  LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
+  // LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
   if (LL_USART_IsActiveFlag_RXNE(USART6) && LL_USART_IsEnabledIT_RXNE(USART6))
   {
     usart_rx_buffer = LL_USART_ReceiveData8(USART6);
