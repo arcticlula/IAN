@@ -371,7 +371,7 @@ LOAD /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-n
                 0x0000000008000000                g_pfnVectors
                 0x0000000008000194                . = ALIGN (0x4)
 
-.text           0x0000000008000198     0x2c68
+.text           0x0000000008000198     0x2cb0
                 0x0000000008000198                . = ALIGN (0x4)
  *(.text)
  .text          0x0000000008000198       0x40 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
@@ -520,274 +520,280 @@ LOAD /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-n
                 0x0000000008001dfe       0x46 build/draw.o
                 0x0000000008001dfe                drawCenter
  .text.checkSequence
-                0x0000000008001e44       0x70 build/draw.o
+                0x0000000008001e44       0x6c build/draw.o
                 0x0000000008001e44                checkSequence
  .text.drawNote
-                0x0000000008001eb4        0x8 build/draw.o
-                0x0000000008001eb4                drawNote
+                0x0000000008001eb0        0x8 build/draw.o
+                0x0000000008001eb0                drawNote
  .text.WS2812_sendbuf
-                0x0000000008001ebc       0xa8 build/ws2812.o
-                0x0000000008001ebc                WS2812_sendbuf
+                0x0000000008001eb8       0xa8 build/ws2812.o
+                0x0000000008001eb8                WS2812_sendbuf
  .text.WS2812_framedata_setPixel
-                0x0000000008001f64       0xa0 build/ws2812.o
-                0x0000000008001f64                WS2812_framedata_setPixel
+                0x0000000008001f60       0xa0 build/ws2812.o
+                0x0000000008001f60                WS2812_framedata_setPixel
  .text.addNoteBuffer
-                0x0000000008002004       0x44 build/notes.o
-                0x0000000008002004                addNoteBuffer
- .text.setNote  0x0000000008002048       0xd8 build/notes.o
-                0x0000000008002048                setNote
+                0x0000000008002000       0x44 build/notes.o
+                0x0000000008002000                addNoteBuffer
+ .text.setNote  0x0000000008002044       0xd8 build/notes.o
+                0x0000000008002044                setNote
  .text.clearNoteBuffer
-                0x0000000008002120       0x4c build/notes.o
-                0x0000000008002120                clearNoteBuffer
+                0x000000000800211c       0x4c build/notes.o
+                0x000000000800211c                clearNoteBuffer
  .text.sendDataBluetooth
-                0x000000000800216c       0x14 build/bluetooth.o
-                0x000000000800216c                sendDataBluetooth
+                0x0000000008002168       0x14 build/bluetooth.o
+                0x0000000008002168                sendDataBluetooth
+ .text.setBackFunction
+                0x000000000800217c       0xfc build/bluetooth.o
+                0x000000000800217c                setBackFunction
+ .text.setColorVariable
+                0x0000000008002278       0x28 build/bluetooth.o
+                0x0000000008002278                setColorVariable
  .text.receiveDataBluetooth
-                0x0000000008002180      0x1f0 build/bluetooth.o
-                0x0000000008002180                receiveDataBluetooth
+                0x00000000080022a0      0x118 build/bluetooth.o
+                0x00000000080022a0                receiveDataBluetooth
  .text.startReception
-                0x0000000008002370       0x58 build/bluetooth.o
-                0x0000000008002370                startReception
+                0x00000000080023b8       0x58 build/bluetooth.o
+                0x00000000080023b8                startReception
  .text.USART1_IRQHandler
-                0x00000000080023c8       0x30 build/bluetooth.o
-                0x00000000080023c8                USART1_IRQHandler
+                0x0000000008002410       0x30 build/bluetooth.o
+                0x0000000008002410                USART1_IRQHandler
  .text.NMI_Handler
-                0x00000000080023f8        0x2 build/stm32f4xx_it.o
-                0x00000000080023f8                NMI_Handler
+                0x0000000008002440        0x2 build/stm32f4xx_it.o
+                0x0000000008002440                NMI_Handler
  .text.HardFault_Handler
-                0x00000000080023fa        0x2 build/stm32f4xx_it.o
-                0x00000000080023fa                HardFault_Handler
+                0x0000000008002442        0x2 build/stm32f4xx_it.o
+                0x0000000008002442                HardFault_Handler
  .text.MemManage_Handler
-                0x00000000080023fc        0x2 build/stm32f4xx_it.o
-                0x00000000080023fc                MemManage_Handler
+                0x0000000008002444        0x2 build/stm32f4xx_it.o
+                0x0000000008002444                MemManage_Handler
  .text.BusFault_Handler
-                0x00000000080023fe        0x2 build/stm32f4xx_it.o
-                0x00000000080023fe                BusFault_Handler
+                0x0000000008002446        0x2 build/stm32f4xx_it.o
+                0x0000000008002446                BusFault_Handler
  .text.UsageFault_Handler
-                0x0000000008002400        0x2 build/stm32f4xx_it.o
-                0x0000000008002400                UsageFault_Handler
+                0x0000000008002448        0x2 build/stm32f4xx_it.o
+                0x0000000008002448                UsageFault_Handler
  .text.SVC_Handler
-                0x0000000008002402        0x2 build/stm32f4xx_it.o
-                0x0000000008002402                SVC_Handler
+                0x000000000800244a        0x2 build/stm32f4xx_it.o
+                0x000000000800244a                SVC_Handler
  .text.DebugMon_Handler
-                0x0000000008002404        0x2 build/stm32f4xx_it.o
-                0x0000000008002404                DebugMon_Handler
+                0x000000000800244c        0x2 build/stm32f4xx_it.o
+                0x000000000800244c                DebugMon_Handler
  .text.PendSV_Handler
-                0x0000000008002406        0x2 build/stm32f4xx_it.o
-                0x0000000008002406                PendSV_Handler
+                0x000000000800244e        0x2 build/stm32f4xx_it.o
+                0x000000000800244e                PendSV_Handler
  .text.SysTick_Handler
-                0x0000000008002408        0x2 build/stm32f4xx_it.o
-                0x0000000008002408                SysTick_Handler
+                0x0000000008002450        0x2 build/stm32f4xx_it.o
+                0x0000000008002450                SysTick_Handler
  .text.DMA2_Stream1_IRQHandler
-                0x000000000800240a        0x2 build/stm32f4xx_it.o
-                0x000000000800240a                DMA2_Stream1_IRQHandler
+                0x0000000008002452        0x2 build/stm32f4xx_it.o
+                0x0000000008002452                DMA2_Stream1_IRQHandler
  .text.DMA2_Stream5_IRQHandler
-                0x000000000800240c        0x2 build/stm32f4xx_it.o
-                0x000000000800240c                DMA2_Stream5_IRQHandler
+                0x0000000008002454        0x2 build/stm32f4xx_it.o
+                0x0000000008002454                DMA2_Stream5_IRQHandler
  .text.LL_GPIO_Init
-                0x000000000800240e      0x13e build/stm32f4xx_ll_gpio.o
-                0x000000000800240e                LL_GPIO_Init
+                0x0000000008002456      0x13e build/stm32f4xx_ll_gpio.o
+                0x0000000008002456                LL_GPIO_Init
  .text.LL_DMA_DeInit
-                0x000000000800254c      0x208 build/stm32f4xx_ll_dma.o
-                0x000000000800254c                LL_DMA_DeInit
+                0x0000000008002594      0x208 build/stm32f4xx_ll_dma.o
+                0x0000000008002594                LL_DMA_DeInit
  .text.LL_DMA_Init
-                0x0000000008002754       0x84 build/stm32f4xx_ll_dma.o
-                0x0000000008002754                LL_DMA_Init
+                0x000000000800279c       0x84 build/stm32f4xx_ll_dma.o
+                0x000000000800279c                LL_DMA_Init
  .text.LL_USART_Init
-                0x00000000080027d8      0x154 build/stm32f4xx_ll_usart.o
-                0x00000000080027d8                LL_USART_Init
+                0x0000000008002820      0x154 build/stm32f4xx_ll_usart.o
+                0x0000000008002820                LL_USART_Init
  .text.OC1Config
-                0x000000000800292c       0x6c build/stm32f4xx_ll_tim.o
+                0x0000000008002974       0x6c build/stm32f4xx_ll_tim.o
  .text.OC2Config
-                0x0000000008002998       0x74 build/stm32f4xx_ll_tim.o
+                0x00000000080029e0       0x74 build/stm32f4xx_ll_tim.o
  .text.OC3Config
-                0x0000000008002a0c       0x70 build/stm32f4xx_ll_tim.o
+                0x0000000008002a54       0x70 build/stm32f4xx_ll_tim.o
  .text.OC4Config
-                0x0000000008002a7c       0x54 build/stm32f4xx_ll_tim.o
+                0x0000000008002ac4       0x54 build/stm32f4xx_ll_tim.o
  .text.LL_TIM_Init
-                0x0000000008002ad0       0x98 build/stm32f4xx_ll_tim.o
-                0x0000000008002ad0                LL_TIM_Init
+                0x0000000008002b18       0x98 build/stm32f4xx_ll_tim.o
+                0x0000000008002b18                LL_TIM_Init
  .text.LL_TIM_OC_Init
-                0x0000000008002b68       0x40 build/stm32f4xx_ll_tim.o
-                0x0000000008002b68                LL_TIM_OC_Init
+                0x0000000008002bb0       0x40 build/stm32f4xx_ll_tim.o
+                0x0000000008002bb0                LL_TIM_OC_Init
  .text.LL_TIM_BDTR_Init
-                0x0000000008002ba8       0x3a build/stm32f4xx_ll_tim.o
-                0x0000000008002ba8                LL_TIM_BDTR_Init
- *fill*         0x0000000008002be2        0x2 
+                0x0000000008002bf0       0x3a build/stm32f4xx_ll_tim.o
+                0x0000000008002bf0                LL_TIM_BDTR_Init
+ *fill*         0x0000000008002c2a        0x2 
  .text.RCC_GetHCLKClockFreq
-                0x0000000008002be4       0x18 build/stm32f4xx_ll_rcc.o
-                0x0000000008002be4                RCC_GetHCLKClockFreq
+                0x0000000008002c2c       0x18 build/stm32f4xx_ll_rcc.o
+                0x0000000008002c2c                RCC_GetHCLKClockFreq
  .text.RCC_GetPCLK1ClockFreq
-                0x0000000008002bfc       0x18 build/stm32f4xx_ll_rcc.o
-                0x0000000008002bfc                RCC_GetPCLK1ClockFreq
+                0x0000000008002c44       0x18 build/stm32f4xx_ll_rcc.o
+                0x0000000008002c44                RCC_GetPCLK1ClockFreq
  .text.RCC_GetPCLK2ClockFreq
-                0x0000000008002c14       0x18 build/stm32f4xx_ll_rcc.o
-                0x0000000008002c14                RCC_GetPCLK2ClockFreq
+                0x0000000008002c5c       0x18 build/stm32f4xx_ll_rcc.o
+                0x0000000008002c5c                RCC_GetPCLK2ClockFreq
  .text.RCC_PLL_GetFreqDomain_SYS
-                0x0000000008002c2c       0x4c build/stm32f4xx_ll_rcc.o
-                0x0000000008002c2c                RCC_PLL_GetFreqDomain_SYS
+                0x0000000008002c74       0x4c build/stm32f4xx_ll_rcc.o
+                0x0000000008002c74                RCC_PLL_GetFreqDomain_SYS
  .text.RCC_GetSystemClockFreq
-                0x0000000008002c78       0x30 build/stm32f4xx_ll_rcc.o
-                0x0000000008002c78                RCC_GetSystemClockFreq
+                0x0000000008002cc0       0x30 build/stm32f4xx_ll_rcc.o
+                0x0000000008002cc0                RCC_GetSystemClockFreq
  .text.LL_RCC_GetSystemClocksFreq
-                0x0000000008002ca8       0x20 build/stm32f4xx_ll_rcc.o
-                0x0000000008002ca8                LL_RCC_GetSystemClocksFreq
+                0x0000000008002cf0       0x20 build/stm32f4xx_ll_rcc.o
+                0x0000000008002cf0                LL_RCC_GetSystemClocksFreq
  .text.LL_Init1msTick
-                0x0000000008002cc8       0x20 build/stm32f4xx_ll_utils.o
-                0x0000000008002cc8                LL_Init1msTick
+                0x0000000008002d10       0x20 build/stm32f4xx_ll_utils.o
+                0x0000000008002d10                LL_Init1msTick
  .text.LL_mDelay
-                0x0000000008002ce8       0x2c build/stm32f4xx_ll_utils.o
-                0x0000000008002ce8                LL_mDelay
+                0x0000000008002d30       0x2c build/stm32f4xx_ll_utils.o
+                0x0000000008002d30                LL_mDelay
  .text.LL_SetSystemCoreClock
-                0x0000000008002d14        0xc build/stm32f4xx_ll_utils.o
-                0x0000000008002d14                LL_SetSystemCoreClock
+                0x0000000008002d5c        0xc build/stm32f4xx_ll_utils.o
+                0x0000000008002d5c                LL_SetSystemCoreClock
  .text.SystemInit
-                0x0000000008002d20       0x1c build/system_stm32f4xx.o
-                0x0000000008002d20                SystemInit
+                0x0000000008002d68       0x1c build/system_stm32f4xx.o
+                0x0000000008002d68                SystemInit
  .text.Reset_Handler
-                0x0000000008002d3c       0x50 build/startup_stm32f401xc.o
-                0x0000000008002d3c                Reset_Handler
+                0x0000000008002d84       0x50 build/startup_stm32f401xc.o
+                0x0000000008002d84                Reset_Handler
  .text.Default_Handler
-                0x0000000008002d8c        0x2 build/startup_stm32f401xc.o
-                0x0000000008002d8c                DMA1_Stream3_IRQHandler
-                0x0000000008002d8c                EXTI2_IRQHandler
-                0x0000000008002d8c                SPI4_IRQHandler
-                0x0000000008002d8c                TIM1_CC_IRQHandler
-                0x0000000008002d8c                DMA1_Stream5_IRQHandler
-                0x0000000008002d8c                PVD_IRQHandler
-                0x0000000008002d8c                SDIO_IRQHandler
-                0x0000000008002d8c                TAMP_STAMP_IRQHandler
-                0x0000000008002d8c                EXTI3_IRQHandler
-                0x0000000008002d8c                I2C3_ER_IRQHandler
-                0x0000000008002d8c                EXTI0_IRQHandler
-                0x0000000008002d8c                I2C2_EV_IRQHandler
-                0x0000000008002d8c                DMA1_Stream2_IRQHandler
-                0x0000000008002d8c                FPU_IRQHandler
-                0x0000000008002d8c                SPI1_IRQHandler
-                0x0000000008002d8c                TIM1_BRK_TIM9_IRQHandler
-                0x0000000008002d8c                DMA2_Stream3_IRQHandler
-                0x0000000008002d8c                USART6_IRQHandler
-                0x0000000008002d8c                DMA2_Stream0_IRQHandler
-                0x0000000008002d8c                TIM4_IRQHandler
-                0x0000000008002d8c                I2C1_EV_IRQHandler
-                0x0000000008002d8c                DMA1_Stream6_IRQHandler
-                0x0000000008002d8c                DMA1_Stream1_IRQHandler
-                0x0000000008002d8c                TIM3_IRQHandler
-                0x0000000008002d8c                RCC_IRQHandler
-                0x0000000008002d8c                Default_Handler
-                0x0000000008002d8c                EXTI15_10_IRQHandler
-                0x0000000008002d8c                ADC_IRQHandler
-                0x0000000008002d8c                DMA1_Stream7_IRQHandler
-                0x0000000008002d8c                TIM5_IRQHandler
-                0x0000000008002d8c                DMA2_Stream7_IRQHandler
-                0x0000000008002d8c                I2C3_EV_IRQHandler
-                0x0000000008002d8c                EXTI9_5_IRQHandler
-                0x0000000008002d8c                RTC_WKUP_IRQHandler
-                0x0000000008002d8c                SPI2_IRQHandler
-                0x0000000008002d8c                DMA1_Stream0_IRQHandler
-                0x0000000008002d8c                EXTI4_IRQHandler
-                0x0000000008002d8c                WWDG_IRQHandler
-                0x0000000008002d8c                TIM2_IRQHandler
-                0x0000000008002d8c                OTG_FS_WKUP_IRQHandler
-                0x0000000008002d8c                TIM1_TRG_COM_TIM11_IRQHandler
-                0x0000000008002d8c                EXTI1_IRQHandler
-                0x0000000008002d8c                USART2_IRQHandler
-                0x0000000008002d8c                I2C2_ER_IRQHandler
-                0x0000000008002d8c                FLASH_IRQHandler
-                0x0000000008002d8c                DMA2_Stream4_IRQHandler
-                0x0000000008002d8c                OTG_FS_IRQHandler
-                0x0000000008002d8c                SPI3_IRQHandler
-                0x0000000008002d8c                DMA1_Stream4_IRQHandler
-                0x0000000008002d8c                I2C1_ER_IRQHandler
-                0x0000000008002d8c                DMA2_Stream6_IRQHandler
-                0x0000000008002d8c                RTC_Alarm_IRQHandler
- *fill*         0x0000000008002d8e        0x2 
+                0x0000000008002dd4        0x2 build/startup_stm32f401xc.o
+                0x0000000008002dd4                DMA1_Stream3_IRQHandler
+                0x0000000008002dd4                EXTI2_IRQHandler
+                0x0000000008002dd4                SPI4_IRQHandler
+                0x0000000008002dd4                TIM1_CC_IRQHandler
+                0x0000000008002dd4                DMA1_Stream5_IRQHandler
+                0x0000000008002dd4                PVD_IRQHandler
+                0x0000000008002dd4                SDIO_IRQHandler
+                0x0000000008002dd4                TAMP_STAMP_IRQHandler
+                0x0000000008002dd4                EXTI3_IRQHandler
+                0x0000000008002dd4                I2C3_ER_IRQHandler
+                0x0000000008002dd4                EXTI0_IRQHandler
+                0x0000000008002dd4                I2C2_EV_IRQHandler
+                0x0000000008002dd4                DMA1_Stream2_IRQHandler
+                0x0000000008002dd4                FPU_IRQHandler
+                0x0000000008002dd4                SPI1_IRQHandler
+                0x0000000008002dd4                TIM1_BRK_TIM9_IRQHandler
+                0x0000000008002dd4                DMA2_Stream3_IRQHandler
+                0x0000000008002dd4                USART6_IRQHandler
+                0x0000000008002dd4                DMA2_Stream0_IRQHandler
+                0x0000000008002dd4                TIM4_IRQHandler
+                0x0000000008002dd4                I2C1_EV_IRQHandler
+                0x0000000008002dd4                DMA1_Stream6_IRQHandler
+                0x0000000008002dd4                DMA1_Stream1_IRQHandler
+                0x0000000008002dd4                TIM3_IRQHandler
+                0x0000000008002dd4                RCC_IRQHandler
+                0x0000000008002dd4                Default_Handler
+                0x0000000008002dd4                EXTI15_10_IRQHandler
+                0x0000000008002dd4                ADC_IRQHandler
+                0x0000000008002dd4                DMA1_Stream7_IRQHandler
+                0x0000000008002dd4                TIM5_IRQHandler
+                0x0000000008002dd4                DMA2_Stream7_IRQHandler
+                0x0000000008002dd4                I2C3_EV_IRQHandler
+                0x0000000008002dd4                EXTI9_5_IRQHandler
+                0x0000000008002dd4                RTC_WKUP_IRQHandler
+                0x0000000008002dd4                SPI2_IRQHandler
+                0x0000000008002dd4                DMA1_Stream0_IRQHandler
+                0x0000000008002dd4                EXTI4_IRQHandler
+                0x0000000008002dd4                WWDG_IRQHandler
+                0x0000000008002dd4                TIM2_IRQHandler
+                0x0000000008002dd4                OTG_FS_WKUP_IRQHandler
+                0x0000000008002dd4                TIM1_TRG_COM_TIM11_IRQHandler
+                0x0000000008002dd4                EXTI1_IRQHandler
+                0x0000000008002dd4                USART2_IRQHandler
+                0x0000000008002dd4                I2C2_ER_IRQHandler
+                0x0000000008002dd4                FLASH_IRQHandler
+                0x0000000008002dd4                DMA2_Stream4_IRQHandler
+                0x0000000008002dd4                OTG_FS_IRQHandler
+                0x0000000008002dd4                SPI3_IRQHandler
+                0x0000000008002dd4                DMA1_Stream4_IRQHandler
+                0x0000000008002dd4                I2C1_ER_IRQHandler
+                0x0000000008002dd4                DMA2_Stream6_IRQHandler
+                0x0000000008002dd4                RTC_Alarm_IRQHandler
+ *fill*         0x0000000008002dd6        0x2 
  .text.__libc_init_array
-                0x0000000008002d90       0x48 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(lib_a-init.o)
-                0x0000000008002d90                __libc_init_array
- .text.memset   0x0000000008002dd8       0x10 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(lib_a-memset.o)
-                0x0000000008002dd8                memset
+                0x0000000008002dd8       0x48 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(lib_a-init.o)
+                0x0000000008002dd8                __libc_init_array
+ .text.memset   0x0000000008002e20       0x10 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(lib_a-memset.o)
+                0x0000000008002e20                memset
  *(.glue_7)
- .glue_7        0x0000000008002de8        0x0 linker stubs
+ .glue_7        0x0000000008002e30        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0000000008002de8        0x0 linker stubs
+ .glue_7t       0x0000000008002e30        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x0000000008002de8        0x0 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .eh_frame      0x0000000008002e30        0x0 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
  *(.init)
- .init          0x0000000008002de8        0x4 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crti.o
-                0x0000000008002de8                _init
- .init          0x0000000008002dec        0x8 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtn.o
+ .init          0x0000000008002e30        0x4 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crti.o
+                0x0000000008002e30                _init
+ .init          0x0000000008002e34        0x8 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtn.o
  *(.fini)
- .fini          0x0000000008002df4        0x4 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crti.o
-                0x0000000008002df4                _fini
- .fini          0x0000000008002df8        0x8 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtn.o
-                0x0000000008002e00                . = ALIGN (0x4)
-                0x0000000008002e00                _etext = .
+ .fini          0x0000000008002e3c        0x4 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crti.o
+                0x0000000008002e3c                _fini
+ .fini          0x0000000008002e40        0x8 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtn.o
+                0x0000000008002e48                . = ALIGN (0x4)
+                0x0000000008002e48                _etext = .
 
-.vfp11_veneer   0x0000000008002e00        0x0
- .vfp11_veneer  0x0000000008002e00        0x0 linker stubs
+.vfp11_veneer   0x0000000008002e48        0x0
+ .vfp11_veneer  0x0000000008002e48        0x0 linker stubs
 
-.v4_bx          0x0000000008002e00        0x0
- .v4_bx         0x0000000008002e00        0x0 linker stubs
+.v4_bx          0x0000000008002e48        0x0
+ .v4_bx         0x0000000008002e48        0x0 linker stubs
 
-.iplt           0x0000000008002e00        0x0
- .iplt          0x0000000008002e00        0x0 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+.iplt           0x0000000008002e48        0x0
+ .iplt          0x0000000008002e48        0x0 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.rodata         0x0000000008002e00       0xf0
-                0x0000000008002e00                . = ALIGN (0x4)
+.rodata         0x0000000008002e48       0xf0
+                0x0000000008002e48                . = ALIGN (0x4)
  *(.rodata)
  *(.rodata*)
  .rodata.main.str1.4
-                0x0000000008002e00        0x4 build/main.o
+                0x0000000008002e48        0x4 build/main.o
  .rodata.font4x6
-                0x0000000008002e04       0xc0 build/draw.o
-                0x0000000008002e04                font4x6
+                0x0000000008002e4c       0xc0 build/draw.o
+                0x0000000008002e4c                font4x6
  .rodata.startReception.str1.4
-                0x0000000008002ec4        0xc build/bluetooth.o
+                0x0000000008002f0c        0xc build/bluetooth.o
                                           0xb (size before relaxing)
  .rodata.STREAM_OFFSET_TAB
-                0x0000000008002ed0        0x8 build/stm32f4xx_ll_dma.o
+                0x0000000008002f18        0x8 build/stm32f4xx_ll_dma.o
  .rodata.AHBPrescTable
-                0x0000000008002ed8       0x10 build/system_stm32f4xx.o
-                0x0000000008002ed8                AHBPrescTable
+                0x0000000008002f20       0x10 build/system_stm32f4xx.o
+                0x0000000008002f20                AHBPrescTable
  .rodata.APBPrescTable
-                0x0000000008002ee8        0x8 build/system_stm32f4xx.o
-                0x0000000008002ee8                APBPrescTable
-                0x0000000008002ef0                . = ALIGN (0x4)
+                0x0000000008002f30        0x8 build/system_stm32f4xx.o
+                0x0000000008002f30                APBPrescTable
+                0x0000000008002f38                . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x0000000008002ef0        0x8
-                0x0000000008002ef0                __exidx_start = .
+.ARM            0x0000000008002f38        0x8
+                0x0000000008002f38                __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x0000000008002ef0        0x8 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_udivmoddi4.o)
-                0x0000000008002ef8                __exidx_end = .
+ .ARM.exidx     0x0000000008002f38        0x8 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_udivmoddi4.o)
+                0x0000000008002f40                __exidx_end = .
 
-.rel.dyn        0x0000000008002ef8        0x0
- .rel.iplt      0x0000000008002ef8        0x0 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+.rel.dyn        0x0000000008002f40        0x0
+ .rel.iplt      0x0000000008002f40        0x0 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.preinit_array  0x0000000008002ef8        0x0
-                0x0000000008002ef8                PROVIDE (__preinit_array_start = .)
+.preinit_array  0x0000000008002f40        0x0
+                0x0000000008002f40                PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x0000000008002ef8                PROVIDE (__preinit_array_end = .)
+                0x0000000008002f40                PROVIDE (__preinit_array_end = .)
 
-.init_array     0x0000000008002ef8        0x4
-                0x0000000008002ef8                PROVIDE (__init_array_start = .)
+.init_array     0x0000000008002f40        0x4
+                0x0000000008002f40                PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x0000000008002ef8        0x4 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
-                0x0000000008002efc                PROVIDE (__init_array_end = .)
+ .init_array    0x0000000008002f40        0x4 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x0000000008002f44                PROVIDE (__init_array_end = .)
 
-.fini_array     0x0000000008002efc        0x4
+.fini_array     0x0000000008002f44        0x4
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x0000000008002efc        0x4 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .fini_array    0x0000000008002f44        0x4 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x0000000008002f00                _sidata = LOADADDR (.data)
+                0x0000000008002f48                _sidata = LOADADDR (.data)
 
-.data           0x0000000020000000      0x1d0 load address 0x0000000008002f00
+.data           0x0000000020000000      0x1a0 load address 0x0000000008002f48
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                _sdata = .
  *(.data)
@@ -821,76 +827,76 @@ LOAD /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-n
                 0x0000000020000156                WS2812_TC
  *fill*         0x0000000020000157        0x1 
  .data.noteSequence
-                0x0000000020000158       0x72 build/notes.o
+                0x0000000020000158       0x41 build/notes.o
                 0x0000000020000158                noteSequence
- .data.resto    0x00000000200001ca        0x1 build/notes.o
-                0x00000000200001ca                resto
- *fill*         0x00000000200001cb        0x1 
+ .data.resto    0x0000000020000199        0x1 build/notes.o
+                0x0000000020000199                resto
+ *fill*         0x000000002000019a        0x2 
  .data.SystemCoreClock
-                0x00000000200001cc        0x4 build/system_stm32f4xx.o
-                0x00000000200001cc                SystemCoreClock
-                0x00000000200001d0                . = ALIGN (0x4)
-                0x00000000200001d0                _edata = .
+                0x000000002000019c        0x4 build/system_stm32f4xx.o
+                0x000000002000019c                SystemCoreClock
+                0x00000000200001a0                . = ALIGN (0x4)
+                0x00000000200001a0                _edata = .
 
-.igot.plt       0x00000000200001d0        0x0 load address 0x00000000080030d0
- .igot.plt      0x00000000200001d0        0x0 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
-                0x00000000200001d0                . = ALIGN (0x4)
+.igot.plt       0x00000000200001a0        0x0 load address 0x00000000080030e8
+ .igot.plt      0x00000000200001a0        0x0 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x00000000200001a0                . = ALIGN (0x4)
 
-.bss            0x00000000200001d0      0xcd8 load address 0x00000000080030d0
-                0x00000000200001d0                _sbss = .
-                0x00000000200001d0                __bss_start__ = _sbss
+.bss            0x00000000200001a0      0xcd8 load address 0x00000000080030e8
+                0x00000000200001a0                _sbss = .
+                0x00000000200001a0                __bss_start__ = _sbss
  *(.bss)
- .bss           0x00000000200001d0       0x1c /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .bss           0x00000000200001a0       0x1c /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
  *(.bss*)
  .bss.TIM1_overflows
-                0x00000000200001ec        0x1 build/main.o
-                0x00000000200001ec                TIM1_overflows
+                0x00000000200001bc        0x1 build/main.o
+                0x00000000200001bc                TIM1_overflows
  .bss.MODE_TEXT
-                0x00000000200001ed        0x1 build/draw.o
-                0x00000000200001ed                MODE_TEXT
- *fill*         0x00000000200001ee        0x2 
- .bss.minColor  0x00000000200001f0        0x3 build/draw.o
-                0x00000000200001f0                minColor
+                0x00000000200001bd        0x1 build/draw.o
+                0x00000000200001bd                MODE_TEXT
+ *fill*         0x00000000200001be        0x2 
+ .bss.minColor  0x00000000200001c0        0x3 build/draw.o
+                0x00000000200001c0                minColor
  .bss.orientation
-                0x00000000200001f3        0x1 build/draw.o
-                0x00000000200001f3                orientation
+                0x00000000200001c3        0x1 build/draw.o
+                0x00000000200001c3                orientation
  .bss.WS2812_IO_Low
-                0x00000000200001f4        0x2 build/ws2812.o
-                0x00000000200001f4                WS2812_IO_Low
+                0x00000000200001c4        0x2 build/ws2812.o
+                0x00000000200001c4                WS2812_IO_Low
  *(COMMON)
- *fill*         0x00000000200001f6        0x2 
- COMMON         0x00000000200001f8      0xc48 build/main.o
-                0x00000000200001f8                textColor
-                0x00000000200001fc                textLayer
-                0x00000000200004fc                note
-                0x0000000020000500                noteBuffer
-                0x000000002000053c                backLayer
-                0x000000002000083c                backColor
-                0x0000000020000840                WS2812_IO_framedata
- COMMON         0x0000000020000e40        0x8 build/tim.o
-                0x0000000020000e40                timer_reset_pulse_period
-                0x0000000020000e44                tim_period
- COMMON         0x0000000020000e48       0x50 build/minihdlc.o
-                0x0000000020000e48                mhst
- COMMON         0x0000000020000e98       0x10 build/draw.o
-                0x0000000020000e98                callback_function
-                0x0000000020000e9c                drawshape_function
-                0x0000000020000ea0                drawtext_function
-                0x0000000020000ea4                arrColor
-                0x0000000020000ea8                . = ALIGN (0x4)
-                0x0000000020000ea8                _ebss = .
-                0x0000000020000ea8                __bss_end__ = _ebss
+ *fill*         0x00000000200001c6        0x2 
+ COMMON         0x00000000200001c8      0xc48 build/main.o
+                0x00000000200001c8                textColor
+                0x00000000200001cc                textLayer
+                0x00000000200004cc                note
+                0x00000000200004d0                noteBuffer
+                0x000000002000050c                backLayer
+                0x000000002000080c                backColor
+                0x0000000020000810                WS2812_IO_framedata
+ COMMON         0x0000000020000e10        0x8 build/tim.o
+                0x0000000020000e10                timer_reset_pulse_period
+                0x0000000020000e14                tim_period
+ COMMON         0x0000000020000e18       0x50 build/minihdlc.o
+                0x0000000020000e18                mhst
+ COMMON         0x0000000020000e68       0x10 build/draw.o
+                0x0000000020000e68                callback_function
+                0x0000000020000e6c                drawshape_function
+                0x0000000020000e70                drawtext_function
+                0x0000000020000e74                arrColor
+                0x0000000020000e78                . = ALIGN (0x4)
+                0x0000000020000e78                _ebss = .
+                0x0000000020000e78                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x0000000020000ea8      0x600 load address 0x00000000080030d0
-                0x0000000020000ea8                . = ALIGN (0x8)
+                0x0000000020000e78      0x600 load address 0x00000000080030e8
+                0x0000000020000e78                . = ALIGN (0x8)
                 [!provide]                        PROVIDE (end = .)
                 [!provide]                        PROVIDE (_end = .)
-                0x00000000200010a8                . = (. + _Min_Heap_Size)
- *fill*         0x0000000020000ea8      0x200 
-                0x00000000200014a8                . = (. + _Min_Stack_Size)
- *fill*         0x00000000200010a8      0x400 
-                0x00000000200014a8                . = ALIGN (0x8)
+                0x0000000020001078                . = (. + _Min_Heap_Size)
+ *fill*         0x0000000020000e78      0x200 
+                0x0000000020001478                . = (. + _Min_Stack_Size)
+ *fill*         0x0000000020001078      0x400 
+                0x0000000020001478                . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)
@@ -968,71 +974,71 @@ LOAD /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-n
                 0x00000000000005b6       0x1e /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtn.o
 OUTPUT(build/Tese.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000    0x10478
- .debug_info    0x0000000000000000     0x20ba build/main.o
- .debug_info    0x00000000000020ba      0x6fa build/gpio.o
- .debug_info    0x00000000000027b4     0x102f build/dma.o
- .debug_info    0x00000000000037e3     0x11d5 build/tim.o
- .debug_info    0x00000000000049b8      0xfde build/usart.o
- .debug_info    0x0000000000005996      0x588 build/minihdlc.o
- .debug_info    0x0000000000005f1e      0x429 build/definitions.o
- .debug_info    0x0000000000006347     0x2197 build/draw.o
- .debug_info    0x00000000000084de      0xbb0 build/ws2812.o
- .debug_info    0x000000000000908e      0xf2d build/notes.o
- .debug_info    0x0000000000009fbb      0x92a build/bluetooth.o
- .debug_info    0x000000000000a8e5      0x2a5 build/stm32f4xx_it.o
- .debug_info    0x000000000000ab8a      0xdf3 build/stm32f4xx_ll_gpio.o
- .debug_info    0x000000000000b97d      0xba8 build/stm32f4xx_ll_dma.o
- .debug_info    0x000000000000c525      0xa65 build/stm32f4xx_ll_usart.o
- .debug_info    0x000000000000cf8a     0x1669 build/stm32f4xx_ll_tim.o
- .debug_info    0x000000000000e5f3      0xac8 build/stm32f4xx_ll_rcc.o
- .debug_info    0x000000000000f0bb      0xd91 build/stm32f4xx_ll_utils.o
- .debug_info    0x000000000000fe4c      0x60a build/system_stm32f4xx.o
- .debug_info    0x0000000000010456       0x22 build/startup_stm32f401xc.o
+.debug_info     0x0000000000000000    0x10513
+ .debug_info    0x0000000000000000     0x20ae build/main.o
+ .debug_info    0x00000000000020ae      0x6fa build/gpio.o
+ .debug_info    0x00000000000027a8     0x102f build/dma.o
+ .debug_info    0x00000000000037d7     0x11d5 build/tim.o
+ .debug_info    0x00000000000049ac      0xfde build/usart.o
+ .debug_info    0x000000000000598a      0x588 build/minihdlc.o
+ .debug_info    0x0000000000005f12      0x429 build/definitions.o
+ .debug_info    0x000000000000633b     0x218e build/draw.o
+ .debug_info    0x00000000000084c9      0xbb0 build/ws2812.o
+ .debug_info    0x0000000000009079      0xf2d build/notes.o
+ .debug_info    0x0000000000009fa6      0x9da build/bluetooth.o
+ .debug_info    0x000000000000a980      0x2a5 build/stm32f4xx_it.o
+ .debug_info    0x000000000000ac25      0xdf3 build/stm32f4xx_ll_gpio.o
+ .debug_info    0x000000000000ba18      0xba8 build/stm32f4xx_ll_dma.o
+ .debug_info    0x000000000000c5c0      0xa65 build/stm32f4xx_ll_usart.o
+ .debug_info    0x000000000000d025     0x1669 build/stm32f4xx_ll_tim.o
+ .debug_info    0x000000000000e68e      0xac8 build/stm32f4xx_ll_rcc.o
+ .debug_info    0x000000000000f156      0xd91 build/stm32f4xx_ll_utils.o
+ .debug_info    0x000000000000fee7      0x60a build/system_stm32f4xx.o
+ .debug_info    0x00000000000104f1       0x22 build/startup_stm32f401xc.o
 
-.debug_abbrev   0x0000000000000000     0x2e0c
- .debug_abbrev  0x0000000000000000      0x3c6 build/main.o
- .debug_abbrev  0x00000000000003c6      0x1d8 build/gpio.o
- .debug_abbrev  0x000000000000059e      0x284 build/dma.o
- .debug_abbrev  0x0000000000000822      0x29c build/tim.o
- .debug_abbrev  0x0000000000000abe      0x253 build/usart.o
- .debug_abbrev  0x0000000000000d11      0x228 build/minihdlc.o
- .debug_abbrev  0x0000000000000f39      0x13e build/definitions.o
- .debug_abbrev  0x0000000000001077      0x456 build/draw.o
- .debug_abbrev  0x00000000000014cd      0x235 build/ws2812.o
- .debug_abbrev  0x0000000000001702      0x2a9 build/notes.o
- .debug_abbrev  0x00000000000019ab      0x256 build/bluetooth.o
- .debug_abbrev  0x0000000000001c01       0xac build/stm32f4xx_it.o
- .debug_abbrev  0x0000000000001cad      0x292 build/stm32f4xx_ll_gpio.o
- .debug_abbrev  0x0000000000001f3f      0x28d build/stm32f4xx_ll_dma.o
- .debug_abbrev  0x00000000000021cc      0x2d7 build/stm32f4xx_ll_usart.o
- .debug_abbrev  0x00000000000024a3      0x2d2 build/stm32f4xx_ll_tim.o
- .debug_abbrev  0x0000000000002775      0x2a3 build/stm32f4xx_ll_rcc.o
- .debug_abbrev  0x0000000000002a18      0x2b4 build/stm32f4xx_ll_utils.o
- .debug_abbrev  0x0000000000002ccc      0x12e build/system_stm32f4xx.o
- .debug_abbrev  0x0000000000002dfa       0x12 build/startup_stm32f401xc.o
+.debug_abbrev   0x0000000000000000     0x2e0e
+ .debug_abbrev  0x0000000000000000      0x3b7 build/main.o
+ .debug_abbrev  0x00000000000003b7      0x1d8 build/gpio.o
+ .debug_abbrev  0x000000000000058f      0x284 build/dma.o
+ .debug_abbrev  0x0000000000000813      0x29c build/tim.o
+ .debug_abbrev  0x0000000000000aaf      0x253 build/usart.o
+ .debug_abbrev  0x0000000000000d02      0x228 build/minihdlc.o
+ .debug_abbrev  0x0000000000000f2a      0x13e build/definitions.o
+ .debug_abbrev  0x0000000000001068      0x456 build/draw.o
+ .debug_abbrev  0x00000000000014be      0x235 build/ws2812.o
+ .debug_abbrev  0x00000000000016f3      0x2a9 build/notes.o
+ .debug_abbrev  0x000000000000199c      0x267 build/bluetooth.o
+ .debug_abbrev  0x0000000000001c03       0xac build/stm32f4xx_it.o
+ .debug_abbrev  0x0000000000001caf      0x292 build/stm32f4xx_ll_gpio.o
+ .debug_abbrev  0x0000000000001f41      0x28d build/stm32f4xx_ll_dma.o
+ .debug_abbrev  0x00000000000021ce      0x2d7 build/stm32f4xx_ll_usart.o
+ .debug_abbrev  0x00000000000024a5      0x2d2 build/stm32f4xx_ll_tim.o
+ .debug_abbrev  0x0000000000002777      0x2a3 build/stm32f4xx_ll_rcc.o
+ .debug_abbrev  0x0000000000002a1a      0x2b4 build/stm32f4xx_ll_utils.o
+ .debug_abbrev  0x0000000000002cce      0x12e build/system_stm32f4xx.o
+ .debug_abbrev  0x0000000000002dfc       0x12 build/startup_stm32f401xc.o
 
-.debug_loc      0x0000000000000000     0x6855
+.debug_loc      0x0000000000000000     0x6a13
  .debug_loc     0x0000000000000000      0x34a build/main.o
  .debug_loc     0x000000000000034a       0xdf build/gpio.o
  .debug_loc     0x0000000000000429      0x16f build/dma.o
  .debug_loc     0x0000000000000598      0x2c7 build/tim.o
  .debug_loc     0x000000000000085f      0x1d5 build/usart.o
  .debug_loc     0x0000000000000a34      0x378 build/minihdlc.o
- .debug_loc     0x0000000000000dac      0x176 build/definitions.o
- .debug_loc     0x0000000000000f22     0x1b82 build/draw.o
+ .debug_loc     0x0000000000000dac      0x169 build/definitions.o
+ .debug_loc     0x0000000000000f15     0x1b8f build/draw.o
  .debug_loc     0x0000000000002aa4      0x465 build/ws2812.o
  .debug_loc     0x0000000000002f09      0x25c build/notes.o
- .debug_loc     0x0000000000003165      0x296 build/bluetooth.o
- .debug_loc     0x00000000000033fb      0x6a0 build/stm32f4xx_ll_gpio.o
- .debug_loc     0x0000000000003a9b      0x633 build/stm32f4xx_ll_dma.o
- .debug_loc     0x00000000000040ce      0x57a build/stm32f4xx_ll_usart.o
- .debug_loc     0x0000000000004648     0x1457 build/stm32f4xx_ll_tim.o
- .debug_loc     0x0000000000005a9f      0x55d build/stm32f4xx_ll_rcc.o
- .debug_loc     0x0000000000005ffc      0x6ed build/stm32f4xx_ll_utils.o
- .debug_loc     0x00000000000066e9      0x16c build/system_stm32f4xx.o
+ .debug_loc     0x0000000000003165      0x454 build/bluetooth.o
+ .debug_loc     0x00000000000035b9      0x6a0 build/stm32f4xx_ll_gpio.o
+ .debug_loc     0x0000000000003c59      0x633 build/stm32f4xx_ll_dma.o
+ .debug_loc     0x000000000000428c      0x57a build/stm32f4xx_ll_usart.o
+ .debug_loc     0x0000000000004806     0x1457 build/stm32f4xx_ll_tim.o
+ .debug_loc     0x0000000000005c5d      0x55d build/stm32f4xx_ll_rcc.o
+ .debug_loc     0x00000000000061ba      0x6ed build/stm32f4xx_ll_utils.o
+ .debug_loc     0x00000000000068a7      0x16c build/system_stm32f4xx.o
 
-.debug_aranges  0x0000000000000000      0x5f0
+.debug_aranges  0x0000000000000000      0x600
  .debug_aranges
                 0x0000000000000000       0x40 build/main.o
  .debug_aranges
@@ -1054,27 +1060,27 @@ OUTPUT(build/Tese.elf elf32-littlearm)
  .debug_aranges
                 0x0000000000000278       0x48 build/notes.o
  .debug_aranges
-                0x00000000000002c0       0x38 build/bluetooth.o
+                0x00000000000002c0       0x48 build/bluetooth.o
  .debug_aranges
-                0x00000000000002f8       0x70 build/stm32f4xx_it.o
+                0x0000000000000308       0x70 build/stm32f4xx_it.o
  .debug_aranges
-                0x0000000000000368       0x30 build/stm32f4xx_ll_gpio.o
+                0x0000000000000378       0x30 build/stm32f4xx_ll_gpio.o
  .debug_aranges
-                0x0000000000000398       0x30 build/stm32f4xx_ll_dma.o
+                0x00000000000003a8       0x30 build/stm32f4xx_ll_dma.o
  .debug_aranges
-                0x00000000000003c8       0x40 build/stm32f4xx_ll_usart.o
+                0x00000000000003d8       0x40 build/stm32f4xx_ll_usart.o
  .debug_aranges
-                0x0000000000000408       0xc0 build/stm32f4xx_ll_tim.o
+                0x0000000000000418       0xc0 build/stm32f4xx_ll_tim.o
  .debug_aranges
-                0x00000000000004c8       0x78 build/stm32f4xx_ll_rcc.o
+                0x00000000000004d8       0x78 build/stm32f4xx_ll_rcc.o
  .debug_aranges
-                0x0000000000000540       0x60 build/stm32f4xx_ll_utils.o
+                0x0000000000000550       0x60 build/stm32f4xx_ll_utils.o
  .debug_aranges
-                0x00000000000005a0       0x28 build/system_stm32f4xx.o
+                0x00000000000005b0       0x28 build/system_stm32f4xx.o
  .debug_aranges
-                0x00000000000005c8       0x28 build/startup_stm32f401xc.o
+                0x00000000000005d8       0x28 build/startup_stm32f401xc.o
 
-.debug_ranges   0x0000000000000000      0x738
+.debug_ranges   0x0000000000000000      0x748
  .debug_ranges  0x0000000000000000       0x30 build/main.o
  .debug_ranges  0x0000000000000030       0x10 build/gpio.o
  .debug_ranges  0x0000000000000040       0x10 build/dma.o
@@ -1085,79 +1091,79 @@ OUTPUT(build/Tese.elf elf32-littlearm)
  .debug_ranges  0x0000000000000128      0x2d8 build/draw.o
  .debug_ranges  0x0000000000000400       0x20 build/ws2812.o
  .debug_ranges  0x0000000000000420       0x68 build/notes.o
- .debug_ranges  0x0000000000000488       0x28 build/bluetooth.o
- .debug_ranges  0x00000000000004b0       0x60 build/stm32f4xx_it.o
- .debug_ranges  0x0000000000000510       0x20 build/stm32f4xx_ll_gpio.o
- .debug_ranges  0x0000000000000530       0x20 build/stm32f4xx_ll_dma.o
- .debug_ranges  0x0000000000000550       0x48 build/stm32f4xx_ll_usart.o
- .debug_ranges  0x0000000000000598       0xb0 build/stm32f4xx_ll_tim.o
- .debug_ranges  0x0000000000000648       0x68 build/stm32f4xx_ll_rcc.o
- .debug_ranges  0x00000000000006b0       0x50 build/stm32f4xx_ll_utils.o
- .debug_ranges  0x0000000000000700       0x18 build/system_stm32f4xx.o
- .debug_ranges  0x0000000000000718       0x20 build/startup_stm32f401xc.o
+ .debug_ranges  0x0000000000000488       0x38 build/bluetooth.o
+ .debug_ranges  0x00000000000004c0       0x60 build/stm32f4xx_it.o
+ .debug_ranges  0x0000000000000520       0x20 build/stm32f4xx_ll_gpio.o
+ .debug_ranges  0x0000000000000540       0x20 build/stm32f4xx_ll_dma.o
+ .debug_ranges  0x0000000000000560       0x48 build/stm32f4xx_ll_usart.o
+ .debug_ranges  0x00000000000005a8       0xb0 build/stm32f4xx_ll_tim.o
+ .debug_ranges  0x0000000000000658       0x68 build/stm32f4xx_ll_rcc.o
+ .debug_ranges  0x00000000000006c0       0x50 build/stm32f4xx_ll_utils.o
+ .debug_ranges  0x0000000000000710       0x18 build/system_stm32f4xx.o
+ .debug_ranges  0x0000000000000728       0x20 build/startup_stm32f401xc.o
 
-.debug_line     0x0000000000000000     0x6cbb
- .debug_line    0x0000000000000000      0x767 build/main.o
- .debug_line    0x0000000000000767      0x2c8 build/gpio.o
- .debug_line    0x0000000000000a2f      0x3e5 build/dma.o
- .debug_line    0x0000000000000e14      0x3f7 build/tim.o
- .debug_line    0x000000000000120b      0x496 build/usart.o
- .debug_line    0x00000000000016a1      0x4b2 build/minihdlc.o
- .debug_line    0x0000000000001b53      0x2dd build/definitions.o
- .debug_line    0x0000000000001e30     0x1036 build/draw.o
- .debug_line    0x0000000000002e66      0x484 build/ws2812.o
- .debug_line    0x00000000000032ea      0x439 build/notes.o
- .debug_line    0x0000000000003723      0x4fb build/bluetooth.o
- .debug_line    0x0000000000003c1e      0x2a8 build/stm32f4xx_it.o
- .debug_line    0x0000000000003ec6      0x636 build/stm32f4xx_ll_gpio.o
- .debug_line    0x00000000000044fc      0x629 build/stm32f4xx_ll_dma.o
- .debug_line    0x0000000000004b25      0x51b build/stm32f4xx_ll_usart.o
- .debug_line    0x0000000000005040      0xbca build/stm32f4xx_ll_tim.o
- .debug_line    0x0000000000005c0a      0x6a4 build/stm32f4xx_ll_rcc.o
- .debug_line    0x00000000000062ae      0x73c build/stm32f4xx_ll_utils.o
- .debug_line    0x00000000000069ea      0x25d build/system_stm32f4xx.o
- .debug_line    0x0000000000006c47       0x74 build/startup_stm32f401xc.o
+.debug_line     0x0000000000000000     0x6d5e
+ .debug_line    0x0000000000000000      0x766 build/main.o
+ .debug_line    0x0000000000000766      0x2c8 build/gpio.o
+ .debug_line    0x0000000000000a2e      0x3e5 build/dma.o
+ .debug_line    0x0000000000000e13      0x3f7 build/tim.o
+ .debug_line    0x000000000000120a      0x496 build/usart.o
+ .debug_line    0x00000000000016a0      0x4b2 build/minihdlc.o
+ .debug_line    0x0000000000001b52      0x2d1 build/definitions.o
+ .debug_line    0x0000000000001e23     0x103e build/draw.o
+ .debug_line    0x0000000000002e61      0x484 build/ws2812.o
+ .debug_line    0x00000000000032e5      0x439 build/notes.o
+ .debug_line    0x000000000000371e      0x5a3 build/bluetooth.o
+ .debug_line    0x0000000000003cc1      0x2a8 build/stm32f4xx_it.o
+ .debug_line    0x0000000000003f69      0x636 build/stm32f4xx_ll_gpio.o
+ .debug_line    0x000000000000459f      0x629 build/stm32f4xx_ll_dma.o
+ .debug_line    0x0000000000004bc8      0x51b build/stm32f4xx_ll_usart.o
+ .debug_line    0x00000000000050e3      0xbca build/stm32f4xx_ll_tim.o
+ .debug_line    0x0000000000005cad      0x6a4 build/stm32f4xx_ll_rcc.o
+ .debug_line    0x0000000000006351      0x73c build/stm32f4xx_ll_utils.o
+ .debug_line    0x0000000000006a8d      0x25d build/system_stm32f4xx.o
+ .debug_line    0x0000000000006cea       0x74 build/startup_stm32f401xc.o
 
-.debug_str      0x0000000000000000     0x2cbf
- .debug_str     0x0000000000000000      0xdfa build/main.o
-                                        0xecf (size before relaxing)
- .debug_str     0x0000000000000dfa       0xb6 build/gpio.o
+.debug_str      0x0000000000000000     0x2ce5
+ .debug_str     0x0000000000000000      0xdf5 build/main.o
+                                        0xeca (size before relaxing)
+ .debug_str     0x0000000000000df5       0xb6 build/gpio.o
                                         0x452 (size before relaxing)
- .debug_str     0x0000000000000eb0      0x586 build/dma.o
+ .debug_str     0x0000000000000eab      0x586 build/dma.o
                                         0xaf0 (size before relaxing)
- .debug_str     0x0000000000001436      0x22f build/tim.o
+ .debug_str     0x0000000000001431      0x22f build/tim.o
                                         0xb49 (size before relaxing)
- .debug_str     0x0000000000001665       0xfb build/usart.o
+ .debug_str     0x0000000000001660       0xfb build/usart.o
                                         0xa21 (size before relaxing)
- .debug_str     0x0000000000001760      0x1a5 build/minihdlc.o
+ .debug_str     0x000000000000175b      0x1a5 build/minihdlc.o
                                         0x378 (size before relaxing)
- .debug_str     0x0000000000001905       0x69 build/definitions.o
+ .debug_str     0x0000000000001900       0x69 build/definitions.o
                                         0x306 (size before relaxing)
- .debug_str     0x000000000000196e      0x1a9 build/draw.o
+ .debug_str     0x0000000000001969      0x1a9 build/draw.o
                                         0x9a1 (size before relaxing)
- .debug_str     0x0000000000001b17      0x149 build/ws2812.o
+ .debug_str     0x0000000000001b12      0x14e build/ws2812.o
                                         0x53c (size before relaxing)
  .debug_str     0x0000000000001c60       0x3a build/notes.o
                                         0x78d (size before relaxing)
- .debug_str     0x0000000000001c9a       0xf4 build/bluetooth.o
-                                        0x580 (size before relaxing)
- .debug_str     0x0000000000001d8e       0xd3 build/stm32f4xx_it.o
+ .debug_str     0x0000000000001c9a      0x11a build/bluetooth.o
+                                        0x5ac (size before relaxing)
+ .debug_str     0x0000000000001db4       0xd3 build/stm32f4xx_it.o
                                         0x32a (size before relaxing)
- .debug_str     0x0000000000001e61      0x13b build/stm32f4xx_ll_gpio.o
+ .debug_str     0x0000000000001e87      0x13b build/stm32f4xx_ll_gpio.o
                                         0x4ea (size before relaxing)
- .debug_str     0x0000000000001f9c      0x120 build/stm32f4xx_ll_dma.o
+ .debug_str     0x0000000000001fc2      0x120 build/stm32f4xx_ll_dma.o
                                         0x63e (size before relaxing)
- .debug_str     0x00000000000020bc      0x260 build/stm32f4xx_ll_usart.o
+ .debug_str     0x00000000000020e2      0x260 build/stm32f4xx_ll_usart.o
                                         0x650 (size before relaxing)
- .debug_str     0x000000000000231c      0x3ba build/stm32f4xx_ll_tim.o
+ .debug_str     0x0000000000002342      0x3ba build/stm32f4xx_ll_tim.o
                                         0x99e (size before relaxing)
- .debug_str     0x00000000000026d6      0x368 build/stm32f4xx_ll_rcc.o
+ .debug_str     0x00000000000026fc      0x368 build/stm32f4xx_ll_rcc.o
                                         0x732 (size before relaxing)
- .debug_str     0x0000000000002a3e      0x213 build/stm32f4xx_ll_utils.o
+ .debug_str     0x0000000000002a64      0x213 build/stm32f4xx_ll_utils.o
                                         0x748 (size before relaxing)
- .debug_str     0x0000000000002c51       0x49 build/system_stm32f4xx.o
+ .debug_str     0x0000000000002c77       0x49 build/system_stm32f4xx.o
                                         0x3ad (size before relaxing)
- .debug_str     0x0000000000002c9a       0x25 build/startup_stm32f401xc.o
+ .debug_str     0x0000000000002cc0       0x25 build/startup_stm32f401xc.o
                                          0x65 (size before relaxing)
 
 .comment        0x0000000000000000       0x75
@@ -1182,7 +1188,7 @@ OUTPUT(build/Tese.elf elf32-littlearm)
  .comment       0x0000000000000075       0x76 build/stm32f4xx_ll_utils.o
  .comment       0x0000000000000075       0x76 build/system_stm32f4xx.o
 
-.debug_frame    0x0000000000000000     0x1134
+.debug_frame    0x0000000000000000     0x1150
  .debug_frame   0x0000000000000000       0x78 build/main.o
  .debug_frame   0x0000000000000078       0x38 build/gpio.o
  .debug_frame   0x00000000000000b0       0x48 build/dma.o
@@ -1193,23 +1199,23 @@ OUTPUT(build/Tese.elf elf32-littlearm)
  .debug_frame   0x00000000000002cc      0x3c8 build/draw.o
  .debug_frame   0x0000000000000694       0x8c build/ws2812.o
  .debug_frame   0x0000000000000720       0xac build/notes.o
- .debug_frame   0x00000000000007cc       0x78 build/bluetooth.o
- .debug_frame   0x0000000000000844       0xc0 build/stm32f4xx_it.o
- .debug_frame   0x0000000000000904       0x5c build/stm32f4xx_ll_gpio.o
- .debug_frame   0x0000000000000960       0x74 build/stm32f4xx_ll_dma.o
- .debug_frame   0x00000000000009d4       0x88 build/stm32f4xx_ll_usart.o
- .debug_frame   0x0000000000000a5c      0x21c build/stm32f4xx_ll_tim.o
- .debug_frame   0x0000000000000c78      0x114 build/stm32f4xx_ll_rcc.o
- .debug_frame   0x0000000000000d8c       0xe8 build/stm32f4xx_ll_utils.o
- .debug_frame   0x0000000000000e74       0x30 build/system_stm32f4xx.o
- .debug_frame   0x0000000000000ea4       0x2c /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(lib_a-init.o)
- .debug_frame   0x0000000000000ed0       0x20 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(lib_a-memset.o)
- .debug_frame   0x0000000000000ef0       0xac /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
- .debug_frame   0x0000000000000f9c       0x50 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
- .debug_frame   0x0000000000000fec       0xc4 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
- .debug_frame   0x00000000000010b0       0x24 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
- .debug_frame   0x00000000000010d4       0x2c /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_aeabi_uldivmod.o)
- .debug_frame   0x0000000000001100       0x34 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00000000000007cc       0x94 build/bluetooth.o
+ .debug_frame   0x0000000000000860       0xc0 build/stm32f4xx_it.o
+ .debug_frame   0x0000000000000920       0x5c build/stm32f4xx_ll_gpio.o
+ .debug_frame   0x000000000000097c       0x74 build/stm32f4xx_ll_dma.o
+ .debug_frame   0x00000000000009f0       0x88 build/stm32f4xx_ll_usart.o
+ .debug_frame   0x0000000000000a78      0x21c build/stm32f4xx_ll_tim.o
+ .debug_frame   0x0000000000000c94      0x114 build/stm32f4xx_ll_rcc.o
+ .debug_frame   0x0000000000000da8       0xe8 build/stm32f4xx_ll_utils.o
+ .debug_frame   0x0000000000000e90       0x30 build/system_stm32f4xx.o
+ .debug_frame   0x0000000000000ec0       0x2c /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(lib_a-init.o)
+ .debug_frame   0x0000000000000eec       0x20 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(lib_a-memset.o)
+ .debug_frame   0x0000000000000f0c       0xac /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
+ .debug_frame   0x0000000000000fb8       0x50 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
+ .debug_frame   0x0000000000001008       0xc4 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
+ .debug_frame   0x00000000000010cc       0x24 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
+ .debug_frame   0x00000000000010f0       0x2c /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x000000000000111c       0x34 /Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libgcc.a(_udivmoddi4.o)
 
 Cross Reference Table
 
@@ -1588,6 +1594,7 @@ receiveDataBluetooth                              build/bluetooth.o
 resto                                             build/notes.o
 sendDataBluetooth                                 build/bluetooth.o
 setBackColor                                      build/definitions.o
+setBackFunction                                   build/bluetooth.o
 setColor                                          build/definitions.o
                                                   build/notes.o
                                                   build/draw.o
@@ -1595,6 +1602,7 @@ setColorFB                                        build/definitions.o
                                                   build/draw.o
 setColorFadeFB                                    build/definitions.o
                                                   build/draw.o
+setColorVariable                                  build/bluetooth.o
 setNote                                           build/notes.o
                                                   build/main.o
 setTextColor                                      build/definitions.o

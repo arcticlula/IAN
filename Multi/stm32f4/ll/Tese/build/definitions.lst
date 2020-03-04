@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 1
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 1
   47 0006 C15C     		ldrb	r1, [r0, r3]	@ zero_extendqisi2
   48              		.loc 1 9 18 discriminator 3 view .LVU7
   49 0008 024A     		ldr	r2, .L5
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 2
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 2
 
 
   50 000a D154     		strb	r1, [r2, r3]
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 1
   96 0004 05D8     		bhi	.L10
   16:Src/definitions.c ****   {
   17:Src/definitions.c ****     textColor[z] = color[z];
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 3
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 3
 
 
   97              		.loc 1 17 5 is_stmt 1 discriminator 3 view .LVU18
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 1
  143 0000 0023     		movs	r3, #0
  144              	.LVL9:
  145              	.L14:
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 4
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 4
 
 
  146              		.loc 1 23 3 discriminator 1 view .LVU30
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 1
   41:Src/definitions.c ****     2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5,
   42:Src/definitions.c ****     5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 10,
   43:Src/definitions.c ****     10, 10, 11, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 16, 16,
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 5
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 5
 
 
   44:Src/definitions.c ****     17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 24, 24, 25,
@@ -270,7 +270,7 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 1
  192              	.LVL13:
  193              		.loc 1 58 3 view .LVU44
  194 0002 022A     		cmp	r2, #2
- 195 0004 19D8     		bhi	.L23
+ 195 0004 18D8     		bhi	.L23
  196              	.LBE5:
   56:Src/definitions.c ****   uint8_t temp;
  197              		.loc 1 56 1 view .LVU45
@@ -288,458 +288,454 @@ ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 1
  207              		.loc 1 60 10 discriminator 3 view .LVU48
  208 000a 0C4C     		ldr	r4, .L24
  209 000c E35C     		ldrb	r3, [r4, r3]	@ zero_extendqisi2
- 210              	.LVL14:
-  61:Src/definitions.c ****     dest[z] = (temp / 2) * MAX_BRIGHT;
- 211              		.loc 1 61 5 is_stmt 1 discriminator 3 view .LVU49
- 212              		.loc 1 61 21 is_stmt 0 discriminator 3 view .LVU50
- 213 000e 5B08     		lsrs	r3, r3, #1
- 214              	.LVL15:
- 215              		.loc 1 61 21 discriminator 3 view .LVU51
- 216 0010 07EE903A 		vmov	s15, r3	@ int
- 217              		.loc 1 61 26 discriminator 3 view .LVU52
- 218 0014 F8EEE77A 		vcvt.f32.s32	s15, s15
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 6
+ 210 000e 07EE903A 		vmov	s15, r3	@ int
+ 211              	.LVL14:
+  61:Src/definitions.c ****     dest[z] = temp * MAX_BRIGHT;
+ 212              		.loc 1 61 5 is_stmt 1 discriminator 3 view .LVU49
+ 213              		.loc 1 61 20 is_stmt 0 discriminator 3 view .LVU50
+ 214 0012 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 215 0016 0A4B     		ldr	r3, .L24+4
+ 216 0018 93ED007A 		vldr.32	s14, [r3]
+ 217 001c 67EE877A 		vmul.f32	s15, s15, s14
+ 218              		.loc 1 61 13 discriminator 3 view .LVU51
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 6
 
 
- 219 0018 094B     		ldr	r3, .L24+4
- 220 001a 93ED007A 		vldr.32	s14, [r3]
- 221 001e 67EE877A 		vmul.f32	s15, s15, s14
- 222              		.loc 1 61 13 discriminator 3 view .LVU53
- 223 0022 FCEEE77A 		vcvt.u32.f32	s15, s15
- 224 0026 17EE903A 		vmov	r3, s15	@ int
- 225 002a 8354     		strb	r3, [r0, r2]
- 226              	.LVL16:
+ 219 0020 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 220 0024 17EE903A 		vmov	r3, s15	@ int
+ 221 0028 8354     		strb	r3, [r0, r2]
+ 222              	.LVL15:
   58:Src/definitions.c ****   {
- 227              		.loc 1 58 31 discriminator 3 view .LVU54
- 228 002c 0132     		adds	r2, r2, #1
- 229              	.LVL17:
+ 223              		.loc 1 58 31 discriminator 3 view .LVU52
+ 224 002a 0132     		adds	r2, r2, #1
+ 225              	.LVL16:
   58:Src/definitions.c ****   {
- 230              		.loc 1 58 31 discriminator 3 view .LVU55
- 231 002e D2B2     		uxtb	r2, r2
- 232              	.LVL18:
+ 226              		.loc 1 58 31 discriminator 3 view .LVU53
+ 227 002c D2B2     		uxtb	r2, r2
+ 228              	.LVL17:
   58:Src/definitions.c ****   {
- 233              		.loc 1 58 3 discriminator 3 view .LVU56
- 234 0030 022A     		cmp	r2, #2
- 235 0032 E9D9     		bls	.L19
- 236              	.LBE6:
+ 229              		.loc 1 58 3 discriminator 3 view .LVU54
+ 230 002e 022A     		cmp	r2, #2
+ 231 0030 EAD9     		bls	.L19
+ 232              	.LBE6:
   62:Src/definitions.c ****   }
   63:Src/definitions.c **** }
- 237              		.loc 1 63 1 view .LVU57
- 238 0034 5DF8044B 		ldr	r4, [sp], #4
- 239              	.LCFI1:
- 240              		.cfi_restore 4
- 241              		.cfi_def_cfa_offset 0
- 242 0038 7047     		bx	lr
- 243              	.L23:
- 244              		.loc 1 63 1 view .LVU58
- 245 003a 7047     		bx	lr
- 246              	.L25:
- 247              		.align	2
- 248              	.L24:
- 249 003c 00000000 		.word	.LANCHOR0
- 250 0040 00000000 		.word	MAX_BRIGHT
- 251              		.cfi_endproc
- 252              	.LFE3:
- 254              		.section	.text.setColorFB,"ax",%progbits
- 255              		.align	1
- 256              		.global	setColorFB
- 257              		.syntax unified
- 258              		.thumb
- 259              		.thumb_func
- 260              		.fpu fpv4-sp-d16
- 262              	setColorFB:
- 263              	.LVL19:
- 264              	.LFB4:
+ 233              		.loc 1 63 1 view .LVU55
+ 234 0032 5DF8044B 		ldr	r4, [sp], #4
+ 235              	.LCFI1:
+ 236              		.cfi_restore 4
+ 237              		.cfi_def_cfa_offset 0
+ 238 0036 7047     		bx	lr
+ 239              	.L23:
+ 240              		.loc 1 63 1 view .LVU56
+ 241 0038 7047     		bx	lr
+ 242              	.L25:
+ 243 003a 00BF     		.align	2
+ 244              	.L24:
+ 245 003c 00000000 		.word	.LANCHOR0
+ 246 0040 00000000 		.word	MAX_BRIGHT
+ 247              		.cfi_endproc
+ 248              	.LFE3:
+ 250              		.section	.text.setColorFB,"ax",%progbits
+ 251              		.align	1
+ 252              		.global	setColorFB
+ 253              		.syntax unified
+ 254              		.thumb
+ 255              		.thumb_func
+ 256              		.fpu fpv4-sp-d16
+ 258              	setColorFB:
+ 259              	.LVL18:
+ 260              	.LFB4:
   64:Src/definitions.c **** 
   65:Src/definitions.c **** void setColorFB(uint8_t *dest, uint8_t *color)
   66:Src/definitions.c **** {
- 265              		.loc 1 66 1 is_stmt 1 view -0
- 266              		.cfi_startproc
- 267              		@ args = 0, pretend = 0, frame = 0
- 268              		@ frame_needed = 0, uses_anonymous_args = 0
- 269              		@ link register save eliminated.
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 7
-
-
+ 261              		.loc 1 66 1 is_stmt 1 view -0
+ 262              		.cfi_startproc
+ 263              		@ args = 0, pretend = 0, frame = 0
+ 264              		@ frame_needed = 0, uses_anonymous_args = 0
+ 265              		@ link register save eliminated.
   67:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
- 270              		.loc 1 67 3 view .LVU60
- 271              	.LBB7:
- 272              		.loc 1 67 8 view .LVU61
- 273              		.loc 1 67 16 is_stmt 0 view .LVU62
- 274 0000 0022     		movs	r2, #0
- 275              	.LVL20:
- 276              		.loc 1 67 3 view .LVU63
- 277 0002 022A     		cmp	r2, #2
- 278 0004 18D8     		bhi	.L32
- 279              	.LBE7:
+ 266              		.loc 1 67 3 view .LVU58
+ 267              	.LBB7:
+ 268              		.loc 1 67 8 view .LVU59
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 7
+
+
+ 269              		.loc 1 67 16 is_stmt 0 view .LVU60
+ 270 0000 0022     		movs	r2, #0
+ 271              	.LVL19:
+ 272              		.loc 1 67 3 view .LVU61
+ 273 0002 022A     		cmp	r2, #2
+ 274 0004 18D8     		bhi	.L32
+ 275              	.LBE7:
   66:Src/definitions.c ****   for (uint8_t z = 0; z < 3; z++)
- 280              		.loc 1 66 1 view .LVU64
- 281 0006 10B4     		push	{r4}
- 282              	.LCFI2:
- 283              		.cfi_def_cfa_offset 4
- 284              		.cfi_offset 4, -4
- 285              	.L28:
- 286              	.LBB8:
+ 276              		.loc 1 66 1 view .LVU62
+ 277 0006 10B4     		push	{r4}
+ 278              	.LCFI2:
+ 279              		.cfi_def_cfa_offset 4
+ 280              		.cfi_offset 4, -4
+ 281              	.L28:
+ 282              	.LBB8:
   68:Src/definitions.c ****   {
   69:Src/definitions.c ****     dest[z] = gammaCorrection[color[z]] * MAX_BRIGHT;
- 287              		.loc 1 69 5 is_stmt 1 discriminator 3 view .LVU65
- 288              		.loc 1 69 36 is_stmt 0 discriminator 3 view .LVU66
- 289 0008 8B5C     		ldrb	r3, [r1, r2]	@ zero_extendqisi2
- 290              		.loc 1 69 30 discriminator 3 view .LVU67
- 291 000a 0C4C     		ldr	r4, .L33
- 292 000c E35C     		ldrb	r3, [r4, r3]	@ zero_extendqisi2
- 293 000e 07EE903A 		vmov	s15, r3	@ int
- 294              		.loc 1 69 41 discriminator 3 view .LVU68
- 295 0012 F8EEE77A 		vcvt.f32.s32	s15, s15
- 296 0016 0A4B     		ldr	r3, .L33+4
- 297 0018 93ED007A 		vldr.32	s14, [r3]
- 298 001c 67EE877A 		vmul.f32	s15, s15, s14
- 299              		.loc 1 69 13 discriminator 3 view .LVU69
- 300 0020 FCEEE77A 		vcvt.u32.f32	s15, s15
- 301 0024 17EE903A 		vmov	r3, s15	@ int
- 302 0028 8354     		strb	r3, [r0, r2]
+ 283              		.loc 1 69 5 is_stmt 1 discriminator 3 view .LVU63
+ 284              		.loc 1 69 36 is_stmt 0 discriminator 3 view .LVU64
+ 285 0008 8B5C     		ldrb	r3, [r1, r2]	@ zero_extendqisi2
+ 286              		.loc 1 69 30 discriminator 3 view .LVU65
+ 287 000a 0C4C     		ldr	r4, .L33
+ 288 000c E35C     		ldrb	r3, [r4, r3]	@ zero_extendqisi2
+ 289 000e 07EE903A 		vmov	s15, r3	@ int
+ 290              		.loc 1 69 41 discriminator 3 view .LVU66
+ 291 0012 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 292 0016 0A4B     		ldr	r3, .L33+4
+ 293 0018 93ED007A 		vldr.32	s14, [r3]
+ 294 001c 67EE877A 		vmul.f32	s15, s15, s14
+ 295              		.loc 1 69 13 discriminator 3 view .LVU67
+ 296 0020 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 297 0024 17EE903A 		vmov	r3, s15	@ int
+ 298 0028 8354     		strb	r3, [r0, r2]
   67:Src/definitions.c ****   {
- 303              		.loc 1 67 31 discriminator 3 view .LVU70
- 304 002a 0132     		adds	r2, r2, #1
- 305              	.LVL21:
+ 299              		.loc 1 67 31 discriminator 3 view .LVU68
+ 300 002a 0132     		adds	r2, r2, #1
+ 301              	.LVL20:
   67:Src/definitions.c ****   {
- 306              		.loc 1 67 31 discriminator 3 view .LVU71
- 307 002c D2B2     		uxtb	r2, r2
- 308              	.LVL22:
+ 302              		.loc 1 67 31 discriminator 3 view .LVU69
+ 303 002c D2B2     		uxtb	r2, r2
+ 304              	.LVL21:
   67:Src/definitions.c ****   {
- 309              		.loc 1 67 3 discriminator 3 view .LVU72
- 310 002e 022A     		cmp	r2, #2
- 311 0030 EAD9     		bls	.L28
- 312              	.LBE8:
+ 305              		.loc 1 67 3 discriminator 3 view .LVU70
+ 306 002e 022A     		cmp	r2, #2
+ 307 0030 EAD9     		bls	.L28
+ 308              	.LBE8:
   70:Src/definitions.c ****   }
   71:Src/definitions.c **** }...
- 313              		.loc 1 71 1 view .LVU73
- 314 0032 5DF8044B 		ldr	r4, [sp], #4
- 315              	.LCFI3:
- 316              		.cfi_restore 4
- 317              		.cfi_def_cfa_offset 0
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 8
+ 309              		.loc 1 71 1 view .LVU71
+ 310 0032 5DF8044B 		ldr	r4, [sp], #4
+ 311              	.LCFI3:
+ 312              		.cfi_restore 4
+ 313              		.cfi_def_cfa_offset 0
+ 314 0036 7047     		bx	lr
+ 315              	.L32:
+ 316              		.loc 1 71 1 view .LVU72
+ 317 0038 7047     		bx	lr
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 8
 
 
- 318 0036 7047     		bx	lr
- 319              	.L32:
- 320              		.loc 1 71 1 view .LVU74
- 321 0038 7047     		bx	lr
- 322              	.L34:
- 323 003a 00BF     		.align	2
- 324              	.L33:
- 325 003c 00000000 		.word	.LANCHOR0
- 326 0040 00000000 		.word	MAX_BRIGHT
- 327              		.cfi_endproc
- 328              	.LFE4:
- 330              		.global	gammaCorrection
- 331              		.comm	textColor,3,4
- 332              		.comm	backColor,3,4
- 333              		.comm	textLayer,768,4
- 334              		.comm	backLayer,768,4
- 335              		.section	.data.gammaCorrection,"aw"
- 336              		.align	2
- 337              		.set	.LANCHOR0,. + 0
- 340              	gammaCorrection:
- 341 0000 00       		.byte	0
- 342 0001 00       		.byte	0
- 343 0002 00       		.byte	0
- 344 0003 00       		.byte	0
- 345 0004 00       		.byte	0
- 346 0005 00       		.byte	0
- 347 0006 00       		.byte	0
- 348 0007 00       		.byte	0
- 349 0008 00       		.byte	0
- 350 0009 00       		.byte	0
- 351 000a 00       		.byte	0
- 352 000b 00       		.byte	0
- 353 000c 00       		.byte	0
- 354 000d 00       		.byte	0
- 355 000e 00       		.byte	0
- 356 000f 00       		.byte	0
- 357 0010 00       		.byte	0
- 358 0011 00       		.byte	0
- 359 0012 00       		.byte	0
- 360 0013 00       		.byte	0
- 361 0014 00       		.byte	0
- 362 0015 00       		.byte	0
- 363 0016 00       		.byte	0
- 364 0017 00       		.byte	0
- 365 0018 00       		.byte	0
- 366 0019 00       		.byte	0
- 367 001a 00       		.byte	0
- 368 001b 00       		.byte	0
- 369 001c 01       		.byte	1
- 370 001d 01       		.byte	1
- 371 001e 01       		.byte	1
- 372 001f 01       		.byte	1
- 373 0020 01       		.byte	1
- 374 0021 01       		.byte	1
- 375 0022 01       		.byte	1
- 376 0023 01       		.byte	1
- 377 0024 01       		.byte	1
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 9
+ 318              	.L34:
+ 319 003a 00BF     		.align	2
+ 320              	.L33:
+ 321 003c 00000000 		.word	.LANCHOR0
+ 322 0040 00000000 		.word	MAX_BRIGHT
+ 323              		.cfi_endproc
+ 324              	.LFE4:
+ 326              		.global	gammaCorrection
+ 327              		.comm	textColor,3,4
+ 328              		.comm	backColor,3,4
+ 329              		.comm	textLayer,768,4
+ 330              		.comm	backLayer,768,4
+ 331              		.section	.data.gammaCorrection,"aw"
+ 332              		.align	2
+ 333              		.set	.LANCHOR0,. + 0
+ 336              	gammaCorrection:
+ 337 0000 00       		.byte	0
+ 338 0001 00       		.byte	0
+ 339 0002 00       		.byte	0
+ 340 0003 00       		.byte	0
+ 341 0004 00       		.byte	0
+ 342 0005 00       		.byte	0
+ 343 0006 00       		.byte	0
+ 344 0007 00       		.byte	0
+ 345 0008 00       		.byte	0
+ 346 0009 00       		.byte	0
+ 347 000a 00       		.byte	0
+ 348 000b 00       		.byte	0
+ 349 000c 00       		.byte	0
+ 350 000d 00       		.byte	0
+ 351 000e 00       		.byte	0
+ 352 000f 00       		.byte	0
+ 353 0010 00       		.byte	0
+ 354 0011 00       		.byte	0
+ 355 0012 00       		.byte	0
+ 356 0013 00       		.byte	0
+ 357 0014 00       		.byte	0
+ 358 0015 00       		.byte	0
+ 359 0016 00       		.byte	0
+ 360 0017 00       		.byte	0
+ 361 0018 00       		.byte	0
+ 362 0019 00       		.byte	0
+ 363 001a 00       		.byte	0
+ 364 001b 00       		.byte	0
+ 365 001c 01       		.byte	1
+ 366 001d 01       		.byte	1
+ 367 001e 01       		.byte	1
+ 368 001f 01       		.byte	1
+ 369 0020 01       		.byte	1
+ 370 0021 01       		.byte	1
+ 371 0022 01       		.byte	1
+ 372 0023 01       		.byte	1
+ 373 0024 01       		.byte	1
+ 374 0025 01       		.byte	1
+ 375 0026 01       		.byte	1
+ 376 0027 01       		.byte	1
+ 377 0028 01       		.byte	1
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 9
 
 
- 378 0025 01       		.byte	1
- 379 0026 01       		.byte	1
- 380 0027 01       		.byte	1
- 381 0028 01       		.byte	1
- 382 0029 02       		.byte	2
- 383 002a 02       		.byte	2
- 384 002b 02       		.byte	2
- 385 002c 02       		.byte	2
- 386 002d 02       		.byte	2
- 387 002e 02       		.byte	2
- 388 002f 02       		.byte	2
- 389 0030 02       		.byte	2
- 390 0031 03       		.byte	3
- 391 0032 03       		.byte	3
- 392 0033 03       		.byte	3
- 393 0034 03       		.byte	3
- 394 0035 03       		.byte	3
- 395 0036 03       		.byte	3
- 396 0037 03       		.byte	3
- 397 0038 04       		.byte	4
- 398 0039 04       		.byte	4
- 399 003a 04       		.byte	4
- 400 003b 04       		.byte	4
- 401 003c 04       		.byte	4
- 402 003d 05       		.byte	5
- 403 003e 05       		.byte	5
- 404 003f 05       		.byte	5
- 405 0040 05       		.byte	5
- 406 0041 06       		.byte	6
- 407 0042 06       		.byte	6
- 408 0043 06       		.byte	6
- 409 0044 06       		.byte	6
- 410 0045 07       		.byte	7
- 411 0046 07       		.byte	7
- 412 0047 07       		.byte	7
- 413 0048 07       		.byte	7
- 414 0049 08       		.byte	8
- 415 004a 08       		.byte	8
- 416 004b 08       		.byte	8
- 417 004c 09       		.byte	9
- 418 004d 09       		.byte	9
- 419 004e 09       		.byte	9
- 420 004f 0A       		.byte	10
- 421 0050 0A       		.byte	10
- 422 0051 0A       		.byte	10
- 423 0052 0B       		.byte	11
- 424 0053 0B       		.byte	11
- 425 0054 0B       		.byte	11
- 426 0055 0C       		.byte	12
- 427 0056 0C       		.byte	12
- 428 0057 0D       		.byte	13
- 429 0058 0D       		.byte	13
- 430 0059 0D       		.byte	13
- 431 005a 0E       		.byte	14
- 432 005b 0E       		.byte	14
- 433 005c 0F       		.byte	15
- 434 005d 0F       		.byte	15
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 10
+ 378 0029 02       		.byte	2
+ 379 002a 02       		.byte	2
+ 380 002b 02       		.byte	2
+ 381 002c 02       		.byte	2
+ 382 002d 02       		.byte	2
+ 383 002e 02       		.byte	2
+ 384 002f 02       		.byte	2
+ 385 0030 02       		.byte	2
+ 386 0031 03       		.byte	3
+ 387 0032 03       		.byte	3
+ 388 0033 03       		.byte	3
+ 389 0034 03       		.byte	3
+ 390 0035 03       		.byte	3
+ 391 0036 03       		.byte	3
+ 392 0037 03       		.byte	3
+ 393 0038 04       		.byte	4
+ 394 0039 04       		.byte	4
+ 395 003a 04       		.byte	4
+ 396 003b 04       		.byte	4
+ 397 003c 04       		.byte	4
+ 398 003d 05       		.byte	5
+ 399 003e 05       		.byte	5
+ 400 003f 05       		.byte	5
+ 401 0040 05       		.byte	5
+ 402 0041 06       		.byte	6
+ 403 0042 06       		.byte	6
+ 404 0043 06       		.byte	6
+ 405 0044 06       		.byte	6
+ 406 0045 07       		.byte	7
+ 407 0046 07       		.byte	7
+ 408 0047 07       		.byte	7
+ 409 0048 07       		.byte	7
+ 410 0049 08       		.byte	8
+ 411 004a 08       		.byte	8
+ 412 004b 08       		.byte	8
+ 413 004c 09       		.byte	9
+ 414 004d 09       		.byte	9
+ 415 004e 09       		.byte	9
+ 416 004f 0A       		.byte	10
+ 417 0050 0A       		.byte	10
+ 418 0051 0A       		.byte	10
+ 419 0052 0B       		.byte	11
+ 420 0053 0B       		.byte	11
+ 421 0054 0B       		.byte	11
+ 422 0055 0C       		.byte	12
+ 423 0056 0C       		.byte	12
+ 424 0057 0D       		.byte	13
+ 425 0058 0D       		.byte	13
+ 426 0059 0D       		.byte	13
+ 427 005a 0E       		.byte	14
+ 428 005b 0E       		.byte	14
+ 429 005c 0F       		.byte	15
+ 430 005d 0F       		.byte	15
+ 431 005e 10       		.byte	16
+ 432 005f 10       		.byte	16
+ 433 0060 11       		.byte	17
+ 434 0061 11       		.byte	17
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 10
 
 
- 435 005e 10       		.byte	16
- 436 005f 10       		.byte	16
- 437 0060 11       		.byte	17
- 438 0061 11       		.byte	17
- 439 0062 12       		.byte	18
- 440 0063 12       		.byte	18
- 441 0064 13       		.byte	19
- 442 0065 13       		.byte	19
- 443 0066 14       		.byte	20
- 444 0067 14       		.byte	20
- 445 0068 15       		.byte	21
- 446 0069 15       		.byte	21
- 447 006a 16       		.byte	22
- 448 006b 16       		.byte	22
- 449 006c 17       		.byte	23
- 450 006d 18       		.byte	24
- 451 006e 18       		.byte	24
- 452 006f 19       		.byte	25
- 453 0070 19       		.byte	25
- 454 0071 1A       		.byte	26
- 455 0072 1B       		.byte	27
- 456 0073 1B       		.byte	27
- 457 0074 1C       		.byte	28
- 458 0075 1D       		.byte	29
- 459 0076 1D       		.byte	29
- 460 0077 1E       		.byte	30
- 461 0078 1F       		.byte	31
- 462 0079 20       		.byte	32
- 463 007a 20       		.byte	32
- 464 007b 21       		.byte	33
- 465 007c 22       		.byte	34
- 466 007d 23       		.byte	35
- 467 007e 23       		.byte	35
- 468 007f 24       		.byte	36
- 469 0080 25       		.byte	37
- 470 0081 26       		.byte	38
- 471 0082 27       		.byte	39
- 472 0083 27       		.byte	39
- 473 0084 28       		.byte	40
- 474 0085 29       		.byte	41
- 475 0086 2A       		.byte	42
- 476 0087 2B       		.byte	43
- 477 0088 2C       		.byte	44
- 478 0089 2D       		.byte	45
- 479 008a 2E       		.byte	46
- 480 008b 2F       		.byte	47
- 481 008c 30       		.byte	48
- 482 008d 31       		.byte	49
- 483 008e 32       		.byte	50
- 484 008f 32       		.byte	50
- 485 0090 33       		.byte	51
- 486 0091 34       		.byte	52
- 487 0092 36       		.byte	54
- 488 0093 37       		.byte	55
- 489 0094 38       		.byte	56
- 490 0095 39       		.byte	57
- 491 0096 3A       		.byte	58
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 11
+ 435 0062 12       		.byte	18
+ 436 0063 12       		.byte	18
+ 437 0064 13       		.byte	19
+ 438 0065 13       		.byte	19
+ 439 0066 14       		.byte	20
+ 440 0067 14       		.byte	20
+ 441 0068 15       		.byte	21
+ 442 0069 15       		.byte	21
+ 443 006a 16       		.byte	22
+ 444 006b 16       		.byte	22
+ 445 006c 17       		.byte	23
+ 446 006d 18       		.byte	24
+ 447 006e 18       		.byte	24
+ 448 006f 19       		.byte	25
+ 449 0070 19       		.byte	25
+ 450 0071 1A       		.byte	26
+ 451 0072 1B       		.byte	27
+ 452 0073 1B       		.byte	27
+ 453 0074 1C       		.byte	28
+ 454 0075 1D       		.byte	29
+ 455 0076 1D       		.byte	29
+ 456 0077 1E       		.byte	30
+ 457 0078 1F       		.byte	31
+ 458 0079 20       		.byte	32
+ 459 007a 20       		.byte	32
+ 460 007b 21       		.byte	33
+ 461 007c 22       		.byte	34
+ 462 007d 23       		.byte	35
+ 463 007e 23       		.byte	35
+ 464 007f 24       		.byte	36
+ 465 0080 25       		.byte	37
+ 466 0081 26       		.byte	38
+ 467 0082 27       		.byte	39
+ 468 0083 27       		.byte	39
+ 469 0084 28       		.byte	40
+ 470 0085 29       		.byte	41
+ 471 0086 2A       		.byte	42
+ 472 0087 2B       		.byte	43
+ 473 0088 2C       		.byte	44
+ 474 0089 2D       		.byte	45
+ 475 008a 2E       		.byte	46
+ 476 008b 2F       		.byte	47
+ 477 008c 30       		.byte	48
+ 478 008d 31       		.byte	49
+ 479 008e 32       		.byte	50
+ 480 008f 32       		.byte	50
+ 481 0090 33       		.byte	51
+ 482 0091 34       		.byte	52
+ 483 0092 36       		.byte	54
+ 484 0093 37       		.byte	55
+ 485 0094 38       		.byte	56
+ 486 0095 39       		.byte	57
+ 487 0096 3A       		.byte	58
+ 488 0097 3B       		.byte	59
+ 489 0098 3C       		.byte	60
+ 490 0099 3D       		.byte	61
+ 491 009a 3E       		.byte	62
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 11
 
 
- 492 0097 3B       		.byte	59
- 493 0098 3C       		.byte	60
- 494 0099 3D       		.byte	61
- 495 009a 3E       		.byte	62
- 496 009b 3F       		.byte	63
- 497 009c 40       		.byte	64
- 498 009d 42       		.byte	66
- 499 009e 43       		.byte	67
- 500 009f 44       		.byte	68
- 501 00a0 45       		.byte	69
- 502 00a1 46       		.byte	70
- 503 00a2 48       		.byte	72
- 504 00a3 49       		.byte	73
- 505 00a4 4A       		.byte	74
- 506 00a5 4B       		.byte	75
- 507 00a6 4D       		.byte	77
- 508 00a7 4E       		.byte	78
- 509 00a8 4F       		.byte	79
- 510 00a9 51       		.byte	81
- 511 00aa 52       		.byte	82
- 512 00ab 53       		.byte	83
- 513 00ac 55       		.byte	85
- 514 00ad 56       		.byte	86
- 515 00ae 57       		.byte	87
- 516 00af 59       		.byte	89
- 517 00b0 5A       		.byte	90
- 518 00b1 5C       		.byte	92
- 519 00b2 5D       		.byte	93
- 520 00b3 5F       		.byte	95
- 521 00b4 60       		.byte	96
- 522 00b5 62       		.byte	98
- 523 00b6 63       		.byte	99
- 524 00b7 65       		.byte	101
- 525 00b8 66       		.byte	102
- 526 00b9 68       		.byte	104
- 527 00ba 69       		.byte	105
- 528 00bb 6B       		.byte	107
- 529 00bc 6D       		.byte	109
- 530 00bd 6E       		.byte	110
- 531 00be 70       		.byte	112
- 532 00bf 72       		.byte	114
- 533 00c0 73       		.byte	115
- 534 00c1 75       		.byte	117
- 535 00c2 77       		.byte	119
- 536 00c3 78       		.byte	120
- 537 00c4 7A       		.byte	122
- 538 00c5 7C       		.byte	124
- 539 00c6 7E       		.byte	126
- 540 00c7 7F       		.byte	127
- 541 00c8 81       		.byte	-127
- 542 00c9 83       		.byte	-125
- 543 00ca 85       		.byte	-123
- 544 00cb 87       		.byte	-121
- 545 00cc 89       		.byte	-119
- 546 00cd 8A       		.byte	-118
- 547 00ce 8C       		.byte	-116
- 548 00cf 8E       		.byte	-114
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 12
+ 492 009b 3F       		.byte	63
+ 493 009c 40       		.byte	64
+ 494 009d 42       		.byte	66
+ 495 009e 43       		.byte	67
+ 496 009f 44       		.byte	68
+ 497 00a0 45       		.byte	69
+ 498 00a1 46       		.byte	70
+ 499 00a2 48       		.byte	72
+ 500 00a3 49       		.byte	73
+ 501 00a4 4A       		.byte	74
+ 502 00a5 4B       		.byte	75
+ 503 00a6 4D       		.byte	77
+ 504 00a7 4E       		.byte	78
+ 505 00a8 4F       		.byte	79
+ 506 00a9 51       		.byte	81
+ 507 00aa 52       		.byte	82
+ 508 00ab 53       		.byte	83
+ 509 00ac 55       		.byte	85
+ 510 00ad 56       		.byte	86
+ 511 00ae 57       		.byte	87
+ 512 00af 59       		.byte	89
+ 513 00b0 5A       		.byte	90
+ 514 00b1 5C       		.byte	92
+ 515 00b2 5D       		.byte	93
+ 516 00b3 5F       		.byte	95
+ 517 00b4 60       		.byte	96
+ 518 00b5 62       		.byte	98
+ 519 00b6 63       		.byte	99
+ 520 00b7 65       		.byte	101
+ 521 00b8 66       		.byte	102
+ 522 00b9 68       		.byte	104
+ 523 00ba 69       		.byte	105
+ 524 00bb 6B       		.byte	107
+ 525 00bc 6D       		.byte	109
+ 526 00bd 6E       		.byte	110
+ 527 00be 70       		.byte	112
+ 528 00bf 72       		.byte	114
+ 529 00c0 73       		.byte	115
+ 530 00c1 75       		.byte	117
+ 531 00c2 77       		.byte	119
+ 532 00c3 78       		.byte	120
+ 533 00c4 7A       		.byte	122
+ 534 00c5 7C       		.byte	124
+ 535 00c6 7E       		.byte	126
+ 536 00c7 7F       		.byte	127
+ 537 00c8 81       		.byte	-127
+ 538 00c9 83       		.byte	-125
+ 539 00ca 85       		.byte	-123
+ 540 00cb 87       		.byte	-121
+ 541 00cc 89       		.byte	-119
+ 542 00cd 8A       		.byte	-118
+ 543 00ce 8C       		.byte	-116
+ 544 00cf 8E       		.byte	-114
+ 545 00d0 90       		.byte	-112
+ 546 00d1 92       		.byte	-110
+ 547 00d2 94       		.byte	-108
+ 548 00d3 96       		.byte	-106
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 12
 
 
- 549 00d0 90       		.byte	-112
- 550 00d1 92       		.byte	-110
- 551 00d2 94       		.byte	-108
- 552 00d3 96       		.byte	-106
- 553 00d4 98       		.byte	-104
- 554 00d5 9A       		.byte	-102
- 555 00d6 9C       		.byte	-100
- 556 00d7 9E       		.byte	-98
- 557 00d8 A0       		.byte	-96
- 558 00d9 A2       		.byte	-94
- 559 00da A4       		.byte	-92
- 560 00db A7       		.byte	-89
- 561 00dc A9       		.byte	-87
- 562 00dd AB       		.byte	-85
- 563 00de AD       		.byte	-83
- 564 00df AF       		.byte	-81
- 565 00e0 B1       		.byte	-79
- 566 00e1 B4       		.byte	-76
- 567 00e2 B6       		.byte	-74
- 568 00e3 B8       		.byte	-72
- 569 00e4 BA       		.byte	-70
- 570 00e5 BD       		.byte	-67
- 571 00e6 BF       		.byte	-65
- 572 00e7 C1       		.byte	-63
- 573 00e8 C4       		.byte	-60
- 574 00e9 C6       		.byte	-58
- 575 00ea C8       		.byte	-56
- 576 00eb CB       		.byte	-53
- 577 00ec CD       		.byte	-51
- 578 00ed D0       		.byte	-48
- 579 00ee D2       		.byte	-46
- 580 00ef D5       		.byte	-43
- 581 00f0 D7       		.byte	-41
- 582 00f1 DA       		.byte	-38
- 583 00f2 DC       		.byte	-36
- 584 00f3 DF       		.byte	-33
- 585 00f4 E1       		.byte	-31
- 586 00f5 E4       		.byte	-28
- 587 00f6 E7       		.byte	-25
- 588 00f7 E9       		.byte	-23
- 589 00f8 EC       		.byte	-20
- 590 00f9 EF       		.byte	-17
- 591 00fa F1       		.byte	-15
- 592 00fb F4       		.byte	-12
- 593 00fc F7       		.byte	-9
- 594 00fd F9       		.byte	-7
- 595 00fe FC       		.byte	-4
- 596 00ff FF       		.byte	-1
- 597              		.text
- 598              	.Letext0:
- 599              		.file 2 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_def
- 600              		.file 3 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.
- 601              		.file 4 "Inc/definitions.h"
- 602              		.file 5 "Inc/draw.h"
-ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s 			page 13
+ 549 00d4 98       		.byte	-104
+ 550 00d5 9A       		.byte	-102
+ 551 00d6 9C       		.byte	-100
+ 552 00d7 9E       		.byte	-98
+ 553 00d8 A0       		.byte	-96
+ 554 00d9 A2       		.byte	-94
+ 555 00da A4       		.byte	-92
+ 556 00db A7       		.byte	-89
+ 557 00dc A9       		.byte	-87
+ 558 00dd AB       		.byte	-85
+ 559 00de AD       		.byte	-83
+ 560 00df AF       		.byte	-81
+ 561 00e0 B1       		.byte	-79
+ 562 00e1 B4       		.byte	-76
+ 563 00e2 B6       		.byte	-74
+ 564 00e3 B8       		.byte	-72
+ 565 00e4 BA       		.byte	-70
+ 566 00e5 BD       		.byte	-67
+ 567 00e6 BF       		.byte	-65
+ 568 00e7 C1       		.byte	-63
+ 569 00e8 C4       		.byte	-60
+ 570 00e9 C6       		.byte	-58
+ 571 00ea C8       		.byte	-56
+ 572 00eb CB       		.byte	-53
+ 573 00ec CD       		.byte	-51
+ 574 00ed D0       		.byte	-48
+ 575 00ee D2       		.byte	-46
+ 576 00ef D5       		.byte	-43
+ 577 00f0 D7       		.byte	-41
+ 578 00f1 DA       		.byte	-38
+ 579 00f2 DC       		.byte	-36
+ 580 00f3 DF       		.byte	-33
+ 581 00f4 E1       		.byte	-31
+ 582 00f5 E4       		.byte	-28
+ 583 00f6 E7       		.byte	-25
+ 584 00f7 E9       		.byte	-23
+ 585 00f8 EC       		.byte	-20
+ 586 00f9 EF       		.byte	-17
+ 587 00fa F1       		.byte	-15
+ 588 00fb F4       		.byte	-12
+ 589 00fc F7       		.byte	-9
+ 590 00fd F9       		.byte	-7
+ 591 00fe FC       		.byte	-4
+ 592 00ff FF       		.byte	-1
+ 593              		.text
+ 594              	.Letext0:
+ 595              		.file 2 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_def
+ 596              		.file 3 "/Users/luissousa/opt/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.
+ 597              		.file 4 "Inc/definitions.h"
+ 598              		.file 5 "Inc/draw.h"
+ARM GAS  /var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 definitions.c
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:18     .text.setBackColor:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:26     .text.setBackColor:0000000000000000 setBackColor
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:67     .text.setBackColor:0000000000000014 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:18     .text.setBackColor:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:26     .text.setBackColor:0000000000000000 setBackColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:67     .text.setBackColor:0000000000000014 $d
                             *COM*:0000000000000003 backColor
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:72     .text.setTextColor:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:79     .text.setTextColor:0000000000000000 setTextColor
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:119    .text.setTextColor:0000000000000014 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:72     .text.setTextColor:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:79     .text.setTextColor:0000000000000000 setTextColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:119    .text.setTextColor:0000000000000014 $d
                             *COM*:0000000000000003 textColor
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:124    .text.setColor:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:131    .text.setColor:0000000000000000 setColor
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:171    .text.setColorFadeFB:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:178    .text.setColorFadeFB:0000000000000000 setColorFadeFB
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:249    .text.setColorFadeFB:000000000000003c $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:255    .text.setColorFB:0000000000000000 $t
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:262    .text.setColorFB:0000000000000000 setColorFB
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:325    .text.setColorFB:000000000000003c $d
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:340    .data.gammaCorrection:0000000000000000 gammaCorrection
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:124    .text.setColor:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:131    .text.setColor:0000000000000000 setColor
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:171    .text.setColorFadeFB:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:178    .text.setColorFadeFB:0000000000000000 setColorFadeFB
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:245    .text.setColorFadeFB:000000000000003c $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:251    .text.setColorFB:0000000000000000 $t
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:258    .text.setColorFB:0000000000000000 setColorFB
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:321    .text.setColorFB:000000000000003c $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:336    .data.gammaCorrection:0000000000000000 gammaCorrection
                             *COM*:0000000000000300 textLayer
                             *COM*:0000000000000300 backLayer
-/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//cce5p4jG.s:336    .data.gammaCorrection:0000000000000000 $d
+/var/folders/hv/f19l0kw128sbpybv1h43gz3c0000gn/T//ccVpwmro.s:332    .data.gammaCorrection:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 MAX_BRIGHT

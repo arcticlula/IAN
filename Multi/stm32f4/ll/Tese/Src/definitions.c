@@ -58,7 +58,7 @@ void setColorFadeFB(uint8_t *dest, uint8_t *color)
   for (uint8_t z = 0; z < 3; z++)
   {
     temp = gammaCorrection[color[z]];
-    dest[z] = (temp / 2) * MAX_BRIGHT;
+    dest[z] = temp * MAX_BRIGHT;
   }
 }
 

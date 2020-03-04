@@ -55,7 +55,7 @@ typedef struct notesWords
 } NoteWord;
 
 Note note;
-NoteWord noteSequence[6];
+NoteWord noteSequence[5];
 NoteArray noteBuffer[10];
 
 void calculateLeds(void);

@@ -72,7 +72,7 @@ int main(void)
   clearText();
   clearFramebuffer();
   WS2812_sendbuf(24 * NLEDSCH);
-  uint8_t blue[3] = {70, 30, 80};
+  // uint8_t blue[3] = {70, 30, 80};
 
   while (1)
   {
@@ -285,9 +285,9 @@ void USART6_IRQHandler(void)
         }
         if (WS2812_TC)
         {
-          //calculateLeds();
-          //fillFramebufferColor(arr);
-          //WS2812_sendbuf(24 * NLEDSCHCH);
+          // calculateLeds();
+          // fillFramebuffer();
+          // WS2812_sendbuf(24 * NLEDSCH);
         }
         break;
       }
